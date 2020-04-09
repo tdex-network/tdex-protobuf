@@ -1,0 +1,13 @@
+{
+  "name": "tdex-protobuf",
+  "version": "1.0.0",
+  "repository": "git@github.com:Sevenlab/tdex-protobuf.git",
+  "author": "Marco Argentieri <marco@vulpem.com>",
+  "license": "MIT",
+  "scripts": {
+    "protobuf": "bash scripts/compile-proto"
+  },
+  "devDependencies": {
+    "ts-protoc-gen": "^0.12.0"
+  }
+}

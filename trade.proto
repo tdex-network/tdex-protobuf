@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+import "swap.proto";
+
+// Service Interface 
+service TradeService {  
+  rpc Markets(MarketsRequest) returns (MarketstReply);
+  rpc Balances(BalancesRequest) returns (BalancesReply);
+  rpc Trade(TradeProposalRequest) returns (stream TradeProposalReply);
+  rpc TradeComplete(TradeCompleteRequest) returns (stream TradeCompleteReply);
+}
+
+// Messages
+message MarketsRequest {}
+message MarketstReply {}
+message BalancesRequest {}
+message BalancesReply {}
+message TradeProposalRequest {
+  SwapRequest msg = 1;
+}
+message TradeProposalReply {
+  SwapAccept msg = 1;
+  SwapFail failure = 2;
+}
+message TradeCompleteRequest {}
+message TradeCompleteReply {}
