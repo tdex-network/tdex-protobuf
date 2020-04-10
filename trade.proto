@@ -6,7 +6,7 @@ import "swap.proto";
 service TradeService {  
   rpc Markets(MarketsRequest) returns (MarketstReply);
   rpc Balances(BalancesRequest) returns (BalancesReply);
-  rpc Trade(TradeProposalRequest) returns (stream TradeProposalReply);
+  rpc Trade(TradeRequest) returns (stream TradeReply);
   rpc TradeComplete(TradeCompleteRequest) returns (stream TradeCompleteReply);
 }
 
@@ -15,10 +15,10 @@ message MarketsRequest {}
 message MarketstReply {}
 message BalancesRequest {}
 message BalancesReply {}
-message TradeProposalRequest {
+message TradeRequest {
   SwapRequest msg = 1;
 }
-message TradeProposalReply {
+message TradeReply {
   SwapAccept msg = 1;
   SwapFail failure = 2;
 }
