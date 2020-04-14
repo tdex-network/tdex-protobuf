@@ -25,10 +25,13 @@ export namespace MarketsRequest {
 }
 
 export class MarketsReply extends jspb.Message { 
-    clearQuoteassetList(): void;
-    getQuoteassetList(): Array<string>;
-    setQuoteassetList(value: Array<string>): void;
-    addQuoteasset(value: string, index?: number): string;
+    getBaseAsset(): string;
+    setBaseAsset(value: string): void;
+
+    clearQuoteAssetsList(): void;
+    getQuoteAssetsList(): Array<string>;
+    setQuoteAssetsList(value: Array<string>): void;
+    addQuoteAssets(value: string, index?: number): string;
 
 
     serializeBinary(): Uint8Array;
@@ -43,7 +46,8 @@ export class MarketsReply extends jspb.Message {
 
 export namespace MarketsReply {
     export type AsObject = {
-        quoteassetList: Array<string>,
+        baseAsset: string,
+        quoteAssetsList: Array<string>,
     }
 }
 
@@ -73,8 +77,8 @@ export namespace Balance {
 }
 
 export class BalancesRequest extends jspb.Message { 
-    getQuoteasset(): string;
-    setQuoteasset(value: string): void;
+    getQuoteAsset(): string;
+    setQuoteAsset(value: string): void;
 
 
     serializeBinary(): Uint8Array;
@@ -89,15 +93,15 @@ export class BalancesRequest extends jspb.Message {
 
 export namespace BalancesRequest {
     export type AsObject = {
-        quoteasset: string,
+        quoteAsset: string,
     }
 }
 
 export class BalancesReply extends jspb.Message { 
-    clearBalanceList(): void;
-    getBalanceList(): Array<Balance>;
-    setBalanceList(value: Array<Balance>): void;
-    addBalance(value?: Balance, index?: number): Balance;
+    clearBalancesList(): void;
+    getBalancesList(): Array<Balance>;
+    setBalancesList(value: Array<Balance>): void;
+    addBalances(value?: Balance, index?: number): Balance;
 
 
     serializeBinary(): Uint8Array;
@@ -112,7 +116,7 @@ export class BalancesReply extends jspb.Message {
 
 export namespace BalancesReply {
     export type AsObject = {
-        balanceList: Array<Balance.AsObject>,
+        balancesList: Array<Balance.AsObject>,
     }
 }
 

@@ -161,7 +161,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.MarketsReply.repeatedFields_ = [1];
+proto.MarketsReply.repeatedFields_ = [2];
 
 
 
@@ -192,7 +192,8 @@ proto.MarketsReply.prototype.toObject = function(opt_includeInstance) {
  */
 proto.MarketsReply.toObject = function(includeInstance, msg) {
   var f, obj = {
-    quoteassetList: jspb.Message.getRepeatedField(msg, 1)
+    baseAsset: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    quoteAssetsList: jspb.Message.getRepeatedField(msg, 2)
   };
 
   if (includeInstance) {
@@ -231,7 +232,11 @@ proto.MarketsReply.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.addQuoteasset(value);
+      msg.setBaseAsset(value);
+      break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.addQuoteAssets(value);
       break;
     default:
       reader.skipField();
@@ -262,10 +267,17 @@ proto.MarketsReply.prototype.serializeBinary = function() {
  */
 proto.MarketsReply.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getQuoteassetList();
+  f = message.getBaseAsset();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+  f = message.getQuoteAssetsList();
   if (f.length > 0) {
     writer.writeRepeatedString(
-      1,
+      2,
       f
     );
   }
@@ -273,17 +285,32 @@ proto.MarketsReply.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * repeated string quoteAsset = 1;
+ * optional string base_asset = 1;
+ * @return {string}
+ */
+proto.MarketsReply.prototype.getBaseAsset = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.MarketsReply.prototype.setBaseAsset = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * repeated string quote_assets = 2;
  * @return {!Array<string>}
  */
-proto.MarketsReply.prototype.getQuoteassetList = function() {
-  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
+proto.MarketsReply.prototype.getQuoteAssetsList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 2));
 };
 
 
 /** @param {!Array<string>} value */
-proto.MarketsReply.prototype.setQuoteassetList = function(value) {
-  jspb.Message.setField(this, 1, value || []);
+proto.MarketsReply.prototype.setQuoteAssetsList = function(value) {
+  jspb.Message.setField(this, 2, value || []);
 };
 
 
@@ -291,13 +318,13 @@ proto.MarketsReply.prototype.setQuoteassetList = function(value) {
  * @param {string} value
  * @param {number=} opt_index
  */
-proto.MarketsReply.prototype.addQuoteasset = function(value, opt_index) {
-  jspb.Message.addToRepeatedField(this, 1, value, opt_index);
+proto.MarketsReply.prototype.addQuoteAssets = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 2, value, opt_index);
 };
 
 
-proto.MarketsReply.prototype.clearQuoteassetList = function() {
-  this.setQuoteassetList([]);
+proto.MarketsReply.prototype.clearQuoteAssetsList = function() {
+  this.setQuoteAssetsList([]);
 };
 
 
@@ -517,7 +544,7 @@ proto.BalancesRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.BalancesRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    quoteasset: jspb.Message.getFieldWithDefault(msg, 1, "")
+    quoteAsset: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -556,7 +583,7 @@ proto.BalancesRequest.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setQuoteasset(value);
+      msg.setQuoteAsset(value);
       break;
     default:
       reader.skipField();
@@ -587,7 +614,7 @@ proto.BalancesRequest.prototype.serializeBinary = function() {
  */
 proto.BalancesRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getQuoteasset();
+  f = message.getQuoteAsset();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -598,16 +625,16 @@ proto.BalancesRequest.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string quoteAsset = 1;
+ * optional string quote_asset = 1;
  * @return {string}
  */
-proto.BalancesRequest.prototype.getQuoteasset = function() {
+proto.BalancesRequest.prototype.getQuoteAsset = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /** @param {string} value */
-proto.BalancesRequest.prototype.setQuoteasset = function(value) {
+proto.BalancesRequest.prototype.setQuoteAsset = function(value) {
   jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -666,7 +693,7 @@ proto.BalancesReply.prototype.toObject = function(opt_includeInstance) {
  */
 proto.BalancesReply.toObject = function(includeInstance, msg) {
   var f, obj = {
-    balanceList: jspb.Message.toObjectList(msg.getBalanceList(),
+    balancesList: jspb.Message.toObjectList(msg.getBalancesList(),
     proto.Balance.toObject, includeInstance)
   };
 
@@ -707,7 +734,7 @@ proto.BalancesReply.deserializeBinaryFromReader = function(msg, reader) {
     case 1:
       var value = new proto.Balance;
       reader.readMessage(value,proto.Balance.deserializeBinaryFromReader);
-      msg.addBalance(value);
+      msg.addBalances(value);
       break;
     default:
       reader.skipField();
@@ -738,7 +765,7 @@ proto.BalancesReply.prototype.serializeBinary = function() {
  */
 proto.BalancesReply.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getBalanceList();
+  f = message.getBalancesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
@@ -750,17 +777,17 @@ proto.BalancesReply.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * repeated Balance balance = 1;
+ * repeated Balance balances = 1;
  * @return {!Array<!proto.Balance>}
  */
-proto.BalancesReply.prototype.getBalanceList = function() {
+proto.BalancesReply.prototype.getBalancesList = function() {
   return /** @type{!Array<!proto.Balance>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.Balance, 1));
 };
 
 
 /** @param {!Array<!proto.Balance>} value */
-proto.BalancesReply.prototype.setBalanceList = function(value) {
+proto.BalancesReply.prototype.setBalancesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
@@ -770,13 +797,13 @@ proto.BalancesReply.prototype.setBalanceList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.Balance}
  */
-proto.BalancesReply.prototype.addBalance = function(opt_value, opt_index) {
+proto.BalancesReply.prototype.addBalances = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.Balance, opt_index);
 };
 
 
-proto.BalancesReply.prototype.clearBalanceList = function() {
-  this.setBalanceList([]);
+proto.BalancesReply.prototype.clearBalancesList = function() {
+  this.setBalancesList([]);
 };
 
 

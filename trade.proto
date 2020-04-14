@@ -3,17 +3,18 @@ syntax = "proto3";
 import "swap.proto";
 
 // Service Interface 
-service Trading {  
+service TradeComplete {  
   rpc Markets(MarketsRequest) returns (MarketsReply);
   rpc Balances(BalancesRequest) returns (BalancesReply);
-  rpc Trade(TradeRequest) returns (stream TradeReply);
+  rpc TradePropose(TradeRequest) returns (stream TradeReply);
   rpc TradeComplete(TradeCompleteRequest) returns (stream TradeCompleteReply);
 }
 
 // Messages
 message MarketsRequest {}
 message MarketsReply {
-  repeated string quoteAsset = 1;
+  string base_asset = 1;
+  repeated string quote_assets = 2;
 }
 
 message Balance {
@@ -21,10 +22,10 @@ message Balance {
   int64 amount = 2;
 }
 message BalancesRequest {
-  string quoteAsset = 1;
+  string quote_asset = 1;
 }
 message BalancesReply {
-  repeated Balance balance = 1;
+  repeated Balance balances = 1;
 }
 
 message TradeRequest {
