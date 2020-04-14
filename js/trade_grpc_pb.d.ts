@@ -8,15 +8,15 @@ import * as grpc from "grpc";
 import * as trade_pb from "./trade_pb";
 import * as swap_pb from "./swap_pb";
 
-interface ITradeServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
-    markets: ITradeServiceService_IMarkets;
-    balances: ITradeServiceService_IBalances;
-    trade: ITradeServiceService_ITrade;
-    tradeComplete: ITradeServiceService_ITradeComplete;
+interface ITradingService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
+    markets: ITradingService_IMarkets;
+    balances: ITradingService_IBalances;
+    trade: ITradingService_ITrade;
+    tradeComplete: ITradingService_ITradeComplete;
 }
 
-interface ITradeServiceService_IMarkets extends grpc.MethodDefinition<trade_pb.MarketsRequest, trade_pb.MarketsReply> {
-    path: string; // "/.TradeService/Markets"
+interface ITradingService_IMarkets extends grpc.MethodDefinition<trade_pb.MarketsRequest, trade_pb.MarketsReply> {
+    path: string; // "/.Trading/Markets"
     requestStream: boolean; // false
     responseStream: boolean; // false
     requestSerialize: grpc.serialize<trade_pb.MarketsRequest>;
@@ -24,8 +24,8 @@ interface ITradeServiceService_IMarkets extends grpc.MethodDefinition<trade_pb.M
     responseSerialize: grpc.serialize<trade_pb.MarketsReply>;
     responseDeserialize: grpc.deserialize<trade_pb.MarketsReply>;
 }
-interface ITradeServiceService_IBalances extends grpc.MethodDefinition<trade_pb.BalancesRequest, trade_pb.BalancesReply> {
-    path: string; // "/.TradeService/Balances"
+interface ITradingService_IBalances extends grpc.MethodDefinition<trade_pb.BalancesRequest, trade_pb.BalancesReply> {
+    path: string; // "/.Trading/Balances"
     requestStream: boolean; // false
     responseStream: boolean; // false
     requestSerialize: grpc.serialize<trade_pb.BalancesRequest>;
@@ -33,8 +33,8 @@ interface ITradeServiceService_IBalances extends grpc.MethodDefinition<trade_pb.
     responseSerialize: grpc.serialize<trade_pb.BalancesReply>;
     responseDeserialize: grpc.deserialize<trade_pb.BalancesReply>;
 }
-interface ITradeServiceService_ITrade extends grpc.MethodDefinition<trade_pb.TradeRequest, trade_pb.TradeReply> {
-    path: string; // "/.TradeService/Trade"
+interface ITradingService_ITrade extends grpc.MethodDefinition<trade_pb.TradeRequest, trade_pb.TradeReply> {
+    path: string; // "/.Trading/Trade"
     requestStream: boolean; // false
     responseStream: boolean; // true
     requestSerialize: grpc.serialize<trade_pb.TradeRequest>;
@@ -42,8 +42,8 @@ interface ITradeServiceService_ITrade extends grpc.MethodDefinition<trade_pb.Tra
     responseSerialize: grpc.serialize<trade_pb.TradeReply>;
     responseDeserialize: grpc.deserialize<trade_pb.TradeReply>;
 }
-interface ITradeServiceService_ITradeComplete extends grpc.MethodDefinition<trade_pb.TradeCompleteRequest, trade_pb.TradeCompleteReply> {
-    path: string; // "/.TradeService/TradeComplete"
+interface ITradingService_ITradeComplete extends grpc.MethodDefinition<trade_pb.TradeCompleteRequest, trade_pb.TradeCompleteReply> {
+    path: string; // "/.Trading/TradeComplete"
     requestStream: boolean; // false
     responseStream: boolean; // true
     requestSerialize: grpc.serialize<trade_pb.TradeCompleteRequest>;
@@ -52,16 +52,16 @@ interface ITradeServiceService_ITradeComplete extends grpc.MethodDefinition<trad
     responseDeserialize: grpc.deserialize<trade_pb.TradeCompleteReply>;
 }
 
-export const TradeServiceService: ITradeServiceService;
+export const TradingService: ITradingService;
 
-export interface ITradeServiceServer {
+export interface ITradingServer {
     markets: grpc.handleUnaryCall<trade_pb.MarketsRequest, trade_pb.MarketsReply>;
     balances: grpc.handleUnaryCall<trade_pb.BalancesRequest, trade_pb.BalancesReply>;
     trade: grpc.handleServerStreamingCall<trade_pb.TradeRequest, trade_pb.TradeReply>;
     tradeComplete: grpc.handleServerStreamingCall<trade_pb.TradeCompleteRequest, trade_pb.TradeCompleteReply>;
 }
 
-export interface ITradeServiceClient {
+export interface ITradingClient {
     markets(request: trade_pb.MarketsRequest, callback: (error: grpc.ServiceError | null, response: trade_pb.MarketsReply) => void): grpc.ClientUnaryCall;
     markets(request: trade_pb.MarketsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: trade_pb.MarketsReply) => void): grpc.ClientUnaryCall;
     markets(request: trade_pb.MarketsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: trade_pb.MarketsReply) => void): grpc.ClientUnaryCall;
@@ -74,7 +74,7 @@ export interface ITradeServiceClient {
     tradeComplete(request: trade_pb.TradeCompleteRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<trade_pb.TradeCompleteReply>;
 }
 
-export class TradeServiceClient extends grpc.Client implements ITradeServiceClient {
+export class TradingClient extends grpc.Client implements ITradingClient {
     constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);
     public markets(request: trade_pb.MarketsRequest, callback: (error: grpc.ServiceError | null, response: trade_pb.MarketsReply) => void): grpc.ClientUnaryCall;
     public markets(request: trade_pb.MarketsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: trade_pb.MarketsReply) => void): grpc.ClientUnaryCall;

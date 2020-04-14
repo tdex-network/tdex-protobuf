@@ -95,9 +95,9 @@ function deserialize_TradeRequest(buffer_arg) {
 
 
 // Service Interface 
-var TradeServiceService = exports.TradeServiceService = {
+var TradingService = exports.TradingService = {
   markets: {
-    path: '/TradeService/Markets',
+    path: '/Trading/Markets',
     requestStream: false,
     responseStream: false,
     requestType: trade_pb.MarketsRequest,
@@ -108,7 +108,7 @@ var TradeServiceService = exports.TradeServiceService = {
     responseDeserialize: deserialize_MarketsReply,
   },
   balances: {
-    path: '/TradeService/Balances',
+    path: '/Trading/Balances',
     requestStream: false,
     responseStream: false,
     requestType: trade_pb.BalancesRequest,
@@ -119,7 +119,7 @@ var TradeServiceService = exports.TradeServiceService = {
     responseDeserialize: deserialize_BalancesReply,
   },
   trade: {
-    path: '/TradeService/Trade',
+    path: '/Trading/Trade',
     requestStream: false,
     responseStream: true,
     requestType: trade_pb.TradeRequest,
@@ -130,7 +130,7 @@ var TradeServiceService = exports.TradeServiceService = {
     responseDeserialize: deserialize_TradeReply,
   },
   tradeComplete: {
-    path: '/TradeService/TradeComplete',
+    path: '/Trading/TradeComplete',
     requestStream: false,
     responseStream: true,
     requestType: trade_pb.TradeCompleteRequest,
@@ -142,4 +142,4 @@ var TradeServiceService = exports.TradeServiceService = {
   },
 };
 
-exports.TradeServiceClient = grpc.makeGenericClientConstructor(TradeServiceService);
+exports.TradingClient = grpc.makeGenericClientConstructor(TradingService);

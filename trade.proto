@@ -3,7 +3,7 @@ syntax = "proto3";
 import "swap.proto";
 
 // Service Interface 
-service TradeService {  
+service Trading {  
   rpc Markets(MarketsRequest) returns (MarketsReply);
   rpc Balances(BalancesRequest) returns (BalancesReply);
   rpc Trade(TradeRequest) returns (stream TradeReply);
