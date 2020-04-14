@@ -4,7 +4,7 @@ import "swap.proto";
 
 // Service Interface 
 service TradeService {  
-  rpc Markets(MarketsRequest) returns (MarketstReply);
+  rpc Markets(MarketsRequest) returns (MarketsReply);
   rpc Balances(BalancesRequest) returns (BalancesReply);
   rpc Trade(TradeRequest) returns (stream TradeReply);
   rpc TradeComplete(TradeCompleteRequest) returns (stream TradeCompleteReply);
@@ -12,7 +12,7 @@ service TradeService {
 
 // Messages
 message MarketsRequest {}
-message MarketstReply {
+message MarketsReply {
   repeated string quoteAsset = 1;
 }
 

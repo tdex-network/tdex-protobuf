@@ -15,8 +15,8 @@ var swap_pb = require('./swap_pb.js');
 goog.exportSymbol('proto.Balance', null, global);
 goog.exportSymbol('proto.BalancesReply', null, global);
 goog.exportSymbol('proto.BalancesRequest', null, global);
+goog.exportSymbol('proto.MarketsReply', null, global);
 goog.exportSymbol('proto.MarketsRequest', null, global);
-goog.exportSymbol('proto.MarketstReply', null, global);
 goog.exportSymbol('proto.TradeCompleteReply', null, global);
 goog.exportSymbol('proto.TradeCompleteRequest', null, global);
 goog.exportSymbol('proto.TradeReply', null, global);
@@ -148,19 +148,19 @@ proto.MarketsRequest.serializeBinaryToWriter = function(message, writer) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.MarketstReply = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.MarketstReply.repeatedFields_, null);
+proto.MarketsReply = function(opt_data) {
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.MarketsReply.repeatedFields_, null);
 };
-goog.inherits(proto.MarketstReply, jspb.Message);
+goog.inherits(proto.MarketsReply, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
-  proto.MarketstReply.displayName = 'proto.MarketstReply';
+  proto.MarketsReply.displayName = 'proto.MarketsReply';
 }
 /**
  * List of repeated fields within this message type.
  * @private {!Array<number>}
  * @const
  */
-proto.MarketstReply.repeatedFields_ = [1];
+proto.MarketsReply.repeatedFields_ = [1];
 
 
 
@@ -175,8 +175,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     for transitional soy proto support: http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.MarketstReply.prototype.toObject = function(opt_includeInstance) {
-  return proto.MarketstReply.toObject(opt_includeInstance, this);
+proto.MarketsReply.prototype.toObject = function(opt_includeInstance) {
+  return proto.MarketsReply.toObject(opt_includeInstance, this);
 };
 
 
@@ -185,11 +185,11 @@ proto.MarketstReply.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Whether to include the JSPB
  *     instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.MarketstReply} msg The msg instance to transform.
+ * @param {!proto.MarketsReply} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.MarketstReply.toObject = function(includeInstance, msg) {
+proto.MarketsReply.toObject = function(includeInstance, msg) {
   var f, obj = {
     quoteassetList: jspb.Message.getRepeatedField(msg, 1)
   };
@@ -205,23 +205,23 @@ proto.MarketstReply.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.MarketstReply}
+ * @return {!proto.MarketsReply}
  */
-proto.MarketstReply.deserializeBinary = function(bytes) {
+proto.MarketsReply.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.MarketstReply;
-  return proto.MarketstReply.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.MarketsReply;
+  return proto.MarketsReply.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.MarketstReply} msg The message object to deserialize into.
+ * @param {!proto.MarketsReply} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.MarketstReply}
+ * @return {!proto.MarketsReply}
  */
-proto.MarketstReply.deserializeBinaryFromReader = function(msg, reader) {
+proto.MarketsReply.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -245,9 +245,9 @@ proto.MarketstReply.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.MarketstReply.prototype.serializeBinary = function() {
+proto.MarketsReply.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.MarketstReply.serializeBinaryToWriter(this, writer);
+  proto.MarketsReply.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -255,11 +255,11 @@ proto.MarketstReply.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.MarketstReply} message
+ * @param {!proto.MarketsReply} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.MarketstReply.serializeBinaryToWriter = function(message, writer) {
+proto.MarketsReply.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getQuoteassetList();
   if (f.length > 0) {
@@ -275,13 +275,13 @@ proto.MarketstReply.serializeBinaryToWriter = function(message, writer) {
  * repeated string quoteAsset = 1;
  * @return {!Array<string>}
  */
-proto.MarketstReply.prototype.getQuoteassetList = function() {
+proto.MarketsReply.prototype.getQuoteassetList = function() {
   return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
 };
 
 
 /** @param {!Array<string>} value */
-proto.MarketstReply.prototype.setQuoteassetList = function(value) {
+proto.MarketsReply.prototype.setQuoteassetList = function(value) {
   jspb.Message.setField(this, 1, value || []);
 };
 
@@ -290,12 +290,12 @@ proto.MarketstReply.prototype.setQuoteassetList = function(value) {
  * @param {!string} value
  * @param {number=} opt_index
  */
-proto.MarketstReply.prototype.addQuoteasset = function(value, opt_index) {
+proto.MarketsReply.prototype.addQuoteasset = function(value, opt_index) {
   jspb.Message.addToRepeatedField(this, 1, value, opt_index);
 };
 
 
-proto.MarketstReply.prototype.clearQuoteassetList = function() {
+proto.MarketsReply.prototype.clearQuoteassetList = function() {
   this.setQuoteassetList([]);
 };
 

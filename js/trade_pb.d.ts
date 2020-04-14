@@ -20,23 +20,23 @@ export namespace MarketsRequest {
   }
 }
 
-export class MarketstReply extends jspb.Message {
+export class MarketsReply extends jspb.Message {
   clearQuoteassetList(): void;
   getQuoteassetList(): Array<string>;
   setQuoteassetList(value: Array<string>): void;
   addQuoteasset(value: string, index?: number): string;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): MarketstReply.AsObject;
-  static toObject(includeInstance: boolean, msg: MarketstReply): MarketstReply.AsObject;
+  toObject(includeInstance?: boolean): MarketsReply.AsObject;
+  static toObject(includeInstance: boolean, msg: MarketsReply): MarketsReply.AsObject;
   static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
   static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-  static serializeBinaryToWriter(message: MarketstReply, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): MarketstReply;
-  static deserializeBinaryFromReader(message: MarketstReply, reader: jspb.BinaryReader): MarketstReply;
+  static serializeBinaryToWriter(message: MarketsReply, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MarketsReply;
+  static deserializeBinaryFromReader(message: MarketsReply, reader: jspb.BinaryReader): MarketsReply;
 }
 
-export namespace MarketstReply {
+export namespace MarketsReply {
   export type AsObject = {
     quoteassetList: Array<string>,
   }
