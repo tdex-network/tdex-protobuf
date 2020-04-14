@@ -12,6 +12,7 @@ var goog = jspb;
 var global = Function('return this')();
 
 var swap_pb = require('./swap_pb.js');
+goog.object.extend(proto, swap_pb);
 goog.exportSymbol('proto.Balance', null, global);
 goog.exportSymbol('proto.BalancesReply', null, global);
 goog.exportSymbol('proto.BalancesRequest', null, global);
@@ -287,7 +288,7 @@ proto.MarketsReply.prototype.setQuoteassetList = function(value) {
 
 
 /**
- * @param {!string} value
+ * @param {string} value
  * @param {number=} opt_index
  */
 proto.MarketsReply.prototype.addQuoteasset = function(value, opt_index) {
@@ -931,7 +932,7 @@ proto.TradeRequest.prototype.clearMsg = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.TradeRequest.prototype.hasMsg = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -1104,7 +1105,7 @@ proto.TradeReply.prototype.clearMsg = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.TradeReply.prototype.hasMsg = function() {
   return jspb.Message.getField(this, 1) != null;
@@ -1134,7 +1135,7 @@ proto.TradeReply.prototype.clearFailure = function() {
 
 /**
  * Returns whether this field is set.
- * @return {!boolean}
+ * @return {boolean}
  */
 proto.TradeReply.prototype.hasFailure = function() {
   return jspb.Message.getField(this, 2) != null;
