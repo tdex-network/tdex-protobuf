@@ -9,6 +9,6 @@ protoc  \
   --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts \
   --js_out=import_style=commonjs,binary:./js  \
   --ts_out=./js  \
-  swap.proto
+  *.proto
 
 popd
