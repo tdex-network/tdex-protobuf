@@ -18,6 +18,7 @@ message Balance {
 message Market {
   string base_asset = 1;
   string quote_asset = 2;
+  float fee = 3;
 }
 
 // Service's messages
@@ -25,7 +26,10 @@ message MarketsRequest {}
 message MarketsReply { repeated Market markets = 1; }
 
 message BalancesRequest { Market market = 1; }
-message BalancesReply { repeated Balance balances = 1; }
+message BalancesReply { 
+  repeated Balance balances = 1;
+  float fee = 2;
+}
 
 message TradeProposeRequest {
   Market market = 1;

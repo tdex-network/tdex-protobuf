@@ -39,6 +39,9 @@ export class Market extends jspb.Message {
     getQuoteAsset(): string;
     setQuoteAsset(value: string): void;
 
+    getFee(): number;
+    setFee(value: number): void;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Market.AsObject;
@@ -54,6 +57,7 @@ export namespace Market {
     export type AsObject = {
         baseAsset: string,
         quoteAsset: string,
+        fee: number,
     }
 }
 
@@ -127,6 +131,9 @@ export class BalancesReply extends jspb.Message {
     setBalancesList(value: Array<Balance>): void;
     addBalances(value?: Balance, index?: number): Balance;
 
+    getFee(): number;
+    setFee(value: number): void;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): BalancesReply.AsObject;
@@ -141,6 +148,7 @@ export class BalancesReply extends jspb.Message {
 export namespace BalancesReply {
     export type AsObject = {
         balancesList: Array<Balance.AsObject>,
+        fee: number,
     }
 }
 

@@ -241,7 +241,8 @@ proto.Market.prototype.toObject = function(opt_includeInstance) {
 proto.Market.toObject = function(includeInstance, msg) {
   var f, obj = {
     baseAsset: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    quoteAsset: jspb.Message.getFieldWithDefault(msg, 2, "")
+    quoteAsset: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    fee: +jspb.Message.getFieldWithDefault(msg, 3, 0.0)
   };
 
   if (includeInstance) {
@@ -286,6 +287,10 @@ proto.Market.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setQuoteAsset(value);
       break;
+    case 3:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setFee(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -329,6 +334,13 @@ proto.Market.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getFee();
+  if (f !== 0.0) {
+    writer.writeFloat(
+      3,
+      f
+    );
+  }
 };
 
 
@@ -359,6 +371,21 @@ proto.Market.prototype.getQuoteAsset = function() {
 /** @param {string} value */
 proto.Market.prototype.setQuoteAsset = function(value) {
   jspb.Message.setProto3StringField(this, 2, value);
+};
+
+
+/**
+ * optional float fee = 3;
+ * @return {number}
+ */
+proto.Market.prototype.getFee = function() {
+  return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 3, 0.0));
+};
+
+
+/** @param {number} value */
+proto.Market.prototype.setFee = function(value) {
+  jspb.Message.setProto3FloatField(this, 3, value);
 };
 
 
@@ -860,7 +887,8 @@ proto.BalancesReply.prototype.toObject = function(opt_includeInstance) {
 proto.BalancesReply.toObject = function(includeInstance, msg) {
   var f, obj = {
     balancesList: jspb.Message.toObjectList(msg.getBalancesList(),
-    proto.Balance.toObject, includeInstance)
+    proto.Balance.toObject, includeInstance),
+    fee: +jspb.Message.getFieldWithDefault(msg, 2, 0.0)
   };
 
   if (includeInstance) {
@@ -902,6 +930,10 @@ proto.BalancesReply.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,proto.Balance.deserializeBinaryFromReader);
       msg.addBalances(value);
       break;
+    case 2:
+      var value = /** @type {number} */ (reader.readFloat());
+      msg.setFee(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -939,6 +971,13 @@ proto.BalancesReply.serializeBinaryToWriter = function(message, writer) {
       proto.Balance.serializeBinaryToWriter
     );
   }
+  f = message.getFee();
+  if (f !== 0.0) {
+    writer.writeFloat(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -970,6 +1009,21 @@ proto.BalancesReply.prototype.addBalances = function(opt_value, opt_index) {
 
 proto.BalancesReply.prototype.clearBalancesList = function() {
   this.setBalancesList([]);
+};
+
+
+/**
+ * optional float fee = 2;
+ * @return {number}
+ */
+proto.BalancesReply.prototype.getFee = function() {
+  return /** @type {number} */ (+jspb.Message.getFieldWithDefault(this, 2, 0.0));
+};
+
+
+/** @param {number} value */
+proto.BalancesReply.prototype.setFee = function(value) {
+  jspb.Message.setProto3FloatField(this, 2, value);
 };
 
 
