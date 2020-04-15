@@ -71,30 +71,30 @@ function deserialize_TradeCompleteRequest(buffer_arg) {
   return trade_pb.TradeCompleteRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_TradeReply(arg) {
-  if (!(arg instanceof trade_pb.TradeReply)) {
-    throw new Error('Expected argument of type TradeReply');
+function serialize_TradeProposeReply(arg) {
+  if (!(arg instanceof trade_pb.TradeProposeReply)) {
+    throw new Error('Expected argument of type TradeProposeReply');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_TradeReply(buffer_arg) {
-  return trade_pb.TradeReply.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_TradeProposeReply(buffer_arg) {
+  return trade_pb.TradeProposeReply.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_TradeRequest(arg) {
-  if (!(arg instanceof trade_pb.TradeRequest)) {
-    throw new Error('Expected argument of type TradeRequest');
+function serialize_TradeProposeRequest(arg) {
+  if (!(arg instanceof trade_pb.TradeProposeRequest)) {
+    throw new Error('Expected argument of type TradeProposeRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_TradeRequest(buffer_arg) {
-  return trade_pb.TradeRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_TradeProposeRequest(buffer_arg) {
+  return trade_pb.TradeProposeRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 
-// Service Interface 
+// Service Interface
 var TradeService = exports.TradeService = {
   markets: {
     path: '/Trade/Markets',
@@ -122,12 +122,12 @@ var TradeService = exports.TradeService = {
     path: '/Trade/TradePropose',
     requestStream: false,
     responseStream: true,
-    requestType: trade_pb.TradeRequest,
-    responseType: trade_pb.TradeReply,
-    requestSerialize: serialize_TradeRequest,
-    requestDeserialize: deserialize_TradeRequest,
-    responseSerialize: serialize_TradeReply,
-    responseDeserialize: deserialize_TradeReply,
+    requestType: trade_pb.TradeProposeRequest,
+    responseType: trade_pb.TradeProposeReply,
+    requestSerialize: serialize_TradeProposeRequest,
+    requestDeserialize: deserialize_TradeProposeRequest,
+    responseSerialize: serialize_TradeProposeReply,
+    responseDeserialize: deserialize_TradeProposeReply,
   },
   tradeComplete: {
     path: '/Trade/TradeComplete',
