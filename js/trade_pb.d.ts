@@ -39,9 +39,6 @@ export class Market extends jspb.Message {
     getQuoteAsset(): string;
     setQuoteAsset(value: string): void;
 
-    getFee(): number;
-    setFee(value: number): void;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Market.AsObject;
@@ -57,6 +54,33 @@ export namespace Market {
     export type AsObject = {
         baseAsset: string,
         quoteAsset: string,
+    }
+}
+
+export class MarketWithFee extends jspb.Message { 
+
+    hasMarket(): boolean;
+    clearMarket(): void;
+    getMarket(): Market | undefined;
+    setMarket(value?: Market): void;
+
+    getFee(): number;
+    setFee(value: number): void;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): MarketWithFee.AsObject;
+    static toObject(includeInstance: boolean, msg: MarketWithFee): MarketWithFee.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: MarketWithFee, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): MarketWithFee;
+    static deserializeBinaryFromReader(message: MarketWithFee, reader: jspb.BinaryReader): MarketWithFee;
+}
+
+export namespace MarketWithFee {
+    export type AsObject = {
+        market?: Market.AsObject,
         fee: number,
     }
 }
@@ -80,9 +104,9 @@ export namespace MarketsRequest {
 
 export class MarketsReply extends jspb.Message { 
     clearMarketsList(): void;
-    getMarketsList(): Array<Market>;
-    setMarketsList(value: Array<Market>): void;
-    addMarkets(value?: Market, index?: number): Market;
+    getMarketsList(): Array<MarketWithFee>;
+    setMarketsList(value: Array<MarketWithFee>): void;
+    addMarkets(value?: MarketWithFee, index?: number): MarketWithFee;
 
 
     serializeBinary(): Uint8Array;
@@ -97,7 +121,7 @@ export class MarketsReply extends jspb.Message {
 
 export namespace MarketsReply {
     export type AsObject = {
-        marketsList: Array<Market.AsObject>,
+        marketsList: Array<MarketWithFee.AsObject>,
     }
 }
 
