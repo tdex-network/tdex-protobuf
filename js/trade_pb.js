@@ -532,7 +532,7 @@ proto.MarketsReply.prototype.toObject = function(opt_includeInstance) {
  */
 proto.MarketsReply.toObject = function(includeInstance, msg) {
   var f, obj = {
-    marketList: jspb.Message.toObjectList(msg.getMarketList(),
+    marketsList: jspb.Message.toObjectList(msg.getMarketsList(),
     proto.Market.toObject, includeInstance)
   };
 
@@ -573,7 +573,7 @@ proto.MarketsReply.deserializeBinaryFromReader = function(msg, reader) {
     case 1:
       var value = new proto.Market;
       reader.readMessage(value,proto.Market.deserializeBinaryFromReader);
-      msg.addMarket(value);
+      msg.addMarkets(value);
       break;
     default:
       reader.skipField();
@@ -604,7 +604,7 @@ proto.MarketsReply.prototype.serializeBinary = function() {
  */
 proto.MarketsReply.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMarketList();
+  f = message.getMarketsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
@@ -616,17 +616,17 @@ proto.MarketsReply.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * repeated Market market = 1;
+ * repeated Market markets = 1;
  * @return {!Array<!proto.Market>}
  */
-proto.MarketsReply.prototype.getMarketList = function() {
+proto.MarketsReply.prototype.getMarketsList = function() {
   return /** @type{!Array<!proto.Market>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.Market, 1));
 };
 
 
 /** @param {!Array<!proto.Market>} value */
-proto.MarketsReply.prototype.setMarketList = function(value) {
+proto.MarketsReply.prototype.setMarketsList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
@@ -636,13 +636,13 @@ proto.MarketsReply.prototype.setMarketList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.Market}
  */
-proto.MarketsReply.prototype.addMarket = function(opt_value, opt_index) {
+proto.MarketsReply.prototype.addMarkets = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.Market, opt_index);
 };
 
 
-proto.MarketsReply.prototype.clearMarketList = function() {
-  this.setMarketList([]);
+proto.MarketsReply.prototype.clearMarketsList = function() {
+  this.setMarketsList([]);
 };
 
 
