@@ -75,10 +75,10 @@ export namespace MarketsRequest {
 }
 
 export class MarketsReply extends jspb.Message { 
-    clearMarketList(): void;
-    getMarketList(): Array<Market>;
-    setMarketList(value: Array<Market>): void;
-    addMarket(value?: Market, index?: number): Market;
+    clearMarketsList(): void;
+    getMarketsList(): Array<Market>;
+    setMarketsList(value: Array<Market>): void;
+    addMarkets(value?: Market, index?: number): Market;
 
 
     serializeBinary(): Uint8Array;
@@ -93,7 +93,7 @@ export class MarketsReply extends jspb.Message {
 
 export namespace MarketsReply {
     export type AsObject = {
-        marketList: Array<Market.AsObject>,
+        marketsList: Array<Market.AsObject>,
     }
 }
 

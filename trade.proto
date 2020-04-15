@@ -22,7 +22,7 @@ message Market {
 
 // Service's messages
 message MarketsRequest {}
-message MarketsReply { repeated Market market = 1; }
+message MarketsReply { repeated Market markets = 1; }
 
 message BalancesRequest { Market market = 1; }
 message BalancesReply { repeated Balance balances = 1; }
