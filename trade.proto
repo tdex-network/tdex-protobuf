@@ -10,13 +10,7 @@ service Trade {
   rpc TradeComplete(TradeCompleteRequest) returns (stream TradeCompleteReply);
 }
 
-// Messages
-message MarketsRequest {}
-message MarketsReply {
-  string base_asset = 1;
-  repeated string quote_asset = 2;
-}
-
+//Custom Types
 message Balance {
   string asset = 1;
   int64 amount = 2;
@@ -26,6 +20,14 @@ message Market {
   string quote_asset = 2;
 }
 
+
+// Service's messages
+message MarketsRequest {}
+message MarketsReply {
+  repeated Market market = 1;
+}
+
+
 message BalancesRequest {
   string quote_asset = 1;
 }
@@ -34,8 +36,12 @@ message BalancesReply {
 }
 
 message TradeProposeRequest {
-  string type = 1;
-  Market market = 2;
+  Market market = 1;
+  enum Type {
+    BUY = 0;
+    SELL = 1;
+  }
+  Type type = 2;
   SwapRequest swap_request = 3;
 }
 message TradeProposeReply {
