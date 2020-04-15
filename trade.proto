@@ -14,13 +14,18 @@ service Trade {
 message MarketsRequest {}
 message MarketsReply {
   string base_asset = 1;
-  repeated string quote_assets = 2;
+  repeated string quote_asset = 2;
 }
 
 message Balance {
   string asset = 1;
   int64 amount = 2;
 }
+message Market {
+  string base_asset = 1;
+  string quote_asset = 2;
+}
+
 message BalancesRequest {
   string quote_asset = 1;
 }
@@ -28,12 +33,15 @@ message BalancesReply {
   repeated Balance balances = 1;
 }
 
-message TradeRequest {
-  SwapRequest msg = 1;
+message TradeProposeRequest {
+  string type = 1;
+  Market market = 2;
+  SwapRequest swap_request = 3;
 }
-message TradeReply {
+message TradeProposeReply {
   SwapAccept msg = 1;
   SwapFail failure = 2;
 }
+
 message TradeCompleteRequest {}
 message TradeCompleteReply {}
