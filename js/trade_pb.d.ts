@@ -7,50 +7,6 @@
 import * as jspb from "google-protobuf";
 import * as swap_pb from "./swap_pb";
 
-export class MarketsRequest extends jspb.Message { 
-
-    serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): MarketsRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: MarketsRequest): MarketsRequest.AsObject;
-    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: MarketsRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): MarketsRequest;
-    static deserializeBinaryFromReader(message: MarketsRequest, reader: jspb.BinaryReader): MarketsRequest;
-}
-
-export namespace MarketsRequest {
-    export type AsObject = {
-    }
-}
-
-export class MarketsReply extends jspb.Message { 
-    getBaseAsset(): string;
-    setBaseAsset(value: string): void;
-
-    clearQuoteAssetsList(): void;
-    getQuoteAssetsList(): Array<string>;
-    setQuoteAssetsList(value: Array<string>): void;
-    addQuoteAssets(value: string, index?: number): string;
-
-
-    serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): MarketsReply.AsObject;
-    static toObject(includeInstance: boolean, msg: MarketsReply): MarketsReply.AsObject;
-    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: MarketsReply, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): MarketsReply;
-    static deserializeBinaryFromReader(message: MarketsReply, reader: jspb.BinaryReader): MarketsReply;
-}
-
-export namespace MarketsReply {
-    export type AsObject = {
-        baseAsset: string,
-        quoteAssetsList: Array<string>,
-    }
-}
-
 export class Balance extends jspb.Message { 
     getAsset(): string;
     setAsset(value: string): void;
@@ -76,9 +32,77 @@ export namespace Balance {
     }
 }
 
-export class BalancesRequest extends jspb.Message { 
+export class Market extends jspb.Message { 
+    getBaseAsset(): string;
+    setBaseAsset(value: string): void;
+
     getQuoteAsset(): string;
     setQuoteAsset(value: string): void;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Market.AsObject;
+    static toObject(includeInstance: boolean, msg: Market): Market.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Market, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Market;
+    static deserializeBinaryFromReader(message: Market, reader: jspb.BinaryReader): Market;
+}
+
+export namespace Market {
+    export type AsObject = {
+        baseAsset: string,
+        quoteAsset: string,
+    }
+}
+
+export class MarketsRequest extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): MarketsRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: MarketsRequest): MarketsRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: MarketsRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): MarketsRequest;
+    static deserializeBinaryFromReader(message: MarketsRequest, reader: jspb.BinaryReader): MarketsRequest;
+}
+
+export namespace MarketsRequest {
+    export type AsObject = {
+    }
+}
+
+export class MarketsReply extends jspb.Message { 
+    clearMarketList(): void;
+    getMarketList(): Array<Market>;
+    setMarketList(value: Array<Market>): void;
+    addMarket(value?: Market, index?: number): Market;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): MarketsReply.AsObject;
+    static toObject(includeInstance: boolean, msg: MarketsReply): MarketsReply.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: MarketsReply, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): MarketsReply;
+    static deserializeBinaryFromReader(message: MarketsReply, reader: jspb.BinaryReader): MarketsReply;
+}
+
+export namespace MarketsReply {
+    export type AsObject = {
+        marketList: Array<Market.AsObject>,
+    }
+}
+
+export class BalancesRequest extends jspb.Message { 
+
+    hasMarket(): boolean;
+    clearMarket(): void;
+    getMarket(): Market | undefined;
+    setMarket(value?: Market): void;
 
 
     serializeBinary(): Uint8Array;
@@ -93,7 +117,7 @@ export class BalancesRequest extends jspb.Message {
 
 export namespace BalancesRequest {
     export type AsObject = {
-        quoteAsset: string,
+        market?: Market.AsObject,
     }
 }
 
@@ -120,31 +144,48 @@ export namespace BalancesReply {
     }
 }
 
-export class TradeRequest extends jspb.Message { 
+export class TradeProposeRequest extends jspb.Message { 
 
-    hasMsg(): boolean;
-    clearMsg(): void;
-    getMsg(): swap_pb.SwapRequest | undefined;
-    setMsg(value?: swap_pb.SwapRequest): void;
+    hasMarket(): boolean;
+    clearMarket(): void;
+    getMarket(): Market | undefined;
+    setMarket(value?: Market): void;
+
+    getType(): TradeProposeRequest.Type;
+    setType(value: TradeProposeRequest.Type): void;
+
+
+    hasSwapRequest(): boolean;
+    clearSwapRequest(): void;
+    getSwapRequest(): swap_pb.SwapRequest | undefined;
+    setSwapRequest(value?: swap_pb.SwapRequest): void;
 
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): TradeRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: TradeRequest): TradeRequest.AsObject;
+    toObject(includeInstance?: boolean): TradeProposeRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: TradeProposeRequest): TradeProposeRequest.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: TradeRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): TradeRequest;
-    static deserializeBinaryFromReader(message: TradeRequest, reader: jspb.BinaryReader): TradeRequest;
+    static serializeBinaryToWriter(message: TradeProposeRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): TradeProposeRequest;
+    static deserializeBinaryFromReader(message: TradeProposeRequest, reader: jspb.BinaryReader): TradeProposeRequest;
 }
 
-export namespace TradeRequest {
+export namespace TradeProposeRequest {
     export type AsObject = {
-        msg?: swap_pb.SwapRequest.AsObject,
+        market?: Market.AsObject,
+        type: TradeProposeRequest.Type,
+        swapRequest?: swap_pb.SwapRequest.AsObject,
     }
+
+    export enum Type {
+    BUY = 0,
+    SELL = 1,
+    }
+
 }
 
-export class TradeReply extends jspb.Message { 
+export class TradeProposeReply extends jspb.Message { 
 
     hasMsg(): boolean;
     clearMsg(): void;
@@ -159,16 +200,16 @@ export class TradeReply extends jspb.Message {
 
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): TradeReply.AsObject;
-    static toObject(includeInstance: boolean, msg: TradeReply): TradeReply.AsObject;
+    toObject(includeInstance?: boolean): TradeProposeReply.AsObject;
+    static toObject(includeInstance: boolean, msg: TradeProposeReply): TradeProposeReply.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: TradeReply, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): TradeReply;
-    static deserializeBinaryFromReader(message: TradeReply, reader: jspb.BinaryReader): TradeReply;
+    static serializeBinaryToWriter(message: TradeProposeReply, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): TradeProposeReply;
+    static deserializeBinaryFromReader(message: TradeProposeReply, reader: jspb.BinaryReader): TradeProposeReply;
 }
 
-export namespace TradeReply {
+export namespace TradeProposeReply {
     export type AsObject = {
         msg?: swap_pb.SwapAccept.AsObject,
         failure?: swap_pb.SwapFail.AsObject,

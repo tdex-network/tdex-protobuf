@@ -2,38 +2,44 @@ syntax = "proto3";
 
 import "swap.proto";
 
-// Service Interface 
-service Trade {  
+// Service Interface
+service Trade {
   rpc Markets(MarketsRequest) returns (MarketsReply);
   rpc Balances(BalancesRequest) returns (BalancesReply);
-  rpc TradePropose(TradeRequest) returns (stream TradeReply);
+  rpc TradePropose(TradeProposeRequest) returns (stream TradeProposeReply);
   rpc TradeComplete(TradeCompleteRequest) returns (stream TradeCompleteReply);
 }
 
-// Messages
-message MarketsRequest {}
-message MarketsReply {
-  string base_asset = 1;
-  repeated string quote_assets = 2;
-}
-
+// Custom Types
 message Balance {
   string asset = 1;
   int64 amount = 2;
 }
-message BalancesRequest {
-  string quote_asset = 1;
-}
-message BalancesReply {
-  repeated Balance balances = 1;
+message Market {
+  string base_asset = 1;
+  string quote_asset = 2;
 }
 
-message TradeRequest {
-  SwapRequest msg = 1;
+// Service's messages
+message MarketsRequest {}
+message MarketsReply { repeated Market market = 1; }
+
+message BalancesRequest { Market market = 1; }
+message BalancesReply { repeated Balance balances = 1; }
+
+message TradeProposeRequest {
+  Market market = 1;
+  enum Type {
+    BUY = 0;
+    SELL = 1;
+  }
+  Type type = 2;
+  SwapRequest swap_request = 3;
 }
-message TradeReply {
+message TradeProposeReply {
   SwapAccept msg = 1;
   SwapFail failure = 2;
 }
+
 message TradeCompleteRequest {}
 message TradeCompleteReply {}

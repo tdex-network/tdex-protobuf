@@ -33,14 +33,14 @@ interface ITradeService_IBalances extends grpc.MethodDefinition<trade_pb.Balance
     responseSerialize: grpc.serialize<trade_pb.BalancesReply>;
     responseDeserialize: grpc.deserialize<trade_pb.BalancesReply>;
 }
-interface ITradeService_ITradePropose extends grpc.MethodDefinition<trade_pb.TradeRequest, trade_pb.TradeReply> {
+interface ITradeService_ITradePropose extends grpc.MethodDefinition<trade_pb.TradeProposeRequest, trade_pb.TradeProposeReply> {
     path: string; // "/.Trade/TradePropose"
     requestStream: boolean; // false
     responseStream: boolean; // true
-    requestSerialize: grpc.serialize<trade_pb.TradeRequest>;
-    requestDeserialize: grpc.deserialize<trade_pb.TradeRequest>;
-    responseSerialize: grpc.serialize<trade_pb.TradeReply>;
-    responseDeserialize: grpc.deserialize<trade_pb.TradeReply>;
+    requestSerialize: grpc.serialize<trade_pb.TradeProposeRequest>;
+    requestDeserialize: grpc.deserialize<trade_pb.TradeProposeRequest>;
+    responseSerialize: grpc.serialize<trade_pb.TradeProposeReply>;
+    responseDeserialize: grpc.deserialize<trade_pb.TradeProposeReply>;
 }
 interface ITradeService_ITradeComplete extends grpc.MethodDefinition<trade_pb.TradeCompleteRequest, trade_pb.TradeCompleteReply> {
     path: string; // "/.Trade/TradeComplete"
@@ -57,7 +57,7 @@ export const TradeService: ITradeService;
 export interface ITradeServer {
     markets: grpc.handleUnaryCall<trade_pb.MarketsRequest, trade_pb.MarketsReply>;
     balances: grpc.handleUnaryCall<trade_pb.BalancesRequest, trade_pb.BalancesReply>;
-    tradePropose: grpc.handleServerStreamingCall<trade_pb.TradeRequest, trade_pb.TradeReply>;
+    tradePropose: grpc.handleServerStreamingCall<trade_pb.TradeProposeRequest, trade_pb.TradeProposeReply>;
     tradeComplete: grpc.handleServerStreamingCall<trade_pb.TradeCompleteRequest, trade_pb.TradeCompleteReply>;
 }
 
@@ -68,8 +68,8 @@ export interface ITradeClient {
     balances(request: trade_pb.BalancesRequest, callback: (error: grpc.ServiceError | null, response: trade_pb.BalancesReply) => void): grpc.ClientUnaryCall;
     balances(request: trade_pb.BalancesRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: trade_pb.BalancesReply) => void): grpc.ClientUnaryCall;
     balances(request: trade_pb.BalancesRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: trade_pb.BalancesReply) => void): grpc.ClientUnaryCall;
-    tradePropose(request: trade_pb.TradeRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<trade_pb.TradeReply>;
-    tradePropose(request: trade_pb.TradeRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<trade_pb.TradeReply>;
+    tradePropose(request: trade_pb.TradeProposeRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<trade_pb.TradeProposeReply>;
+    tradePropose(request: trade_pb.TradeProposeRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<trade_pb.TradeProposeReply>;
     tradeComplete(request: trade_pb.TradeCompleteRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<trade_pb.TradeCompleteReply>;
     tradeComplete(request: trade_pb.TradeCompleteRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<trade_pb.TradeCompleteReply>;
 }
@@ -82,8 +82,8 @@ export class TradeClient extends grpc.Client implements ITradeClient {
     public balances(request: trade_pb.BalancesRequest, callback: (error: grpc.ServiceError | null, response: trade_pb.BalancesReply) => void): grpc.ClientUnaryCall;
     public balances(request: trade_pb.BalancesRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: trade_pb.BalancesReply) => void): grpc.ClientUnaryCall;
     public balances(request: trade_pb.BalancesRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: trade_pb.BalancesReply) => void): grpc.ClientUnaryCall;
-    public tradePropose(request: trade_pb.TradeRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<trade_pb.TradeReply>;
-    public tradePropose(request: trade_pb.TradeRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<trade_pb.TradeReply>;
+    public tradePropose(request: trade_pb.TradeProposeRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<trade_pb.TradeProposeReply>;
+    public tradePropose(request: trade_pb.TradeProposeRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<trade_pb.TradeProposeReply>;
     public tradeComplete(request: trade_pb.TradeCompleteRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<trade_pb.TradeCompleteReply>;
     public tradeComplete(request: trade_pb.TradeCompleteRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<trade_pb.TradeCompleteReply>;
 }
