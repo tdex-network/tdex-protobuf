@@ -250,6 +250,12 @@ export namespace TradeProposeReply {
 
 export class TradeCompleteRequest extends jspb.Message { 
 
+    hasMsg(): boolean;
+    clearMsg(): void;
+    getMsg(): swap_pb.SwapComplete | undefined;
+    setMsg(value?: swap_pb.SwapComplete): void;
+
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): TradeCompleteRequest.AsObject;
     static toObject(includeInstance: boolean, msg: TradeCompleteRequest): TradeCompleteRequest.AsObject;
@@ -262,10 +268,14 @@ export class TradeCompleteRequest extends jspb.Message {
 
 export namespace TradeCompleteRequest {
     export type AsObject = {
+        msg?: swap_pb.SwapComplete.AsObject,
     }
 }
 
 export class TradeCompleteReply extends jspb.Message { 
+    getTxid(): string;
+    setTxid(value: string): void;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): TradeCompleteReply.AsObject;
@@ -279,5 +289,6 @@ export class TradeCompleteReply extends jspb.Message {
 
 export namespace TradeCompleteReply {
     export type AsObject = {
+        txid: string,
     }
 }
