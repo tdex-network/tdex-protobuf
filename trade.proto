@@ -48,5 +48,9 @@ message TradeProposeReply {
   SwapFail failure = 2;
 }
 
-message TradeCompleteRequest {}
-message TradeCompleteReply {}
+message TradeCompleteRequest {
+  SwapComplete msg = 1;
+}
+message TradeCompleteReply {
+  string txid = 1;
+}

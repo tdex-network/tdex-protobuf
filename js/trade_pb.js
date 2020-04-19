@@ -1675,7 +1675,7 @@ proto.TradeCompleteRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.TradeCompleteRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    msg: (f = msg.getMsg()) && swap_pb.SwapComplete.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1712,6 +1712,11 @@ proto.TradeCompleteRequest.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = new swap_pb.SwapComplete;
+      reader.readMessage(value,swap_pb.SwapComplete.deserializeBinaryFromReader);
+      msg.setMsg(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1741,6 +1746,44 @@ proto.TradeCompleteRequest.prototype.serializeBinary = function() {
  */
 proto.TradeCompleteRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getMsg();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      swap_pb.SwapComplete.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional SwapComplete msg = 1;
+ * @return {?proto.SwapComplete}
+ */
+proto.TradeCompleteRequest.prototype.getMsg = function() {
+  return /** @type{?proto.SwapComplete} */ (
+    jspb.Message.getWrapperField(this, swap_pb.SwapComplete, 1));
+};
+
+
+/** @param {?proto.SwapComplete|undefined} value */
+proto.TradeCompleteRequest.prototype.setMsg = function(value) {
+  jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+proto.TradeCompleteRequest.prototype.clearMsg = function() {
+  this.setMsg(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.TradeCompleteRequest.prototype.hasMsg = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 
@@ -1791,7 +1834,7 @@ proto.TradeCompleteReply.prototype.toObject = function(opt_includeInstance) {
  */
 proto.TradeCompleteReply.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    txid: jspb.Message.getFieldWithDefault(msg, 1, "")
   };
 
   if (includeInstance) {
@@ -1828,6 +1871,10 @@ proto.TradeCompleteReply.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setTxid(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1857,6 +1904,28 @@ proto.TradeCompleteReply.prototype.serializeBinary = function() {
  */
 proto.TradeCompleteReply.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getTxid();
+  if (f.length > 0) {
+    writer.writeString(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional string txid = 1;
+ * @return {string}
+ */
+proto.TradeCompleteReply.prototype.getTxid = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+};
+
+
+/** @param {string} value */
+proto.TradeCompleteReply.prototype.setTxid = function(value) {
+  jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
