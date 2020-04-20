@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+service Operator {
+  rpc DepositAddress(DepositAddressRequest) returns (DepositAddressReply) {}
+}
+
+message DepositAddressRequest {}
+message DepositAddressReply { string address = 1; }
