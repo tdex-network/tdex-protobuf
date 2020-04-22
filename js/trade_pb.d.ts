@@ -219,16 +219,16 @@ export namespace TradeProposeRequest {
 
 export class TradeProposeReply extends jspb.Message { 
 
-    hasMsg(): boolean;
-    clearMsg(): void;
-    getMsg(): swap_pb.SwapAccept | undefined;
-    setMsg(value?: swap_pb.SwapAccept): void;
+    hasSwapAccept(): boolean;
+    clearSwapAccept(): void;
+    getSwapAccept(): swap_pb.SwapAccept | undefined;
+    setSwapAccept(value?: swap_pb.SwapAccept): void;
 
 
-    hasFailure(): boolean;
-    clearFailure(): void;
-    getFailure(): swap_pb.SwapFail | undefined;
-    setFailure(value?: swap_pb.SwapFail): void;
+    hasSwapFail(): boolean;
+    clearSwapFail(): void;
+    getSwapFail(): swap_pb.SwapFail | undefined;
+    setSwapFail(value?: swap_pb.SwapFail): void;
 
 
     serializeBinary(): Uint8Array;
@@ -243,17 +243,23 @@ export class TradeProposeReply extends jspb.Message {
 
 export namespace TradeProposeReply {
     export type AsObject = {
-        msg?: swap_pb.SwapAccept.AsObject,
-        failure?: swap_pb.SwapFail.AsObject,
+        swapAccept?: swap_pb.SwapAccept.AsObject,
+        swapFail?: swap_pb.SwapFail.AsObject,
     }
 }
 
 export class TradeCompleteRequest extends jspb.Message { 
 
-    hasMsg(): boolean;
-    clearMsg(): void;
-    getMsg(): swap_pb.SwapComplete | undefined;
-    setMsg(value?: swap_pb.SwapComplete): void;
+    hasSwapComplete(): boolean;
+    clearSwapComplete(): void;
+    getSwapComplete(): swap_pb.SwapComplete | undefined;
+    setSwapComplete(value?: swap_pb.SwapComplete): void;
+
+
+    hasSwapFail(): boolean;
+    clearSwapFail(): void;
+    getSwapFail(): swap_pb.SwapFail | undefined;
+    setSwapFail(value?: swap_pb.SwapFail): void;
 
 
     serializeBinary(): Uint8Array;
@@ -268,7 +274,8 @@ export class TradeCompleteRequest extends jspb.Message {
 
 export namespace TradeCompleteRequest {
     export type AsObject = {
-        msg?: swap_pb.SwapComplete.AsObject,
+        swapComplete?: swap_pb.SwapComplete.AsObject,
+        swapFail?: swap_pb.SwapFail.AsObject,
     }
 }
 
