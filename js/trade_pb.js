@@ -1472,8 +1472,8 @@ proto.TradeProposeReply.prototype.toObject = function(opt_includeInstance) {
  */
 proto.TradeProposeReply.toObject = function(includeInstance, msg) {
   var f, obj = {
-    msg: (f = msg.getMsg()) && swap_pb.SwapAccept.toObject(includeInstance, f),
-    failure: (f = msg.getFailure()) && swap_pb.SwapFail.toObject(includeInstance, f)
+    swapAccept: (f = msg.getSwapAccept()) && swap_pb.SwapAccept.toObject(includeInstance, f),
+    swapFail: (f = msg.getSwapFail()) && swap_pb.SwapFail.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1513,12 +1513,12 @@ proto.TradeProposeReply.deserializeBinaryFromReader = function(msg, reader) {
     case 1:
       var value = new swap_pb.SwapAccept;
       reader.readMessage(value,swap_pb.SwapAccept.deserializeBinaryFromReader);
-      msg.setMsg(value);
+      msg.setSwapAccept(value);
       break;
     case 2:
       var value = new swap_pb.SwapFail;
       reader.readMessage(value,swap_pb.SwapFail.deserializeBinaryFromReader);
-      msg.setFailure(value);
+      msg.setSwapFail(value);
       break;
     default:
       reader.skipField();
@@ -1549,7 +1549,7 @@ proto.TradeProposeReply.prototype.serializeBinary = function() {
  */
 proto.TradeProposeReply.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMsg();
+  f = message.getSwapAccept();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -1557,7 +1557,7 @@ proto.TradeProposeReply.serializeBinaryToWriter = function(message, writer) {
       swap_pb.SwapAccept.serializeBinaryToWriter
     );
   }
-  f = message.getFailure();
+  f = message.getSwapFail();
   if (f != null) {
     writer.writeMessage(
       2,
@@ -1569,23 +1569,23 @@ proto.TradeProposeReply.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional SwapAccept msg = 1;
+ * optional SwapAccept swap_accept = 1;
  * @return {?proto.SwapAccept}
  */
-proto.TradeProposeReply.prototype.getMsg = function() {
+proto.TradeProposeReply.prototype.getSwapAccept = function() {
   return /** @type{?proto.SwapAccept} */ (
     jspb.Message.getWrapperField(this, swap_pb.SwapAccept, 1));
 };
 
 
 /** @param {?proto.SwapAccept|undefined} value */
-proto.TradeProposeReply.prototype.setMsg = function(value) {
+proto.TradeProposeReply.prototype.setSwapAccept = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
 
-proto.TradeProposeReply.prototype.clearMsg = function() {
-  this.setMsg(undefined);
+proto.TradeProposeReply.prototype.clearSwapAccept = function() {
+  this.setSwapAccept(undefined);
 };
 
 
@@ -1593,29 +1593,29 @@ proto.TradeProposeReply.prototype.clearMsg = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.TradeProposeReply.prototype.hasMsg = function() {
+proto.TradeProposeReply.prototype.hasSwapAccept = function() {
   return jspb.Message.getField(this, 1) != null;
 };
 
 
 /**
- * optional SwapFail failure = 2;
+ * optional SwapFail swap_fail = 2;
  * @return {?proto.SwapFail}
  */
-proto.TradeProposeReply.prototype.getFailure = function() {
+proto.TradeProposeReply.prototype.getSwapFail = function() {
   return /** @type{?proto.SwapFail} */ (
     jspb.Message.getWrapperField(this, swap_pb.SwapFail, 2));
 };
 
 
 /** @param {?proto.SwapFail|undefined} value */
-proto.TradeProposeReply.prototype.setFailure = function(value) {
+proto.TradeProposeReply.prototype.setSwapFail = function(value) {
   jspb.Message.setWrapperField(this, 2, value);
 };
 
 
-proto.TradeProposeReply.prototype.clearFailure = function() {
-  this.setFailure(undefined);
+proto.TradeProposeReply.prototype.clearSwapFail = function() {
+  this.setSwapFail(undefined);
 };
 
 
@@ -1623,7 +1623,7 @@ proto.TradeProposeReply.prototype.clearFailure = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.TradeProposeReply.prototype.hasFailure = function() {
+proto.TradeProposeReply.prototype.hasSwapFail = function() {
   return jspb.Message.getField(this, 2) != null;
 };
 
@@ -1675,7 +1675,8 @@ proto.TradeCompleteRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.TradeCompleteRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    msg: (f = msg.getMsg()) && swap_pb.SwapComplete.toObject(includeInstance, f)
+    swapComplete: (f = msg.getSwapComplete()) && swap_pb.SwapComplete.toObject(includeInstance, f),
+    swapFail: (f = msg.getSwapFail()) && swap_pb.SwapFail.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1715,7 +1716,12 @@ proto.TradeCompleteRequest.deserializeBinaryFromReader = function(msg, reader) {
     case 1:
       var value = new swap_pb.SwapComplete;
       reader.readMessage(value,swap_pb.SwapComplete.deserializeBinaryFromReader);
-      msg.setMsg(value);
+      msg.setSwapComplete(value);
+      break;
+    case 2:
+      var value = new swap_pb.SwapFail;
+      reader.readMessage(value,swap_pb.SwapFail.deserializeBinaryFromReader);
+      msg.setSwapFail(value);
       break;
     default:
       reader.skipField();
@@ -1746,7 +1752,7 @@ proto.TradeCompleteRequest.prototype.serializeBinary = function() {
  */
 proto.TradeCompleteRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMsg();
+  f = message.getSwapComplete();
   if (f != null) {
     writer.writeMessage(
       1,
@@ -1754,27 +1760,35 @@ proto.TradeCompleteRequest.serializeBinaryToWriter = function(message, writer) {
       swap_pb.SwapComplete.serializeBinaryToWriter
     );
   }
+  f = message.getSwapFail();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      swap_pb.SwapFail.serializeBinaryToWriter
+    );
+  }
 };
 
 
 /**
- * optional SwapComplete msg = 1;
+ * optional SwapComplete swap_complete = 1;
  * @return {?proto.SwapComplete}
  */
-proto.TradeCompleteRequest.prototype.getMsg = function() {
+proto.TradeCompleteRequest.prototype.getSwapComplete = function() {
   return /** @type{?proto.SwapComplete} */ (
     jspb.Message.getWrapperField(this, swap_pb.SwapComplete, 1));
 };
 
 
 /** @param {?proto.SwapComplete|undefined} value */
-proto.TradeCompleteRequest.prototype.setMsg = function(value) {
+proto.TradeCompleteRequest.prototype.setSwapComplete = function(value) {
   jspb.Message.setWrapperField(this, 1, value);
 };
 
 
-proto.TradeCompleteRequest.prototype.clearMsg = function() {
-  this.setMsg(undefined);
+proto.TradeCompleteRequest.prototype.clearSwapComplete = function() {
+  this.setSwapComplete(undefined);
 };
 
 
@@ -1782,8 +1796,38 @@ proto.TradeCompleteRequest.prototype.clearMsg = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.TradeCompleteRequest.prototype.hasMsg = function() {
+proto.TradeCompleteRequest.prototype.hasSwapComplete = function() {
   return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional SwapFail swap_fail = 2;
+ * @return {?proto.SwapFail}
+ */
+proto.TradeCompleteRequest.prototype.getSwapFail = function() {
+  return /** @type{?proto.SwapFail} */ (
+    jspb.Message.getWrapperField(this, swap_pb.SwapFail, 2));
+};
+
+
+/** @param {?proto.SwapFail|undefined} value */
+proto.TradeCompleteRequest.prototype.setSwapFail = function(value) {
+  jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+proto.TradeCompleteRequest.prototype.clearSwapFail = function() {
+  this.setSwapFail(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.TradeCompleteRequest.prototype.hasSwapFail = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 
