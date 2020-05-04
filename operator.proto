@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+service Operator {
+  rpc DepositAddress(DepositAddressRequest) returns (DepositAddressReply) {}
+  rpc FeeDepositAddress(FeeDepositAddressRequest)
+      returns (FeeDepositAddressReply) {}
+  rpc FeeBalance(FeeBalanceRequest)
+      returns (FeeBalanceReply) {}
+}
+
+message DepositAddressRequest {}
+message DepositAddressReply { string address = 1; }
+message FeeDepositAddressRequest {}
+message FeeDepositAddressReply { string address = 1; }
+message FeeBalanceRequest {}
+message FeeBalanceReply { int64 balance = 1; }
