@@ -1,7 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
-var grpc = require('grpc');
+var grpc = require('@grpc/grpc-js');
 var operator_pb = require('./operator_pb.js');
 
 function serialize_DepositAddressReply(arg) {
