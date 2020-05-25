@@ -1,7 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
-var grpc = require('grpc');
+var grpc = require('@grpc/grpc-js');
 var trade_pb = require('./trade_pb.js');
 var swap_pb = require('./swap_pb.js');
 

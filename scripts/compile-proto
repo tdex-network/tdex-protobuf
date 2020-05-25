@@ -14,7 +14,7 @@ GRPC_TOOLS_NODE_PROTOC="./node_modules/.bin/grpc_tools_node_protoc"
 # JavaScript code generating
 ${GRPC_TOOLS_NODE_PROTOC} \
   --js_out=import_style=commonjs,binary:./js \
-  --grpc_out=./js \
+  --grpc_out=grpc_js:./js \
   --plugin=protoc-gen-grpc="${GRPC_TOOLS_NODE_PROTOC_PLUGIN}" \
   trade.proto operator.proto
 
