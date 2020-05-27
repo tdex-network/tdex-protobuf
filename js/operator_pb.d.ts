@@ -25,7 +25,7 @@ export namespace DepositAddressRequest {
 
 export class DepositAddressReply extends jspb.Message { 
     getAddress(): string;
-    setAddress(value: string): void;
+    setAddress(value: string): DepositAddressReply;
 
 
     serializeBinary(): Uint8Array;
@@ -63,7 +63,7 @@ export namespace FeeDepositAddressRequest {
 
 export class FeeDepositAddressReply extends jspb.Message { 
     getAddress(): string;
-    setAddress(value: string): void;
+    setAddress(value: string): FeeDepositAddressReply;
 
 
     serializeBinary(): Uint8Array;
@@ -101,7 +101,7 @@ export namespace FeeBalanceRequest {
 
 export class FeeBalanceReply extends jspb.Message { 
     getBalance(): number;
-    setBalance(value: number): void;
+    setBalance(value: number): FeeBalanceReply;
 
 
     serializeBinary(): Uint8Array;

@@ -8,7 +8,7 @@
     "protobuf": "bash scripts/compile-proto"
   },
   "devDependencies": {
-    "grpc-tools": "^1.8.1",
-    "grpc_tools_node_protoc_ts": "^2.5.10"
+    "grpc-tools": "^1.9.0",
+    "grpc_tools_node_protoc_ts": "^4.0.0"
   }
 }

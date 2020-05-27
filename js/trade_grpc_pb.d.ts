@@ -4,7 +4,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import * as grpc from "grpc";
+import * as grpc from "@grpc/grpc-js";
 import * as trade_pb from "./trade_pb";
 import * as swap_pb from "./swap_pb";
 
