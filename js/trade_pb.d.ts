@@ -9,10 +9,10 @@ import * as swap_pb from "./swap_pb";
 
 export class Balance extends jspb.Message { 
     getAsset(): string;
-    setAsset(value: string): void;
+    setAsset(value: string): Balance;
 
     getAmount(): number;
-    setAmount(value: number): void;
+    setAmount(value: number): Balance;
 
 
     serializeBinary(): Uint8Array;
@@ -34,10 +34,10 @@ export namespace Balance {
 
 export class Market extends jspb.Message { 
     getBaseAsset(): string;
-    setBaseAsset(value: string): void;
+    setBaseAsset(value: string): Market;
 
     getQuoteAsset(): string;
-    setQuoteAsset(value: string): void;
+    setQuoteAsset(value: string): Market;
 
 
     serializeBinary(): Uint8Array;
@@ -62,10 +62,10 @@ export class MarketWithFee extends jspb.Message {
     hasMarket(): boolean;
     clearMarket(): void;
     getMarket(): Market | undefined;
-    setMarket(value?: Market): void;
+    setMarket(value?: Market): MarketWithFee;
 
     getFee(): number;
-    setFee(value: number): void;
+    setFee(value: number): MarketWithFee;
 
 
     serializeBinary(): Uint8Array;
@@ -105,7 +105,7 @@ export namespace MarketsRequest {
 export class MarketsReply extends jspb.Message { 
     clearMarketsList(): void;
     getMarketsList(): Array<MarketWithFee>;
-    setMarketsList(value: Array<MarketWithFee>): void;
+    setMarketsList(value: Array<MarketWithFee>): MarketsReply;
     addMarkets(value?: MarketWithFee, index?: number): MarketWithFee;
 
 
@@ -130,7 +130,7 @@ export class BalancesRequest extends jspb.Message {
     hasMarket(): boolean;
     clearMarket(): void;
     getMarket(): Market | undefined;
-    setMarket(value?: Market): void;
+    setMarket(value?: Market): BalancesRequest;
 
 
     serializeBinary(): Uint8Array;
@@ -152,11 +152,11 @@ export namespace BalancesRequest {
 export class BalancesReply extends jspb.Message { 
     clearBalancesList(): void;
     getBalancesList(): Array<Balance>;
-    setBalancesList(value: Array<Balance>): void;
+    setBalancesList(value: Array<Balance>): BalancesReply;
     addBalances(value?: Balance, index?: number): Balance;
 
     getFee(): number;
-    setFee(value: number): void;
+    setFee(value: number): BalancesReply;
 
 
     serializeBinary(): Uint8Array;
@@ -181,16 +181,16 @@ export class TradeProposeRequest extends jspb.Message {
     hasMarket(): boolean;
     clearMarket(): void;
     getMarket(): Market | undefined;
-    setMarket(value?: Market): void;
+    setMarket(value?: Market): TradeProposeRequest;
 
     getType(): TradeProposeRequest.Type;
-    setType(value: TradeProposeRequest.Type): void;
+    setType(value: TradeProposeRequest.Type): TradeProposeRequest;
 
 
     hasSwapRequest(): boolean;
     clearSwapRequest(): void;
     getSwapRequest(): swap_pb.SwapRequest | undefined;
-    setSwapRequest(value?: swap_pb.SwapRequest): void;
+    setSwapRequest(value?: swap_pb.SwapRequest): TradeProposeRequest;
 
 
     serializeBinary(): Uint8Array;
@@ -222,13 +222,13 @@ export class TradeProposeReply extends jspb.Message {
     hasSwapAccept(): boolean;
     clearSwapAccept(): void;
     getSwapAccept(): swap_pb.SwapAccept | undefined;
-    setSwapAccept(value?: swap_pb.SwapAccept): void;
+    setSwapAccept(value?: swap_pb.SwapAccept): TradeProposeReply;
 
 
     hasSwapFail(): boolean;
     clearSwapFail(): void;
     getSwapFail(): swap_pb.SwapFail | undefined;
-    setSwapFail(value?: swap_pb.SwapFail): void;
+    setSwapFail(value?: swap_pb.SwapFail): TradeProposeReply;
 
 
     serializeBinary(): Uint8Array;
@@ -253,13 +253,13 @@ export class TradeCompleteRequest extends jspb.Message {
     hasSwapComplete(): boolean;
     clearSwapComplete(): void;
     getSwapComplete(): swap_pb.SwapComplete | undefined;
-    setSwapComplete(value?: swap_pb.SwapComplete): void;
+    setSwapComplete(value?: swap_pb.SwapComplete): TradeCompleteRequest;
 
 
     hasSwapFail(): boolean;
     clearSwapFail(): void;
     getSwapFail(): swap_pb.SwapFail | undefined;
-    setSwapFail(value?: swap_pb.SwapFail): void;
+    setSwapFail(value?: swap_pb.SwapFail): TradeCompleteRequest;
 
 
     serializeBinary(): Uint8Array;
@@ -281,7 +281,7 @@ export namespace TradeCompleteRequest {
 
 export class TradeCompleteReply extends jspb.Message { 
     getTxid(): string;
-    setTxid(value: string): void;
+    setTxid(value: string): TradeCompleteReply;
 
 
     serializeBinary(): Uint8Array;

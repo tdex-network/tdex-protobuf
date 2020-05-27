@@ -8,22 +8,22 @@ import * as jspb from "google-protobuf";
 
 export class SwapRequest extends jspb.Message { 
     getId(): string;
-    setId(value: string): void;
+    setId(value: string): SwapRequest;
 
     getAmountP(): number;
-    setAmountP(value: number): void;
+    setAmountP(value: number): SwapRequest;
 
     getAssetP(): string;
-    setAssetP(value: string): void;
+    setAssetP(value: string): SwapRequest;
 
     getAmountR(): number;
-    setAmountR(value: number): void;
+    setAmountR(value: number): SwapRequest;
 
     getAssetR(): string;
-    setAssetR(value: string): void;
+    setAssetR(value: string): SwapRequest;
 
     getTransaction(): string;
-    setTransaction(value: string): void;
+    setTransaction(value: string): SwapRequest;
 
 
     getInputBlindingKeyMap(): jspb.Map<string, Uint8Array | string>;
@@ -61,13 +61,13 @@ export namespace SwapRequest {
 
 export class SwapAccept extends jspb.Message { 
     getId(): string;
-    setId(value: string): void;
+    setId(value: string): SwapAccept;
 
     getRequestId(): string;
-    setRequestId(value: string): void;
+    setRequestId(value: string): SwapAccept;
 
     getTransaction(): string;
-    setTransaction(value: string): void;
+    setTransaction(value: string): SwapAccept;
 
 
     getInputBlindingKeyMap(): jspb.Map<string, Uint8Array | string>;
@@ -102,13 +102,13 @@ export namespace SwapAccept {
 
 export class SwapComplete extends jspb.Message { 
     getId(): string;
-    setId(value: string): void;
+    setId(value: string): SwapComplete;
 
     getAcceptId(): string;
-    setAcceptId(value: string): void;
+    setAcceptId(value: string): SwapComplete;
 
     getTransaction(): string;
-    setTransaction(value: string): void;
+    setTransaction(value: string): SwapComplete;
 
 
     serializeBinary(): Uint8Array;
@@ -131,16 +131,16 @@ export namespace SwapComplete {
 
 export class SwapFail extends jspb.Message { 
     getId(): string;
-    setId(value: string): void;
+    setId(value: string): SwapFail;
 
     getMessageId(): string;
-    setMessageId(value: string): void;
+    setMessageId(value: string): SwapFail;
 
     getFailureCode(): number;
-    setFailureCode(value: number): void;
+    setFailureCode(value: number): SwapFail;
 
     getFailureMessage(): string;
-    setFailureMessage(value: string): void;
+    setFailureMessage(value: string): SwapFail;
 
 
     serializeBinary(): Uint8Array;
