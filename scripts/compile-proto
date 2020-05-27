@@ -19,6 +19,7 @@ ${GRPC_TOOLS_NODE_PROTOC} \
   trade.proto operator.proto
 
 ${GRPC_TOOLS_NODE_PROTOC} \
+  --js_out=import_style=commonjs,binary:./js \
   --plugin=protoc-gen-ts="${PROTOC_GEN_TS_PATH}" \
   --ts_out=./js \
   *.proto
