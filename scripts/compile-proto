@@ -23,4 +23,9 @@ ${GRPC_TOOLS_NODE_PROTOC} \
   --ts_out=./js \
   *.proto
 
+
+sed -i "" -e \
+  "s/from \"grpc\"/from \"@grpc\/grpc-js\"/g" \
+  "./js/"*
+
 popd
