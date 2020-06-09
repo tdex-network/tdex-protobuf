@@ -61,11 +61,11 @@ export namespace MarketWithFee {
 }
 
 export class Balance extends jspb.Message { 
-    getAsset(): string;
-    setAsset(value: string): Balance;
+    getBaseAmount(): number;
+    setBaseAmount(value: number): Balance;
 
-    getAmount(): number;
-    setAmount(value: number): Balance;
+    getQuoteAmount(): number;
+    setQuoteAmount(value: number): Balance;
 
 
     serializeBinary(): Uint8Array;
@@ -80,8 +80,8 @@ export class Balance extends jspb.Message {
 
 export namespace Balance {
     export type AsObject = {
-        asset: string,
-        amount: number,
+        baseAmount: number,
+        quoteAmount: number,
     }
 }
 

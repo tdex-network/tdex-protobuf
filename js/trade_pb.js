@@ -740,8 +740,8 @@ proto.Balance.prototype.toObject = function(opt_includeInstance) {
  */
 proto.Balance.toObject = function(includeInstance, msg) {
   var f, obj = {
-    asset: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    amount: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    baseAmount: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    quoteAmount: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -779,12 +779,12 @@ proto.Balance.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setAsset(value);
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setBaseAmount(value);
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setAmount(value);
+      msg.setQuoteAmount(value);
       break;
     default:
       reader.skipField();
@@ -815,14 +815,14 @@ proto.Balance.prototype.serializeBinary = function() {
  */
 proto.Balance.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAsset();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getBaseAmount();
+  if (f !== 0) {
+    writer.writeInt64(
       1,
       f
     );
   }
-  f = message.getAmount();
+  f = message.getQuoteAmount();
   if (f !== 0) {
     writer.writeInt64(
       2,
@@ -833,28 +833,28 @@ proto.Balance.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string asset = 1;
- * @return {string}
- */
-proto.Balance.prototype.getAsset = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.Balance} returns this
- */
-proto.Balance.prototype.setAsset = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
-};
-
-
-/**
- * optional int64 amount = 2;
+ * optional int64 base_amount = 1;
  * @return {number}
  */
-proto.Balance.prototype.getAmount = function() {
+proto.Balance.prototype.getBaseAmount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.Balance} returns this
+ */
+proto.Balance.prototype.setBaseAmount = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional int64 quote_amount = 2;
+ * @return {number}
+ */
+proto.Balance.prototype.getQuoteAmount = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
@@ -863,7 +863,7 @@ proto.Balance.prototype.getAmount = function() {
  * @param {number} value
  * @return {!proto.Balance} returns this
  */
-proto.Balance.prototype.setAmount = function(value) {
+proto.Balance.prototype.setQuoteAmount = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 
