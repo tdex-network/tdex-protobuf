@@ -27,6 +27,28 @@ function deserialize_BalancesRequest(buffer_arg) {
   return trade_pb.BalancesRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_MarketPriceReply(arg) {
+  if (!(arg instanceof trade_pb.MarketPriceReply)) {
+    throw new Error('Expected argument of type MarketPriceReply');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_MarketPriceReply(buffer_arg) {
+  return trade_pb.MarketPriceReply.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_MarketPriceRequest(arg) {
+  if (!(arg instanceof trade_pb.MarketPriceRequest)) {
+    throw new Error('Expected argument of type MarketPriceRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_MarketPriceRequest(buffer_arg) {
+  return trade_pb.MarketPriceRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_MarketsReply(arg) {
   if (!(arg instanceof trade_pb.MarketsReply)) {
     throw new Error('Expected argument of type MarketsReply');
@@ -117,6 +139,17 @@ var TradeService = exports.TradeService = {
     requestDeserialize: deserialize_BalancesRequest,
     responseSerialize: serialize_BalancesReply,
     responseDeserialize: deserialize_BalancesReply,
+  },
+  marketPrice: {
+    path: '/Trade/MarketPrice',
+    requestStream: false,
+    responseStream: false,
+    requestType: trade_pb.MarketPriceRequest,
+    responseType: trade_pb.MarketPriceReply,
+    requestSerialize: serialize_MarketPriceRequest,
+    requestDeserialize: deserialize_MarketPriceRequest,
+    responseSerialize: serialize_MarketPriceReply,
+    responseDeserialize: deserialize_MarketPriceReply,
   },
   tradePropose: {
     path: '/Trade/TradePropose',
