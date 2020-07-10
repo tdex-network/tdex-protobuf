@@ -1,7 +1,7 @@
 {
   "name": "tdex-protobuf",
   "version": "1.0.0",
-  "repository": "git@github.com:Sevenlab/tdex-protobuf.git",
+  "repository": "git@github.com:tdex-network/tdex-protobuf.git",
   "author": "Marco Argentieri <marco@vulpem.com>",
   "license": "MIT",
   "scripts": {
