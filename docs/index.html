@@ -1,0 +1,2349 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Protocol Documentation</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic"/>
+    <style>
+      body {
+        width: 60em;
+        margin: 1em auto;
+        color: #222;
+        font-family: "Ubuntu", sans-serif;
+        padding-bottom: 4em;
+      }
+
+      h1 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      h2 {
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+        margin: 1.5em 0;
+      }
+
+      h3 {
+        font-weight: normal;
+        border-bottom: 1px solid #aaa;
+        padding-bottom: 0.5ex;
+      }
+
+      a {
+        text-decoration: none;
+        color: #567e25;
+      }
+
+      table {
+        width: 100%;
+        font-size: 80%;
+        border-collapse: collapse;
+      }
+
+      thead {
+        font-weight: 700;
+        background-color: #dcdcdc;
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: #fbfbfb;
+      }
+
+      td {
+        border: 1px solid #ccc;
+        padding: 0.5ex 2ex;
+      }
+
+      td p {
+        text-indent: 1em;
+        margin: 0;
+      }
+
+      td p:nth-child(1) {
+        text-indent: 0;  
+      }
+
+       
+      .field-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .field-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .field-table td:nth-child(3) {  
+        width: 6em;
+      }
+      .field-table td:nth-child(4) {  
+        width: auto;
+      }
+
+       
+      .extension-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(3) {  
+        width: 10em;
+      }
+      .extension-table td:nth-child(4) {  
+        width: 5em;
+      }
+      .extension-table td:nth-child(5) {  
+        width: auto;
+      }
+
+       
+      .enum-table td:nth-child(1) {  
+        width: 10em;
+      }
+      .enum-table td:nth-child(2) {  
+        width: 10em;
+      }
+      .enum-table td:nth-child(3) {  
+        width: auto;
+      }
+
+       
+      .scalar-value-types-table tr {
+        height: 3em;
+      }
+
+       
+      #toc-container ul {
+        list-style-type: none;
+        padding-left: 1em;
+        line-height: 180%;
+        margin: 0;
+      }
+      #toc > li > a {
+        font-weight: bold;
+      }
+
+       
+      .file-heading {
+        width: 100%;
+        display: table;
+        border-bottom: 1px solid #aaa;
+        margin: 4em 0 1.5em 0;
+      }
+      .file-heading h2 {
+        border: none;
+        display: table-cell;
+      }
+      .file-heading a {
+        text-align: right;
+        display: table-cell;
+      }
+
+       
+      .badge {
+        width: 1.6em;
+        height: 1.6em;
+        display: inline-block;
+
+        line-height: 1.6em;
+        text-align: center;
+        font-weight: bold;
+        font-size: 60%;
+
+        color: #89ba48;
+        background-color: #dff0c8;
+
+        margin: 0.5ex 1em 0.5ex -1em;
+        border: 1px solid #fbfbfb;
+        border-radius: 1ex;
+      }
+    </style>
+
+    
+    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+  </head>
+
+  <body>
+
+    <h1 id="title">Protocol Documentation</h1>
+
+    <h2>Table of Contents</h2>
+
+    <div id="toc-container">
+      <ul id="toc">
+        
+          
+          <li>
+            <a href="#handshake.proto">handshake.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#.Ack"><span class="badge">M</span>Ack</a>
+                </li>
+              
+                <li>
+                  <a href="#.Init"><span class="badge">M</span>Init</a>
+                </li>
+              
+                <li>
+                  <a href="#.SecretMessage"><span class="badge">M</span>SecretMessage</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#operator.proto">operator.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#.CloseMarketReply"><span class="badge">M</span>CloseMarketReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.CloseMarketRequest"><span class="badge">M</span>CloseMarketRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.DepositAddressReply"><span class="badge">M</span>DepositAddressReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.DepositAddressRequest"><span class="badge">M</span>DepositAddressRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FeeBalanceReply"><span class="badge">M</span>FeeBalanceReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.FeeBalanceRequest"><span class="badge">M</span>FeeBalanceRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.FeeDepositAddressReply"><span class="badge">M</span>FeeDepositAddressReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.FeeDepositAddressRequest"><span class="badge">M</span>FeeDepositAddressRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.ListDepositAddressReply"><span class="badge">M</span>ListDepositAddressReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.ListDepositAddressRequest"><span class="badge">M</span>ListDepositAddressRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.OpenMarketReply"><span class="badge">M</span>OpenMarketReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.OpenMarketRequest"><span class="badge">M</span>OpenMarketRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.UpdateFeeReply"><span class="badge">M</span>UpdateFeeReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.UpdateFeeRequest"><span class="badge">M</span>UpdateFeeRequest</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#.Operator"><span class="badge">S</span>Operator</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#swap.proto">swap.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#.SwapAccept"><span class="badge">M</span>SwapAccept</a>
+                </li>
+              
+                <li>
+                  <a href="#.SwapAccept.InputBlindingKeyEntry"><span class="badge">M</span>SwapAccept.InputBlindingKeyEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#.SwapAccept.OutputBlindingKeyEntry"><span class="badge">M</span>SwapAccept.OutputBlindingKeyEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#.SwapComplete"><span class="badge">M</span>SwapComplete</a>
+                </li>
+              
+                <li>
+                  <a href="#.SwapFail"><span class="badge">M</span>SwapFail</a>
+                </li>
+              
+                <li>
+                  <a href="#.SwapRequest"><span class="badge">M</span>SwapRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.SwapRequest.InputBlindingKeyEntry"><span class="badge">M</span>SwapRequest.InputBlindingKeyEntry</a>
+                </li>
+              
+                <li>
+                  <a href="#.SwapRequest.OutputBlindingKeyEntry"><span class="badge">M</span>SwapRequest.OutputBlindingKeyEntry</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#trade.proto">trade.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#.BalancesReply"><span class="badge">M</span>BalancesReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.BalancesRequest"><span class="badge">M</span>BalancesRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.MarketPriceReply"><span class="badge">M</span>MarketPriceReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.MarketPriceRequest"><span class="badge">M</span>MarketPriceRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.MarketsReply"><span class="badge">M</span>MarketsReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.MarketsRequest"><span class="badge">M</span>MarketsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.TradeCompleteReply"><span class="badge">M</span>TradeCompleteReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.TradeCompleteRequest"><span class="badge">M</span>TradeCompleteRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.TradeProposeReply"><span class="badge">M</span>TradeProposeReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.TradeProposeRequest"><span class="badge">M</span>TradeProposeRequest</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#.TradeProposeRequest.Type"><span class="badge">E</span>TradeProposeRequest.Type</a>
+                </li>
+              
+              
+              
+                <li>
+                  <a href="#.Trade"><span class="badge">S</span>Trade</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#types.proto">types.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#.Balance"><span class="badge">M</span>Balance</a>
+                </li>
+              
+                <li>
+                  <a href="#.BalanceWithFee"><span class="badge">M</span>BalanceWithFee</a>
+                </li>
+              
+                <li>
+                  <a href="#.Market"><span class="badge">M</span>Market</a>
+                </li>
+              
+                <li>
+                  <a href="#.MarketWithFee"><span class="badge">M</span>MarketWithFee</a>
+                </li>
+              
+                <li>
+                  <a href="#.Price"><span class="badge">M</span>Price</a>
+                </li>
+              
+                <li>
+                  <a href="#.PriceWithFee"><span class="badge">M</span>PriceWithFee</a>
+                </li>
+              
+              
+              
+              
+            </ul>
+          </li>
+        
+          
+          <li>
+            <a href="#wallet.proto">wallet.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#.ChangePasswordRequest"><span class="badge">M</span>ChangePasswordRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.ChangePasswordResponse"><span class="badge">M</span>ChangePasswordResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.GenSeedRequest"><span class="badge">M</span>GenSeedRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.GenSeedResponse"><span class="badge">M</span>GenSeedResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.InitWalletRequest"><span class="badge">M</span>InitWalletRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.InitWalletResponse"><span class="badge">M</span>InitWalletResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.SendToManyReply"><span class="badge">M</span>SendToManyReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.SendToManyRequest"><span class="badge">M</span>SendToManyRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.TxOut"><span class="badge">M</span>TxOut</a>
+                </li>
+              
+                <li>
+                  <a href="#.UnlockWalletRequest"><span class="badge">M</span>UnlockWalletRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.UnlockWalletResponse"><span class="badge">M</span>UnlockWalletResponse</a>
+                </li>
+              
+              
+              
+              
+                <li>
+                  <a href="#.Wallet"><span class="badge">S</span>Wallet</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+        <li><a href="#scalar-value-types">Scalar Value Types</a></li>
+      </ul>
+    </div>
+
+    
+      
+      <div class="file-heading">
+        <h2 id="handshake.proto">handshake.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id=".Ack">Ack</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Random unique identifier for the current message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>init_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>indetifier of the Init message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ephemeral_pubkey</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>Ephemeral public key generated by the recipient </p></td>
+                </tr>
+              
+                <tr>
+                  <td>signature</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>secp256k1 signature of
+sha256(recipient_pubkey,sender_pubkey,recipient_ephemeral_pubkey) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".Init">Init</h3>
+        <p>BOTD#2</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Random unique identifier for the current message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sender_pubkey</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>Secp256k1 Sender&#39;s public key </p></td>
+                </tr>
+              
+                <tr>
+                  <td>recipient_pubkey</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>Secp256k1 Recipient&#39;s public key </p></td>
+                </tr>
+              
+                <tr>
+                  <td>ephemeral_pubkey</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>Ephemeral public key generated by the sender </p></td>
+                </tr>
+              
+                <tr>
+                  <td>signature</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>secp256k1 signature of
+sha256(sender_pubkey,recipient_pubkey,sender_ephemeral_pubkey) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SecretMessage">SecretMessage</h3>
+        <p>BOTD#1</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>lenght</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>payload</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="operator.proto">operator.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id=".CloseMarketReply">CloseMarketReply</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id=".CloseMarketRequest">CloseMarketRequest</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id=".DepositAddressReply">DepositAddressReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".DepositAddressRequest">DepositAddressRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>market</td>
+                  <td><a href="#Market">Market</a></td>
+                  <td></td>
+                  <td><p>Market to get an address from. Could be empty. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FeeBalanceReply">FeeBalanceReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>balance</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FeeBalanceRequest">FeeBalanceRequest</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id=".FeeDepositAddressReply">FeeDepositAddressReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".FeeDepositAddressRequest">FeeDepositAddressRequest</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id=".ListDepositAddressReply">ListDepositAddressReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".ListDepositAddressRequest">ListDepositAddressRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>market</td>
+                  <td><a href="#Market">Market</a></td>
+                  <td></td>
+                  <td><p>Market to get an address from. Could be empty. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".OpenMarketReply">OpenMarketReply</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id=".OpenMarketRequest">OpenMarketRequest</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id=".UpdateFeeReply">UpdateFeeReply</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id=".UpdateFeeRequest">UpdateFeeRequest</h3>
+        <p></p>
+
+        
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id=".Operator">Operator</h3>
+        <p>Service for operators to configure and manage a TDEX daemon</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>DepositAddress</td>
+                <td><a href="#DepositAddressRequest">.DepositAddressRequest</a></td>
+                <td><a href="#DepositAddressReply">.DepositAddressReply</a></td>
+                <td><p>Returns a new derived address for the given market.
+If market field is empty, a new Market is created and MUST be initialized.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListDepositAddress</td>
+                <td><a href="#ListDepositAddressRequest">.ListDepositAddressRequest</a></td>
+                <td><a href="#ListDepositAddressReply">.ListDepositAddressReply</a></td>
+                <td><p>Returns the list of previously generated addresses for the given market.</p></td>
+              </tr>
+            
+              <tr>
+                <td>FeeDepositAddress</td>
+                <td><a href="#FeeDepositAddressRequest">.FeeDepositAddressRequest</a></td>
+                <td><a href="#FeeDepositAddressReply">.FeeDepositAddressReply</a></td>
+                <td><p>Returns a new derived address from the fee account.
+This is only used to deposit some LBTC to subsidize blockchain fees.</p></td>
+              </tr>
+            
+              <tr>
+                <td>FeeBalance</td>
+                <td><a href="#FeeBalanceRequest">.FeeBalanceRequest</a></td>
+                <td><a href="#FeeBalanceReply">.FeeBalanceReply</a></td>
+                <td><p>Returns the aggregated balance of LBTC held in the fee account.</p></td>
+              </tr>
+            
+              <tr>
+                <td>OpenMarket</td>
+                <td><a href="#OpenMarketRequest">.OpenMarketRequest</a></td>
+                <td><a href="#OpenMarketReply">.OpenMarketReply</a></td>
+                <td><p>Makes the given market tradable</p></td>
+              </tr>
+            
+              <tr>
+                <td>CloseMarket</td>
+                <td><a href="#CloseMarketRequest">.CloseMarketRequest</a></td>
+                <td><a href="#CloseMarketReply">.CloseMarketReply</a></td>
+                <td><p>Makes the given market NOT tradabale</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateFee</td>
+                <td><a href="#UpdateFeeRequest">.UpdateFeeRequest</a></td>
+                <td><a href="#UpdateFeeReply">.UpdateFeeReply</a></td>
+                <td><p>Changes the fee for the given market.
+The Market MUST be closed before doing this change.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="swap.proto">swap.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id=".SwapAccept">SwapAccept</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Random unique identifier for the current message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>indetifier of the SwapRequest message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>transaction</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The partial signed transaction base64 encoded containing the Responder&#39;s
+signed inputs in a PSBT format </p></td>
+                </tr>
+              
+                <tr>
+                  <td>input_blinding_key</td>
+                  <td><a href="#SwapAccept.InputBlindingKeyEntry">SwapAccept.InputBlindingKeyEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>In case of a confidential transaction the blinding key of each confidential
+input is included. Each blinding key is identified by the prevout script
+hex encoded. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>output_blinding_key</td>
+                  <td><a href="#SwapAccept.OutputBlindingKeyEntry">SwapAccept.OutputBlindingKeyEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>In case of a confidential transaction the blinding key of each confidential
+output is included. Each blinding key is identified by the output script
+hex encoded. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SwapAccept.InputBlindingKeyEntry">SwapAccept.InputBlindingKeyEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SwapAccept.OutputBlindingKeyEntry">SwapAccept.OutputBlindingKeyEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SwapComplete">SwapComplete</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Random unique identifier for the current message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>accept_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>indetifier of the SwapAccept message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>transaction</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The signed transaction base64 encoded containing the Proposers&#39;s signed
+inputs in a PSBT format </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SwapFail">SwapFail</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Random unique identifier for the current message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>message_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>indetifier of either SwapRequest or SwapAccept message. It can be empty </p></td>
+                </tr>
+              
+                <tr>
+                  <td>failure_code</td>
+                  <td><a href="#uint32">uint32</a></td>
+                  <td></td>
+                  <td><p>The failure code. It can be empty </p></td>
+                </tr>
+              
+                <tr>
+                  <td>failure_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The failure reason messaged </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SwapRequest">SwapRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Random unique identifier for the current message </p></td>
+                </tr>
+              
+                <tr>
+                  <td>amount_p</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>The proposer&#39;s quantity </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset_p</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The proposer&#39;s asset hash </p></td>
+                </tr>
+              
+                <tr>
+                  <td>amount_r</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>The responder&#39;s quantity </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset_r</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The responder&#39;s asset hash </p></td>
+                </tr>
+              
+                <tr>
+                  <td>transaction</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The proposer&#39;s unsigned transaction in PSBT format (base64 string) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>input_blinding_key</td>
+                  <td><a href="#SwapRequest.InputBlindingKeyEntry">SwapRequest.InputBlindingKeyEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>In case of a confidential transaction the blinding key of each confidential
+input is included. Each blinding key is identified by the prevout script
+hex encoded. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>output_blinding_key</td>
+                  <td><a href="#SwapRequest.OutputBlindingKeyEntry">SwapRequest.OutputBlindingKeyEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>In case of a confidential transaction the blinding key of each confidential
+output is included. Each blinding key is identified by the output script
+hex encoded. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SwapRequest.InputBlindingKeyEntry">SwapRequest.InputBlindingKeyEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SwapRequest.OutputBlindingKeyEntry">SwapRequest.OutputBlindingKeyEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="trade.proto">trade.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id=".BalancesReply">BalancesReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>balances</td>
+                  <td><a href="#BalanceWithFee">BalanceWithFee</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".BalancesRequest">BalancesRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>market</td>
+                  <td><a href="#Market">Market</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".MarketPriceReply">MarketPriceReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>prices</td>
+                  <td><a href="#PriceWithFee">PriceWithFee</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".MarketPriceRequest">MarketPriceRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>market</td>
+                  <td><a href="#Market">Market</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".MarketsReply">MarketsReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>markets</td>
+                  <td><a href="#MarketWithFee">MarketWithFee</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".MarketsRequest">MarketsRequest</h3>
+        <p>BOTD#4 Service's messages</p>
+
+        
+
+        
+      
+        <h3 id=".TradeCompleteReply">TradeCompleteReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>txid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".TradeCompleteRequest">TradeCompleteRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>swap_complete</td>
+                  <td><a href="#SwapComplete">SwapComplete</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>swap_fail</td>
+                  <td><a href="#SwapFail">SwapFail</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".TradeProposeReply">TradeProposeReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>swap_accept</td>
+                  <td><a href="#SwapAccept">SwapAccept</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>swap_fail</td>
+                  <td><a href="#SwapFail">SwapFail</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expiry_time_unix</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".TradeProposeRequest">TradeProposeRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>market</td>
+                  <td><a href="#Market">Market</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#TradeProposeRequest.Type">TradeProposeRequest.Type</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>swap_request</td>
+                  <td><a href="#SwapRequest">SwapRequest</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+        <h3 id=".TradeProposeRequest.Type">TradeProposeRequest.Type</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>BUY</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SELL</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+        <h3 id=".Trade">Trade</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Connect</td>
+                <td><a href="#Init">.Init</a></td>
+                <td><a href="#Ack">.Ack</a></td>
+                <td><p>Handshake</p></td>
+              </tr>
+            
+              <tr>
+                <td>Markets</td>
+                <td><a href="#MarketsRequest">.MarketsRequest</a></td>
+                <td><a href="#MarketsReply">.MarketsReply</a></td>
+                <td><p>Trader interface</p></td>
+              </tr>
+            
+              <tr>
+                <td>Balances</td>
+                <td><a href="#BalancesRequest">.BalancesRequest</a></td>
+                <td><a href="#BalancesReply">.BalancesReply</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>MarketPrice</td>
+                <td><a href="#MarketPriceRequest">.MarketPriceRequest</a></td>
+                <td><a href="#MarketPriceReply">.MarketPriceReply</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TradePropose</td>
+                <td><a href="#TradeProposeRequest">.TradeProposeRequest</a></td>
+                <td><a href="#TradeProposeReply">.TradeProposeReply</a> stream</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>TradeComplete</td>
+                <td><a href="#TradeCompleteRequest">.TradeCompleteRequest</a></td>
+                <td><a href="#TradeCompleteReply">.TradeCompleteReply</a> stream</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UnarySecret</td>
+                <td><a href="#SecretMessage">.SecretMessage</a></td>
+                <td><a href="#SecretMessage">.SecretMessage</a></td>
+                <td><p>Encrypted RPCs</p></td>
+              </tr>
+            
+              <tr>
+                <td>StreamSecret</td>
+                <td><a href="#SecretMessage">.SecretMessage</a></td>
+                <td><a href="#SecretMessage">.SecretMessage</a> stream</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="types.proto">types.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id=".Balance">Balance</h3>
+        <p>Custom Types</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>base_amount</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>quote_amount</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".BalanceWithFee">BalanceWithFee</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>balance</td>
+                  <td><a href="#Balance">Balance</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fee</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".Market">Market</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>base_asset</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>quote_asset</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".MarketWithFee">MarketWithFee</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>market</td>
+                  <td><a href="#Market">Market</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fee</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".Price">Price</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>base_price</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>quote_price</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".PriceWithFee">PriceWithFee</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>price</td>
+                  <td><a href="#Price">Price</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fee</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+
+      
+
+      
+
+      
+    
+      
+      <div class="file-heading">
+        <h2 id="wallet.proto">wallet.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id=".ChangePasswordRequest">ChangePasswordRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>current_password</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>current_password should be the current valid passphrase used to unlock the
+daemon. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>new_password</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>new_password should be the new passphrase that will be needed to unlock the
+daemon. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".ChangePasswordResponse">ChangePasswordResponse</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id=".GenSeedRequest">GenSeedRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>passphrase</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>passphrase is an optional user provided passphrase that will be used
+to encrypt the generated seed. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".GenSeedResponse">GenSeedResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>seed_mnemonic</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>seed_mnemonic is a 24-word mnemonic that encodes a prior seed obtained
+by the user. This field is optional, as if not provided, then the daemon will
+generate a new cipher seed for the user. Otherwise, then the daemon will
+attempt to recover the wallet state linked to this cipher seed. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".InitWalletRequest">InitWalletRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>wallet_password</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>wallet_password is the passphrase that should be used to encrypt the
+wallet. This MUST be at least 8 chars in length. After creation, this
+password is required to unlock the daemon. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>seed_mnemonic</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>seed_mnemonic is a 24-word mnemonic that encodes a prior seed obtained by the
+user. This MUST be a generated by the GenSeed method </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".InitWalletResponse">InitWalletResponse</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id=".SendToManyReply">SendToManyReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>raw_tx</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>The serialized transaction sent out on the network. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SendToManyRequest">SendToManyRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>outputs</td>
+                  <td><a href="#TxOut">TxOut</a></td>
+                  <td>repeated</td>
+                  <td><p>A slice of the outputs that should be created in the transaction produced. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sat_per_kw</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>The number of satoshis per kilo weight that should be used when crafting
+this transaction. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>push</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Optional: if true the transaction will be pushed to the network </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".TxOut">TxOut</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>asset</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>The value of the output being spent. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>script</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>The script of the output being spent. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".UnlockWalletRequest">UnlockWalletRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>wallet_password</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>wallet_password should be the current valid passphrase for the daemon. This
+will be required to decrypt on-disk material that the daemon requires to
+function properly. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".UnlockWalletResponse">UnlockWalletResponse</h3>
+        <p></p>
+
+        
+
+        
+      
+
+      
+
+      
+
+      
+        <h3 id=".Wallet">Wallet</h3>
+        <p>Service for Liquidity Providers to manage funds via walle RPC</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>GenSeed</td>
+                <td><a href="#GenSeedRequest">.GenSeedRequest</a></td>
+                <td><a href="#GenSeedResponse">.GenSeedResponse</a></td>
+                <td><p>GenSeed is the first method that should be used to instantiate a new lnd
+instance. This method allows a caller to generate a new BIP44 HD Wallet.
+If provided, the passphrase will be necessary
+to decrypt the cipherseed to expose the internal wallet seed.
+Once the cipherseed is obtained and verified by the user, the InitWallet
+method should be used to commit the newly generated seed, and create the
+wallet.</p></td>
+              </tr>
+            
+              <tr>
+                <td>InitWallet</td>
+                <td><a href="#InitWalletRequest">.InitWalletRequest</a></td>
+                <td><a href="#InitWalletResponse">.InitWalletResponse</a></td>
+                <td><p>InitWallet is used when lnd is starting up for the first time to fully
+initialize the daemon and its internal wallet. At the very least a wallet
+password must be provided. This will be used to encrypt sensitive material
+on disk.
+In the case of a recovery scenario, the user can also specify their
+mnemonic and passphrase. If set, then the daemon will use this prior state
+to initialize its internal wallet.
+Alternatively, this can be used along with the GenSeed RPC to obtain a
+seed, then present it to the user. Once it has been verified by the user,
+the seed can be fed into this RPC in order to commit the new wallet.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UnlockWallet</td>
+                <td><a href="#UnlockWalletRequest">.UnlockWalletRequest</a></td>
+                <td><a href="#UnlockWalletResponse">.UnlockWalletResponse</a></td>
+                <td><p>UnlockWallet is used at startup of lnd to provide a password to unlock
+the wallet database.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ChangePassword</td>
+                <td><a href="#ChangePasswordRequest">.ChangePasswordRequest</a></td>
+                <td><a href="#ChangePasswordResponse">.ChangePasswordResponse</a></td>
+                <td><p>ChangePassword changes the password of the encrypted wallet. This will
+automatically unlock the wallet database if successful.</p></td>
+              </tr>
+            
+              <tr>
+                <td>SendToMany</td>
+                <td><a href="#SendToManyRequest">.SendToManyRequest</a></td>
+                <td><a href="#SendToManyReply">.SendToManyReply</a></td>
+                <td><p>SendToMany sends funds to many outputs</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+
+    <h2 id="scalar-value-types">Scalar Value Types</h2>
+    <table class="scalar-value-types-table">
+      <thead>
+        <tr><td>.proto Type</td><td>Notes</td><td>C++</td><td>Java</td><td>Python</td><td>Go</td><td>C#</td><td>PHP</td><td>Ruby</td></tr>
+      </thead>
+      <tbody>
+        
+          <tr id="double">
+            <td>double</td>
+            <td></td>
+            <td>double</td>
+            <td>double</td>
+            <td>float</td>
+            <td>float64</td>
+            <td>double</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+        
+          <tr id="float">
+            <td>float</td>
+            <td></td>
+            <td>float</td>
+            <td>float</td>
+            <td>float</td>
+            <td>float32</td>
+            <td>float</td>
+            <td>float</td>
+            <td>Float</td>
+          </tr>
+        
+          <tr id="int32">
+            <td>int32</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="int64">
+            <td>int64</td>
+            <td>Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="uint32">
+            <td>uint32</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int/long</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="uint64">
+            <td>uint64</td>
+            <td>Uses variable-length encoding.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sint32">
+            <td>sint32</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sint64">
+            <td>sint64</td>
+            <td>Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="fixed32">
+            <td>fixed32</td>
+            <td>Always four bytes. More efficient than uint32 if values are often greater than 2^28.</td>
+            <td>uint32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>uint32</td>
+            <td>uint</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="fixed64">
+            <td>fixed64</td>
+            <td>Always eight bytes. More efficient than uint64 if values are often greater than 2^56.</td>
+            <td>uint64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>uint64</td>
+            <td>ulong</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="sfixed32">
+            <td>sfixed32</td>
+            <td>Always four bytes.</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>int</td>
+            <td>int32</td>
+            <td>int</td>
+            <td>integer</td>
+            <td>Bignum or Fixnum (as required)</td>
+          </tr>
+        
+          <tr id="sfixed64">
+            <td>sfixed64</td>
+            <td>Always eight bytes.</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>int/long</td>
+            <td>int64</td>
+            <td>long</td>
+            <td>integer/string</td>
+            <td>Bignum</td>
+          </tr>
+        
+          <tr id="bool">
+            <td>bool</td>
+            <td></td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>boolean</td>
+            <td>bool</td>
+            <td>bool</td>
+            <td>boolean</td>
+            <td>TrueClass/FalseClass</td>
+          </tr>
+        
+          <tr id="string">
+            <td>string</td>
+            <td>A string must always contain UTF-8 encoded or 7-bit ASCII text.</td>
+            <td>string</td>
+            <td>String</td>
+            <td>str/unicode</td>
+            <td>string</td>
+            <td>string</td>
+            <td>string</td>
+            <td>String (UTF-8)</td>
+          </tr>
+        
+          <tr id="bytes">
+            <td>bytes</td>
+            <td>May contain any arbitrary sequence of bytes.</td>
+            <td>string</td>
+            <td>ByteString</td>
+            <td>str</td>
+            <td>[]byte</td>
+            <td>ByteString</td>
+            <td>string</td>
+            <td>String (ASCII-8BIT)</td>
+          </tr>
+        
+      </tbody>
+    </table>
+  </body>
+</html>
+

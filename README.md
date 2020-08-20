@@ -5,13 +5,20 @@ Protocol Buffers spec defintions for TDEX
 
 * protoc
 * Node/npm (for typescript plugin)
+* Go
 
 ## Compile
 
 Build stubs for JavaScript & TypeScript
 
 ```sh
-$ bash scripts/compile-proto
+$ make js
+```
+
+Build for Go
+
+```sh
+$ make go
 ```
 
 ## Usage

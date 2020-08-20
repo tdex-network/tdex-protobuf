@@ -1,38 +1,33 @@
 syntax = "proto3";
+option go_package = "github.com/tdex-network/tdex-protobuf/generated/go/trade";
 
+import "handshake.proto";
 import "swap.proto";
+import "types.proto";
 
-// Service Interface
 service Trade {
+  // Handshake
+  rpc Connect(Init) returns (Ack);
+  // Trader interface
   rpc Markets(MarketsRequest) returns (MarketsReply);
   rpc Balances(BalancesRequest) returns (BalancesReply);
+  rpc MarketPrice(MarketPriceRequest) returns (MarketPriceReply);
   rpc TradePropose(TradeProposeRequest) returns (stream TradeProposeReply);
   rpc TradeComplete(TradeCompleteRequest) returns (stream TradeCompleteReply);
+  // Encrypted RPCs
+  rpc UnarySecret(SecretMessage) returns (SecretMessage);
+  rpc StreamSecret(SecretMessage) returns (stream SecretMessage);
 }
 
-// Custom Types
-message Balance {
-  string asset = 1;
-  int64 amount = 2;
-}
-message Market {
-  string base_asset = 1;
-  string quote_asset = 2;
-}
-message MarketWithFee {
-  Market market = 1;
-  float fee = 2;
-}
-
-// Service's messages
+// BOTD#4 Service's messages
 message MarketsRequest {}
 message MarketsReply { repeated MarketWithFee markets = 1; }
 
 message BalancesRequest { Market market = 1; }
-message BalancesReply { 
-  repeated Balance balances = 1;
-  float fee = 2;
-}
+message BalancesReply { repeated BalanceWithFee balances = 1; }
+
+message MarketPriceRequest { Market market = 1; }
+message MarketPriceReply { repeated PriceWithFee prices = 1; }
 
 message TradeProposeRequest {
   Market market = 1;
@@ -46,12 +41,11 @@ message TradeProposeRequest {
 message TradeProposeReply {
   SwapAccept swap_accept = 1;
   SwapFail swap_fail = 2;
+  uint64 expiry_time_unix = 3;
 }
 
 message TradeCompleteRequest {
   SwapComplete swap_complete = 1;
   SwapFail swap_fail = 2;
 }
-message TradeCompleteReply {
-  string txid = 1;
-}
+message TradeCompleteReply { string txid = 1; }
