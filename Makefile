@@ -8,6 +8,7 @@ go:
 
 js:
 	chmod u+x ./scripts/compile-proto-js
+	mkdir -p -m777 ./generated/js
 	./scripts/compile-proto-js
 
 doc:
