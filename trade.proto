@@ -1,22 +1,16 @@
 syntax = "proto3";
 option go_package = "github.com/tdex-network/tdex-protobuf/generated/go/trade";
 
-import "handshake.proto";
 import "swap.proto";
 import "types.proto";
 
 service Trade {
-  // Handshake
-  rpc Connect(Init) returns (Ack);
   // Trader interface
   rpc Markets(MarketsRequest) returns (MarketsReply);
   rpc Balances(BalancesRequest) returns (BalancesReply);
   rpc MarketPrice(MarketPriceRequest) returns (MarketPriceReply);
   rpc TradePropose(TradeProposeRequest) returns (stream TradeProposeReply);
   rpc TradeComplete(TradeCompleteRequest) returns (stream TradeCompleteReply);
-  // Encrypted RPCs
-  rpc UnarySecret(SecretMessage) returns (SecretMessage);
-  rpc StreamSecret(SecretMessage) returns (stream SecretMessage);
 }
 
 // BOTD#4 Service's messages

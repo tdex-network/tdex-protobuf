@@ -4,7 +4,6 @@ package trade
 
 import (
 	context "context"
-	handshake "github.com/tdex-network/tdex-protobuf/generated/go/handshake"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -18,17 +17,12 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TradeClient interface {
-	// Handshake
-	Connect(ctx context.Context, in *handshake.Init, opts ...grpc.CallOption) (*handshake.Ack, error)
 	// Trader interface
 	Markets(ctx context.Context, in *MarketsRequest, opts ...grpc.CallOption) (*MarketsReply, error)
 	Balances(ctx context.Context, in *BalancesRequest, opts ...grpc.CallOption) (*BalancesReply, error)
 	MarketPrice(ctx context.Context, in *MarketPriceRequest, opts ...grpc.CallOption) (*MarketPriceReply, error)
 	TradePropose(ctx context.Context, in *TradeProposeRequest, opts ...grpc.CallOption) (Trade_TradeProposeClient, error)
 	TradeComplete(ctx context.Context, in *TradeCompleteRequest, opts ...grpc.CallOption) (Trade_TradeCompleteClient, error)
-	// Encrypted RPCs
-	UnarySecret(ctx context.Context, in *handshake.SecretMessage, opts ...grpc.CallOption) (*handshake.SecretMessage, error)
-	StreamSecret(ctx context.Context, in *handshake.SecretMessage, opts ...grpc.CallOption) (Trade_StreamSecretClient, error)
 }
 
 type tradeClient struct {
@@ -37,15 +31,6 @@ type tradeClient struct {
 
 func NewTradeClient(cc grpc.ClientConnInterface) TradeClient {
 	return &tradeClient{cc}
-}
-
-func (c *tradeClient) Connect(ctx context.Context, in *handshake.Init, opts ...grpc.CallOption) (*handshake.Ack, error) {
-	out := new(handshake.Ack)
-	err := c.cc.Invoke(ctx, "/Trade/Connect", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *tradeClient) Markets(ctx context.Context, in *MarketsRequest, opts ...grpc.CallOption) (*MarketsReply, error) {
@@ -139,62 +124,16 @@ func (x *tradeTradeCompleteClient) Recv() (*TradeCompleteReply, error) {
 	return m, nil
 }
 
-func (c *tradeClient) UnarySecret(ctx context.Context, in *handshake.SecretMessage, opts ...grpc.CallOption) (*handshake.SecretMessage, error) {
-	out := new(handshake.SecretMessage)
-	err := c.cc.Invoke(ctx, "/Trade/UnarySecret", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *tradeClient) StreamSecret(ctx context.Context, in *handshake.SecretMessage, opts ...grpc.CallOption) (Trade_StreamSecretClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Trade_serviceDesc.Streams[2], "/Trade/StreamSecret", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &tradeStreamSecretClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type Trade_StreamSecretClient interface {
-	Recv() (*handshake.SecretMessage, error)
-	grpc.ClientStream
-}
-
-type tradeStreamSecretClient struct {
-	grpc.ClientStream
-}
-
-func (x *tradeStreamSecretClient) Recv() (*handshake.SecretMessage, error) {
-	m := new(handshake.SecretMessage)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 // TradeServer is the server API for Trade service.
 // All implementations must embed UnimplementedTradeServer
 // for forward compatibility
 type TradeServer interface {
-	// Handshake
-	Connect(context.Context, *handshake.Init) (*handshake.Ack, error)
 	// Trader interface
 	Markets(context.Context, *MarketsRequest) (*MarketsReply, error)
 	Balances(context.Context, *BalancesRequest) (*BalancesReply, error)
 	MarketPrice(context.Context, *MarketPriceRequest) (*MarketPriceReply, error)
 	TradePropose(*TradeProposeRequest, Trade_TradeProposeServer) error
 	TradeComplete(*TradeCompleteRequest, Trade_TradeCompleteServer) error
-	// Encrypted RPCs
-	UnarySecret(context.Context, *handshake.SecretMessage) (*handshake.SecretMessage, error)
-	StreamSecret(*handshake.SecretMessage, Trade_StreamSecretServer) error
 	mustEmbedUnimplementedTradeServer()
 }
 
@@ -202,9 +141,6 @@ type TradeServer interface {
 type UnimplementedTradeServer struct {
 }
 
-func (*UnimplementedTradeServer) Connect(context.Context, *handshake.Init) (*handshake.Ack, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Connect not implemented")
-}
 func (*UnimplementedTradeServer) Markets(context.Context, *MarketsRequest) (*MarketsReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Markets not implemented")
 }
@@ -220,34 +156,10 @@ func (*UnimplementedTradeServer) TradePropose(*TradeProposeRequest, Trade_TradeP
 func (*UnimplementedTradeServer) TradeComplete(*TradeCompleteRequest, Trade_TradeCompleteServer) error {
 	return status.Errorf(codes.Unimplemented, "method TradeComplete not implemented")
 }
-func (*UnimplementedTradeServer) UnarySecret(context.Context, *handshake.SecretMessage) (*handshake.SecretMessage, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UnarySecret not implemented")
-}
-func (*UnimplementedTradeServer) StreamSecret(*handshake.SecretMessage, Trade_StreamSecretServer) error {
-	return status.Errorf(codes.Unimplemented, "method StreamSecret not implemented")
-}
 func (*UnimplementedTradeServer) mustEmbedUnimplementedTradeServer() {}
 
 func RegisterTradeServer(s *grpc.Server, srv TradeServer) {
 	s.RegisterService(&_Trade_serviceDesc, srv)
-}
-
-func _Trade_Connect_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(handshake.Init)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TradeServer).Connect(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/Trade/Connect",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TradeServer).Connect(ctx, req.(*handshake.Init))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _Trade_Markets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -346,53 +258,10 @@ func (x *tradeTradeCompleteServer) Send(m *TradeCompleteReply) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _Trade_UnarySecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(handshake.SecretMessage)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TradeServer).UnarySecret(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/Trade/UnarySecret",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TradeServer).UnarySecret(ctx, req.(*handshake.SecretMessage))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Trade_StreamSecret_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(handshake.SecretMessage)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(TradeServer).StreamSecret(m, &tradeStreamSecretServer{stream})
-}
-
-type Trade_StreamSecretServer interface {
-	Send(*handshake.SecretMessage) error
-	grpc.ServerStream
-}
-
-type tradeStreamSecretServer struct {
-	grpc.ServerStream
-}
-
-func (x *tradeStreamSecretServer) Send(m *handshake.SecretMessage) error {
-	return x.ServerStream.SendMsg(m)
-}
-
 var _Trade_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "Trade",
 	HandlerType: (*TradeServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Connect",
-			Handler:    _Trade_Connect_Handler,
-		},
 		{
 			MethodName: "Markets",
 			Handler:    _Trade_Markets_Handler,
@@ -405,10 +274,6 @@ var _Trade_serviceDesc = grpc.ServiceDesc{
 			MethodName: "MarketPrice",
 			Handler:    _Trade_MarketPrice_Handler,
 		},
-		{
-			MethodName: "UnarySecret",
-			Handler:    _Trade_UnarySecret_Handler,
-		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
@@ -419,11 +284,6 @@ var _Trade_serviceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "TradeComplete",
 			Handler:       _Trade_TradeComplete_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "StreamSecret",
-			Handler:       _Trade_StreamSecret_Handler,
 			ServerStreams: true,
 		},
 	},

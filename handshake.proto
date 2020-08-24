@@ -6,7 +6,16 @@ message SecretMessage {
   uint32 lenght = 1;
   bytes payload = 2;
 }
+
 // BOTD#2
+service Handshake {
+  // Handshake
+  rpc Connect(Init) returns (Ack);
+  // Encrypted RPCs
+  rpc UnarySecret(SecretMessage) returns (SecretMessage);
+  rpc StreamSecret(SecretMessage) returns (stream SecretMessage);
+}
+
 message Init {
   // Random unique identifier for the current message
   string id = 1;
