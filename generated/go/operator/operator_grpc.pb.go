@@ -19,21 +19,31 @@ const _ = grpc.SupportPackageIsVersion6
 type OperatorClient interface {
 	// Returns a new derived address for the given market.
 	// If market field is empty, a new Market is created and MUST be initialized.
-	DepositAddress(ctx context.Context, in *DepositAddressRequest, opts ...grpc.CallOption) (*DepositAddressReply, error)
+	DepositMarket(ctx context.Context, in *DepositMarketRequest, opts ...grpc.CallOption) (*DepositMarketReply, error)
 	// Returns the list of previously generated addresses for the given market.
-	ListDepositAddress(ctx context.Context, in *ListDepositAddressRequest, opts ...grpc.CallOption) (*ListDepositAddressReply, error)
+	ListDepositMarket(ctx context.Context, in *ListDepositMarketRequest, opts ...grpc.CallOption) (*ListDepositMarketReply, error)
 	// Returns a new derived address from the fee account.
 	// This is only used to deposit some LBTC to subsidize blockchain fees.
-	FeeDepositAddress(ctx context.Context, in *FeeDepositAddressRequest, opts ...grpc.CallOption) (*FeeDepositAddressReply, error)
+	DepositFeeAccount(ctx context.Context, in *DepositFeeAccountRequest, opts ...grpc.CallOption) (*DepositFeeAccountReply, error)
 	// Returns the aggregated balance of LBTC held in the fee account.
-	FeeBalance(ctx context.Context, in *FeeBalanceRequest, opts ...grpc.CallOption) (*FeeBalanceReply, error)
+	BalanceFeeAccount(ctx context.Context, in *BalanceFeeAccountRequest, opts ...grpc.CallOption) (*BalanceFeeAccountReply, error)
 	// Makes the given market tradable
 	OpenMarket(ctx context.Context, in *OpenMarketRequest, opts ...grpc.CallOption) (*OpenMarketReply, error)
 	// Makes the given market NOT tradabale
 	CloseMarket(ctx context.Context, in *CloseMarketRequest, opts ...grpc.CallOption) (*CloseMarketReply, error)
-	// Changes the fee for the given market.
-	// The Market MUST be closed before doing this change.
-	UpdateFee(ctx context.Context, in *UpdateFeeRequest, opts ...grpc.CallOption) (*UpdateFeeReply, error)
+	// Changes the Liquidity Provider fee for the given market. I thsould be
+	// express in basis point. To change the fee on each swap from (current) 0.25%
+	// to 1% you need to pass down 100 The Market MUST be closed before doing this
+	// change.
+	UpdateMarketFee(ctx context.Context, in *UpdateMarketFeeRequest, opts ...grpc.CallOption) (*UpdateMarketFeeReply, error)
+	// WithdrawMarket allows the operator to withdraw to external wallet funds
+	// from a specific market. The Market MUST be closed before doing this change.
+	WithdrawMarket(ctx context.Context, in *WithdrawMarketRequest, opts ...grpc.CallOption) (*WithdrawMarketReply, error)
+	// Returs all the swaps processed by the daemon (both attempted and completed)
+	ListSwaps(ctx context.Context, in *ListSwapsRequest, opts ...grpc.CallOption) (*ListSwapsReply, error)
+	// Displays a report on how much the given market is collecting in Liquidity
+	// Provider fees
+	MarketFeeReport(ctx context.Context, in *MarketFeeReportRequest, opts ...grpc.CallOption) (*MarketFeeReportReply, error)
 }
 
 type operatorClient struct {
@@ -44,36 +54,36 @@ func NewOperatorClient(cc grpc.ClientConnInterface) OperatorClient {
 	return &operatorClient{cc}
 }
 
-func (c *operatorClient) DepositAddress(ctx context.Context, in *DepositAddressRequest, opts ...grpc.CallOption) (*DepositAddressReply, error) {
-	out := new(DepositAddressReply)
-	err := c.cc.Invoke(ctx, "/Operator/DepositAddress", in, out, opts...)
+func (c *operatorClient) DepositMarket(ctx context.Context, in *DepositMarketRequest, opts ...grpc.CallOption) (*DepositMarketReply, error) {
+	out := new(DepositMarketReply)
+	err := c.cc.Invoke(ctx, "/Operator/DepositMarket", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *operatorClient) ListDepositAddress(ctx context.Context, in *ListDepositAddressRequest, opts ...grpc.CallOption) (*ListDepositAddressReply, error) {
-	out := new(ListDepositAddressReply)
-	err := c.cc.Invoke(ctx, "/Operator/ListDepositAddress", in, out, opts...)
+func (c *operatorClient) ListDepositMarket(ctx context.Context, in *ListDepositMarketRequest, opts ...grpc.CallOption) (*ListDepositMarketReply, error) {
+	out := new(ListDepositMarketReply)
+	err := c.cc.Invoke(ctx, "/Operator/ListDepositMarket", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *operatorClient) FeeDepositAddress(ctx context.Context, in *FeeDepositAddressRequest, opts ...grpc.CallOption) (*FeeDepositAddressReply, error) {
-	out := new(FeeDepositAddressReply)
-	err := c.cc.Invoke(ctx, "/Operator/FeeDepositAddress", in, out, opts...)
+func (c *operatorClient) DepositFeeAccount(ctx context.Context, in *DepositFeeAccountRequest, opts ...grpc.CallOption) (*DepositFeeAccountReply, error) {
+	out := new(DepositFeeAccountReply)
+	err := c.cc.Invoke(ctx, "/Operator/DepositFeeAccount", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *operatorClient) FeeBalance(ctx context.Context, in *FeeBalanceRequest, opts ...grpc.CallOption) (*FeeBalanceReply, error) {
-	out := new(FeeBalanceReply)
-	err := c.cc.Invoke(ctx, "/Operator/FeeBalance", in, out, opts...)
+func (c *operatorClient) BalanceFeeAccount(ctx context.Context, in *BalanceFeeAccountRequest, opts ...grpc.CallOption) (*BalanceFeeAccountReply, error) {
+	out := new(BalanceFeeAccountReply)
+	err := c.cc.Invoke(ctx, "/Operator/BalanceFeeAccount", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -98,9 +108,36 @@ func (c *operatorClient) CloseMarket(ctx context.Context, in *CloseMarketRequest
 	return out, nil
 }
 
-func (c *operatorClient) UpdateFee(ctx context.Context, in *UpdateFeeRequest, opts ...grpc.CallOption) (*UpdateFeeReply, error) {
-	out := new(UpdateFeeReply)
-	err := c.cc.Invoke(ctx, "/Operator/UpdateFee", in, out, opts...)
+func (c *operatorClient) UpdateMarketFee(ctx context.Context, in *UpdateMarketFeeRequest, opts ...grpc.CallOption) (*UpdateMarketFeeReply, error) {
+	out := new(UpdateMarketFeeReply)
+	err := c.cc.Invoke(ctx, "/Operator/UpdateMarketFee", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *operatorClient) WithdrawMarket(ctx context.Context, in *WithdrawMarketRequest, opts ...grpc.CallOption) (*WithdrawMarketReply, error) {
+	out := new(WithdrawMarketReply)
+	err := c.cc.Invoke(ctx, "/Operator/WithdrawMarket", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *operatorClient) ListSwaps(ctx context.Context, in *ListSwapsRequest, opts ...grpc.CallOption) (*ListSwapsReply, error) {
+	out := new(ListSwapsReply)
+	err := c.cc.Invoke(ctx, "/Operator/ListSwaps", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *operatorClient) MarketFeeReport(ctx context.Context, in *MarketFeeReportRequest, opts ...grpc.CallOption) (*MarketFeeReportReply, error) {
+	out := new(MarketFeeReportReply)
+	err := c.cc.Invoke(ctx, "/Operator/MarketFeeReport", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -113,21 +150,31 @@ func (c *operatorClient) UpdateFee(ctx context.Context, in *UpdateFeeRequest, op
 type OperatorServer interface {
 	// Returns a new derived address for the given market.
 	// If market field is empty, a new Market is created and MUST be initialized.
-	DepositAddress(context.Context, *DepositAddressRequest) (*DepositAddressReply, error)
+	DepositMarket(context.Context, *DepositMarketRequest) (*DepositMarketReply, error)
 	// Returns the list of previously generated addresses for the given market.
-	ListDepositAddress(context.Context, *ListDepositAddressRequest) (*ListDepositAddressReply, error)
+	ListDepositMarket(context.Context, *ListDepositMarketRequest) (*ListDepositMarketReply, error)
 	// Returns a new derived address from the fee account.
 	// This is only used to deposit some LBTC to subsidize blockchain fees.
-	FeeDepositAddress(context.Context, *FeeDepositAddressRequest) (*FeeDepositAddressReply, error)
+	DepositFeeAccount(context.Context, *DepositFeeAccountRequest) (*DepositFeeAccountReply, error)
 	// Returns the aggregated balance of LBTC held in the fee account.
-	FeeBalance(context.Context, *FeeBalanceRequest) (*FeeBalanceReply, error)
+	BalanceFeeAccount(context.Context, *BalanceFeeAccountRequest) (*BalanceFeeAccountReply, error)
 	// Makes the given market tradable
 	OpenMarket(context.Context, *OpenMarketRequest) (*OpenMarketReply, error)
 	// Makes the given market NOT tradabale
 	CloseMarket(context.Context, *CloseMarketRequest) (*CloseMarketReply, error)
-	// Changes the fee for the given market.
-	// The Market MUST be closed before doing this change.
-	UpdateFee(context.Context, *UpdateFeeRequest) (*UpdateFeeReply, error)
+	// Changes the Liquidity Provider fee for the given market. I thsould be
+	// express in basis point. To change the fee on each swap from (current) 0.25%
+	// to 1% you need to pass down 100 The Market MUST be closed before doing this
+	// change.
+	UpdateMarketFee(context.Context, *UpdateMarketFeeRequest) (*UpdateMarketFeeReply, error)
+	// WithdrawMarket allows the operator to withdraw to external wallet funds
+	// from a specific market. The Market MUST be closed before doing this change.
+	WithdrawMarket(context.Context, *WithdrawMarketRequest) (*WithdrawMarketReply, error)
+	// Returs all the swaps processed by the daemon (both attempted and completed)
+	ListSwaps(context.Context, *ListSwapsRequest) (*ListSwapsReply, error)
+	// Displays a report on how much the given market is collecting in Liquidity
+	// Provider fees
+	MarketFeeReport(context.Context, *MarketFeeReportRequest) (*MarketFeeReportReply, error)
 	mustEmbedUnimplementedOperatorServer()
 }
 
@@ -135,17 +182,17 @@ type OperatorServer interface {
 type UnimplementedOperatorServer struct {
 }
 
-func (*UnimplementedOperatorServer) DepositAddress(context.Context, *DepositAddressRequest) (*DepositAddressReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DepositAddress not implemented")
+func (*UnimplementedOperatorServer) DepositMarket(context.Context, *DepositMarketRequest) (*DepositMarketReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DepositMarket not implemented")
 }
-func (*UnimplementedOperatorServer) ListDepositAddress(context.Context, *ListDepositAddressRequest) (*ListDepositAddressReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListDepositAddress not implemented")
+func (*UnimplementedOperatorServer) ListDepositMarket(context.Context, *ListDepositMarketRequest) (*ListDepositMarketReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDepositMarket not implemented")
 }
-func (*UnimplementedOperatorServer) FeeDepositAddress(context.Context, *FeeDepositAddressRequest) (*FeeDepositAddressReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FeeDepositAddress not implemented")
+func (*UnimplementedOperatorServer) DepositFeeAccount(context.Context, *DepositFeeAccountRequest) (*DepositFeeAccountReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DepositFeeAccount not implemented")
 }
-func (*UnimplementedOperatorServer) FeeBalance(context.Context, *FeeBalanceRequest) (*FeeBalanceReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FeeBalance not implemented")
+func (*UnimplementedOperatorServer) BalanceFeeAccount(context.Context, *BalanceFeeAccountRequest) (*BalanceFeeAccountReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BalanceFeeAccount not implemented")
 }
 func (*UnimplementedOperatorServer) OpenMarket(context.Context, *OpenMarketRequest) (*OpenMarketReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method OpenMarket not implemented")
@@ -153,8 +200,17 @@ func (*UnimplementedOperatorServer) OpenMarket(context.Context, *OpenMarketReque
 func (*UnimplementedOperatorServer) CloseMarket(context.Context, *CloseMarketRequest) (*CloseMarketReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CloseMarket not implemented")
 }
-func (*UnimplementedOperatorServer) UpdateFee(context.Context, *UpdateFeeRequest) (*UpdateFeeReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateFee not implemented")
+func (*UnimplementedOperatorServer) UpdateMarketFee(context.Context, *UpdateMarketFeeRequest) (*UpdateMarketFeeReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMarketFee not implemented")
+}
+func (*UnimplementedOperatorServer) WithdrawMarket(context.Context, *WithdrawMarketRequest) (*WithdrawMarketReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WithdrawMarket not implemented")
+}
+func (*UnimplementedOperatorServer) ListSwaps(context.Context, *ListSwapsRequest) (*ListSwapsReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSwaps not implemented")
+}
+func (*UnimplementedOperatorServer) MarketFeeReport(context.Context, *MarketFeeReportRequest) (*MarketFeeReportReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MarketFeeReport not implemented")
 }
 func (*UnimplementedOperatorServer) mustEmbedUnimplementedOperatorServer() {}
 
@@ -162,74 +218,74 @@ func RegisterOperatorServer(s *grpc.Server, srv OperatorServer) {
 	s.RegisterService(&_Operator_serviceDesc, srv)
 }
 
-func _Operator_DepositAddress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DepositAddressRequest)
+func _Operator_DepositMarket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DepositMarketRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OperatorServer).DepositAddress(ctx, in)
+		return srv.(OperatorServer).DepositMarket(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/Operator/DepositAddress",
+		FullMethod: "/Operator/DepositMarket",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OperatorServer).DepositAddress(ctx, req.(*DepositAddressRequest))
+		return srv.(OperatorServer).DepositMarket(ctx, req.(*DepositMarketRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Operator_ListDepositAddress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListDepositAddressRequest)
+func _Operator_ListDepositMarket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListDepositMarketRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OperatorServer).ListDepositAddress(ctx, in)
+		return srv.(OperatorServer).ListDepositMarket(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/Operator/ListDepositAddress",
+		FullMethod: "/Operator/ListDepositMarket",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OperatorServer).ListDepositAddress(ctx, req.(*ListDepositAddressRequest))
+		return srv.(OperatorServer).ListDepositMarket(ctx, req.(*ListDepositMarketRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Operator_FeeDepositAddress_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FeeDepositAddressRequest)
+func _Operator_DepositFeeAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DepositFeeAccountRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OperatorServer).FeeDepositAddress(ctx, in)
+		return srv.(OperatorServer).DepositFeeAccount(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/Operator/FeeDepositAddress",
+		FullMethod: "/Operator/DepositFeeAccount",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OperatorServer).FeeDepositAddress(ctx, req.(*FeeDepositAddressRequest))
+		return srv.(OperatorServer).DepositFeeAccount(ctx, req.(*DepositFeeAccountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Operator_FeeBalance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(FeeBalanceRequest)
+func _Operator_BalanceFeeAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BalanceFeeAccountRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OperatorServer).FeeBalance(ctx, in)
+		return srv.(OperatorServer).BalanceFeeAccount(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/Operator/FeeBalance",
+		FullMethod: "/Operator/BalanceFeeAccount",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OperatorServer).FeeBalance(ctx, req.(*FeeBalanceRequest))
+		return srv.(OperatorServer).BalanceFeeAccount(ctx, req.(*BalanceFeeAccountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -270,20 +326,74 @@ func _Operator_CloseMarket_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Operator_UpdateFee_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateFeeRequest)
+func _Operator_UpdateMarketFee_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateMarketFeeRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OperatorServer).UpdateFee(ctx, in)
+		return srv.(OperatorServer).UpdateMarketFee(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/Operator/UpdateFee",
+		FullMethod: "/Operator/UpdateMarketFee",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OperatorServer).UpdateFee(ctx, req.(*UpdateFeeRequest))
+		return srv.(OperatorServer).UpdateMarketFee(ctx, req.(*UpdateMarketFeeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Operator_WithdrawMarket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WithdrawMarketRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OperatorServer).WithdrawMarket(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Operator/WithdrawMarket",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OperatorServer).WithdrawMarket(ctx, req.(*WithdrawMarketRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Operator_ListSwaps_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSwapsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OperatorServer).ListSwaps(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Operator/ListSwaps",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OperatorServer).ListSwaps(ctx, req.(*ListSwapsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Operator_MarketFeeReport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MarketFeeReportRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OperatorServer).MarketFeeReport(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Operator/MarketFeeReport",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OperatorServer).MarketFeeReport(ctx, req.(*MarketFeeReportRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -293,20 +403,20 @@ var _Operator_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*OperatorServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "DepositAddress",
-			Handler:    _Operator_DepositAddress_Handler,
+			MethodName: "DepositMarket",
+			Handler:    _Operator_DepositMarket_Handler,
 		},
 		{
-			MethodName: "ListDepositAddress",
-			Handler:    _Operator_ListDepositAddress_Handler,
+			MethodName: "ListDepositMarket",
+			Handler:    _Operator_ListDepositMarket_Handler,
 		},
 		{
-			MethodName: "FeeDepositAddress",
-			Handler:    _Operator_FeeDepositAddress_Handler,
+			MethodName: "DepositFeeAccount",
+			Handler:    _Operator_DepositFeeAccount_Handler,
 		},
 		{
-			MethodName: "FeeBalance",
-			Handler:    _Operator_FeeBalance_Handler,
+			MethodName: "BalanceFeeAccount",
+			Handler:    _Operator_BalanceFeeAccount_Handler,
 		},
 		{
 			MethodName: "OpenMarket",
@@ -317,8 +427,20 @@ var _Operator_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Operator_CloseMarket_Handler,
 		},
 		{
-			MethodName: "UpdateFee",
-			Handler:    _Operator_UpdateFee_Handler,
+			MethodName: "UpdateMarketFee",
+			Handler:    _Operator_UpdateMarketFee_Handler,
+		},
+		{
+			MethodName: "WithdrawMarket",
+			Handler:    _Operator_WithdrawMarket_Handler,
+		},
+		{
+			MethodName: "ListSwaps",
+			Handler:    _Operator_ListSwaps_Handler,
+		},
+		{
+			MethodName: "MarketFeeReport",
+			Handler:    _Operator_MarketFeeReport_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

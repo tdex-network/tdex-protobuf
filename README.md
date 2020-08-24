@@ -26,5 +26,12 @@ $ make go
 * JavaScript
 
 ```sh
-$ npm install sevenlab/tdex-protobuf
+$ npm install tdex-network/tdex-protobuf
 ```
+
+* Go 
+
+```sh
+$ go get github.com/tdex-network/tdex-protobuf
+```
+

@@ -9,47 +9,129 @@ import "types.proto";
 service Operator {
   // Returns a new derived address for the given market.
   // If market field is empty, a new Market is created and MUST be initialized.
-  rpc DepositAddress(DepositAddressRequest) returns (DepositAddressReply) {}
+  rpc DepositMarket(DepositMarketRequest) returns (DepositMarketReply) {}
 
   // Returns the list of previously generated addresses for the given market.
-  rpc ListDepositAddress(ListDepositAddressRequest)
-      returns (ListDepositAddressReply) {}
+  rpc ListDepositMarket(ListDepositMarketRequest)
+      returns (ListDepositMarketReply) {}
 
   // Returns a new derived address from the fee account.
   // This is only used to deposit some LBTC to subsidize blockchain fees.
-  rpc FeeDepositAddress(FeeDepositAddressRequest)
-      returns (FeeDepositAddressReply) {}
+  rpc DepositFeeAccount(DepositFeeAccountRequest)
+      returns (DepositFeeAccountReply) {}
 
   // Returns the aggregated balance of LBTC held in the fee account.
-  rpc FeeBalance(FeeBalanceRequest) returns (FeeBalanceReply) {}
+  rpc BalanceFeeAccount(BalanceFeeAccountRequest)
+      returns (BalanceFeeAccountReply) {}
 
   // Makes the given market tradable
   rpc OpenMarket(OpenMarketRequest) returns (OpenMarketReply) {}
   // Makes the given market NOT tradabale
   rpc CloseMarket(CloseMarketRequest) returns (CloseMarketReply) {}
 
-  // Changes the fee for the given market.
-  // The Market MUST be closed before doing this change.
-  rpc UpdateFee(UpdateFeeRequest) returns (UpdateFeeReply) {}
+  // Changes the Liquidity Provider fee for the given market. I thsould be
+  // express in basis point. To change the fee on each swap from (current) 0.25%
+  // to 1% you need to pass down 100 The Market MUST be closed before doing this
+  // change.
+  rpc UpdateMarketFee(UpdateMarketFeeRequest) returns (UpdateMarketFeeReply) {}
+
+  // WithdrawMarket allows the operator to withdraw to external wallet funds
+  // from a specific market. The Market MUST be closed before doing this change.
+  rpc WithdrawMarket(WithdrawMarketRequest) returns (WithdrawMarketReply) {}
+
+  // Returs all the swaps processed by the daemon (both attempted and completed)
+  rpc ListSwaps(ListSwapsRequest) returns (ListSwapsReply) {}
+
+  // Displays a report on how much the given market is collecting in Liquidity
+  // Provider fees
+  rpc MarketFeeReport(MarketFeeReportRequest) returns (MarketFeeReportReply) {}
 }
 
-message DepositAddressRequest {
+message DepositMarketRequest {
   Market market = 1; // Market to get an address from. Could be empty.
 }
-message ListDepositAddressRequest {
-  Market market = 1; // Market to get an address from. Could be empty.
-}
-message ListDepositAddressReply { repeated string address = 1; }
-message DepositAddressReply { string address = 1; }
-message FeeDepositAddressRequest {}
-message FeeDepositAddressReply { string address = 1; }
-message FeeBalanceRequest {}
-message FeeBalanceReply { int64 balance = 1; }
+message DepositMarketReply { string address = 1; }
 
-message OpenMarketRequest {}
+message ListDepositMarketRequest {
+  Market market = 1; // Market to get an address from. Could be empty.
+}
+message ListDepositMarketReply { repeated string address = 1; }
+
+message DepositFeeAccountRequest {}
+message DepositFeeAccountReply { string address = 1; }
+
+message BalanceFeeAccountRequest {}
+message BalanceFeeAccountReply { int64 balance = 1; }
+
+message OpenMarketRequest {
+  Market market = 1; // Market to be made tradable
+}
 message OpenMarketReply {}
-message CloseMarketRequest {}
+
+message CloseMarketRequest {
+  Market market = 1; // Market to be made NOT tradable
+}
 message CloseMarketReply {}
 
-message UpdateFeeRequest {}
-message UpdateFeeReply {}
+message UpdateMarketFeeRequest {
+  Market market = 1;     // Market to be updated
+  int64 basis_point = 2; // basis point of the new fee
+}
+message UpdateMarketFeeReply {}
+
+message WithdrawMarketRequest {
+  // Market from which funds need to be withdrawn
+  Market market = 1;
+  // Amount for base and quote asset to be withdrawn
+  Balance balance_to_withdraw = 2;
+  // The number of satoshis per kilo weight that should be
+  // used when crafting this transaction.
+  int64 sat_per_kw = 3;
+  // The script of the output being spent.
+  bytes script = 4;
+  // Optional: if true the transaction will be pushed to the network
+  bool push = 5;
+}
+message WithdrawMarketReply {
+  /* The serialized transaction */
+  bytes raw_tx = 1;
+}
+
+message ListSwapsRequest {}
+message ListSwapsReply { repeated SwapInfo swaps = 1; }
+
+message MarketFeeReportRequest {
+  Market market = 1; // Market to be updated
+}
+message MarketFeeReportReply {
+  // List of the all unique fee being collected on each swap.
+  repeated ProviderFee collected_fees = 1;
+  // List of aggreagated fee grouped by asset. There should be one unique entry
+  // for each asset and the amount should be the aggregated total.
+  repeated ProviderFee collected_fees_per_asset = 2;
+}
+
+// Custom types
+message ProviderFee {
+  uint64 amount = 1;
+  string asset = 2;
+}
+
+message SwapInfo {
+  enum Status {
+    REQUEST = 0;
+    ACCEPT = 1;
+    COMPLETE = 2;
+  }
+  Status status = 1;
+  // The proposer's quantity
+  uint64 amount_p = 2;
+  // The proposer's asset hash
+  string asset_p = 3;
+  // The responder's quantity
+  uint64 amount_r = 4;
+  // The responder's asset hash
+  string asset_r = 5;
+  // The collected Liquidity Provider fee.
+  ProviderFee provider_fee = 6;
+}
