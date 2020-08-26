@@ -29,6 +29,10 @@ service Operator {
   // Makes the given market NOT tradabale
   rpc CloseMarket(CloseMarketRequest) returns (CloseMarketReply) {}
 
+  // Manually updates the price for the given market
+  rpc UpdateMarketPrice(UpdateMarketPriceRequest)
+      returns (UpdateMarketPriceReply) {}
+
   // Changes the Liquidity Provider fee for the given market. I thsould be
   // express in basis point. To change the fee on each swap from (current) 0.25%
   // to 1% you need to pass down 100 The Market MUST be closed before doing this
@@ -76,8 +80,14 @@ message CloseMarketReply {}
 message UpdateMarketFeeRequest {
   Market market = 1;     // Market to be updated
   int64 basis_point = 2; // basis point of the new fee
+  string asset = 3;      // Asset of wich the fee should be taken
 }
 message UpdateMarketFeeReply {}
+
+// TBD
+message UpdateMarketPriceRequest {}
+// TBD
+message UpdateMarketPriceReply {}
 
 message WithdrawMarketRequest {
   // Market from which funds need to be withdrawn

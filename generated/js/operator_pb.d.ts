@@ -2,149 +2,154 @@ import * as jspb from "google-protobuf"
 
 import * as types_pb from './types_pb';
 
-export class DepositAddressRequest extends jspb.Message {
+export class DepositMarketRequest extends jspb.Message {
   getMarket(): types_pb.Market | undefined;
-  setMarket(value?: types_pb.Market): DepositAddressRequest;
+  setMarket(value?: types_pb.Market): DepositMarketRequest;
   hasMarket(): boolean;
-  clearMarket(): DepositAddressRequest;
+  clearMarket(): DepositMarketRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DepositAddressRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: DepositAddressRequest): DepositAddressRequest.AsObject;
-  static serializeBinaryToWriter(message: DepositAddressRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DepositAddressRequest;
-  static deserializeBinaryFromReader(message: DepositAddressRequest, reader: jspb.BinaryReader): DepositAddressRequest;
+  toObject(includeInstance?: boolean): DepositMarketRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DepositMarketRequest): DepositMarketRequest.AsObject;
+  static serializeBinaryToWriter(message: DepositMarketRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DepositMarketRequest;
+  static deserializeBinaryFromReader(message: DepositMarketRequest, reader: jspb.BinaryReader): DepositMarketRequest;
 }
 
-export namespace DepositAddressRequest {
+export namespace DepositMarketRequest {
   export type AsObject = {
     market?: types_pb.Market.AsObject,
   }
 }
 
-export class ListDepositAddressRequest extends jspb.Message {
-  getMarket(): types_pb.Market | undefined;
-  setMarket(value?: types_pb.Market): ListDepositAddressRequest;
-  hasMarket(): boolean;
-  clearMarket(): ListDepositAddressRequest;
+export class DepositMarketReply extends jspb.Message {
+  getAddress(): string;
+  setAddress(value: string): DepositMarketReply;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ListDepositAddressRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: ListDepositAddressRequest): ListDepositAddressRequest.AsObject;
-  static serializeBinaryToWriter(message: ListDepositAddressRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ListDepositAddressRequest;
-  static deserializeBinaryFromReader(message: ListDepositAddressRequest, reader: jspb.BinaryReader): ListDepositAddressRequest;
+  toObject(includeInstance?: boolean): DepositMarketReply.AsObject;
+  static toObject(includeInstance: boolean, msg: DepositMarketReply): DepositMarketReply.AsObject;
+  static serializeBinaryToWriter(message: DepositMarketReply, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DepositMarketReply;
+  static deserializeBinaryFromReader(message: DepositMarketReply, reader: jspb.BinaryReader): DepositMarketReply;
 }
 
-export namespace ListDepositAddressRequest {
+export namespace DepositMarketReply {
+  export type AsObject = {
+    address: string,
+  }
+}
+
+export class ListDepositMarketRequest extends jspb.Message {
+  getMarket(): types_pb.Market | undefined;
+  setMarket(value?: types_pb.Market): ListDepositMarketRequest;
+  hasMarket(): boolean;
+  clearMarket(): ListDepositMarketRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListDepositMarketRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListDepositMarketRequest): ListDepositMarketRequest.AsObject;
+  static serializeBinaryToWriter(message: ListDepositMarketRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListDepositMarketRequest;
+  static deserializeBinaryFromReader(message: ListDepositMarketRequest, reader: jspb.BinaryReader): ListDepositMarketRequest;
+}
+
+export namespace ListDepositMarketRequest {
   export type AsObject = {
     market?: types_pb.Market.AsObject,
   }
 }
 
-export class ListDepositAddressReply extends jspb.Message {
+export class ListDepositMarketReply extends jspb.Message {
   getAddressList(): Array<string>;
-  setAddressList(value: Array<string>): ListDepositAddressReply;
-  clearAddressList(): ListDepositAddressReply;
-  addAddress(value: string, index?: number): ListDepositAddressReply;
+  setAddressList(value: Array<string>): ListDepositMarketReply;
+  clearAddressList(): ListDepositMarketReply;
+  addAddress(value: string, index?: number): ListDepositMarketReply;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ListDepositAddressReply.AsObject;
-  static toObject(includeInstance: boolean, msg: ListDepositAddressReply): ListDepositAddressReply.AsObject;
-  static serializeBinaryToWriter(message: ListDepositAddressReply, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ListDepositAddressReply;
-  static deserializeBinaryFromReader(message: ListDepositAddressReply, reader: jspb.BinaryReader): ListDepositAddressReply;
+  toObject(includeInstance?: boolean): ListDepositMarketReply.AsObject;
+  static toObject(includeInstance: boolean, msg: ListDepositMarketReply): ListDepositMarketReply.AsObject;
+  static serializeBinaryToWriter(message: ListDepositMarketReply, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListDepositMarketReply;
+  static deserializeBinaryFromReader(message: ListDepositMarketReply, reader: jspb.BinaryReader): ListDepositMarketReply;
 }
 
-export namespace ListDepositAddressReply {
+export namespace ListDepositMarketReply {
   export type AsObject = {
     addressList: Array<string>,
   }
 }
 
-export class DepositAddressReply extends jspb.Message {
-  getAddress(): string;
-  setAddress(value: string): DepositAddressReply;
-
+export class DepositFeeAccountRequest extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): DepositAddressReply.AsObject;
-  static toObject(includeInstance: boolean, msg: DepositAddressReply): DepositAddressReply.AsObject;
-  static serializeBinaryToWriter(message: DepositAddressReply, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): DepositAddressReply;
-  static deserializeBinaryFromReader(message: DepositAddressReply, reader: jspb.BinaryReader): DepositAddressReply;
+  toObject(includeInstance?: boolean): DepositFeeAccountRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: DepositFeeAccountRequest): DepositFeeAccountRequest.AsObject;
+  static serializeBinaryToWriter(message: DepositFeeAccountRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DepositFeeAccountRequest;
+  static deserializeBinaryFromReader(message: DepositFeeAccountRequest, reader: jspb.BinaryReader): DepositFeeAccountRequest;
 }
 
-export namespace DepositAddressReply {
+export namespace DepositFeeAccountRequest {
+  export type AsObject = {
+  }
+}
+
+export class DepositFeeAccountReply extends jspb.Message {
+  getAddress(): string;
+  setAddress(value: string): DepositFeeAccountReply;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): DepositFeeAccountReply.AsObject;
+  static toObject(includeInstance: boolean, msg: DepositFeeAccountReply): DepositFeeAccountReply.AsObject;
+  static serializeBinaryToWriter(message: DepositFeeAccountReply, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): DepositFeeAccountReply;
+  static deserializeBinaryFromReader(message: DepositFeeAccountReply, reader: jspb.BinaryReader): DepositFeeAccountReply;
+}
+
+export namespace DepositFeeAccountReply {
   export type AsObject = {
     address: string,
   }
 }
 
-export class FeeDepositAddressRequest extends jspb.Message {
+export class BalanceFeeAccountRequest extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FeeDepositAddressRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: FeeDepositAddressRequest): FeeDepositAddressRequest.AsObject;
-  static serializeBinaryToWriter(message: FeeDepositAddressRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FeeDepositAddressRequest;
-  static deserializeBinaryFromReader(message: FeeDepositAddressRequest, reader: jspb.BinaryReader): FeeDepositAddressRequest;
+  toObject(includeInstance?: boolean): BalanceFeeAccountRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: BalanceFeeAccountRequest): BalanceFeeAccountRequest.AsObject;
+  static serializeBinaryToWriter(message: BalanceFeeAccountRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BalanceFeeAccountRequest;
+  static deserializeBinaryFromReader(message: BalanceFeeAccountRequest, reader: jspb.BinaryReader): BalanceFeeAccountRequest;
 }
 
-export namespace FeeDepositAddressRequest {
+export namespace BalanceFeeAccountRequest {
   export type AsObject = {
   }
 }
 
-export class FeeDepositAddressReply extends jspb.Message {
-  getAddress(): string;
-  setAddress(value: string): FeeDepositAddressReply;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FeeDepositAddressReply.AsObject;
-  static toObject(includeInstance: boolean, msg: FeeDepositAddressReply): FeeDepositAddressReply.AsObject;
-  static serializeBinaryToWriter(message: FeeDepositAddressReply, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FeeDepositAddressReply;
-  static deserializeBinaryFromReader(message: FeeDepositAddressReply, reader: jspb.BinaryReader): FeeDepositAddressReply;
-}
-
-export namespace FeeDepositAddressReply {
-  export type AsObject = {
-    address: string,
-  }
-}
-
-export class FeeBalanceRequest extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FeeBalanceRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: FeeBalanceRequest): FeeBalanceRequest.AsObject;
-  static serializeBinaryToWriter(message: FeeBalanceRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FeeBalanceRequest;
-  static deserializeBinaryFromReader(message: FeeBalanceRequest, reader: jspb.BinaryReader): FeeBalanceRequest;
-}
-
-export namespace FeeBalanceRequest {
-  export type AsObject = {
-  }
-}
-
-export class FeeBalanceReply extends jspb.Message {
+export class BalanceFeeAccountReply extends jspb.Message {
   getBalance(): number;
-  setBalance(value: number): FeeBalanceReply;
+  setBalance(value: number): BalanceFeeAccountReply;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): FeeBalanceReply.AsObject;
-  static toObject(includeInstance: boolean, msg: FeeBalanceReply): FeeBalanceReply.AsObject;
-  static serializeBinaryToWriter(message: FeeBalanceReply, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): FeeBalanceReply;
-  static deserializeBinaryFromReader(message: FeeBalanceReply, reader: jspb.BinaryReader): FeeBalanceReply;
+  toObject(includeInstance?: boolean): BalanceFeeAccountReply.AsObject;
+  static toObject(includeInstance: boolean, msg: BalanceFeeAccountReply): BalanceFeeAccountReply.AsObject;
+  static serializeBinaryToWriter(message: BalanceFeeAccountReply, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BalanceFeeAccountReply;
+  static deserializeBinaryFromReader(message: BalanceFeeAccountReply, reader: jspb.BinaryReader): BalanceFeeAccountReply;
 }
 
-export namespace FeeBalanceReply {
+export namespace BalanceFeeAccountReply {
   export type AsObject = {
     balance: number,
   }
 }
 
 export class OpenMarketRequest extends jspb.Message {
+  getMarket(): types_pb.Market | undefined;
+  setMarket(value?: types_pb.Market): OpenMarketRequest;
+  hasMarket(): boolean;
+  clearMarket(): OpenMarketRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): OpenMarketRequest.AsObject;
   static toObject(includeInstance: boolean, msg: OpenMarketRequest): OpenMarketRequest.AsObject;
@@ -155,6 +160,7 @@ export class OpenMarketRequest extends jspb.Message {
 
 export namespace OpenMarketRequest {
   export type AsObject = {
+    market?: types_pb.Market.AsObject,
   }
 }
 
@@ -173,6 +179,11 @@ export namespace OpenMarketReply {
 }
 
 export class CloseMarketRequest extends jspb.Message {
+  getMarket(): types_pb.Market | undefined;
+  setMarket(value?: types_pb.Market): CloseMarketRequest;
+  hasMarket(): boolean;
+  clearMarket(): CloseMarketRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): CloseMarketRequest.AsObject;
   static toObject(includeInstance: boolean, msg: CloseMarketRequest): CloseMarketRequest.AsObject;
@@ -183,6 +194,7 @@ export class CloseMarketRequest extends jspb.Message {
 
 export namespace CloseMarketRequest {
   export type AsObject = {
+    market?: types_pb.Market.AsObject,
   }
 }
 
@@ -200,31 +212,281 @@ export namespace CloseMarketReply {
   }
 }
 
-export class UpdateFeeRequest extends jspb.Message {
+export class UpdateMarketFeeRequest extends jspb.Message {
+  getMarket(): types_pb.Market | undefined;
+  setMarket(value?: types_pb.Market): UpdateMarketFeeRequest;
+  hasMarket(): boolean;
+  clearMarket(): UpdateMarketFeeRequest;
+
+  getBasisPoint(): number;
+  setBasisPoint(value: number): UpdateMarketFeeRequest;
+
+  getAsset(): string;
+  setAsset(value: string): UpdateMarketFeeRequest;
+
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateFeeRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateFeeRequest): UpdateFeeRequest.AsObject;
-  static serializeBinaryToWriter(message: UpdateFeeRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateFeeRequest;
-  static deserializeBinaryFromReader(message: UpdateFeeRequest, reader: jspb.BinaryReader): UpdateFeeRequest;
+  toObject(includeInstance?: boolean): UpdateMarketFeeRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateMarketFeeRequest): UpdateMarketFeeRequest.AsObject;
+  static serializeBinaryToWriter(message: UpdateMarketFeeRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateMarketFeeRequest;
+  static deserializeBinaryFromReader(message: UpdateMarketFeeRequest, reader: jspb.BinaryReader): UpdateMarketFeeRequest;
 }
 
-export namespace UpdateFeeRequest {
+export namespace UpdateMarketFeeRequest {
+  export type AsObject = {
+    market?: types_pb.Market.AsObject,
+    basisPoint: number,
+    asset: string,
+  }
+}
+
+export class UpdateMarketFeeReply extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateMarketFeeReply.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateMarketFeeReply): UpdateMarketFeeReply.AsObject;
+  static serializeBinaryToWriter(message: UpdateMarketFeeReply, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateMarketFeeReply;
+  static deserializeBinaryFromReader(message: UpdateMarketFeeReply, reader: jspb.BinaryReader): UpdateMarketFeeReply;
+}
+
+export namespace UpdateMarketFeeReply {
   export type AsObject = {
   }
 }
 
-export class UpdateFeeReply extends jspb.Message {
+export class UpdateMarketPriceRequest extends jspb.Message {
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdateFeeReply.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdateFeeReply): UpdateFeeReply.AsObject;
-  static serializeBinaryToWriter(message: UpdateFeeReply, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdateFeeReply;
-  static deserializeBinaryFromReader(message: UpdateFeeReply, reader: jspb.BinaryReader): UpdateFeeReply;
+  toObject(includeInstance?: boolean): UpdateMarketPriceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateMarketPriceRequest): UpdateMarketPriceRequest.AsObject;
+  static serializeBinaryToWriter(message: UpdateMarketPriceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateMarketPriceRequest;
+  static deserializeBinaryFromReader(message: UpdateMarketPriceRequest, reader: jspb.BinaryReader): UpdateMarketPriceRequest;
 }
 
-export namespace UpdateFeeReply {
+export namespace UpdateMarketPriceRequest {
   export type AsObject = {
+  }
+}
+
+export class UpdateMarketPriceReply extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateMarketPriceReply.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateMarketPriceReply): UpdateMarketPriceReply.AsObject;
+  static serializeBinaryToWriter(message: UpdateMarketPriceReply, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateMarketPriceReply;
+  static deserializeBinaryFromReader(message: UpdateMarketPriceReply, reader: jspb.BinaryReader): UpdateMarketPriceReply;
+}
+
+export namespace UpdateMarketPriceReply {
+  export type AsObject = {
+  }
+}
+
+export class WithdrawMarketRequest extends jspb.Message {
+  getMarket(): types_pb.Market | undefined;
+  setMarket(value?: types_pb.Market): WithdrawMarketRequest;
+  hasMarket(): boolean;
+  clearMarket(): WithdrawMarketRequest;
+
+  getBalanceToWithdraw(): types_pb.Balance | undefined;
+  setBalanceToWithdraw(value?: types_pb.Balance): WithdrawMarketRequest;
+  hasBalanceToWithdraw(): boolean;
+  clearBalanceToWithdraw(): WithdrawMarketRequest;
+
+  getSatPerKw(): number;
+  setSatPerKw(value: number): WithdrawMarketRequest;
+
+  getScript(): Uint8Array | string;
+  getScript_asU8(): Uint8Array;
+  getScript_asB64(): string;
+  setScript(value: Uint8Array | string): WithdrawMarketRequest;
+
+  getPush(): boolean;
+  setPush(value: boolean): WithdrawMarketRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): WithdrawMarketRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: WithdrawMarketRequest): WithdrawMarketRequest.AsObject;
+  static serializeBinaryToWriter(message: WithdrawMarketRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): WithdrawMarketRequest;
+  static deserializeBinaryFromReader(message: WithdrawMarketRequest, reader: jspb.BinaryReader): WithdrawMarketRequest;
+}
+
+export namespace WithdrawMarketRequest {
+  export type AsObject = {
+    market?: types_pb.Market.AsObject,
+    balanceToWithdraw?: types_pb.Balance.AsObject,
+    satPerKw: number,
+    script: Uint8Array | string,
+    push: boolean,
+  }
+}
+
+export class WithdrawMarketReply extends jspb.Message {
+  getRawTx(): Uint8Array | string;
+  getRawTx_asU8(): Uint8Array;
+  getRawTx_asB64(): string;
+  setRawTx(value: Uint8Array | string): WithdrawMarketReply;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): WithdrawMarketReply.AsObject;
+  static toObject(includeInstance: boolean, msg: WithdrawMarketReply): WithdrawMarketReply.AsObject;
+  static serializeBinaryToWriter(message: WithdrawMarketReply, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): WithdrawMarketReply;
+  static deserializeBinaryFromReader(message: WithdrawMarketReply, reader: jspb.BinaryReader): WithdrawMarketReply;
+}
+
+export namespace WithdrawMarketReply {
+  export type AsObject = {
+    rawTx: Uint8Array | string,
+  }
+}
+
+export class ListSwapsRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListSwapsRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListSwapsRequest): ListSwapsRequest.AsObject;
+  static serializeBinaryToWriter(message: ListSwapsRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListSwapsRequest;
+  static deserializeBinaryFromReader(message: ListSwapsRequest, reader: jspb.BinaryReader): ListSwapsRequest;
+}
+
+export namespace ListSwapsRequest {
+  export type AsObject = {
+  }
+}
+
+export class ListSwapsReply extends jspb.Message {
+  getSwapsList(): Array<SwapInfo>;
+  setSwapsList(value: Array<SwapInfo>): ListSwapsReply;
+  clearSwapsList(): ListSwapsReply;
+  addSwaps(value?: SwapInfo, index?: number): SwapInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListSwapsReply.AsObject;
+  static toObject(includeInstance: boolean, msg: ListSwapsReply): ListSwapsReply.AsObject;
+  static serializeBinaryToWriter(message: ListSwapsReply, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListSwapsReply;
+  static deserializeBinaryFromReader(message: ListSwapsReply, reader: jspb.BinaryReader): ListSwapsReply;
+}
+
+export namespace ListSwapsReply {
+  export type AsObject = {
+    swapsList: Array<SwapInfo.AsObject>,
+  }
+}
+
+export class MarketFeeReportRequest extends jspb.Message {
+  getMarket(): types_pb.Market | undefined;
+  setMarket(value?: types_pb.Market): MarketFeeReportRequest;
+  hasMarket(): boolean;
+  clearMarket(): MarketFeeReportRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MarketFeeReportRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: MarketFeeReportRequest): MarketFeeReportRequest.AsObject;
+  static serializeBinaryToWriter(message: MarketFeeReportRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MarketFeeReportRequest;
+  static deserializeBinaryFromReader(message: MarketFeeReportRequest, reader: jspb.BinaryReader): MarketFeeReportRequest;
+}
+
+export namespace MarketFeeReportRequest {
+  export type AsObject = {
+    market?: types_pb.Market.AsObject,
+  }
+}
+
+export class MarketFeeReportReply extends jspb.Message {
+  getCollectedFeesList(): Array<ProviderFee>;
+  setCollectedFeesList(value: Array<ProviderFee>): MarketFeeReportReply;
+  clearCollectedFeesList(): MarketFeeReportReply;
+  addCollectedFees(value?: ProviderFee, index?: number): ProviderFee;
+
+  getCollectedFeesPerAssetList(): Array<ProviderFee>;
+  setCollectedFeesPerAssetList(value: Array<ProviderFee>): MarketFeeReportReply;
+  clearCollectedFeesPerAssetList(): MarketFeeReportReply;
+  addCollectedFeesPerAsset(value?: ProviderFee, index?: number): ProviderFee;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MarketFeeReportReply.AsObject;
+  static toObject(includeInstance: boolean, msg: MarketFeeReportReply): MarketFeeReportReply.AsObject;
+  static serializeBinaryToWriter(message: MarketFeeReportReply, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MarketFeeReportReply;
+  static deserializeBinaryFromReader(message: MarketFeeReportReply, reader: jspb.BinaryReader): MarketFeeReportReply;
+}
+
+export namespace MarketFeeReportReply {
+  export type AsObject = {
+    collectedFeesList: Array<ProviderFee.AsObject>,
+    collectedFeesPerAssetList: Array<ProviderFee.AsObject>,
+  }
+}
+
+export class ProviderFee extends jspb.Message {
+  getAmount(): number;
+  setAmount(value: number): ProviderFee;
+
+  getAsset(): string;
+  setAsset(value: string): ProviderFee;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ProviderFee.AsObject;
+  static toObject(includeInstance: boolean, msg: ProviderFee): ProviderFee.AsObject;
+  static serializeBinaryToWriter(message: ProviderFee, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ProviderFee;
+  static deserializeBinaryFromReader(message: ProviderFee, reader: jspb.BinaryReader): ProviderFee;
+}
+
+export namespace ProviderFee {
+  export type AsObject = {
+    amount: number,
+    asset: string,
+  }
+}
+
+export class SwapInfo extends jspb.Message {
+  getStatus(): SwapInfo.Status;
+  setStatus(value: SwapInfo.Status): SwapInfo;
+
+  getAmountP(): number;
+  setAmountP(value: number): SwapInfo;
+
+  getAssetP(): string;
+  setAssetP(value: string): SwapInfo;
+
+  getAmountR(): number;
+  setAmountR(value: number): SwapInfo;
+
+  getAssetR(): string;
+  setAssetR(value: string): SwapInfo;
+
+  getProviderFee(): ProviderFee | undefined;
+  setProviderFee(value?: ProviderFee): SwapInfo;
+  hasProviderFee(): boolean;
+  clearProviderFee(): SwapInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): SwapInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: SwapInfo): SwapInfo.AsObject;
+  static serializeBinaryToWriter(message: SwapInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): SwapInfo;
+  static deserializeBinaryFromReader(message: SwapInfo, reader: jspb.BinaryReader): SwapInfo;
+}
+
+export namespace SwapInfo {
+  export type AsObject = {
+    status: SwapInfo.Status,
+    amountP: number,
+    assetP: string,
+    amountR: number,
+    assetR: string,
+    providerFee?: ProviderFee.AsObject,
+  }
+
+  export enum Status { 
+    REQUEST = 0,
+    ACCEPT = 1,
+    COMPLETE = 2,
   }
 }
 

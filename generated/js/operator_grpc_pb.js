@@ -5,6 +5,28 @@ var grpc = require('@grpc/grpc-js');
 var operator_pb = require('./operator_pb.js');
 var types_pb = require('./types_pb.js');
 
+function serialize_BalanceFeeAccountReply(arg) {
+  if (!(arg instanceof operator_pb.BalanceFeeAccountReply)) {
+    throw new Error('Expected argument of type BalanceFeeAccountReply');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_BalanceFeeAccountReply(buffer_arg) {
+  return operator_pb.BalanceFeeAccountReply.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_BalanceFeeAccountRequest(arg) {
+  if (!(arg instanceof operator_pb.BalanceFeeAccountRequest)) {
+    throw new Error('Expected argument of type BalanceFeeAccountRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_BalanceFeeAccountRequest(buffer_arg) {
+  return operator_pb.BalanceFeeAccountRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_CloseMarketReply(arg) {
   if (!(arg instanceof operator_pb.CloseMarketReply)) {
     throw new Error('Expected argument of type CloseMarketReply');
@@ -27,92 +49,114 @@ function deserialize_CloseMarketRequest(buffer_arg) {
   return operator_pb.CloseMarketRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_DepositAddressReply(arg) {
-  if (!(arg instanceof operator_pb.DepositAddressReply)) {
-    throw new Error('Expected argument of type DepositAddressReply');
+function serialize_DepositFeeAccountReply(arg) {
+  if (!(arg instanceof operator_pb.DepositFeeAccountReply)) {
+    throw new Error('Expected argument of type DepositFeeAccountReply');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_DepositAddressReply(buffer_arg) {
-  return operator_pb.DepositAddressReply.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_DepositFeeAccountReply(buffer_arg) {
+  return operator_pb.DepositFeeAccountReply.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_DepositAddressRequest(arg) {
-  if (!(arg instanceof operator_pb.DepositAddressRequest)) {
-    throw new Error('Expected argument of type DepositAddressRequest');
+function serialize_DepositFeeAccountRequest(arg) {
+  if (!(arg instanceof operator_pb.DepositFeeAccountRequest)) {
+    throw new Error('Expected argument of type DepositFeeAccountRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_DepositAddressRequest(buffer_arg) {
-  return operator_pb.DepositAddressRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_DepositFeeAccountRequest(buffer_arg) {
+  return operator_pb.DepositFeeAccountRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_FeeBalanceReply(arg) {
-  if (!(arg instanceof operator_pb.FeeBalanceReply)) {
-    throw new Error('Expected argument of type FeeBalanceReply');
+function serialize_DepositMarketReply(arg) {
+  if (!(arg instanceof operator_pb.DepositMarketReply)) {
+    throw new Error('Expected argument of type DepositMarketReply');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_FeeBalanceReply(buffer_arg) {
-  return operator_pb.FeeBalanceReply.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_DepositMarketReply(buffer_arg) {
+  return operator_pb.DepositMarketReply.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_FeeBalanceRequest(arg) {
-  if (!(arg instanceof operator_pb.FeeBalanceRequest)) {
-    throw new Error('Expected argument of type FeeBalanceRequest');
+function serialize_DepositMarketRequest(arg) {
+  if (!(arg instanceof operator_pb.DepositMarketRequest)) {
+    throw new Error('Expected argument of type DepositMarketRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_FeeBalanceRequest(buffer_arg) {
-  return operator_pb.FeeBalanceRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_DepositMarketRequest(buffer_arg) {
+  return operator_pb.DepositMarketRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_FeeDepositAddressReply(arg) {
-  if (!(arg instanceof operator_pb.FeeDepositAddressReply)) {
-    throw new Error('Expected argument of type FeeDepositAddressReply');
+function serialize_ListDepositMarketReply(arg) {
+  if (!(arg instanceof operator_pb.ListDepositMarketReply)) {
+    throw new Error('Expected argument of type ListDepositMarketReply');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_FeeDepositAddressReply(buffer_arg) {
-  return operator_pb.FeeDepositAddressReply.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_ListDepositMarketReply(buffer_arg) {
+  return operator_pb.ListDepositMarketReply.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_FeeDepositAddressRequest(arg) {
-  if (!(arg instanceof operator_pb.FeeDepositAddressRequest)) {
-    throw new Error('Expected argument of type FeeDepositAddressRequest');
+function serialize_ListDepositMarketRequest(arg) {
+  if (!(arg instanceof operator_pb.ListDepositMarketRequest)) {
+    throw new Error('Expected argument of type ListDepositMarketRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_FeeDepositAddressRequest(buffer_arg) {
-  return operator_pb.FeeDepositAddressRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_ListDepositMarketRequest(buffer_arg) {
+  return operator_pb.ListDepositMarketRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_ListDepositAddressReply(arg) {
-  if (!(arg instanceof operator_pb.ListDepositAddressReply)) {
-    throw new Error('Expected argument of type ListDepositAddressReply');
+function serialize_ListSwapsReply(arg) {
+  if (!(arg instanceof operator_pb.ListSwapsReply)) {
+    throw new Error('Expected argument of type ListSwapsReply');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_ListDepositAddressReply(buffer_arg) {
-  return operator_pb.ListDepositAddressReply.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_ListSwapsReply(buffer_arg) {
+  return operator_pb.ListSwapsReply.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_ListDepositAddressRequest(arg) {
-  if (!(arg instanceof operator_pb.ListDepositAddressRequest)) {
-    throw new Error('Expected argument of type ListDepositAddressRequest');
+function serialize_ListSwapsRequest(arg) {
+  if (!(arg instanceof operator_pb.ListSwapsRequest)) {
+    throw new Error('Expected argument of type ListSwapsRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_ListDepositAddressRequest(buffer_arg) {
-  return operator_pb.ListDepositAddressRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_ListSwapsRequest(buffer_arg) {
+  return operator_pb.ListSwapsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_MarketFeeReportReply(arg) {
+  if (!(arg instanceof operator_pb.MarketFeeReportReply)) {
+    throw new Error('Expected argument of type MarketFeeReportReply');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_MarketFeeReportReply(buffer_arg) {
+  return operator_pb.MarketFeeReportReply.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_MarketFeeReportRequest(arg) {
+  if (!(arg instanceof operator_pb.MarketFeeReportRequest)) {
+    throw new Error('Expected argument of type MarketFeeReportRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_MarketFeeReportRequest(buffer_arg) {
+  return operator_pb.MarketFeeReportRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_OpenMarketReply(arg) {
@@ -137,26 +181,70 @@ function deserialize_OpenMarketRequest(buffer_arg) {
   return operator_pb.OpenMarketRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_UpdateFeeReply(arg) {
-  if (!(arg instanceof operator_pb.UpdateFeeReply)) {
-    throw new Error('Expected argument of type UpdateFeeReply');
+function serialize_UpdateMarketFeeReply(arg) {
+  if (!(arg instanceof operator_pb.UpdateMarketFeeReply)) {
+    throw new Error('Expected argument of type UpdateMarketFeeReply');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_UpdateFeeReply(buffer_arg) {
-  return operator_pb.UpdateFeeReply.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_UpdateMarketFeeReply(buffer_arg) {
+  return operator_pb.UpdateMarketFeeReply.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_UpdateFeeRequest(arg) {
-  if (!(arg instanceof operator_pb.UpdateFeeRequest)) {
-    throw new Error('Expected argument of type UpdateFeeRequest');
+function serialize_UpdateMarketFeeRequest(arg) {
+  if (!(arg instanceof operator_pb.UpdateMarketFeeRequest)) {
+    throw new Error('Expected argument of type UpdateMarketFeeRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_UpdateFeeRequest(buffer_arg) {
-  return operator_pb.UpdateFeeRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_UpdateMarketFeeRequest(buffer_arg) {
+  return operator_pb.UpdateMarketFeeRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_UpdateMarketPriceReply(arg) {
+  if (!(arg instanceof operator_pb.UpdateMarketPriceReply)) {
+    throw new Error('Expected argument of type UpdateMarketPriceReply');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_UpdateMarketPriceReply(buffer_arg) {
+  return operator_pb.UpdateMarketPriceReply.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_UpdateMarketPriceRequest(arg) {
+  if (!(arg instanceof operator_pb.UpdateMarketPriceRequest)) {
+    throw new Error('Expected argument of type UpdateMarketPriceRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_UpdateMarketPriceRequest(buffer_arg) {
+  return operator_pb.UpdateMarketPriceRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_WithdrawMarketReply(arg) {
+  if (!(arg instanceof operator_pb.WithdrawMarketReply)) {
+    throw new Error('Expected argument of type WithdrawMarketReply');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_WithdrawMarketReply(buffer_arg) {
+  return operator_pb.WithdrawMarketReply.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_WithdrawMarketRequest(arg) {
+  if (!(arg instanceof operator_pb.WithdrawMarketRequest)) {
+    throw new Error('Expected argument of type WithdrawMarketRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_WithdrawMarketRequest(buffer_arg) {
+  return operator_pb.WithdrawMarketRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 
@@ -165,53 +253,53 @@ function deserialize_UpdateFeeRequest(buffer_arg) {
 var OperatorService = exports.OperatorService = {
   // Returns a new derived address for the given market.
 // If market field is empty, a new Market is created and MUST be initialized.
-depositAddress: {
-    path: '/Operator/DepositAddress',
+depositMarket: {
+    path: '/Operator/DepositMarket',
     requestStream: false,
     responseStream: false,
-    requestType: operator_pb.DepositAddressRequest,
-    responseType: operator_pb.DepositAddressReply,
-    requestSerialize: serialize_DepositAddressRequest,
-    requestDeserialize: deserialize_DepositAddressRequest,
-    responseSerialize: serialize_DepositAddressReply,
-    responseDeserialize: deserialize_DepositAddressReply,
+    requestType: operator_pb.DepositMarketRequest,
+    responseType: operator_pb.DepositMarketReply,
+    requestSerialize: serialize_DepositMarketRequest,
+    requestDeserialize: deserialize_DepositMarketRequest,
+    responseSerialize: serialize_DepositMarketReply,
+    responseDeserialize: deserialize_DepositMarketReply,
   },
   // Returns the list of previously generated addresses for the given market.
-listDepositAddress: {
-    path: '/Operator/ListDepositAddress',
+listDepositMarket: {
+    path: '/Operator/ListDepositMarket',
     requestStream: false,
     responseStream: false,
-    requestType: operator_pb.ListDepositAddressRequest,
-    responseType: operator_pb.ListDepositAddressReply,
-    requestSerialize: serialize_ListDepositAddressRequest,
-    requestDeserialize: deserialize_ListDepositAddressRequest,
-    responseSerialize: serialize_ListDepositAddressReply,
-    responseDeserialize: deserialize_ListDepositAddressReply,
+    requestType: operator_pb.ListDepositMarketRequest,
+    responseType: operator_pb.ListDepositMarketReply,
+    requestSerialize: serialize_ListDepositMarketRequest,
+    requestDeserialize: deserialize_ListDepositMarketRequest,
+    responseSerialize: serialize_ListDepositMarketReply,
+    responseDeserialize: deserialize_ListDepositMarketReply,
   },
   // Returns a new derived address from the fee account.
 // This is only used to deposit some LBTC to subsidize blockchain fees.
-feeDepositAddress: {
-    path: '/Operator/FeeDepositAddress',
+depositFeeAccount: {
+    path: '/Operator/DepositFeeAccount',
     requestStream: false,
     responseStream: false,
-    requestType: operator_pb.FeeDepositAddressRequest,
-    responseType: operator_pb.FeeDepositAddressReply,
-    requestSerialize: serialize_FeeDepositAddressRequest,
-    requestDeserialize: deserialize_FeeDepositAddressRequest,
-    responseSerialize: serialize_FeeDepositAddressReply,
-    responseDeserialize: deserialize_FeeDepositAddressReply,
+    requestType: operator_pb.DepositFeeAccountRequest,
+    responseType: operator_pb.DepositFeeAccountReply,
+    requestSerialize: serialize_DepositFeeAccountRequest,
+    requestDeserialize: deserialize_DepositFeeAccountRequest,
+    responseSerialize: serialize_DepositFeeAccountReply,
+    responseDeserialize: deserialize_DepositFeeAccountReply,
   },
   // Returns the aggregated balance of LBTC held in the fee account.
-feeBalance: {
-    path: '/Operator/FeeBalance',
+balanceFeeAccount: {
+    path: '/Operator/BalanceFeeAccount',
     requestStream: false,
     responseStream: false,
-    requestType: operator_pb.FeeBalanceRequest,
-    responseType: operator_pb.FeeBalanceReply,
-    requestSerialize: serialize_FeeBalanceRequest,
-    requestDeserialize: deserialize_FeeBalanceRequest,
-    responseSerialize: serialize_FeeBalanceReply,
-    responseDeserialize: deserialize_FeeBalanceReply,
+    requestType: operator_pb.BalanceFeeAccountRequest,
+    responseType: operator_pb.BalanceFeeAccountReply,
+    requestSerialize: serialize_BalanceFeeAccountRequest,
+    requestDeserialize: deserialize_BalanceFeeAccountRequest,
+    responseSerialize: serialize_BalanceFeeAccountReply,
+    responseDeserialize: deserialize_BalanceFeeAccountReply,
   },
   // Makes the given market tradable
 openMarket: {
@@ -237,18 +325,70 @@ closeMarket: {
     responseSerialize: serialize_CloseMarketReply,
     responseDeserialize: deserialize_CloseMarketReply,
   },
-  // Changes the fee for the given market.
-// The Market MUST be closed before doing this change.
-updateFee: {
-    path: '/Operator/UpdateFee',
+  // Manually updates the price for the given market
+updateMarketPrice: {
+    path: '/Operator/UpdateMarketPrice',
     requestStream: false,
     responseStream: false,
-    requestType: operator_pb.UpdateFeeRequest,
-    responseType: operator_pb.UpdateFeeReply,
-    requestSerialize: serialize_UpdateFeeRequest,
-    requestDeserialize: deserialize_UpdateFeeRequest,
-    responseSerialize: serialize_UpdateFeeReply,
-    responseDeserialize: deserialize_UpdateFeeReply,
+    requestType: operator_pb.UpdateMarketPriceRequest,
+    responseType: operator_pb.UpdateMarketPriceReply,
+    requestSerialize: serialize_UpdateMarketPriceRequest,
+    requestDeserialize: deserialize_UpdateMarketPriceRequest,
+    responseSerialize: serialize_UpdateMarketPriceReply,
+    responseDeserialize: deserialize_UpdateMarketPriceReply,
+  },
+  // Changes the Liquidity Provider fee for the given market. I thsould be
+// express in basis point. To change the fee on each swap from (current) 0.25%
+// to 1% you need to pass down 100 The Market MUST be closed before doing this
+// change.
+updateMarketFee: {
+    path: '/Operator/UpdateMarketFee',
+    requestStream: false,
+    responseStream: false,
+    requestType: operator_pb.UpdateMarketFeeRequest,
+    responseType: operator_pb.UpdateMarketFeeReply,
+    requestSerialize: serialize_UpdateMarketFeeRequest,
+    requestDeserialize: deserialize_UpdateMarketFeeRequest,
+    responseSerialize: serialize_UpdateMarketFeeReply,
+    responseDeserialize: deserialize_UpdateMarketFeeReply,
+  },
+  // WithdrawMarket allows the operator to withdraw to external wallet funds
+// from a specific market. The Market MUST be closed before doing this change.
+withdrawMarket: {
+    path: '/Operator/WithdrawMarket',
+    requestStream: false,
+    responseStream: false,
+    requestType: operator_pb.WithdrawMarketRequest,
+    responseType: operator_pb.WithdrawMarketReply,
+    requestSerialize: serialize_WithdrawMarketRequest,
+    requestDeserialize: deserialize_WithdrawMarketRequest,
+    responseSerialize: serialize_WithdrawMarketReply,
+    responseDeserialize: deserialize_WithdrawMarketReply,
+  },
+  // Returs all the swaps processed by the daemon (both attempted and completed)
+listSwaps: {
+    path: '/Operator/ListSwaps',
+    requestStream: false,
+    responseStream: false,
+    requestType: operator_pb.ListSwapsRequest,
+    responseType: operator_pb.ListSwapsReply,
+    requestSerialize: serialize_ListSwapsRequest,
+    requestDeserialize: deserialize_ListSwapsRequest,
+    responseSerialize: serialize_ListSwapsReply,
+    responseDeserialize: deserialize_ListSwapsReply,
+  },
+  // Displays a report on how much the given market is collecting in Liquidity
+// Provider fees
+marketFeeReport: {
+    path: '/Operator/MarketFeeReport',
+    requestStream: false,
+    responseStream: false,
+    requestType: operator_pb.MarketFeeReportRequest,
+    responseType: operator_pb.MarketFeeReportReply,
+    requestSerialize: serialize_MarketFeeReportRequest,
+    requestDeserialize: deserialize_MarketFeeReportRequest,
+    responseSerialize: serialize_MarketFeeReportReply,
+    responseDeserialize: deserialize_MarketFeeReportReply,
   },
 };
 

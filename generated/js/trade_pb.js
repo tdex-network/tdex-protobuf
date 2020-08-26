@@ -12,8 +12,6 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
-var handshake_pb = require('./handshake_pb.js');
-goog.object.extend(proto, handshake_pb);
 var swap_pb = require('./swap_pb.js');
 goog.object.extend(proto, swap_pb);
 var types_pb = require('./types_pb.js');

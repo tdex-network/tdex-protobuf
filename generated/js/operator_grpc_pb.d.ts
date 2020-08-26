@@ -9,50 +9,54 @@ import * as operator_pb from "./operator_pb";
 import * as types_pb from "./types_pb";
 
 interface IOperatorService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
-    depositAddress: IOperatorService_IDepositAddress;
-    listDepositAddress: IOperatorService_IListDepositAddress;
-    feeDepositAddress: IOperatorService_IFeeDepositAddress;
-    feeBalance: IOperatorService_IFeeBalance;
+    depositMarket: IOperatorService_IDepositMarket;
+    listDepositMarket: IOperatorService_IListDepositMarket;
+    depositFeeAccount: IOperatorService_IDepositFeeAccount;
+    balanceFeeAccount: IOperatorService_IBalanceFeeAccount;
     openMarket: IOperatorService_IOpenMarket;
     closeMarket: IOperatorService_ICloseMarket;
-    updateFee: IOperatorService_IUpdateFee;
+    updateMarketPrice: IOperatorService_IUpdateMarketPrice;
+    updateMarketFee: IOperatorService_IUpdateMarketFee;
+    withdrawMarket: IOperatorService_IWithdrawMarket;
+    listSwaps: IOperatorService_IListSwaps;
+    marketFeeReport: IOperatorService_IMarketFeeReport;
 }
 
-interface IOperatorService_IDepositAddress extends grpc.MethodDefinition<operator_pb.DepositAddressRequest, operator_pb.DepositAddressReply> {
-    path: string; // "/.Operator/DepositAddress"
+interface IOperatorService_IDepositMarket extends grpc.MethodDefinition<operator_pb.DepositMarketRequest, operator_pb.DepositMarketReply> {
+    path: string; // "/.Operator/DepositMarket"
     requestStream: false;
     responseStream: false;
-    requestSerialize: grpc.serialize<operator_pb.DepositAddressRequest>;
-    requestDeserialize: grpc.deserialize<operator_pb.DepositAddressRequest>;
-    responseSerialize: grpc.serialize<operator_pb.DepositAddressReply>;
-    responseDeserialize: grpc.deserialize<operator_pb.DepositAddressReply>;
+    requestSerialize: grpc.serialize<operator_pb.DepositMarketRequest>;
+    requestDeserialize: grpc.deserialize<operator_pb.DepositMarketRequest>;
+    responseSerialize: grpc.serialize<operator_pb.DepositMarketReply>;
+    responseDeserialize: grpc.deserialize<operator_pb.DepositMarketReply>;
 }
-interface IOperatorService_IListDepositAddress extends grpc.MethodDefinition<operator_pb.ListDepositAddressRequest, operator_pb.ListDepositAddressReply> {
-    path: string; // "/.Operator/ListDepositAddress"
+interface IOperatorService_IListDepositMarket extends grpc.MethodDefinition<operator_pb.ListDepositMarketRequest, operator_pb.ListDepositMarketReply> {
+    path: string; // "/.Operator/ListDepositMarket"
     requestStream: false;
     responseStream: false;
-    requestSerialize: grpc.serialize<operator_pb.ListDepositAddressRequest>;
-    requestDeserialize: grpc.deserialize<operator_pb.ListDepositAddressRequest>;
-    responseSerialize: grpc.serialize<operator_pb.ListDepositAddressReply>;
-    responseDeserialize: grpc.deserialize<operator_pb.ListDepositAddressReply>;
+    requestSerialize: grpc.serialize<operator_pb.ListDepositMarketRequest>;
+    requestDeserialize: grpc.deserialize<operator_pb.ListDepositMarketRequest>;
+    responseSerialize: grpc.serialize<operator_pb.ListDepositMarketReply>;
+    responseDeserialize: grpc.deserialize<operator_pb.ListDepositMarketReply>;
 }
-interface IOperatorService_IFeeDepositAddress extends grpc.MethodDefinition<operator_pb.FeeDepositAddressRequest, operator_pb.FeeDepositAddressReply> {
-    path: string; // "/.Operator/FeeDepositAddress"
+interface IOperatorService_IDepositFeeAccount extends grpc.MethodDefinition<operator_pb.DepositFeeAccountRequest, operator_pb.DepositFeeAccountReply> {
+    path: string; // "/.Operator/DepositFeeAccount"
     requestStream: false;
     responseStream: false;
-    requestSerialize: grpc.serialize<operator_pb.FeeDepositAddressRequest>;
-    requestDeserialize: grpc.deserialize<operator_pb.FeeDepositAddressRequest>;
-    responseSerialize: grpc.serialize<operator_pb.FeeDepositAddressReply>;
-    responseDeserialize: grpc.deserialize<operator_pb.FeeDepositAddressReply>;
+    requestSerialize: grpc.serialize<operator_pb.DepositFeeAccountRequest>;
+    requestDeserialize: grpc.deserialize<operator_pb.DepositFeeAccountRequest>;
+    responseSerialize: grpc.serialize<operator_pb.DepositFeeAccountReply>;
+    responseDeserialize: grpc.deserialize<operator_pb.DepositFeeAccountReply>;
 }
-interface IOperatorService_IFeeBalance extends grpc.MethodDefinition<operator_pb.FeeBalanceRequest, operator_pb.FeeBalanceReply> {
-    path: string; // "/.Operator/FeeBalance"
+interface IOperatorService_IBalanceFeeAccount extends grpc.MethodDefinition<operator_pb.BalanceFeeAccountRequest, operator_pb.BalanceFeeAccountReply> {
+    path: string; // "/.Operator/BalanceFeeAccount"
     requestStream: false;
     responseStream: false;
-    requestSerialize: grpc.serialize<operator_pb.FeeBalanceRequest>;
-    requestDeserialize: grpc.deserialize<operator_pb.FeeBalanceRequest>;
-    responseSerialize: grpc.serialize<operator_pb.FeeBalanceReply>;
-    responseDeserialize: grpc.deserialize<operator_pb.FeeBalanceReply>;
+    requestSerialize: grpc.serialize<operator_pb.BalanceFeeAccountRequest>;
+    requestDeserialize: grpc.deserialize<operator_pb.BalanceFeeAccountRequest>;
+    responseSerialize: grpc.serialize<operator_pb.BalanceFeeAccountReply>;
+    responseDeserialize: grpc.deserialize<operator_pb.BalanceFeeAccountReply>;
 }
 interface IOperatorService_IOpenMarket extends grpc.MethodDefinition<operator_pb.OpenMarketRequest, operator_pb.OpenMarketReply> {
     path: string; // "/.Operator/OpenMarket"
@@ -72,73 +76,137 @@ interface IOperatorService_ICloseMarket extends grpc.MethodDefinition<operator_p
     responseSerialize: grpc.serialize<operator_pb.CloseMarketReply>;
     responseDeserialize: grpc.deserialize<operator_pb.CloseMarketReply>;
 }
-interface IOperatorService_IUpdateFee extends grpc.MethodDefinition<operator_pb.UpdateFeeRequest, operator_pb.UpdateFeeReply> {
-    path: string; // "/.Operator/UpdateFee"
+interface IOperatorService_IUpdateMarketPrice extends grpc.MethodDefinition<operator_pb.UpdateMarketPriceRequest, operator_pb.UpdateMarketPriceReply> {
+    path: string; // "/.Operator/UpdateMarketPrice"
     requestStream: false;
     responseStream: false;
-    requestSerialize: grpc.serialize<operator_pb.UpdateFeeRequest>;
-    requestDeserialize: grpc.deserialize<operator_pb.UpdateFeeRequest>;
-    responseSerialize: grpc.serialize<operator_pb.UpdateFeeReply>;
-    responseDeserialize: grpc.deserialize<operator_pb.UpdateFeeReply>;
+    requestSerialize: grpc.serialize<operator_pb.UpdateMarketPriceRequest>;
+    requestDeserialize: grpc.deserialize<operator_pb.UpdateMarketPriceRequest>;
+    responseSerialize: grpc.serialize<operator_pb.UpdateMarketPriceReply>;
+    responseDeserialize: grpc.deserialize<operator_pb.UpdateMarketPriceReply>;
+}
+interface IOperatorService_IUpdateMarketFee extends grpc.MethodDefinition<operator_pb.UpdateMarketFeeRequest, operator_pb.UpdateMarketFeeReply> {
+    path: string; // "/.Operator/UpdateMarketFee"
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<operator_pb.UpdateMarketFeeRequest>;
+    requestDeserialize: grpc.deserialize<operator_pb.UpdateMarketFeeRequest>;
+    responseSerialize: grpc.serialize<operator_pb.UpdateMarketFeeReply>;
+    responseDeserialize: grpc.deserialize<operator_pb.UpdateMarketFeeReply>;
+}
+interface IOperatorService_IWithdrawMarket extends grpc.MethodDefinition<operator_pb.WithdrawMarketRequest, operator_pb.WithdrawMarketReply> {
+    path: string; // "/.Operator/WithdrawMarket"
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<operator_pb.WithdrawMarketRequest>;
+    requestDeserialize: grpc.deserialize<operator_pb.WithdrawMarketRequest>;
+    responseSerialize: grpc.serialize<operator_pb.WithdrawMarketReply>;
+    responseDeserialize: grpc.deserialize<operator_pb.WithdrawMarketReply>;
+}
+interface IOperatorService_IListSwaps extends grpc.MethodDefinition<operator_pb.ListSwapsRequest, operator_pb.ListSwapsReply> {
+    path: string; // "/.Operator/ListSwaps"
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<operator_pb.ListSwapsRequest>;
+    requestDeserialize: grpc.deserialize<operator_pb.ListSwapsRequest>;
+    responseSerialize: grpc.serialize<operator_pb.ListSwapsReply>;
+    responseDeserialize: grpc.deserialize<operator_pb.ListSwapsReply>;
+}
+interface IOperatorService_IMarketFeeReport extends grpc.MethodDefinition<operator_pb.MarketFeeReportRequest, operator_pb.MarketFeeReportReply> {
+    path: string; // "/.Operator/MarketFeeReport"
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<operator_pb.MarketFeeReportRequest>;
+    requestDeserialize: grpc.deserialize<operator_pb.MarketFeeReportRequest>;
+    responseSerialize: grpc.serialize<operator_pb.MarketFeeReportReply>;
+    responseDeserialize: grpc.deserialize<operator_pb.MarketFeeReportReply>;
 }
 
 export const OperatorService: IOperatorService;
 
 export interface IOperatorServer {
-    depositAddress: grpc.handleUnaryCall<operator_pb.DepositAddressRequest, operator_pb.DepositAddressReply>;
-    listDepositAddress: grpc.handleUnaryCall<operator_pb.ListDepositAddressRequest, operator_pb.ListDepositAddressReply>;
-    feeDepositAddress: grpc.handleUnaryCall<operator_pb.FeeDepositAddressRequest, operator_pb.FeeDepositAddressReply>;
-    feeBalance: grpc.handleUnaryCall<operator_pb.FeeBalanceRequest, operator_pb.FeeBalanceReply>;
+    depositMarket: grpc.handleUnaryCall<operator_pb.DepositMarketRequest, operator_pb.DepositMarketReply>;
+    listDepositMarket: grpc.handleUnaryCall<operator_pb.ListDepositMarketRequest, operator_pb.ListDepositMarketReply>;
+    depositFeeAccount: grpc.handleUnaryCall<operator_pb.DepositFeeAccountRequest, operator_pb.DepositFeeAccountReply>;
+    balanceFeeAccount: grpc.handleUnaryCall<operator_pb.BalanceFeeAccountRequest, operator_pb.BalanceFeeAccountReply>;
     openMarket: grpc.handleUnaryCall<operator_pb.OpenMarketRequest, operator_pb.OpenMarketReply>;
     closeMarket: grpc.handleUnaryCall<operator_pb.CloseMarketRequest, operator_pb.CloseMarketReply>;
-    updateFee: grpc.handleUnaryCall<operator_pb.UpdateFeeRequest, operator_pb.UpdateFeeReply>;
+    updateMarketPrice: grpc.handleUnaryCall<operator_pb.UpdateMarketPriceRequest, operator_pb.UpdateMarketPriceReply>;
+    updateMarketFee: grpc.handleUnaryCall<operator_pb.UpdateMarketFeeRequest, operator_pb.UpdateMarketFeeReply>;
+    withdrawMarket: grpc.handleUnaryCall<operator_pb.WithdrawMarketRequest, operator_pb.WithdrawMarketReply>;
+    listSwaps: grpc.handleUnaryCall<operator_pb.ListSwapsRequest, operator_pb.ListSwapsReply>;
+    marketFeeReport: grpc.handleUnaryCall<operator_pb.MarketFeeReportRequest, operator_pb.MarketFeeReportReply>;
 }
 
 export interface IOperatorClient {
-    depositAddress(request: operator_pb.DepositAddressRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositAddressReply) => void): grpc.ClientUnaryCall;
-    depositAddress(request: operator_pb.DepositAddressRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositAddressReply) => void): grpc.ClientUnaryCall;
-    depositAddress(request: operator_pb.DepositAddressRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositAddressReply) => void): grpc.ClientUnaryCall;
-    listDepositAddress(request: operator_pb.ListDepositAddressRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.ListDepositAddressReply) => void): grpc.ClientUnaryCall;
-    listDepositAddress(request: operator_pb.ListDepositAddressRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.ListDepositAddressReply) => void): grpc.ClientUnaryCall;
-    listDepositAddress(request: operator_pb.ListDepositAddressRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.ListDepositAddressReply) => void): grpc.ClientUnaryCall;
-    feeDepositAddress(request: operator_pb.FeeDepositAddressRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.FeeDepositAddressReply) => void): grpc.ClientUnaryCall;
-    feeDepositAddress(request: operator_pb.FeeDepositAddressRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.FeeDepositAddressReply) => void): grpc.ClientUnaryCall;
-    feeDepositAddress(request: operator_pb.FeeDepositAddressRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.FeeDepositAddressReply) => void): grpc.ClientUnaryCall;
-    feeBalance(request: operator_pb.FeeBalanceRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.FeeBalanceReply) => void): grpc.ClientUnaryCall;
-    feeBalance(request: operator_pb.FeeBalanceRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.FeeBalanceReply) => void): grpc.ClientUnaryCall;
-    feeBalance(request: operator_pb.FeeBalanceRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.FeeBalanceReply) => void): grpc.ClientUnaryCall;
+    depositMarket(request: operator_pb.DepositMarketRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositMarketReply) => void): grpc.ClientUnaryCall;
+    depositMarket(request: operator_pb.DepositMarketRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositMarketReply) => void): grpc.ClientUnaryCall;
+    depositMarket(request: operator_pb.DepositMarketRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositMarketReply) => void): grpc.ClientUnaryCall;
+    listDepositMarket(request: operator_pb.ListDepositMarketRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.ListDepositMarketReply) => void): grpc.ClientUnaryCall;
+    listDepositMarket(request: operator_pb.ListDepositMarketRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.ListDepositMarketReply) => void): grpc.ClientUnaryCall;
+    listDepositMarket(request: operator_pb.ListDepositMarketRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.ListDepositMarketReply) => void): grpc.ClientUnaryCall;
+    depositFeeAccount(request: operator_pb.DepositFeeAccountRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositFeeAccountReply) => void): grpc.ClientUnaryCall;
+    depositFeeAccount(request: operator_pb.DepositFeeAccountRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositFeeAccountReply) => void): grpc.ClientUnaryCall;
+    depositFeeAccount(request: operator_pb.DepositFeeAccountRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositFeeAccountReply) => void): grpc.ClientUnaryCall;
+    balanceFeeAccount(request: operator_pb.BalanceFeeAccountRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.BalanceFeeAccountReply) => void): grpc.ClientUnaryCall;
+    balanceFeeAccount(request: operator_pb.BalanceFeeAccountRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.BalanceFeeAccountReply) => void): grpc.ClientUnaryCall;
+    balanceFeeAccount(request: operator_pb.BalanceFeeAccountRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.BalanceFeeAccountReply) => void): grpc.ClientUnaryCall;
     openMarket(request: operator_pb.OpenMarketRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.OpenMarketReply) => void): grpc.ClientUnaryCall;
     openMarket(request: operator_pb.OpenMarketRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.OpenMarketReply) => void): grpc.ClientUnaryCall;
     openMarket(request: operator_pb.OpenMarketRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.OpenMarketReply) => void): grpc.ClientUnaryCall;
     closeMarket(request: operator_pb.CloseMarketRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.CloseMarketReply) => void): grpc.ClientUnaryCall;
     closeMarket(request: operator_pb.CloseMarketRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.CloseMarketReply) => void): grpc.ClientUnaryCall;
     closeMarket(request: operator_pb.CloseMarketRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.CloseMarketReply) => void): grpc.ClientUnaryCall;
-    updateFee(request: operator_pb.UpdateFeeRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateFeeReply) => void): grpc.ClientUnaryCall;
-    updateFee(request: operator_pb.UpdateFeeRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateFeeReply) => void): grpc.ClientUnaryCall;
-    updateFee(request: operator_pb.UpdateFeeRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateFeeReply) => void): grpc.ClientUnaryCall;
+    updateMarketPrice(request: operator_pb.UpdateMarketPriceRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketPriceReply) => void): grpc.ClientUnaryCall;
+    updateMarketPrice(request: operator_pb.UpdateMarketPriceRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketPriceReply) => void): grpc.ClientUnaryCall;
+    updateMarketPrice(request: operator_pb.UpdateMarketPriceRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketPriceReply) => void): grpc.ClientUnaryCall;
+    updateMarketFee(request: operator_pb.UpdateMarketFeeRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketFeeReply) => void): grpc.ClientUnaryCall;
+    updateMarketFee(request: operator_pb.UpdateMarketFeeRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketFeeReply) => void): grpc.ClientUnaryCall;
+    updateMarketFee(request: operator_pb.UpdateMarketFeeRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketFeeReply) => void): grpc.ClientUnaryCall;
+    withdrawMarket(request: operator_pb.WithdrawMarketRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.WithdrawMarketReply) => void): grpc.ClientUnaryCall;
+    withdrawMarket(request: operator_pb.WithdrawMarketRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.WithdrawMarketReply) => void): grpc.ClientUnaryCall;
+    withdrawMarket(request: operator_pb.WithdrawMarketRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.WithdrawMarketReply) => void): grpc.ClientUnaryCall;
+    listSwaps(request: operator_pb.ListSwapsRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.ListSwapsReply) => void): grpc.ClientUnaryCall;
+    listSwaps(request: operator_pb.ListSwapsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.ListSwapsReply) => void): grpc.ClientUnaryCall;
+    listSwaps(request: operator_pb.ListSwapsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.ListSwapsReply) => void): grpc.ClientUnaryCall;
+    marketFeeReport(request: operator_pb.MarketFeeReportRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.MarketFeeReportReply) => void): grpc.ClientUnaryCall;
+    marketFeeReport(request: operator_pb.MarketFeeReportRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.MarketFeeReportReply) => void): grpc.ClientUnaryCall;
+    marketFeeReport(request: operator_pb.MarketFeeReportRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.MarketFeeReportReply) => void): grpc.ClientUnaryCall;
 }
 
 export class OperatorClient extends grpc.Client implements IOperatorClient {
     constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);
-    public depositAddress(request: operator_pb.DepositAddressRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositAddressReply) => void): grpc.ClientUnaryCall;
-    public depositAddress(request: operator_pb.DepositAddressRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositAddressReply) => void): grpc.ClientUnaryCall;
-    public depositAddress(request: operator_pb.DepositAddressRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositAddressReply) => void): grpc.ClientUnaryCall;
-    public listDepositAddress(request: operator_pb.ListDepositAddressRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.ListDepositAddressReply) => void): grpc.ClientUnaryCall;
-    public listDepositAddress(request: operator_pb.ListDepositAddressRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.ListDepositAddressReply) => void): grpc.ClientUnaryCall;
-    public listDepositAddress(request: operator_pb.ListDepositAddressRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.ListDepositAddressReply) => void): grpc.ClientUnaryCall;
-    public feeDepositAddress(request: operator_pb.FeeDepositAddressRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.FeeDepositAddressReply) => void): grpc.ClientUnaryCall;
-    public feeDepositAddress(request: operator_pb.FeeDepositAddressRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.FeeDepositAddressReply) => void): grpc.ClientUnaryCall;
-    public feeDepositAddress(request: operator_pb.FeeDepositAddressRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.FeeDepositAddressReply) => void): grpc.ClientUnaryCall;
-    public feeBalance(request: operator_pb.FeeBalanceRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.FeeBalanceReply) => void): grpc.ClientUnaryCall;
-    public feeBalance(request: operator_pb.FeeBalanceRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.FeeBalanceReply) => void): grpc.ClientUnaryCall;
-    public feeBalance(request: operator_pb.FeeBalanceRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.FeeBalanceReply) => void): grpc.ClientUnaryCall;
+    public depositMarket(request: operator_pb.DepositMarketRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositMarketReply) => void): grpc.ClientUnaryCall;
+    public depositMarket(request: operator_pb.DepositMarketRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositMarketReply) => void): grpc.ClientUnaryCall;
+    public depositMarket(request: operator_pb.DepositMarketRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositMarketReply) => void): grpc.ClientUnaryCall;
+    public listDepositMarket(request: operator_pb.ListDepositMarketRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.ListDepositMarketReply) => void): grpc.ClientUnaryCall;
+    public listDepositMarket(request: operator_pb.ListDepositMarketRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.ListDepositMarketReply) => void): grpc.ClientUnaryCall;
+    public listDepositMarket(request: operator_pb.ListDepositMarketRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.ListDepositMarketReply) => void): grpc.ClientUnaryCall;
+    public depositFeeAccount(request: operator_pb.DepositFeeAccountRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositFeeAccountReply) => void): grpc.ClientUnaryCall;
+    public depositFeeAccount(request: operator_pb.DepositFeeAccountRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositFeeAccountReply) => void): grpc.ClientUnaryCall;
+    public depositFeeAccount(request: operator_pb.DepositFeeAccountRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositFeeAccountReply) => void): grpc.ClientUnaryCall;
+    public balanceFeeAccount(request: operator_pb.BalanceFeeAccountRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.BalanceFeeAccountReply) => void): grpc.ClientUnaryCall;
+    public balanceFeeAccount(request: operator_pb.BalanceFeeAccountRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.BalanceFeeAccountReply) => void): grpc.ClientUnaryCall;
+    public balanceFeeAccount(request: operator_pb.BalanceFeeAccountRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.BalanceFeeAccountReply) => void): grpc.ClientUnaryCall;
     public openMarket(request: operator_pb.OpenMarketRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.OpenMarketReply) => void): grpc.ClientUnaryCall;
     public openMarket(request: operator_pb.OpenMarketRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.OpenMarketReply) => void): grpc.ClientUnaryCall;
     public openMarket(request: operator_pb.OpenMarketRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.OpenMarketReply) => void): grpc.ClientUnaryCall;
     public closeMarket(request: operator_pb.CloseMarketRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.CloseMarketReply) => void): grpc.ClientUnaryCall;
     public closeMarket(request: operator_pb.CloseMarketRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.CloseMarketReply) => void): grpc.ClientUnaryCall;
     public closeMarket(request: operator_pb.CloseMarketRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.CloseMarketReply) => void): grpc.ClientUnaryCall;
-    public updateFee(request: operator_pb.UpdateFeeRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateFeeReply) => void): grpc.ClientUnaryCall;
-    public updateFee(request: operator_pb.UpdateFeeRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateFeeReply) => void): grpc.ClientUnaryCall;
-    public updateFee(request: operator_pb.UpdateFeeRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateFeeReply) => void): grpc.ClientUnaryCall;
+    public updateMarketPrice(request: operator_pb.UpdateMarketPriceRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketPriceReply) => void): grpc.ClientUnaryCall;
+    public updateMarketPrice(request: operator_pb.UpdateMarketPriceRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketPriceReply) => void): grpc.ClientUnaryCall;
+    public updateMarketPrice(request: operator_pb.UpdateMarketPriceRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketPriceReply) => void): grpc.ClientUnaryCall;
+    public updateMarketFee(request: operator_pb.UpdateMarketFeeRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketFeeReply) => void): grpc.ClientUnaryCall;
+    public updateMarketFee(request: operator_pb.UpdateMarketFeeRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketFeeReply) => void): grpc.ClientUnaryCall;
+    public updateMarketFee(request: operator_pb.UpdateMarketFeeRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketFeeReply) => void): grpc.ClientUnaryCall;
+    public withdrawMarket(request: operator_pb.WithdrawMarketRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.WithdrawMarketReply) => void): grpc.ClientUnaryCall;
+    public withdrawMarket(request: operator_pb.WithdrawMarketRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.WithdrawMarketReply) => void): grpc.ClientUnaryCall;
+    public withdrawMarket(request: operator_pb.WithdrawMarketRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.WithdrawMarketReply) => void): grpc.ClientUnaryCall;
+    public listSwaps(request: operator_pb.ListSwapsRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.ListSwapsReply) => void): grpc.ClientUnaryCall;
+    public listSwaps(request: operator_pb.ListSwapsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.ListSwapsReply) => void): grpc.ClientUnaryCall;
+    public listSwaps(request: operator_pb.ListSwapsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.ListSwapsReply) => void): grpc.ClientUnaryCall;
+    public marketFeeReport(request: operator_pb.MarketFeeReportRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.MarketFeeReportReply) => void): grpc.ClientUnaryCall;
+    public marketFeeReport(request: operator_pb.MarketFeeReportRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.MarketFeeReportReply) => void): grpc.ClientUnaryCall;
+    public marketFeeReport(request: operator_pb.MarketFeeReportRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.MarketFeeReportReply) => void): grpc.ClientUnaryCall;
 }

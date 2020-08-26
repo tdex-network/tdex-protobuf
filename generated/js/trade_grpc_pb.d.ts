@@ -6,30 +6,17 @@
 
 import * as grpc from "@grpc/grpc-js";
 import * as trade_pb from "./trade_pb";
-import * as handshake_pb from "./handshake_pb";
 import * as swap_pb from "./swap_pb";
 import * as types_pb from "./types_pb";
 
 interface ITradeService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
-    connect: ITradeService_IConnect;
     markets: ITradeService_IMarkets;
     balances: ITradeService_IBalances;
     marketPrice: ITradeService_IMarketPrice;
     tradePropose: ITradeService_ITradePropose;
     tradeComplete: ITradeService_ITradeComplete;
-    unarySecret: ITradeService_IUnarySecret;
-    streamSecret: ITradeService_IStreamSecret;
 }
 
-interface ITradeService_IConnect extends grpc.MethodDefinition<handshake_pb.Init, handshake_pb.Ack> {
-    path: string; // "/.Trade/Connect"
-    requestStream: false;
-    responseStream: false;
-    requestSerialize: grpc.serialize<handshake_pb.Init>;
-    requestDeserialize: grpc.deserialize<handshake_pb.Init>;
-    responseSerialize: grpc.serialize<handshake_pb.Ack>;
-    responseDeserialize: grpc.deserialize<handshake_pb.Ack>;
-}
 interface ITradeService_IMarkets extends grpc.MethodDefinition<trade_pb.MarketsRequest, trade_pb.MarketsReply> {
     path: string; // "/.Trade/Markets"
     requestStream: false;
@@ -75,42 +62,18 @@ interface ITradeService_ITradeComplete extends grpc.MethodDefinition<trade_pb.Tr
     responseSerialize: grpc.serialize<trade_pb.TradeCompleteReply>;
     responseDeserialize: grpc.deserialize<trade_pb.TradeCompleteReply>;
 }
-interface ITradeService_IUnarySecret extends grpc.MethodDefinition<handshake_pb.SecretMessage, handshake_pb.SecretMessage> {
-    path: string; // "/.Trade/UnarySecret"
-    requestStream: false;
-    responseStream: false;
-    requestSerialize: grpc.serialize<handshake_pb.SecretMessage>;
-    requestDeserialize: grpc.deserialize<handshake_pb.SecretMessage>;
-    responseSerialize: grpc.serialize<handshake_pb.SecretMessage>;
-    responseDeserialize: grpc.deserialize<handshake_pb.SecretMessage>;
-}
-interface ITradeService_IStreamSecret extends grpc.MethodDefinition<handshake_pb.SecretMessage, handshake_pb.SecretMessage> {
-    path: string; // "/.Trade/StreamSecret"
-    requestStream: false;
-    responseStream: true;
-    requestSerialize: grpc.serialize<handshake_pb.SecretMessage>;
-    requestDeserialize: grpc.deserialize<handshake_pb.SecretMessage>;
-    responseSerialize: grpc.serialize<handshake_pb.SecretMessage>;
-    responseDeserialize: grpc.deserialize<handshake_pb.SecretMessage>;
-}
 
 export const TradeService: ITradeService;
 
 export interface ITradeServer {
-    connect: grpc.handleUnaryCall<handshake_pb.Init, handshake_pb.Ack>;
     markets: grpc.handleUnaryCall<trade_pb.MarketsRequest, trade_pb.MarketsReply>;
     balances: grpc.handleUnaryCall<trade_pb.BalancesRequest, trade_pb.BalancesReply>;
     marketPrice: grpc.handleUnaryCall<trade_pb.MarketPriceRequest, trade_pb.MarketPriceReply>;
     tradePropose: grpc.handleServerStreamingCall<trade_pb.TradeProposeRequest, trade_pb.TradeProposeReply>;
     tradeComplete: grpc.handleServerStreamingCall<trade_pb.TradeCompleteRequest, trade_pb.TradeCompleteReply>;
-    unarySecret: grpc.handleUnaryCall<handshake_pb.SecretMessage, handshake_pb.SecretMessage>;
-    streamSecret: grpc.handleServerStreamingCall<handshake_pb.SecretMessage, handshake_pb.SecretMessage>;
 }
 
 export interface ITradeClient {
-    connect(request: handshake_pb.Init, callback: (error: grpc.ServiceError | null, response: handshake_pb.Ack) => void): grpc.ClientUnaryCall;
-    connect(request: handshake_pb.Init, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: handshake_pb.Ack) => void): grpc.ClientUnaryCall;
-    connect(request: handshake_pb.Init, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: handshake_pb.Ack) => void): grpc.ClientUnaryCall;
     markets(request: trade_pb.MarketsRequest, callback: (error: grpc.ServiceError | null, response: trade_pb.MarketsReply) => void): grpc.ClientUnaryCall;
     markets(request: trade_pb.MarketsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: trade_pb.MarketsReply) => void): grpc.ClientUnaryCall;
     markets(request: trade_pb.MarketsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: trade_pb.MarketsReply) => void): grpc.ClientUnaryCall;
@@ -124,18 +87,10 @@ export interface ITradeClient {
     tradePropose(request: trade_pb.TradeProposeRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<trade_pb.TradeProposeReply>;
     tradeComplete(request: trade_pb.TradeCompleteRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<trade_pb.TradeCompleteReply>;
     tradeComplete(request: trade_pb.TradeCompleteRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<trade_pb.TradeCompleteReply>;
-    unarySecret(request: handshake_pb.SecretMessage, callback: (error: grpc.ServiceError | null, response: handshake_pb.SecretMessage) => void): grpc.ClientUnaryCall;
-    unarySecret(request: handshake_pb.SecretMessage, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: handshake_pb.SecretMessage) => void): grpc.ClientUnaryCall;
-    unarySecret(request: handshake_pb.SecretMessage, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: handshake_pb.SecretMessage) => void): grpc.ClientUnaryCall;
-    streamSecret(request: handshake_pb.SecretMessage, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<handshake_pb.SecretMessage>;
-    streamSecret(request: handshake_pb.SecretMessage, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<handshake_pb.SecretMessage>;
 }
 
 export class TradeClient extends grpc.Client implements ITradeClient {
     constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);
-    public connect(request: handshake_pb.Init, callback: (error: grpc.ServiceError | null, response: handshake_pb.Ack) => void): grpc.ClientUnaryCall;
-    public connect(request: handshake_pb.Init, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: handshake_pb.Ack) => void): grpc.ClientUnaryCall;
-    public connect(request: handshake_pb.Init, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: handshake_pb.Ack) => void): grpc.ClientUnaryCall;
     public markets(request: trade_pb.MarketsRequest, callback: (error: grpc.ServiceError | null, response: trade_pb.MarketsReply) => void): grpc.ClientUnaryCall;
     public markets(request: trade_pb.MarketsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: trade_pb.MarketsReply) => void): grpc.ClientUnaryCall;
     public markets(request: trade_pb.MarketsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: trade_pb.MarketsReply) => void): grpc.ClientUnaryCall;
@@ -149,9 +104,4 @@ export class TradeClient extends grpc.Client implements ITradeClient {
     public tradePropose(request: trade_pb.TradeProposeRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<trade_pb.TradeProposeReply>;
     public tradeComplete(request: trade_pb.TradeCompleteRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<trade_pb.TradeCompleteReply>;
     public tradeComplete(request: trade_pb.TradeCompleteRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<trade_pb.TradeCompleteReply>;
-    public unarySecret(request: handshake_pb.SecretMessage, callback: (error: grpc.ServiceError | null, response: handshake_pb.SecretMessage) => void): grpc.ClientUnaryCall;
-    public unarySecret(request: handshake_pb.SecretMessage, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: handshake_pb.SecretMessage) => void): grpc.ClientUnaryCall;
-    public unarySecret(request: handshake_pb.SecretMessage, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: handshake_pb.SecretMessage) => void): grpc.ClientUnaryCall;
-    public streamSecret(request: handshake_pb.SecretMessage, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<handshake_pb.SecretMessage>;
-    public streamSecret(request: handshake_pb.SecretMessage, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<handshake_pb.SecretMessage>;
 }

@@ -31,6 +31,8 @@ type OperatorClient interface {
 	OpenMarket(ctx context.Context, in *OpenMarketRequest, opts ...grpc.CallOption) (*OpenMarketReply, error)
 	// Makes the given market NOT tradabale
 	CloseMarket(ctx context.Context, in *CloseMarketRequest, opts ...grpc.CallOption) (*CloseMarketReply, error)
+	// Manually updates the price for the given market
+	UpdateMarketPrice(ctx context.Context, in *UpdateMarketPriceRequest, opts ...grpc.CallOption) (*UpdateMarketPriceReply, error)
 	// Changes the Liquidity Provider fee for the given market. I thsould be
 	// express in basis point. To change the fee on each swap from (current) 0.25%
 	// to 1% you need to pass down 100 The Market MUST be closed before doing this
@@ -108,6 +110,15 @@ func (c *operatorClient) CloseMarket(ctx context.Context, in *CloseMarketRequest
 	return out, nil
 }
 
+func (c *operatorClient) UpdateMarketPrice(ctx context.Context, in *UpdateMarketPriceRequest, opts ...grpc.CallOption) (*UpdateMarketPriceReply, error) {
+	out := new(UpdateMarketPriceReply)
+	err := c.cc.Invoke(ctx, "/Operator/UpdateMarketPrice", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *operatorClient) UpdateMarketFee(ctx context.Context, in *UpdateMarketFeeRequest, opts ...grpc.CallOption) (*UpdateMarketFeeReply, error) {
 	out := new(UpdateMarketFeeReply)
 	err := c.cc.Invoke(ctx, "/Operator/UpdateMarketFee", in, out, opts...)
@@ -162,6 +173,8 @@ type OperatorServer interface {
 	OpenMarket(context.Context, *OpenMarketRequest) (*OpenMarketReply, error)
 	// Makes the given market NOT tradabale
 	CloseMarket(context.Context, *CloseMarketRequest) (*CloseMarketReply, error)
+	// Manually updates the price for the given market
+	UpdateMarketPrice(context.Context, *UpdateMarketPriceRequest) (*UpdateMarketPriceReply, error)
 	// Changes the Liquidity Provider fee for the given market. I thsould be
 	// express in basis point. To change the fee on each swap from (current) 0.25%
 	// to 1% you need to pass down 100 The Market MUST be closed before doing this
@@ -199,6 +212,9 @@ func (*UnimplementedOperatorServer) OpenMarket(context.Context, *OpenMarketReque
 }
 func (*UnimplementedOperatorServer) CloseMarket(context.Context, *CloseMarketRequest) (*CloseMarketReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CloseMarket not implemented")
+}
+func (*UnimplementedOperatorServer) UpdateMarketPrice(context.Context, *UpdateMarketPriceRequest) (*UpdateMarketPriceReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMarketPrice not implemented")
 }
 func (*UnimplementedOperatorServer) UpdateMarketFee(context.Context, *UpdateMarketFeeRequest) (*UpdateMarketFeeReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateMarketFee not implemented")
@@ -326,6 +342,24 @@ func _Operator_CloseMarket_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Operator_UpdateMarketPrice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateMarketPriceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OperatorServer).UpdateMarketPrice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Operator/UpdateMarketPrice",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OperatorServer).UpdateMarketPrice(ctx, req.(*UpdateMarketPriceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Operator_UpdateMarketFee_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateMarketFeeRequest)
 	if err := dec(in); err != nil {
@@ -425,6 +459,10 @@ var _Operator_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CloseMarket",
 			Handler:    _Operator_CloseMarket_Handler,
+		},
+		{
+			MethodName: "UpdateMarketPrice",
+			Handler:    _Operator_UpdateMarketPrice_Handler,
 		},
 		{
 			MethodName: "UpdateMarketFee",

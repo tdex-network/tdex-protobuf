@@ -1,6 +1,5 @@
 import * as jspb from "google-protobuf"
 
-import * as handshake_pb from './handshake_pb';
 import * as swap_pb from './swap_pb';
 import * as types_pb from './types_pb';
 
