@@ -1,5 +1,29 @@
 import * as jspb from "google-protobuf"
 
+export class Fee extends jspb.Message {
+  getAsset(): string;
+  setAsset(value: string): Fee;
+
+  getFee(): Fee | undefined;
+  setFee(value?: Fee): Fee;
+  hasFee(): boolean;
+  clearFee(): Fee;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): Fee.AsObject;
+  static toObject(includeInstance: boolean, msg: Fee): Fee.AsObject;
+  static serializeBinaryToWriter(message: Fee, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Fee;
+  static deserializeBinaryFromReader(message: Fee, reader: jspb.BinaryReader): Fee;
+}
+
+export namespace Fee {
+  export type AsObject = {
+    asset: string,
+    fee?: Fee.AsObject,
+  }
+}
+
 export class Balance extends jspb.Message {
   getBaseAmount(): number;
   setBaseAmount(value: number): Balance;
@@ -28,8 +52,10 @@ export class BalanceWithFee extends jspb.Message {
   hasBalance(): boolean;
   clearBalance(): BalanceWithFee;
 
-  getFee(): number;
-  setFee(value: number): BalanceWithFee;
+  getFee(): Fee | undefined;
+  setFee(value?: Fee): BalanceWithFee;
+  hasFee(): boolean;
+  clearFee(): BalanceWithFee;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): BalanceWithFee.AsObject;
@@ -42,7 +68,7 @@ export class BalanceWithFee extends jspb.Message {
 export namespace BalanceWithFee {
   export type AsObject = {
     balance?: Balance.AsObject,
-    fee: number,
+    fee?: Fee.AsObject,
   }
 }
 
@@ -74,8 +100,10 @@ export class MarketWithFee extends jspb.Message {
   hasMarket(): boolean;
   clearMarket(): MarketWithFee;
 
-  getFee(): number;
-  setFee(value: number): MarketWithFee;
+  getFee(): Fee | undefined;
+  setFee(value?: Fee): MarketWithFee;
+  hasFee(): boolean;
+  clearFee(): MarketWithFee;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MarketWithFee.AsObject;
@@ -88,7 +116,7 @@ export class MarketWithFee extends jspb.Message {
 export namespace MarketWithFee {
   export type AsObject = {
     market?: Market.AsObject,
-    fee: number,
+    fee?: Fee.AsObject,
   }
 }
 
@@ -120,8 +148,10 @@ export class PriceWithFee extends jspb.Message {
   hasPrice(): boolean;
   clearPrice(): PriceWithFee;
 
-  getFee(): number;
-  setFee(value: number): PriceWithFee;
+  getFee(): Fee | undefined;
+  setFee(value?: Fee): PriceWithFee;
+  hasFee(): boolean;
+  clearFee(): PriceWithFee;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PriceWithFee.AsObject;
@@ -134,7 +164,7 @@ export class PriceWithFee extends jspb.Message {
 export namespace PriceWithFee {
   export type AsObject = {
     price?: Price.AsObject,
-    fee: number,
+    fee?: Fee.AsObject,
   }
 }
 

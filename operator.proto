@@ -77,12 +77,8 @@ message CloseMarketRequest {
 }
 message CloseMarketReply {}
 
-message UpdateMarketFeeRequest {
-  Market market = 1;     // Market to be updated
-  int64 basis_point = 2; // basis point of the new fee
-  string asset = 3;      // Asset of wich the fee should be taken
-}
-message UpdateMarketFeeReply {}
+message UpdateMarketFeeRequest { MarketWithFee market_with_fee = 1; }
+message UpdateMarketFeeReply { MarketWithFee market_with_fee = 1; }
 
 // TBD
 message UpdateMarketPriceRequest {}

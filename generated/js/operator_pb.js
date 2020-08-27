@@ -2129,9 +2129,7 @@ proto.UpdateMarketFeeRequest.prototype.toObject = function(opt_includeInstance) 
  */
 proto.UpdateMarketFeeRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    market: (f = msg.getMarket()) && types_pb.Market.toObject(includeInstance, f),
-    basisPoint: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    asset: jspb.Message.getFieldWithDefault(msg, 3, "")
+    marketWithFee: (f = msg.getMarketWithFee()) && types_pb.MarketWithFee.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2169,17 +2167,9 @@ proto.UpdateMarketFeeRequest.deserializeBinaryFromReader = function(msg, reader)
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new types_pb.Market;
-      reader.readMessage(value,types_pb.Market.deserializeBinaryFromReader);
-      msg.setMarket(value);
-      break;
-    case 2:
-      var value = /** @type {number} */ (reader.readInt64());
-      msg.setBasisPoint(value);
-      break;
-    case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setAsset(value);
+      var value = new types_pb.MarketWithFee;
+      reader.readMessage(value,types_pb.MarketWithFee.deserializeBinaryFromReader);
+      msg.setMarketWithFee(value);
       break;
     default:
       reader.skipField();
@@ -2210,46 +2200,32 @@ proto.UpdateMarketFeeRequest.prototype.serializeBinary = function() {
  */
 proto.UpdateMarketFeeRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getMarket();
+  f = message.getMarketWithFee();
   if (f != null) {
     writer.writeMessage(
       1,
       f,
-      types_pb.Market.serializeBinaryToWriter
-    );
-  }
-  f = message.getBasisPoint();
-  if (f !== 0) {
-    writer.writeInt64(
-      2,
-      f
-    );
-  }
-  f = message.getAsset();
-  if (f.length > 0) {
-    writer.writeString(
-      3,
-      f
+      types_pb.MarketWithFee.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional Market market = 1;
- * @return {?proto.Market}
+ * optional MarketWithFee market_with_fee = 1;
+ * @return {?proto.MarketWithFee}
  */
-proto.UpdateMarketFeeRequest.prototype.getMarket = function() {
-  return /** @type{?proto.Market} */ (
-    jspb.Message.getWrapperField(this, types_pb.Market, 1));
+proto.UpdateMarketFeeRequest.prototype.getMarketWithFee = function() {
+  return /** @type{?proto.MarketWithFee} */ (
+    jspb.Message.getWrapperField(this, types_pb.MarketWithFee, 1));
 };
 
 
 /**
- * @param {?proto.Market|undefined} value
+ * @param {?proto.MarketWithFee|undefined} value
  * @return {!proto.UpdateMarketFeeRequest} returns this
 */
-proto.UpdateMarketFeeRequest.prototype.setMarket = function(value) {
+proto.UpdateMarketFeeRequest.prototype.setMarketWithFee = function(value) {
   return jspb.Message.setWrapperField(this, 1, value);
 };
 
@@ -2258,8 +2234,8 @@ proto.UpdateMarketFeeRequest.prototype.setMarket = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.UpdateMarketFeeRequest} returns this
  */
-proto.UpdateMarketFeeRequest.prototype.clearMarket = function() {
-  return this.setMarket(undefined);
+proto.UpdateMarketFeeRequest.prototype.clearMarketWithFee = function() {
+  return this.setMarketWithFee(undefined);
 };
 
 
@@ -2267,44 +2243,8 @@ proto.UpdateMarketFeeRequest.prototype.clearMarket = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.UpdateMarketFeeRequest.prototype.hasMarket = function() {
+proto.UpdateMarketFeeRequest.prototype.hasMarketWithFee = function() {
   return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional int64 basis_point = 2;
- * @return {number}
- */
-proto.UpdateMarketFeeRequest.prototype.getBasisPoint = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {number} value
- * @return {!proto.UpdateMarketFeeRequest} returns this
- */
-proto.UpdateMarketFeeRequest.prototype.setBasisPoint = function(value) {
-  return jspb.Message.setProto3IntField(this, 2, value);
-};
-
-
-/**
- * optional string asset = 3;
- * @return {string}
- */
-proto.UpdateMarketFeeRequest.prototype.getAsset = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.UpdateMarketFeeRequest} returns this
- */
-proto.UpdateMarketFeeRequest.prototype.setAsset = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -2340,7 +2280,7 @@ proto.UpdateMarketFeeReply.prototype.toObject = function(opt_includeInstance) {
  */
 proto.UpdateMarketFeeReply.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    marketWithFee: (f = msg.getMarketWithFee()) && types_pb.MarketWithFee.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2377,6 +2317,11 @@ proto.UpdateMarketFeeReply.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = new types_pb.MarketWithFee;
+      reader.readMessage(value,types_pb.MarketWithFee.deserializeBinaryFromReader);
+      msg.setMarketWithFee(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2406,6 +2351,51 @@ proto.UpdateMarketFeeReply.prototype.serializeBinary = function() {
  */
 proto.UpdateMarketFeeReply.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getMarketWithFee();
+  if (f != null) {
+    writer.writeMessage(
+      1,
+      f,
+      types_pb.MarketWithFee.serializeBinaryToWriter
+    );
+  }
+};
+
+
+/**
+ * optional MarketWithFee market_with_fee = 1;
+ * @return {?proto.MarketWithFee}
+ */
+proto.UpdateMarketFeeReply.prototype.getMarketWithFee = function() {
+  return /** @type{?proto.MarketWithFee} */ (
+    jspb.Message.getWrapperField(this, types_pb.MarketWithFee, 1));
+};
+
+
+/**
+ * @param {?proto.MarketWithFee|undefined} value
+ * @return {!proto.UpdateMarketFeeReply} returns this
+*/
+proto.UpdateMarketFeeReply.prototype.setMarketWithFee = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.UpdateMarketFeeReply} returns this
+ */
+proto.UpdateMarketFeeReply.prototype.clearMarketWithFee = function() {
+  return this.setMarketWithFee(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.UpdateMarketFeeReply.prototype.hasMarketWithFee = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 

@@ -213,16 +213,10 @@ export namespace CloseMarketReply {
 }
 
 export class UpdateMarketFeeRequest extends jspb.Message {
-  getMarket(): types_pb.Market | undefined;
-  setMarket(value?: types_pb.Market): UpdateMarketFeeRequest;
-  hasMarket(): boolean;
-  clearMarket(): UpdateMarketFeeRequest;
-
-  getBasisPoint(): number;
-  setBasisPoint(value: number): UpdateMarketFeeRequest;
-
-  getAsset(): string;
-  setAsset(value: string): UpdateMarketFeeRequest;
+  getMarketWithFee(): types_pb.MarketWithFee | undefined;
+  setMarketWithFee(value?: types_pb.MarketWithFee): UpdateMarketFeeRequest;
+  hasMarketWithFee(): boolean;
+  clearMarketWithFee(): UpdateMarketFeeRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateMarketFeeRequest.AsObject;
@@ -234,13 +228,16 @@ export class UpdateMarketFeeRequest extends jspb.Message {
 
 export namespace UpdateMarketFeeRequest {
   export type AsObject = {
-    market?: types_pb.Market.AsObject,
-    basisPoint: number,
-    asset: string,
+    marketWithFee?: types_pb.MarketWithFee.AsObject,
   }
 }
 
 export class UpdateMarketFeeReply extends jspb.Message {
+  getMarketWithFee(): types_pb.MarketWithFee | undefined;
+  setMarketWithFee(value?: types_pb.MarketWithFee): UpdateMarketFeeReply;
+  hasMarketWithFee(): boolean;
+  clearMarketWithFee(): UpdateMarketFeeReply;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateMarketFeeReply.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateMarketFeeReply): UpdateMarketFeeReply.AsObject;
@@ -251,6 +248,7 @@ export class UpdateMarketFeeReply extends jspb.Message {
 
 export namespace UpdateMarketFeeReply {
   export type AsObject = {
+    marketWithFee?: types_pb.MarketWithFee.AsObject,
   }
 }
 
