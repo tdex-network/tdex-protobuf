@@ -4,7 +4,7 @@ option go_package = "github.com/tdex-network/tdex-protobuf/generated/go/types";
 // Custom Types
 message Fee {
   string asset = 1;
-  Fee fee = 2;
+  int64 basis_point = 2;
 }
 message Balance {
   int64 base_amount = 1;

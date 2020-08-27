@@ -4,10 +4,8 @@ export class Fee extends jspb.Message {
   getAsset(): string;
   setAsset(value: string): Fee;
 
-  getFee(): Fee | undefined;
-  setFee(value?: Fee): Fee;
-  hasFee(): boolean;
-  clearFee(): Fee;
+  getBasisPoint(): number;
+  setBasisPoint(value: number): Fee;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Fee.AsObject;
@@ -20,7 +18,7 @@ export class Fee extends jspb.Message {
 export namespace Fee {
   export type AsObject = {
     asset: string,
-    fee?: Fee.AsObject,
+    basisPoint: number,
   }
 }
 

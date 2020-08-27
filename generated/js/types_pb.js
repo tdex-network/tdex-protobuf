@@ -199,7 +199,7 @@ proto.Fee.prototype.toObject = function(opt_includeInstance) {
 proto.Fee.toObject = function(includeInstance, msg) {
   var f, obj = {
     asset: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    fee: (f = msg.getFee()) && proto.Fee.toObject(includeInstance, f)
+    basisPoint: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -241,9 +241,8 @@ proto.Fee.deserializeBinaryFromReader = function(msg, reader) {
       msg.setAsset(value);
       break;
     case 2:
-      var value = new proto.Fee;
-      reader.readMessage(value,proto.Fee.deserializeBinaryFromReader);
-      msg.setFee(value);
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setBasisPoint(value);
       break;
     default:
       reader.skipField();
@@ -281,12 +280,11 @@ proto.Fee.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getFee();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getBasisPoint();
+  if (f !== 0) {
+    writer.writeInt64(
       2,
-      f,
-      proto.Fee.serializeBinaryToWriter
+      f
     );
   }
 };
@@ -311,39 +309,20 @@ proto.Fee.prototype.setAsset = function(value) {
 
 
 /**
- * optional Fee fee = 2;
- * @return {?proto.Fee}
+ * optional int64 basis_point = 2;
+ * @return {number}
  */
-proto.Fee.prototype.getFee = function() {
-  return /** @type{?proto.Fee} */ (
-    jspb.Message.getWrapperField(this, proto.Fee, 2));
+proto.Fee.prototype.getBasisPoint = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * @param {?proto.Fee|undefined} value
- * @return {!proto.Fee} returns this
-*/
-proto.Fee.prototype.setFee = function(value) {
-  return jspb.Message.setWrapperField(this, 2, value);
-};
-
-
-/**
- * Clears the message field making it undefined.
+ * @param {number} value
  * @return {!proto.Fee} returns this
  */
-proto.Fee.prototype.clearFee = function() {
-  return this.setFee(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.Fee.prototype.hasFee = function() {
-  return jspb.Message.getField(this, 2) != null;
+proto.Fee.prototype.setBasisPoint = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
 };
 
 
