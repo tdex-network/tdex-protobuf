@@ -137,28 +137,6 @@ function deserialize_ListSwapsRequest(buffer_arg) {
   return operator_pb.ListSwapsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_MarketFeeReportReply(arg) {
-  if (!(arg instanceof operator_pb.MarketFeeReportReply)) {
-    throw new Error('Expected argument of type MarketFeeReportReply');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_MarketFeeReportReply(buffer_arg) {
-  return operator_pb.MarketFeeReportReply.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_MarketFeeReportRequest(arg) {
-  if (!(arg instanceof operator_pb.MarketFeeReportRequest)) {
-    throw new Error('Expected argument of type MarketFeeReportRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_MarketFeeReportRequest(buffer_arg) {
-  return operator_pb.MarketFeeReportRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_OpenMarketReply(arg) {
   if (!(arg instanceof operator_pb.OpenMarketReply)) {
     throw new Error('Expected argument of type OpenMarketReply');
@@ -179,6 +157,28 @@ function serialize_OpenMarketRequest(arg) {
 
 function deserialize_OpenMarketRequest(buffer_arg) {
   return operator_pb.OpenMarketRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ReportMarketFeeReply(arg) {
+  if (!(arg instanceof operator_pb.ReportMarketFeeReply)) {
+    throw new Error('Expected argument of type ReportMarketFeeReply');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ReportMarketFeeReply(buffer_arg) {
+  return operator_pb.ReportMarketFeeReply.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ReportMarketFeeRequest(arg) {
+  if (!(arg instanceof operator_pb.ReportMarketFeeRequest)) {
+    throw new Error('Expected argument of type ReportMarketFeeRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ReportMarketFeeRequest(buffer_arg) {
+  return operator_pb.ReportMarketFeeRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_UpdateMarketFeeReply(arg) {
@@ -379,16 +379,16 @@ listSwaps: {
   },
   // Displays a report on how much the given market is collecting in Liquidity
 // Provider fees
-marketFeeReport: {
-    path: '/Operator/MarketFeeReport',
+reportMarketFee: {
+    path: '/Operator/ReportMarketFee',
     requestStream: false,
     responseStream: false,
-    requestType: operator_pb.MarketFeeReportRequest,
-    responseType: operator_pb.MarketFeeReportReply,
-    requestSerialize: serialize_MarketFeeReportRequest,
-    requestDeserialize: deserialize_MarketFeeReportRequest,
-    responseSerialize: serialize_MarketFeeReportReply,
-    responseDeserialize: deserialize_MarketFeeReportReply,
+    requestType: operator_pb.ReportMarketFeeRequest,
+    responseType: operator_pb.ReportMarketFeeReply,
+    requestSerialize: serialize_ReportMarketFeeRequest,
+    requestDeserialize: deserialize_ReportMarketFeeRequest,
+    responseSerialize: serialize_ReportMarketFeeReply,
+    responseDeserialize: deserialize_ReportMarketFeeReply,
   },
 };
 

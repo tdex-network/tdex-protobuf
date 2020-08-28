@@ -4,8 +4,8 @@ Protocol Buffers spec defintions for TDEX
 ## Requirements
 
 * protoc
-* Node/npm (for typescript plugin)
-* Go
+* Docker (for docgen)
+
 
 ## Compile
 
@@ -21,15 +21,24 @@ Build for Go
 $ make go
 ```
 
+
+## Documentation
+
+Automatically generate HTML and Markdown documentation (Docker running is required)
+
+```sh
+$ make doc
+```
+
 ## Usage
 
-* JavaScript
+### JavaScript&Typescript
 
 ```sh
 $ npm install tdex-network/tdex-protobuf
 ```
 
-* Go 
+### Go 
 
 ```sh
 $ go get github.com/tdex-network/tdex-protobuf

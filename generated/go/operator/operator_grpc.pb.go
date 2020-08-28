@@ -45,7 +45,7 @@ type OperatorClient interface {
 	ListSwaps(ctx context.Context, in *ListSwapsRequest, opts ...grpc.CallOption) (*ListSwapsReply, error)
 	// Displays a report on how much the given market is collecting in Liquidity
 	// Provider fees
-	MarketFeeReport(ctx context.Context, in *MarketFeeReportRequest, opts ...grpc.CallOption) (*MarketFeeReportReply, error)
+	ReportMarketFee(ctx context.Context, in *ReportMarketFeeRequest, opts ...grpc.CallOption) (*ReportMarketFeeReply, error)
 }
 
 type operatorClient struct {
@@ -146,9 +146,9 @@ func (c *operatorClient) ListSwaps(ctx context.Context, in *ListSwapsRequest, op
 	return out, nil
 }
 
-func (c *operatorClient) MarketFeeReport(ctx context.Context, in *MarketFeeReportRequest, opts ...grpc.CallOption) (*MarketFeeReportReply, error) {
-	out := new(MarketFeeReportReply)
-	err := c.cc.Invoke(ctx, "/Operator/MarketFeeReport", in, out, opts...)
+func (c *operatorClient) ReportMarketFee(ctx context.Context, in *ReportMarketFeeRequest, opts ...grpc.CallOption) (*ReportMarketFeeReply, error) {
+	out := new(ReportMarketFeeReply)
+	err := c.cc.Invoke(ctx, "/Operator/ReportMarketFee", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -187,7 +187,7 @@ type OperatorServer interface {
 	ListSwaps(context.Context, *ListSwapsRequest) (*ListSwapsReply, error)
 	// Displays a report on how much the given market is collecting in Liquidity
 	// Provider fees
-	MarketFeeReport(context.Context, *MarketFeeReportRequest) (*MarketFeeReportReply, error)
+	ReportMarketFee(context.Context, *ReportMarketFeeRequest) (*ReportMarketFeeReply, error)
 	mustEmbedUnimplementedOperatorServer()
 }
 
@@ -225,8 +225,8 @@ func (*UnimplementedOperatorServer) WithdrawMarket(context.Context, *WithdrawMar
 func (*UnimplementedOperatorServer) ListSwaps(context.Context, *ListSwapsRequest) (*ListSwapsReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListSwaps not implemented")
 }
-func (*UnimplementedOperatorServer) MarketFeeReport(context.Context, *MarketFeeReportRequest) (*MarketFeeReportReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method MarketFeeReport not implemented")
+func (*UnimplementedOperatorServer) ReportMarketFee(context.Context, *ReportMarketFeeRequest) (*ReportMarketFeeReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReportMarketFee not implemented")
 }
 func (*UnimplementedOperatorServer) mustEmbedUnimplementedOperatorServer() {}
 
@@ -414,20 +414,20 @@ func _Operator_ListSwaps_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Operator_MarketFeeReport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MarketFeeReportRequest)
+func _Operator_ReportMarketFee_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReportMarketFeeRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OperatorServer).MarketFeeReport(ctx, in)
+		return srv.(OperatorServer).ReportMarketFee(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/Operator/MarketFeeReport",
+		FullMethod: "/Operator/ReportMarketFee",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OperatorServer).MarketFeeReport(ctx, req.(*MarketFeeReportRequest))
+		return srv.(OperatorServer).ReportMarketFee(ctx, req.(*ReportMarketFeeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -477,8 +477,8 @@ var _Operator_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Operator_ListSwaps_Handler,
 		},
 		{
-			MethodName: "MarketFeeReport",
-			Handler:    _Operator_MarketFeeReport_Handler,
+			MethodName: "ReportMarketFee",
+			Handler:    _Operator_ReportMarketFee_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

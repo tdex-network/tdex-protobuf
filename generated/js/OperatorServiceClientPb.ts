@@ -28,10 +28,10 @@ import {
   ListDepositMarketRequest,
   ListSwapsReply,
   ListSwapsRequest,
-  MarketFeeReportReply,
-  MarketFeeReportRequest,
   OpenMarketReply,
   OpenMarketRequest,
+  ReportMarketFeeReply,
+  ReportMarketFeeRequest,
   UpdateMarketFeeReply,
   UpdateMarketFeeRequest,
   UpdateMarketPriceReply,
@@ -448,43 +448,43 @@ export class OperatorClient {
     this.methodInfoListSwaps);
   }
 
-  methodInfoMarketFeeReport = new grpcWeb.AbstractClientBase.MethodInfo(
-    MarketFeeReportReply,
-    (request: MarketFeeReportRequest) => {
+  methodInfoReportMarketFee = new grpcWeb.AbstractClientBase.MethodInfo(
+    ReportMarketFeeReply,
+    (request: ReportMarketFeeRequest) => {
       return request.serializeBinary();
     },
-    MarketFeeReportReply.deserializeBinary
+    ReportMarketFeeReply.deserializeBinary
   );
 
-  marketFeeReport(
-    request: MarketFeeReportRequest,
-    metadata: grpcWeb.Metadata | null): Promise<MarketFeeReportReply>;
+  reportMarketFee(
+    request: ReportMarketFeeRequest,
+    metadata: grpcWeb.Metadata | null): Promise<ReportMarketFeeReply>;
 
-  marketFeeReport(
-    request: MarketFeeReportRequest,
+  reportMarketFee(
+    request: ReportMarketFeeRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
-               response: MarketFeeReportReply) => void): grpcWeb.ClientReadableStream<MarketFeeReportReply>;
+               response: ReportMarketFeeReply) => void): grpcWeb.ClientReadableStream<ReportMarketFeeReply>;
 
-  marketFeeReport(
-    request: MarketFeeReportRequest,
+  reportMarketFee(
+    request: ReportMarketFeeRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.Error,
-               response: MarketFeeReportReply) => void) {
+               response: ReportMarketFeeReply) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
-        new URL('/Operator/MarketFeeReport', this.hostname_).toString(),
+        new URL('/Operator/ReportMarketFee', this.hostname_).toString(),
         request,
         metadata || {},
-        this.methodInfoMarketFeeReport,
+        this.methodInfoReportMarketFee,
         callback);
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/Operator/MarketFeeReport',
+      '/Operator/ReportMarketFee',
     request,
     metadata || {},
-    this.methodInfoMarketFeeReport);
+    this.methodInfoReportMarketFee);
   }
 
 }

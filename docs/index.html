@@ -193,6 +193,10 @@
               
               
               
+                <li>
+                  <a href="#.Handshake"><span class="badge">S</span>Handshake</a>
+                </li>
+              
             </ul>
           </li>
         
@@ -200,6 +204,14 @@
           <li>
             <a href="#operator.proto">operator.proto</a>
             <ul>
+              
+                <li>
+                  <a href="#.BalanceFeeAccountReply"><span class="badge">M</span>BalanceFeeAccountReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.BalanceFeeAccountRequest"><span class="badge">M</span>BalanceFeeAccountRequest</a>
+                </li>
               
                 <li>
                   <a href="#.CloseMarketReply"><span class="badge">M</span>CloseMarketReply</a>
@@ -210,35 +222,35 @@
                 </li>
               
                 <li>
-                  <a href="#.DepositAddressReply"><span class="badge">M</span>DepositAddressReply</a>
+                  <a href="#.DepositFeeAccountReply"><span class="badge">M</span>DepositFeeAccountReply</a>
                 </li>
               
                 <li>
-                  <a href="#.DepositAddressRequest"><span class="badge">M</span>DepositAddressRequest</a>
+                  <a href="#.DepositFeeAccountRequest"><span class="badge">M</span>DepositFeeAccountRequest</a>
                 </li>
               
                 <li>
-                  <a href="#.FeeBalanceReply"><span class="badge">M</span>FeeBalanceReply</a>
+                  <a href="#.DepositMarketReply"><span class="badge">M</span>DepositMarketReply</a>
                 </li>
               
                 <li>
-                  <a href="#.FeeBalanceRequest"><span class="badge">M</span>FeeBalanceRequest</a>
+                  <a href="#.DepositMarketRequest"><span class="badge">M</span>DepositMarketRequest</a>
                 </li>
               
                 <li>
-                  <a href="#.FeeDepositAddressReply"><span class="badge">M</span>FeeDepositAddressReply</a>
+                  <a href="#.ListDepositMarketReply"><span class="badge">M</span>ListDepositMarketReply</a>
                 </li>
               
                 <li>
-                  <a href="#.FeeDepositAddressRequest"><span class="badge">M</span>FeeDepositAddressRequest</a>
+                  <a href="#.ListDepositMarketRequest"><span class="badge">M</span>ListDepositMarketRequest</a>
                 </li>
               
                 <li>
-                  <a href="#.ListDepositAddressReply"><span class="badge">M</span>ListDepositAddressReply</a>
+                  <a href="#.ListSwapsReply"><span class="badge">M</span>ListSwapsReply</a>
                 </li>
               
                 <li>
-                  <a href="#.ListDepositAddressRequest"><span class="badge">M</span>ListDepositAddressRequest</a>
+                  <a href="#.ListSwapsRequest"><span class="badge">M</span>ListSwapsRequest</a>
                 </li>
               
                 <li>
@@ -250,13 +262,49 @@
                 </li>
               
                 <li>
-                  <a href="#.UpdateFeeReply"><span class="badge">M</span>UpdateFeeReply</a>
+                  <a href="#.ReportMarketFeeReply"><span class="badge">M</span>ReportMarketFeeReply</a>
                 </li>
               
                 <li>
-                  <a href="#.UpdateFeeRequest"><span class="badge">M</span>UpdateFeeRequest</a>
+                  <a href="#.ReportMarketFeeReply.TotalCollectedFeesPerAssetEntry"><span class="badge">M</span>ReportMarketFeeReply.TotalCollectedFeesPerAssetEntry</a>
                 </li>
               
+                <li>
+                  <a href="#.ReportMarketFeeRequest"><span class="badge">M</span>ReportMarketFeeRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.SwapInfo"><span class="badge">M</span>SwapInfo</a>
+                </li>
+              
+                <li>
+                  <a href="#.UpdateMarketFeeReply"><span class="badge">M</span>UpdateMarketFeeReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.UpdateMarketFeeRequest"><span class="badge">M</span>UpdateMarketFeeRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.UpdateMarketPriceReply"><span class="badge">M</span>UpdateMarketPriceReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.UpdateMarketPriceRequest"><span class="badge">M</span>UpdateMarketPriceRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.WithdrawMarketReply"><span class="badge">M</span>WithdrawMarketReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.WithdrawMarketRequest"><span class="badge">M</span>WithdrawMarketRequest</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#.SwapStatus"><span class="badge">E</span>SwapStatus</a>
+                </li>
               
               
               
@@ -380,6 +428,10 @@
               
                 <li>
                   <a href="#.BalanceWithFee"><span class="badge">M</span>BalanceWithFee</a>
+                </li>
+              
+                <li>
+                  <a href="#.Fee"><span class="badge">M</span>Fee</a>
                 </li>
               
                 <li>
@@ -522,7 +574,7 @@ sha256(recipient_pubkey,sender_pubkey,recipient_ephemeral_pubkey) </p></td>
         
       
         <h3 id=".Init">Init</h3>
-        <p>BOTD#2</p>
+        <p></p>
 
         
           <table class="field-table">
@@ -611,6 +663,39 @@ sha256(sender_pubkey,recipient_pubkey,sender_ephemeral_pubkey) </p></td>
       
 
       
+        <h3 id=".Handshake">Handshake</h3>
+        <p>BOTD#2</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>Connect</td>
+                <td><a href="#Init">.Init</a></td>
+                <td><a href="#Ack">.Ack</a></td>
+                <td><p>Handshake</p></td>
+              </tr>
+            
+              <tr>
+                <td>UnarySecret</td>
+                <td><a href="#SecretMessage">.SecretMessage</a></td>
+                <td><a href="#SecretMessage">.SecretMessage</a></td>
+                <td><p>Encrypted RPCs</p></td>
+              </tr>
+            
+              <tr>
+                <td>StreamSecret</td>
+                <td><a href="#SecretMessage">.SecretMessage</a></td>
+                <td><a href="#SecretMessage">.SecretMessage</a> stream</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
     
       
       <div class="file-heading">
@@ -619,69 +704,7 @@ sha256(sender_pubkey,recipient_pubkey,sender_ephemeral_pubkey) </p></td>
       <p></p>
 
       
-        <h3 id=".CloseMarketReply">CloseMarketReply</h3>
-        <p></p>
-
-        
-
-        
-      
-        <h3 id=".CloseMarketRequest">CloseMarketRequest</h3>
-        <p></p>
-
-        
-
-        
-      
-        <h3 id=".DepositAddressReply">DepositAddressReply</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>address</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".DepositAddressRequest">DepositAddressRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>market</td>
-                  <td><a href="#Market">Market</a></td>
-                  <td></td>
-                  <td><p>Market to get an address from. Could be empty. </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".FeeBalanceReply">FeeBalanceReply</h3>
+        <h3 id=".BalanceFeeAccountReply">BalanceFeeAccountReply</h3>
         <p></p>
 
         
@@ -705,14 +728,45 @@ sha256(sender_pubkey,recipient_pubkey,sender_ephemeral_pubkey) </p></td>
 
         
       
-        <h3 id=".FeeBalanceRequest">FeeBalanceRequest</h3>
+        <h3 id=".BalanceFeeAccountRequest">BalanceFeeAccountRequest</h3>
         <p></p>
 
         
 
         
       
-        <h3 id=".FeeDepositAddressReply">FeeDepositAddressReply</h3>
+        <h3 id=".CloseMarketReply">CloseMarketReply</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id=".CloseMarketRequest">CloseMarketRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>market</td>
+                  <td><a href="#Market">Market</a></td>
+                  <td></td>
+                  <td><p>Market to be made NOT tradable </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".DepositFeeAccountReply">DepositFeeAccountReply</h3>
         <p></p>
 
         
@@ -736,14 +790,14 @@ sha256(sender_pubkey,recipient_pubkey,sender_ephemeral_pubkey) </p></td>
 
         
       
-        <h3 id=".FeeDepositAddressRequest">FeeDepositAddressRequest</h3>
+        <h3 id=".DepositFeeAccountRequest">DepositFeeAccountRequest</h3>
         <p></p>
 
         
 
         
       
-        <h3 id=".ListDepositAddressReply">ListDepositAddressReply</h3>
+        <h3 id=".DepositMarketReply">DepositMarketReply</h3>
         <p></p>
 
         
@@ -756,7 +810,7 @@ sha256(sender_pubkey,recipient_pubkey,sender_ephemeral_pubkey) </p></td>
                 <tr>
                   <td>address</td>
                   <td><a href="#string">string</a></td>
-                  <td>repeated</td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -767,7 +821,7 @@ sha256(sender_pubkey,recipient_pubkey,sender_ephemeral_pubkey) </p></td>
 
         
       
-        <h3 id=".ListDepositAddressRequest">ListDepositAddressRequest</h3>
+        <h3 id=".DepositMarketRequest">DepositMarketRequest</h3>
         <p></p>
 
         
@@ -791,6 +845,102 @@ sha256(sender_pubkey,recipient_pubkey,sender_ephemeral_pubkey) </p></td>
 
         
       
+        <h3 id=".ListDepositMarketReply">ListDepositMarketReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".ListDepositMarketRequest">ListDepositMarketRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>market</td>
+                  <td><a href="#Market">Market</a></td>
+                  <td></td>
+                  <td><p>Market to get an address from. Could be empty. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".ListSwapsReply">ListSwapsReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>swaps</td>
+                  <td><a href="#SwapInfo">SwapInfo</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".ListSwapsRequest">ListSwapsRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#SwapStatus">SwapStatus</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".OpenMarketReply">OpenMarketReply</h3>
         <p></p>
 
@@ -802,24 +952,387 @@ sha256(sender_pubkey,recipient_pubkey,sender_ephemeral_pubkey) </p></td>
         <p></p>
 
         
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>market</td>
+                  <td><a href="#Market">Market</a></td>
+                  <td></td>
+                  <td><p>Market to be made tradable </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
 
         
       
-        <h3 id=".UpdateFeeReply">UpdateFeeReply</h3>
+        <h3 id=".ReportMarketFeeReply">ReportMarketFeeReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>collected_fees</td>
+                  <td><a href="#Fee">Fee</a></td>
+                  <td>repeated</td>
+                  <td><p>List of the all unique fee being collected on each swap. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>total_collected_fees_per_asset</td>
+                  <td><a href="#ReportMarketFeeReply.TotalCollectedFeesPerAssetEntry">ReportMarketFeeReply.TotalCollectedFeesPerAssetEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>Map of aggreagated fee count grouped by asset. There should be one unique
+entry for each asset and the amount should be the aggregated total. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".ReportMarketFeeReply.TotalCollectedFeesPerAssetEntry">ReportMarketFeeReply.TotalCollectedFeesPerAssetEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".ReportMarketFeeRequest">ReportMarketFeeRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>market</td>
+                  <td><a href="#Market">Market</a></td>
+                  <td></td>
+                  <td><p>Market to be updated </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SwapInfo">SwapInfo</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#SwapStatus">SwapStatus</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>amount_p</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>The proposer&#39;s quantity </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset_p</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The proposer&#39;s asset hash </p></td>
+                </tr>
+              
+                <tr>
+                  <td>amount_r</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>The responder&#39;s quantity </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset_r</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The responder&#39;s asset hash </p></td>
+                </tr>
+              
+                <tr>
+                  <td>market_fee</td>
+                  <td><a href="#Fee">Fee</a></td>
+                  <td></td>
+                  <td><p>The collected fee on the current swap. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request_time_unix</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>SwapRequest timestamp </p></td>
+                </tr>
+              
+                <tr>
+                  <td>accept_time_unix</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>SwapAccpet timestamp </p></td>
+                </tr>
+              
+                <tr>
+                  <td>complete_time_unix</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>SwapComplete timestap </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".UpdateMarketFeeReply">UpdateMarketFeeReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>market_with_fee</td>
+                  <td><a href="#MarketWithFee">MarketWithFee</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".UpdateMarketFeeRequest">UpdateMarketFeeRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>market_with_fee</td>
+                  <td><a href="#MarketWithFee">MarketWithFee</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".UpdateMarketPriceReply">UpdateMarketPriceReply</h3>
         <p></p>
 
         
 
         
       
-        <h3 id=".UpdateFeeRequest">UpdateFeeRequest</h3>
+        <h3 id=".UpdateMarketPriceRequest">UpdateMarketPriceRequest</h3>
         <p></p>
 
         
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>market</td>
+                  <td><a href="#Market">Market</a></td>
+                  <td></td>
+                  <td><p>Market to update the price of
+
+TBD </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".WithdrawMarketReply">WithdrawMarketReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>raw_tx</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>The serialized transaction </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".WithdrawMarketRequest">WithdrawMarketRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>market</td>
+                  <td><a href="#Market">Market</a></td>
+                  <td></td>
+                  <td><p>Market from which funds need to be withdrawn </p></td>
+                </tr>
+              
+                <tr>
+                  <td>balance_to_withdraw</td>
+                  <td><a href="#Balance">Balance</a></td>
+                  <td></td>
+                  <td><p>Amount for base and quote asset to be withdrawn </p></td>
+                </tr>
+              
+                <tr>
+                  <td>sat_per_kw</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>The number of satoshis per kilo weight that should be
+used when crafting this transaction. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>script</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>The script of the output being spent. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>push</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Optional: if true the transaction will be pushed to the network </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
 
         
       
 
+      
+        <h3 id=".SwapStatus">SwapStatus</h3>
+        <p>Custom types</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNDEFINED</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>REQUEST</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ACCEPT</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>COMPLETE</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
 
       
@@ -834,32 +1347,32 @@ sha256(sender_pubkey,recipient_pubkey,sender_ephemeral_pubkey) </p></td>
           <tbody>
             
               <tr>
-                <td>DepositAddress</td>
-                <td><a href="#DepositAddressRequest">.DepositAddressRequest</a></td>
-                <td><a href="#DepositAddressReply">.DepositAddressReply</a></td>
+                <td>DepositMarket</td>
+                <td><a href="#DepositMarketRequest">.DepositMarketRequest</a></td>
+                <td><a href="#DepositMarketReply">.DepositMarketReply</a></td>
                 <td><p>Returns a new derived address for the given market.
 If market field is empty, a new Market is created and MUST be initialized.</p></td>
               </tr>
             
               <tr>
-                <td>ListDepositAddress</td>
-                <td><a href="#ListDepositAddressRequest">.ListDepositAddressRequest</a></td>
-                <td><a href="#ListDepositAddressReply">.ListDepositAddressReply</a></td>
+                <td>ListDepositMarket</td>
+                <td><a href="#ListDepositMarketRequest">.ListDepositMarketRequest</a></td>
+                <td><a href="#ListDepositMarketReply">.ListDepositMarketReply</a></td>
                 <td><p>Returns the list of previously generated addresses for the given market.</p></td>
               </tr>
             
               <tr>
-                <td>FeeDepositAddress</td>
-                <td><a href="#FeeDepositAddressRequest">.FeeDepositAddressRequest</a></td>
-                <td><a href="#FeeDepositAddressReply">.FeeDepositAddressReply</a></td>
+                <td>DepositFeeAccount</td>
+                <td><a href="#DepositFeeAccountRequest">.DepositFeeAccountRequest</a></td>
+                <td><a href="#DepositFeeAccountReply">.DepositFeeAccountReply</a></td>
                 <td><p>Returns a new derived address from the fee account.
 This is only used to deposit some LBTC to subsidize blockchain fees.</p></td>
               </tr>
             
               <tr>
-                <td>FeeBalance</td>
-                <td><a href="#FeeBalanceRequest">.FeeBalanceRequest</a></td>
-                <td><a href="#FeeBalanceReply">.FeeBalanceReply</a></td>
+                <td>BalanceFeeAccount</td>
+                <td><a href="#BalanceFeeAccountRequest">.BalanceFeeAccountRequest</a></td>
+                <td><a href="#BalanceFeeAccountReply">.BalanceFeeAccountReply</a></td>
                 <td><p>Returns the aggregated balance of LBTC held in the fee account.</p></td>
               </tr>
             
@@ -878,11 +1391,43 @@ This is only used to deposit some LBTC to subsidize blockchain fees.</p></td>
               </tr>
             
               <tr>
-                <td>UpdateFee</td>
-                <td><a href="#UpdateFeeRequest">.UpdateFeeRequest</a></td>
-                <td><a href="#UpdateFeeReply">.UpdateFeeReply</a></td>
-                <td><p>Changes the fee for the given market.
-The Market MUST be closed before doing this change.</p></td>
+                <td>UpdateMarketPrice</td>
+                <td><a href="#UpdateMarketPriceRequest">.UpdateMarketPriceRequest</a></td>
+                <td><a href="#UpdateMarketPriceReply">.UpdateMarketPriceReply</a></td>
+                <td><p>Manually updates the price for the given market</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateMarketFee</td>
+                <td><a href="#UpdateMarketFeeRequest">.UpdateMarketFeeRequest</a></td>
+                <td><a href="#UpdateMarketFeeReply">.UpdateMarketFeeReply</a></td>
+                <td><p>Changes the Liquidity Provider fee for the given market. I thsould be
+express in basis point. To change the fee on each swap from (current) 0.25%
+to 1% you need to pass down 100 The Market MUST be closed before doing this
+change.</p></td>
+              </tr>
+            
+              <tr>
+                <td>WithdrawMarket</td>
+                <td><a href="#WithdrawMarketRequest">.WithdrawMarketRequest</a></td>
+                <td><a href="#WithdrawMarketReply">.WithdrawMarketReply</a></td>
+                <td><p>WithdrawMarket allows the operator to withdraw to external wallet funds
+from a specific market. The Market MUST be closed before doing this change.</p></td>
+              </tr>
+            
+              <tr>
+                <td>ListSwaps</td>
+                <td><a href="#ListSwapsRequest">.ListSwapsRequest</a></td>
+                <td><a href="#ListSwapsReply">.ListSwapsReply</a></td>
+                <td><p>Returs all the swaps processed by the daemon (both attempted and completed)</p></td>
+              </tr>
+            
+              <tr>
+                <td>ReportMarketFee</td>
+                <td><a href="#ReportMarketFeeRequest">.ReportMarketFeeRequest</a></td>
+                <td><a href="#ReportMarketFeeReply">.ReportMarketFeeReply</a></td>
+                <td><p>Displays a report on how much the given market is collecting in Liquidity
+Provider fees</p></td>
               </tr>
             
           </tbody>
@@ -1549,13 +2094,6 @@ hex encoded. </p></td>
           <tbody>
             
               <tr>
-                <td>Connect</td>
-                <td><a href="#Init">.Init</a></td>
-                <td><a href="#Ack">.Ack</a></td>
-                <td><p>Handshake</p></td>
-              </tr>
-            
-              <tr>
                 <td>Markets</td>
                 <td><a href="#MarketsRequest">.MarketsRequest</a></td>
                 <td><a href="#MarketsReply">.MarketsReply</a></td>
@@ -1590,20 +2128,6 @@ hex encoded. </p></td>
                 <td><p></p></td>
               </tr>
             
-              <tr>
-                <td>UnarySecret</td>
-                <td><a href="#SecretMessage">.SecretMessage</a></td>
-                <td><a href="#SecretMessage">.SecretMessage</a></td>
-                <td><p>Encrypted RPCs</p></td>
-              </tr>
-            
-              <tr>
-                <td>StreamSecret</td>
-                <td><a href="#SecretMessage">.SecretMessage</a></td>
-                <td><a href="#SecretMessage">.SecretMessage</a> stream</td>
-                <td><p></p></td>
-              </tr>
-            
           </tbody>
         </table>
 
@@ -1617,7 +2141,7 @@ hex encoded. </p></td>
 
       
         <h3 id=".Balance">Balance</h3>
-        <p>Custom Types</p>
+        <p></p>
 
         
           <table class="field-table">
@@ -1666,6 +2190,37 @@ hex encoded. </p></td>
               
                 <tr>
                   <td>fee</td>
+                  <td><a href="#Fee">Fee</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".Fee">Fee</h3>
+        <p>Custom Types</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>asset</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>basis_point</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
                   <td><p> </p></td>
@@ -1728,7 +2283,7 @@ hex encoded. </p></td>
               
                 <tr>
                   <td>fee</td>
-                  <td><a href="#int64">int64</a></td>
+                  <td><a href="#Fee">Fee</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -1790,7 +2345,7 @@ hex encoded. </p></td>
               
                 <tr>
                   <td>fee</td>
-                  <td><a href="#int64">int64</a></td>
+                  <td><a href="#Fee">Fee</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>

@@ -8,21 +8,35 @@
     - [Init](#.Init)
     - [SecretMessage](#.SecretMessage)
   
+    - [Handshake](#.Handshake)
+  
 - [operator.proto](#operator.proto)
+    - [BalanceFeeAccountReply](#.BalanceFeeAccountReply)
+    - [BalanceFeeAccountRequest](#.BalanceFeeAccountRequest)
     - [CloseMarketReply](#.CloseMarketReply)
     - [CloseMarketRequest](#.CloseMarketRequest)
-    - [DepositAddressReply](#.DepositAddressReply)
-    - [DepositAddressRequest](#.DepositAddressRequest)
-    - [FeeBalanceReply](#.FeeBalanceReply)
-    - [FeeBalanceRequest](#.FeeBalanceRequest)
-    - [FeeDepositAddressReply](#.FeeDepositAddressReply)
-    - [FeeDepositAddressRequest](#.FeeDepositAddressRequest)
-    - [ListDepositAddressReply](#.ListDepositAddressReply)
-    - [ListDepositAddressRequest](#.ListDepositAddressRequest)
+    - [DepositFeeAccountReply](#.DepositFeeAccountReply)
+    - [DepositFeeAccountRequest](#.DepositFeeAccountRequest)
+    - [DepositMarketReply](#.DepositMarketReply)
+    - [DepositMarketRequest](#.DepositMarketRequest)
+    - [ListDepositMarketReply](#.ListDepositMarketReply)
+    - [ListDepositMarketRequest](#.ListDepositMarketRequest)
+    - [ListSwapsReply](#.ListSwapsReply)
+    - [ListSwapsRequest](#.ListSwapsRequest)
     - [OpenMarketReply](#.OpenMarketReply)
     - [OpenMarketRequest](#.OpenMarketRequest)
-    - [UpdateFeeReply](#.UpdateFeeReply)
-    - [UpdateFeeRequest](#.UpdateFeeRequest)
+    - [ReportMarketFeeReply](#.ReportMarketFeeReply)
+    - [ReportMarketFeeReply.TotalCollectedFeesPerAssetEntry](#.ReportMarketFeeReply.TotalCollectedFeesPerAssetEntry)
+    - [ReportMarketFeeRequest](#.ReportMarketFeeRequest)
+    - [SwapInfo](#.SwapInfo)
+    - [UpdateMarketFeeReply](#.UpdateMarketFeeReply)
+    - [UpdateMarketFeeRequest](#.UpdateMarketFeeRequest)
+    - [UpdateMarketPriceReply](#.UpdateMarketPriceReply)
+    - [UpdateMarketPriceRequest](#.UpdateMarketPriceRequest)
+    - [WithdrawMarketReply](#.WithdrawMarketReply)
+    - [WithdrawMarketRequest](#.WithdrawMarketRequest)
+  
+    - [SwapStatus](#.SwapStatus)
   
     - [Operator](#.Operator)
   
@@ -55,6 +69,7 @@
 - [types.proto](#types.proto)
     - [Balance](#.Balance)
     - [BalanceWithFee](#.BalanceWithFee)
+    - [Fee](#.Fee)
     - [Market](#.Market)
     - [MarketWithFee](#.MarketWithFee)
     - [Price](#.Price)
@@ -107,7 +122,7 @@
 <a name=".Init"></a>
 
 ### Init
-BOTD#2
+
 
 
 | Field | Type | Label | Description |
@@ -144,6 +159,18 @@ BOTD#1
 
  
 
+
+<a name=".Handshake"></a>
+
+### Handshake
+BOTD#2
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| Connect | [.Init](#Init) | [.Ack](#Ack) | Handshake |
+| UnarySecret | [.SecretMessage](#SecretMessage) | [.SecretMessage](#SecretMessage) | Encrypted RPCs |
+| StreamSecret | [.SecretMessage](#SecretMessage) | [.SecretMessage](#SecretMessage) stream |  |
+
  
 
 
@@ -152,6 +179,31 @@ BOTD#1
 <p align="right"><a href="#top">Top</a></p>
 
 ## operator.proto
+
+
+
+<a name=".BalanceFeeAccountReply"></a>
+
+### BalanceFeeAccountReply
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| balance | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name=".BalanceFeeAccountRequest"></a>
+
+### BalanceFeeAccountRequest
+
+
+
+
 
 
 
@@ -171,13 +223,18 @@ BOTD#1
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| market | [Market](#Market) |  | Market to be made NOT tradable |
 
 
 
 
-<a name=".DepositAddressReply"></a>
 
-### DepositAddressReply
+
+<a name=".DepositFeeAccountReply"></a>
+
+### DepositFeeAccountReply
 
 
 
@@ -190,9 +247,34 @@ BOTD#1
 
 
 
-<a name=".DepositAddressRequest"></a>
+<a name=".DepositFeeAccountRequest"></a>
 
-### DepositAddressRequest
+### DepositFeeAccountRequest
+
+
+
+
+
+
+
+<a name=".DepositMarketReply"></a>
+
+### DepositMarketReply
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| address | [string](#string) |  |  |
+
+
+
+
+
+
+<a name=".DepositMarketRequest"></a>
+
+### DepositMarketRequest
 
 
 
@@ -205,59 +287,9 @@ BOTD#1
 
 
 
-<a name=".FeeBalanceReply"></a>
+<a name=".ListDepositMarketReply"></a>
 
-### FeeBalanceReply
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| balance | [int64](#int64) |  |  |
-
-
-
-
-
-
-<a name=".FeeBalanceRequest"></a>
-
-### FeeBalanceRequest
-
-
-
-
-
-
-
-<a name=".FeeDepositAddressReply"></a>
-
-### FeeDepositAddressReply
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| address | [string](#string) |  |  |
-
-
-
-
-
-
-<a name=".FeeDepositAddressRequest"></a>
-
-### FeeDepositAddressRequest
-
-
-
-
-
-
-
-<a name=".ListDepositAddressReply"></a>
-
-### ListDepositAddressReply
+### ListDepositMarketReply
 
 
 
@@ -270,15 +302,45 @@ BOTD#1
 
 
 
-<a name=".ListDepositAddressRequest"></a>
+<a name=".ListDepositMarketRequest"></a>
 
-### ListDepositAddressRequest
+### ListDepositMarketRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | market | [Market](#Market) |  | Market to get an address from. Could be empty. |
+
+
+
+
+
+
+<a name=".ListSwapsReply"></a>
+
+### ListSwapsReply
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| swaps | [SwapInfo](#SwapInfo) | repeated |  |
+
+
+
+
+
+
+<a name=".ListSwapsRequest"></a>
+
+### ListSwapsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| status | [SwapStatus](#SwapStatus) |  |  |
 
 
 
@@ -301,30 +363,190 @@ BOTD#1
 
 
 
-
-
-
-
-<a name=".UpdateFeeReply"></a>
-
-### UpdateFeeReply
-
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| market | [Market](#Market) |  | Market to be made tradable |
 
 
 
 
 
 
-<a name=".UpdateFeeRequest"></a>
+<a name=".ReportMarketFeeReply"></a>
 
-### UpdateFeeRequest
+### ReportMarketFeeReply
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| collected_fees | [Fee](#Fee) | repeated | List of the all unique fee being collected on each swap. |
+| total_collected_fees_per_asset | [ReportMarketFeeReply.TotalCollectedFeesPerAssetEntry](#ReportMarketFeeReply.TotalCollectedFeesPerAssetEntry) | repeated | Map of aggreagated fee count grouped by asset. There should be one unique entry for each asset and the amount should be the aggregated total. |
+
+
+
+
+
+
+<a name=".ReportMarketFeeReply.TotalCollectedFeesPerAssetEntry"></a>
+
+### ReportMarketFeeReply.TotalCollectedFeesPerAssetEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name=".ReportMarketFeeRequest"></a>
+
+### ReportMarketFeeRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| market | [Market](#Market) |  | Market to be updated |
+
+
+
+
+
+
+<a name=".SwapInfo"></a>
+
+### SwapInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| status | [SwapStatus](#SwapStatus) |  |  |
+| amount_p | [uint64](#uint64) |  | The proposer&#39;s quantity |
+| asset_p | [string](#string) |  | The proposer&#39;s asset hash |
+| amount_r | [uint64](#uint64) |  | The responder&#39;s quantity |
+| asset_r | [string](#string) |  | The responder&#39;s asset hash |
+| market_fee | [Fee](#Fee) |  | The collected fee on the current swap. |
+| request_time_unix | [uint64](#uint64) |  | SwapRequest timestamp |
+| accept_time_unix | [uint64](#uint64) |  | SwapAccpet timestamp |
+| complete_time_unix | [uint64](#uint64) |  | SwapComplete timestap |
+
+
+
+
+
+
+<a name=".UpdateMarketFeeReply"></a>
+
+### UpdateMarketFeeReply
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| market_with_fee | [MarketWithFee](#MarketWithFee) |  |  |
+
+
+
+
+
+
+<a name=".UpdateMarketFeeRequest"></a>
+
+### UpdateMarketFeeRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| market_with_fee | [MarketWithFee](#MarketWithFee) |  |  |
+
+
+
+
+
+
+<a name=".UpdateMarketPriceReply"></a>
+
+### UpdateMarketPriceReply
+
+
+
+
+
+
+
+<a name=".UpdateMarketPriceRequest"></a>
+
+### UpdateMarketPriceRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| market | [Market](#Market) |  | Market to update the price of
+
+TBD |
+
+
+
+
+
+
+<a name=".WithdrawMarketReply"></a>
+
+### WithdrawMarketReply
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| raw_tx | [bytes](#bytes) |  | The serialized transaction |
+
+
+
+
+
+
+<a name=".WithdrawMarketRequest"></a>
+
+### WithdrawMarketRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| market | [Market](#Market) |  | Market from which funds need to be withdrawn |
+| balance_to_withdraw | [Balance](#Balance) |  | Amount for base and quote asset to be withdrawn |
+| sat_per_kw | [int64](#int64) |  | The number of satoshis per kilo weight that should be used when crafting this transaction. |
+| script | [bytes](#bytes) |  | The script of the output being spent. |
+| push | [bool](#bool) |  | Optional: if true the transaction will be pushed to the network |
 
 
 
 
 
  
+
+
+<a name=".SwapStatus"></a>
+
+### SwapStatus
+Custom types
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| UNDEFINED | 0 |  |
+| REQUEST | 1 |  |
+| ACCEPT | 2 |  |
+| COMPLETE | 3 |  |
+
 
  
 
@@ -338,13 +560,17 @@ Service for operators to configure and manage a TDEX daemon
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| DepositAddress | [.DepositAddressRequest](#DepositAddressRequest) | [.DepositAddressReply](#DepositAddressReply) | Returns a new derived address for the given market. If market field is empty, a new Market is created and MUST be initialized. |
-| ListDepositAddress | [.ListDepositAddressRequest](#ListDepositAddressRequest) | [.ListDepositAddressReply](#ListDepositAddressReply) | Returns the list of previously generated addresses for the given market. |
-| FeeDepositAddress | [.FeeDepositAddressRequest](#FeeDepositAddressRequest) | [.FeeDepositAddressReply](#FeeDepositAddressReply) | Returns a new derived address from the fee account. This is only used to deposit some LBTC to subsidize blockchain fees. |
-| FeeBalance | [.FeeBalanceRequest](#FeeBalanceRequest) | [.FeeBalanceReply](#FeeBalanceReply) | Returns the aggregated balance of LBTC held in the fee account. |
+| DepositMarket | [.DepositMarketRequest](#DepositMarketRequest) | [.DepositMarketReply](#DepositMarketReply) | Returns a new derived address for the given market. If market field is empty, a new Market is created and MUST be initialized. |
+| ListDepositMarket | [.ListDepositMarketRequest](#ListDepositMarketRequest) | [.ListDepositMarketReply](#ListDepositMarketReply) | Returns the list of previously generated addresses for the given market. |
+| DepositFeeAccount | [.DepositFeeAccountRequest](#DepositFeeAccountRequest) | [.DepositFeeAccountReply](#DepositFeeAccountReply) | Returns a new derived address from the fee account. This is only used to deposit some LBTC to subsidize blockchain fees. |
+| BalanceFeeAccount | [.BalanceFeeAccountRequest](#BalanceFeeAccountRequest) | [.BalanceFeeAccountReply](#BalanceFeeAccountReply) | Returns the aggregated balance of LBTC held in the fee account. |
 | OpenMarket | [.OpenMarketRequest](#OpenMarketRequest) | [.OpenMarketReply](#OpenMarketReply) | Makes the given market tradable |
 | CloseMarket | [.CloseMarketRequest](#CloseMarketRequest) | [.CloseMarketReply](#CloseMarketReply) | Makes the given market NOT tradabale |
-| UpdateFee | [.UpdateFeeRequest](#UpdateFeeRequest) | [.UpdateFeeReply](#UpdateFeeReply) | Changes the fee for the given market. The Market MUST be closed before doing this change. |
+| UpdateMarketPrice | [.UpdateMarketPriceRequest](#UpdateMarketPriceRequest) | [.UpdateMarketPriceReply](#UpdateMarketPriceReply) | Manually updates the price for the given market |
+| UpdateMarketFee | [.UpdateMarketFeeRequest](#UpdateMarketFeeRequest) | [.UpdateMarketFeeReply](#UpdateMarketFeeReply) | Changes the Liquidity Provider fee for the given market. I thsould be express in basis point. To change the fee on each swap from (current) 0.25% to 1% you need to pass down 100 The Market MUST be closed before doing this change. |
+| WithdrawMarket | [.WithdrawMarketRequest](#WithdrawMarketRequest) | [.WithdrawMarketReply](#WithdrawMarketReply) | WithdrawMarket allows the operator to withdraw to external wallet funds from a specific market. The Market MUST be closed before doing this change. |
+| ListSwaps | [.ListSwapsRequest](#ListSwapsRequest) | [.ListSwapsReply](#ListSwapsReply) | Returs all the swaps processed by the daemon (both attempted and completed) |
+| ReportMarketFee | [.ReportMarketFeeRequest](#ReportMarketFeeRequest) | [.ReportMarketFeeReply](#ReportMarketFeeReply) | Displays a report on how much the given market is collecting in Liquidity Provider fees |
 
  
 
@@ -688,14 +914,11 @@ BOTD#4 Service&#39;s messages
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Connect | [.Init](#Init) | [.Ack](#Ack) | Handshake |
 | Markets | [.MarketsRequest](#MarketsRequest) | [.MarketsReply](#MarketsReply) | Trader interface |
 | Balances | [.BalancesRequest](#BalancesRequest) | [.BalancesReply](#BalancesReply) |  |
 | MarketPrice | [.MarketPriceRequest](#MarketPriceRequest) | [.MarketPriceReply](#MarketPriceReply) |  |
 | TradePropose | [.TradeProposeRequest](#TradeProposeRequest) | [.TradeProposeReply](#TradeProposeReply) stream |  |
 | TradeComplete | [.TradeCompleteRequest](#TradeCompleteRequest) | [.TradeCompleteReply](#TradeCompleteReply) stream |  |
-| UnarySecret | [.SecretMessage](#SecretMessage) | [.SecretMessage](#SecretMessage) | Encrypted RPCs |
-| StreamSecret | [.SecretMessage](#SecretMessage) | [.SecretMessage](#SecretMessage) stream |  |
 
  
 
@@ -711,7 +934,7 @@ BOTD#4 Service&#39;s messages
 <a name=".Balance"></a>
 
 ### Balance
-Custom Types
+
 
 
 | Field | Type | Label | Description |
@@ -733,7 +956,23 @@ Custom Types
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | balance | [Balance](#Balance) |  |  |
-| fee | [int64](#int64) |  |  |
+| fee | [Fee](#Fee) |  |  |
+
+
+
+
+
+
+<a name=".Fee"></a>
+
+### Fee
+Custom Types
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| asset | [string](#string) |  |  |
+| basis_point | [int64](#int64) |  |  |
 
 
 
@@ -765,7 +1004,7 @@ Custom Types
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | market | [Market](#Market) |  |  |
-| fee | [int64](#int64) |  |  |
+| fee | [Fee](#Fee) |  |  |
 
 
 
@@ -797,7 +1036,7 @@ Custom Types
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | price | [Price](#Price) |  |  |
-| fee | [int64](#int64) |  |  |
+| fee | [Fee](#Fee) |  |  |
 
 
 

@@ -48,7 +48,7 @@ service Operator {
 
   // Displays a report on how much the given market is collecting in Liquidity
   // Provider fees
-  rpc MarketFeeReport(MarketFeeReportRequest) returns (MarketFeeReportReply) {}
+  rpc ReportMarketFee(ReportMarketFeeRequest) returns (ReportMarketFeeReply) {}
 }
 
 message DepositMarketRequest {
@@ -80,9 +80,11 @@ message CloseMarketReply {}
 message UpdateMarketFeeRequest { MarketWithFee market_with_fee = 1; }
 message UpdateMarketFeeReply { MarketWithFee market_with_fee = 1; }
 
-// TBD
-message UpdateMarketPriceRequest {}
-// TBD
+message UpdateMarketPriceRequest {
+  // Market to update the price of
+  Market market = 1;
+  // TBD
+}
 message UpdateMarketPriceReply {}
 
 message WithdrawMarketRequest {
@@ -103,33 +105,30 @@ message WithdrawMarketReply {
   bytes raw_tx = 1;
 }
 
-message ListSwapsRequest {}
+message ListSwapsRequest { SwapStatus status = 1; }
 message ListSwapsReply { repeated SwapInfo swaps = 1; }
 
-message MarketFeeReportRequest {
+message ReportMarketFeeRequest {
   Market market = 1; // Market to be updated
 }
-message MarketFeeReportReply {
+message ReportMarketFeeReply {
   // List of the all unique fee being collected on each swap.
-  repeated ProviderFee collected_fees = 1;
-  // List of aggreagated fee grouped by asset. There should be one unique entry
-  // for each asset and the amount should be the aggregated total.
-  repeated ProviderFee collected_fees_per_asset = 2;
+  repeated Fee collected_fees = 1;
+  // Map of aggreagated fee count grouped by asset. There should be one unique
+  // entry for each asset and the amount should be the aggregated total.
+  map<string, int64> total_collected_fees_per_asset = 2;
 }
 
 // Custom types
-message ProviderFee {
-  uint64 amount = 1;
-  string asset = 2;
+enum SwapStatus {
+  UNDEFINED = 0;
+  REQUEST = 1;
+  ACCEPT = 2;
+  COMPLETE = 3;
 }
 
 message SwapInfo {
-  enum Status {
-    REQUEST = 0;
-    ACCEPT = 1;
-    COMPLETE = 2;
-  }
-  Status status = 1;
+  SwapStatus status = 1;
   // The proposer's quantity
   uint64 amount_p = 2;
   // The proposer's asset hash
@@ -138,6 +137,12 @@ message SwapInfo {
   uint64 amount_r = 4;
   // The responder's asset hash
   string asset_r = 5;
-  // The collected Liquidity Provider fee.
-  ProviderFee provider_fee = 6;
+  // The collected fee on the current swap.
+  Fee market_fee = 6;
+  // SwapRequest timestamp
+  uint64 request_time_unix = 7;
+  // SwapAccpet timestamp
+  uint64 accept_time_unix = 8;
+  // SwapComplete timestap
+  uint64 complete_time_unix = 9;
 }

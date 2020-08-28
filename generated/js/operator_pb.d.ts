@@ -253,6 +253,11 @@ export namespace UpdateMarketFeeReply {
 }
 
 export class UpdateMarketPriceRequest extends jspb.Message {
+  getMarket(): types_pb.Market | undefined;
+  setMarket(value?: types_pb.Market): UpdateMarketPriceRequest;
+  hasMarket(): boolean;
+  clearMarket(): UpdateMarketPriceRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateMarketPriceRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateMarketPriceRequest): UpdateMarketPriceRequest.AsObject;
@@ -263,6 +268,7 @@ export class UpdateMarketPriceRequest extends jspb.Message {
 
 export namespace UpdateMarketPriceRequest {
   export type AsObject = {
+    market?: types_pb.Market.AsObject,
   }
 }
 
@@ -341,6 +347,9 @@ export namespace WithdrawMarketReply {
 }
 
 export class ListSwapsRequest extends jspb.Message {
+  getStatus(): SwapStatus;
+  setStatus(value: SwapStatus): ListSwapsRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListSwapsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListSwapsRequest): ListSwapsRequest.AsObject;
@@ -351,6 +360,7 @@ export class ListSwapsRequest extends jspb.Message {
 
 export namespace ListSwapsRequest {
   export type AsObject = {
+    status: SwapStatus,
   }
 }
 
@@ -374,77 +384,53 @@ export namespace ListSwapsReply {
   }
 }
 
-export class MarketFeeReportRequest extends jspb.Message {
+export class ReportMarketFeeRequest extends jspb.Message {
   getMarket(): types_pb.Market | undefined;
-  setMarket(value?: types_pb.Market): MarketFeeReportRequest;
+  setMarket(value?: types_pb.Market): ReportMarketFeeRequest;
   hasMarket(): boolean;
-  clearMarket(): MarketFeeReportRequest;
+  clearMarket(): ReportMarketFeeRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): MarketFeeReportRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: MarketFeeReportRequest): MarketFeeReportRequest.AsObject;
-  static serializeBinaryToWriter(message: MarketFeeReportRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): MarketFeeReportRequest;
-  static deserializeBinaryFromReader(message: MarketFeeReportRequest, reader: jspb.BinaryReader): MarketFeeReportRequest;
+  toObject(includeInstance?: boolean): ReportMarketFeeRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ReportMarketFeeRequest): ReportMarketFeeRequest.AsObject;
+  static serializeBinaryToWriter(message: ReportMarketFeeRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ReportMarketFeeRequest;
+  static deserializeBinaryFromReader(message: ReportMarketFeeRequest, reader: jspb.BinaryReader): ReportMarketFeeRequest;
 }
 
-export namespace MarketFeeReportRequest {
+export namespace ReportMarketFeeRequest {
   export type AsObject = {
     market?: types_pb.Market.AsObject,
   }
 }
 
-export class MarketFeeReportReply extends jspb.Message {
-  getCollectedFeesList(): Array<ProviderFee>;
-  setCollectedFeesList(value: Array<ProviderFee>): MarketFeeReportReply;
-  clearCollectedFeesList(): MarketFeeReportReply;
-  addCollectedFees(value?: ProviderFee, index?: number): ProviderFee;
+export class ReportMarketFeeReply extends jspb.Message {
+  getCollectedFeesList(): Array<types_pb.Fee>;
+  setCollectedFeesList(value: Array<types_pb.Fee>): ReportMarketFeeReply;
+  clearCollectedFeesList(): ReportMarketFeeReply;
+  addCollectedFees(value?: types_pb.Fee, index?: number): types_pb.Fee;
 
-  getCollectedFeesPerAssetList(): Array<ProviderFee>;
-  setCollectedFeesPerAssetList(value: Array<ProviderFee>): MarketFeeReportReply;
-  clearCollectedFeesPerAssetList(): MarketFeeReportReply;
-  addCollectedFeesPerAsset(value?: ProviderFee, index?: number): ProviderFee;
+  getTotalCollectedFeesPerAssetMap(): jspb.Map<string, number>;
+  clearTotalCollectedFeesPerAssetMap(): ReportMarketFeeReply;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): MarketFeeReportReply.AsObject;
-  static toObject(includeInstance: boolean, msg: MarketFeeReportReply): MarketFeeReportReply.AsObject;
-  static serializeBinaryToWriter(message: MarketFeeReportReply, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): MarketFeeReportReply;
-  static deserializeBinaryFromReader(message: MarketFeeReportReply, reader: jspb.BinaryReader): MarketFeeReportReply;
+  toObject(includeInstance?: boolean): ReportMarketFeeReply.AsObject;
+  static toObject(includeInstance: boolean, msg: ReportMarketFeeReply): ReportMarketFeeReply.AsObject;
+  static serializeBinaryToWriter(message: ReportMarketFeeReply, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ReportMarketFeeReply;
+  static deserializeBinaryFromReader(message: ReportMarketFeeReply, reader: jspb.BinaryReader): ReportMarketFeeReply;
 }
 
-export namespace MarketFeeReportReply {
+export namespace ReportMarketFeeReply {
   export type AsObject = {
-    collectedFeesList: Array<ProviderFee.AsObject>,
-    collectedFeesPerAssetList: Array<ProviderFee.AsObject>,
-  }
-}
-
-export class ProviderFee extends jspb.Message {
-  getAmount(): number;
-  setAmount(value: number): ProviderFee;
-
-  getAsset(): string;
-  setAsset(value: string): ProviderFee;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): ProviderFee.AsObject;
-  static toObject(includeInstance: boolean, msg: ProviderFee): ProviderFee.AsObject;
-  static serializeBinaryToWriter(message: ProviderFee, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): ProviderFee;
-  static deserializeBinaryFromReader(message: ProviderFee, reader: jspb.BinaryReader): ProviderFee;
-}
-
-export namespace ProviderFee {
-  export type AsObject = {
-    amount: number,
-    asset: string,
+    collectedFeesList: Array<types_pb.Fee.AsObject>,
+    totalCollectedFeesPerAssetMap: Array<[string, number]>,
   }
 }
 
 export class SwapInfo extends jspb.Message {
-  getStatus(): SwapInfo.Status;
-  setStatus(value: SwapInfo.Status): SwapInfo;
+  getStatus(): SwapStatus;
+  setStatus(value: SwapStatus): SwapInfo;
 
   getAmountP(): number;
   setAmountP(value: number): SwapInfo;
@@ -458,10 +444,19 @@ export class SwapInfo extends jspb.Message {
   getAssetR(): string;
   setAssetR(value: string): SwapInfo;
 
-  getProviderFee(): ProviderFee | undefined;
-  setProviderFee(value?: ProviderFee): SwapInfo;
-  hasProviderFee(): boolean;
-  clearProviderFee(): SwapInfo;
+  getMarketFee(): types_pb.Fee | undefined;
+  setMarketFee(value?: types_pb.Fee): SwapInfo;
+  hasMarketFee(): boolean;
+  clearMarketFee(): SwapInfo;
+
+  getRequestTimeUnix(): number;
+  setRequestTimeUnix(value: number): SwapInfo;
+
+  getAcceptTimeUnix(): number;
+  setAcceptTimeUnix(value: number): SwapInfo;
+
+  getCompleteTimeUnix(): number;
+  setCompleteTimeUnix(value: number): SwapInfo;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SwapInfo.AsObject;
@@ -473,18 +468,21 @@ export class SwapInfo extends jspb.Message {
 
 export namespace SwapInfo {
   export type AsObject = {
-    status: SwapInfo.Status,
+    status: SwapStatus,
     amountP: number,
     assetP: string,
     amountR: number,
     assetR: string,
-    providerFee?: ProviderFee.AsObject,
-  }
-
-  export enum Status { 
-    REQUEST = 0,
-    ACCEPT = 1,
-    COMPLETE = 2,
+    marketFee?: types_pb.Fee.AsObject,
+    requestTimeUnix: number,
+    acceptTimeUnix: number,
+    completeTimeUnix: number,
   }
 }
 
+export enum SwapStatus { 
+  UNDEFINED = 0,
+  REQUEST = 1,
+  ACCEPT = 2,
+  COMPLETE = 3,
+}
