@@ -83,7 +83,8 @@ message UpdateMarketFeeReply { MarketWithFee market_with_fee = 1; }
 message UpdateMarketPriceRequest {
   // Market to update the price of
   Market market = 1;
-  // TBD
+  // Price to be updated
+  Price price = 2;
 }
 message UpdateMarketPriceReply {}
 

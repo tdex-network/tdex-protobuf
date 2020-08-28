@@ -490,9 +490,8 @@ BOTD#2
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| market | [Market](#Market) |  | Market to update the price of
-
-TBD |
+| market | [Market](#Market) |  | Market to update the price of |
+| price | [Price](#Price) |  | Price to be updated |
 
 
 

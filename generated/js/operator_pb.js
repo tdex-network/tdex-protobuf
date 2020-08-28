@@ -2409,7 +2409,8 @@ proto.UpdateMarketPriceRequest.prototype.toObject = function(opt_includeInstance
  */
 proto.UpdateMarketPriceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    market: (f = msg.getMarket()) && types_pb.Market.toObject(includeInstance, f)
+    market: (f = msg.getMarket()) && types_pb.Market.toObject(includeInstance, f),
+    price: (f = msg.getPrice()) && types_pb.Price.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2451,6 +2452,11 @@ proto.UpdateMarketPriceRequest.deserializeBinaryFromReader = function(msg, reade
       reader.readMessage(value,types_pb.Market.deserializeBinaryFromReader);
       msg.setMarket(value);
       break;
+    case 2:
+      var value = new types_pb.Price;
+      reader.readMessage(value,types_pb.Price.deserializeBinaryFromReader);
+      msg.setPrice(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2486,6 +2492,14 @@ proto.UpdateMarketPriceRequest.serializeBinaryToWriter = function(message, write
       1,
       f,
       types_pb.Market.serializeBinaryToWriter
+    );
+  }
+  f = message.getPrice();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      types_pb.Price.serializeBinaryToWriter
     );
   }
 };
@@ -2525,6 +2539,43 @@ proto.UpdateMarketPriceRequest.prototype.clearMarket = function() {
  */
 proto.UpdateMarketPriceRequest.prototype.hasMarket = function() {
   return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional Price price = 2;
+ * @return {?proto.Price}
+ */
+proto.UpdateMarketPriceRequest.prototype.getPrice = function() {
+  return /** @type{?proto.Price} */ (
+    jspb.Message.getWrapperField(this, types_pb.Price, 2));
+};
+
+
+/**
+ * @param {?proto.Price|undefined} value
+ * @return {!proto.UpdateMarketPriceRequest} returns this
+*/
+proto.UpdateMarketPriceRequest.prototype.setPrice = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.UpdateMarketPriceRequest} returns this
+ */
+proto.UpdateMarketPriceRequest.prototype.clearPrice = function() {
+  return this.setPrice(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.UpdateMarketPriceRequest.prototype.hasPrice = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 

@@ -258,6 +258,11 @@ export class UpdateMarketPriceRequest extends jspb.Message {
   hasMarket(): boolean;
   clearMarket(): UpdateMarketPriceRequest;
 
+  getPrice(): types_pb.Price | undefined;
+  setPrice(value?: types_pb.Price): UpdateMarketPriceRequest;
+  hasPrice(): boolean;
+  clearPrice(): UpdateMarketPriceRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateMarketPriceRequest.AsObject;
   static toObject(includeInstance: boolean, msg: UpdateMarketPriceRequest): UpdateMarketPriceRequest.AsObject;
@@ -269,6 +274,7 @@ export class UpdateMarketPriceRequest extends jspb.Message {
 export namespace UpdateMarketPriceRequest {
   export type AsObject = {
     market?: types_pb.Market.AsObject,
+    price?: types_pb.Price.AsObject,
   }
 }
 
