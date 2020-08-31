@@ -115,6 +115,28 @@ function deserialize_ListDepositMarketRequest(buffer_arg) {
   return operator_pb.ListDepositMarketRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_ListMarketReply(arg) {
+  if (!(arg instanceof operator_pb.ListMarketReply)) {
+    throw new Error('Expected argument of type ListMarketReply');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ListMarketReply(buffer_arg) {
+  return operator_pb.ListMarketReply.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ListMarketRequest(arg) {
+  if (!(arg instanceof operator_pb.ListMarketRequest)) {
+    throw new Error('Expected argument of type ListMarketRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ListMarketRequest(buffer_arg) {
+  return operator_pb.ListMarketRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_ListSwapsReply(arg) {
   if (!(arg instanceof operator_pb.ListSwapsReply)) {
     throw new Error('Expected argument of type ListSwapsReply');
@@ -223,6 +245,28 @@ function serialize_UpdateMarketPriceRequest(arg) {
 
 function deserialize_UpdateMarketPriceRequest(buffer_arg) {
   return operator_pb.UpdateMarketPriceRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_UpdateMarketStrategyReply(arg) {
+  if (!(arg instanceof operator_pb.UpdateMarketStrategyReply)) {
+    throw new Error('Expected argument of type UpdateMarketStrategyReply');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_UpdateMarketStrategyReply(buffer_arg) {
+  return operator_pb.UpdateMarketStrategyReply.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_UpdateMarketStrategyRequest(arg) {
+  if (!(arg instanceof operator_pb.UpdateMarketStrategyRequest)) {
+    throw new Error('Expected argument of type UpdateMarketStrategyRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_UpdateMarketStrategyRequest(buffer_arg) {
+  return operator_pb.UpdateMarketStrategyRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_UpdatePriceFeedReply(arg) {
@@ -347,29 +391,17 @@ closeMarket: {
     responseSerialize: serialize_CloseMarketReply,
     responseDeserialize: deserialize_CloseMarketReply,
   },
-  // updates the price feed to be used for the given market
-updatePriceFeed: {
-    path: '/Operator/UpdatePriceFeed',
+  // Get extended details for each markets either open, closed or to be funded.
+listMarket: {
+    path: '/Operator/ListMarket',
     requestStream: false,
     responseStream: false,
-    requestType: operator_pb.UpdatePriceFeedRequest,
-    responseType: operator_pb.UpdatePriceFeedReply,
-    requestSerialize: serialize_UpdatePriceFeedRequest,
-    requestDeserialize: deserialize_UpdatePriceFeedRequest,
-    responseSerialize: serialize_UpdatePriceFeedReply,
-    responseDeserialize: deserialize_UpdatePriceFeedReply,
-  },
-  // Manually updates the price for the given market
-updateMarketPrice: {
-    path: '/Operator/UpdateMarketPrice',
-    requestStream: false,
-    responseStream: false,
-    requestType: operator_pb.UpdateMarketPriceRequest,
-    responseType: operator_pb.UpdateMarketPriceReply,
-    requestSerialize: serialize_UpdateMarketPriceRequest,
-    requestDeserialize: deserialize_UpdateMarketPriceRequest,
-    responseSerialize: serialize_UpdateMarketPriceReply,
-    responseDeserialize: deserialize_UpdateMarketPriceReply,
+    requestType: operator_pb.ListMarketRequest,
+    responseType: operator_pb.ListMarketReply,
+    requestSerialize: serialize_ListMarketRequest,
+    requestDeserialize: deserialize_ListMarketRequest,
+    responseSerialize: serialize_ListMarketReply,
+    responseDeserialize: deserialize_ListMarketReply,
   },
   // Changes the Liquidity Provider fee for the given market. I thsould be
 // express in basis point. To change the fee on each swap from (current) 0.25%
@@ -385,6 +417,41 @@ updateMarketFee: {
     requestDeserialize: deserialize_UpdateMarketFeeRequest,
     responseSerialize: serialize_UpdateMarketFeeReply,
     responseDeserialize: deserialize_UpdateMarketFeeReply,
+  },
+  // Manually updates the price for the given market
+updateMarketPrice: {
+    path: '/Operator/UpdateMarketPrice',
+    requestStream: false,
+    responseStream: false,
+    requestType: operator_pb.UpdateMarketPriceRequest,
+    responseType: operator_pb.UpdateMarketPriceReply,
+    requestSerialize: serialize_UpdateMarketPriceRequest,
+    requestDeserialize: deserialize_UpdateMarketPriceRequest,
+    responseSerialize: serialize_UpdateMarketPriceReply,
+    responseDeserialize: deserialize_UpdateMarketPriceReply,
+  },
+  updateMarketStrategy: {
+    path: '/Operator/UpdateMarketStrategy',
+    requestStream: false,
+    responseStream: false,
+    requestType: operator_pb.UpdateMarketStrategyRequest,
+    responseType: operator_pb.UpdateMarketStrategyReply,
+    requestSerialize: serialize_UpdateMarketStrategyRequest,
+    requestDeserialize: deserialize_UpdateMarketStrategyRequest,
+    responseSerialize: serialize_UpdateMarketStrategyReply,
+    responseDeserialize: deserialize_UpdateMarketStrategyReply,
+  },
+  // updates the price feed to be used for the given market
+updatePriceFeed: {
+    path: '/Operator/UpdatePriceFeed',
+    requestStream: false,
+    responseStream: false,
+    requestType: operator_pb.UpdatePriceFeedRequest,
+    responseType: operator_pb.UpdatePriceFeedReply,
+    requestSerialize: serialize_UpdatePriceFeedRequest,
+    requestDeserialize: deserialize_UpdatePriceFeedRequest,
+    responseSerialize: serialize_UpdatePriceFeedReply,
+    responseDeserialize: deserialize_UpdatePriceFeedReply,
   },
   // WithdrawMarket allows the operator to withdraw to external wallet funds
 // from a specific market. The Market MUST be closed before doing this change.

@@ -246,11 +246,23 @@
                 </li>
               
                 <li>
+                  <a href="#.ListMarketReply"><span class="badge">M</span>ListMarketReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.ListMarketRequest"><span class="badge">M</span>ListMarketRequest</a>
+                </li>
+              
+                <li>
                   <a href="#.ListSwapsReply"><span class="badge">M</span>ListSwapsReply</a>
                 </li>
               
                 <li>
                   <a href="#.ListSwapsRequest"><span class="badge">M</span>ListSwapsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.MarketInfo"><span class="badge">M</span>MarketInfo</a>
                 </li>
               
                 <li>
@@ -294,6 +306,14 @@
                 </li>
               
                 <li>
+                  <a href="#.UpdateMarketStrategyReply"><span class="badge">M</span>UpdateMarketStrategyReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.UpdateMarketStrategyRequest"><span class="badge">M</span>UpdateMarketStrategyRequest</a>
+                </li>
+              
+                <li>
                   <a href="#.UpdatePriceFeedReply"><span class="badge">M</span>UpdatePriceFeedReply</a>
                 </li>
               
@@ -309,6 +329,10 @@
                   <a href="#.WithdrawMarketRequest"><span class="badge">M</span>WithdrawMarketRequest</a>
                 </li>
               
+              
+                <li>
+                  <a href="#.Strategy"><span class="badge">E</span>Strategy</a>
+                </li>
               
                 <li>
                   <a href="#.SwapStatus"><span class="badge">E</span>SwapStatus</a>
@@ -901,6 +925,37 @@ sha256(sender_pubkey,recipient_pubkey,sender_ephemeral_pubkey) </p></td>
 
         
       
+        <h3 id=".ListMarketReply">ListMarketReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>markets</td>
+                  <td><a href="#MarketInfo">MarketInfo</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".ListMarketRequest">ListMarketRequest</h3>
+        <p></p>
+
+        
+
+        
+      
         <h3 id=".ListSwapsReply">ListSwapsReply</h3>
         <p></p>
 
@@ -949,6 +1004,51 @@ sha256(sender_pubkey,recipient_pubkey,sender_ephemeral_pubkey) </p></td>
 
         
       
+        <h3 id=".MarketInfo">MarketInfo</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>market</td>
+                  <td><a href="#Market">Market</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fee</td>
+                  <td><a href="#Fee">Fee</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tradable</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>strategy</td>
+                  <td><a href="#Strategy">Strategy</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".OpenMarketReply">OpenMarketReply</h3>
         <p></p>
 
@@ -971,6 +1071,13 @@ sha256(sender_pubkey,recipient_pubkey,sender_ephemeral_pubkey) </p></td>
                   <td><a href="#Market">Market</a></td>
                   <td></td>
                   <td><p>Market to be made tradable </p></td>
+                </tr>
+              
+                <tr>
+                  <td>strategy</td>
+                  <td><a href="#Strategy">Strategy</a></td>
+                  <td></td>
+                  <td><p>Market making strategy to use </p></td>
                 </tr>
               
             </tbody>
@@ -1233,6 +1340,44 @@ entry for each asset and the amount should be the aggregated total. </p></td>
 
         
       
+        <h3 id=".UpdateMarketStrategyReply">UpdateMarketStrategyReply</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id=".UpdateMarketStrategyRequest">UpdateMarketStrategyRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>market</td>
+                  <td><a href="#Market">Market</a></td>
+                  <td></td>
+                  <td><p>Market to chnage the strategy </p></td>
+                </tr>
+              
+                <tr>
+                  <td>strategy</td>
+                  <td><a href="#Strategy">Strategy</a></td>
+                  <td></td>
+                  <td><p>Market making strategy to use </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".UpdatePriceFeedReply">UpdatePriceFeedReply</h3>
         <p></p>
 
@@ -1326,8 +1471,37 @@ used when crafting this transaction. </p></td>
       
 
       
-        <h3 id=".SwapStatus">SwapStatus</h3>
+        <h3 id=".Strategy">Strategy</h3>
         <p>Custom types</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>PLUGGABLE</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>BALANCED</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UNBALANCED</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id=".SwapStatus">SwapStatus</h3>
+        <p></p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -1418,17 +1592,10 @@ This is only used to deposit some LBTC to subsidize blockchain fees.</p></td>
               </tr>
             
               <tr>
-                <td>UpdatePriceFeed</td>
-                <td><a href="#UpdatePriceFeedRequest">.UpdatePriceFeedRequest</a></td>
-                <td><a href="#UpdatePriceFeedReply">.UpdatePriceFeedReply</a></td>
-                <td><p>updates the price feed to be used for the given market</p></td>
-              </tr>
-            
-              <tr>
-                <td>UpdateMarketPrice</td>
-                <td><a href="#UpdateMarketPriceRequest">.UpdateMarketPriceRequest</a></td>
-                <td><a href="#UpdateMarketPriceReply">.UpdateMarketPriceReply</a></td>
-                <td><p>Manually updates the price for the given market</p></td>
+                <td>ListMarket</td>
+                <td><a href="#ListMarketRequest">.ListMarketRequest</a></td>
+                <td><a href="#ListMarketReply">.ListMarketReply</a></td>
+                <td><p>Get extended details for each markets either open, closed or to be funded.</p></td>
               </tr>
             
               <tr>
@@ -1439,6 +1606,27 @@ This is only used to deposit some LBTC to subsidize blockchain fees.</p></td>
 express in basis point. To change the fee on each swap from (current) 0.25%
 to 1% you need to pass down 100 The Market MUST be closed before doing this
 change.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateMarketPrice</td>
+                <td><a href="#UpdateMarketPriceRequest">.UpdateMarketPriceRequest</a></td>
+                <td><a href="#UpdateMarketPriceReply">.UpdateMarketPriceReply</a></td>
+                <td><p>Manually updates the price for the given market</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateMarketStrategy</td>
+                <td><a href="#UpdateMarketStrategyRequest">.UpdateMarketStrategyRequest</a></td>
+                <td><a href="#UpdateMarketStrategyReply">.UpdateMarketStrategyReply</a></td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdatePriceFeed</td>
+                <td><a href="#UpdatePriceFeedRequest">.UpdatePriceFeedRequest</a></td>
+                <td><a href="#UpdatePriceFeedReply">.UpdatePriceFeedReply</a></td>
+                <td><p>updates the price feed to be used for the given market</p></td>
               </tr>
             
               <tr>

@@ -31,15 +31,18 @@ type OperatorClient interface {
 	OpenMarket(ctx context.Context, in *OpenMarketRequest, opts ...grpc.CallOption) (*OpenMarketReply, error)
 	// Makes the given market NOT tradabale
 	CloseMarket(ctx context.Context, in *CloseMarketRequest, opts ...grpc.CallOption) (*CloseMarketReply, error)
-	// updates the price feed to be used for the given market
-	UpdatePriceFeed(ctx context.Context, in *UpdatePriceFeedRequest, opts ...grpc.CallOption) (*UpdatePriceFeedReply, error)
-	// Manually updates the price for the given market
-	UpdateMarketPrice(ctx context.Context, in *UpdateMarketPriceRequest, opts ...grpc.CallOption) (*UpdateMarketPriceReply, error)
+	// Get extended details for each markets either open, closed or to be funded.
+	ListMarket(ctx context.Context, in *ListMarketRequest, opts ...grpc.CallOption) (*ListMarketReply, error)
 	// Changes the Liquidity Provider fee for the given market. I thsould be
 	// express in basis point. To change the fee on each swap from (current) 0.25%
 	// to 1% you need to pass down 100 The Market MUST be closed before doing this
 	// change.
 	UpdateMarketFee(ctx context.Context, in *UpdateMarketFeeRequest, opts ...grpc.CallOption) (*UpdateMarketFeeReply, error)
+	// Manually updates the price for the given market
+	UpdateMarketPrice(ctx context.Context, in *UpdateMarketPriceRequest, opts ...grpc.CallOption) (*UpdateMarketPriceReply, error)
+	UpdateMarketStrategy(ctx context.Context, in *UpdateMarketStrategyRequest, opts ...grpc.CallOption) (*UpdateMarketStrategyReply, error)
+	// updates the price feed to be used for the given market
+	UpdatePriceFeed(ctx context.Context, in *UpdatePriceFeedRequest, opts ...grpc.CallOption) (*UpdatePriceFeedReply, error)
 	// WithdrawMarket allows the operator to withdraw to external wallet funds
 	// from a specific market. The Market MUST be closed before doing this change.
 	WithdrawMarket(ctx context.Context, in *WithdrawMarketRequest, opts ...grpc.CallOption) (*WithdrawMarketReply, error)
@@ -112,9 +115,18 @@ func (c *operatorClient) CloseMarket(ctx context.Context, in *CloseMarketRequest
 	return out, nil
 }
 
-func (c *operatorClient) UpdatePriceFeed(ctx context.Context, in *UpdatePriceFeedRequest, opts ...grpc.CallOption) (*UpdatePriceFeedReply, error) {
-	out := new(UpdatePriceFeedReply)
-	err := c.cc.Invoke(ctx, "/Operator/UpdatePriceFeed", in, out, opts...)
+func (c *operatorClient) ListMarket(ctx context.Context, in *ListMarketRequest, opts ...grpc.CallOption) (*ListMarketReply, error) {
+	out := new(ListMarketReply)
+	err := c.cc.Invoke(ctx, "/Operator/ListMarket", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *operatorClient) UpdateMarketFee(ctx context.Context, in *UpdateMarketFeeRequest, opts ...grpc.CallOption) (*UpdateMarketFeeReply, error) {
+	out := new(UpdateMarketFeeReply)
+	err := c.cc.Invoke(ctx, "/Operator/UpdateMarketFee", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -130,9 +142,18 @@ func (c *operatorClient) UpdateMarketPrice(ctx context.Context, in *UpdateMarket
 	return out, nil
 }
 
-func (c *operatorClient) UpdateMarketFee(ctx context.Context, in *UpdateMarketFeeRequest, opts ...grpc.CallOption) (*UpdateMarketFeeReply, error) {
-	out := new(UpdateMarketFeeReply)
-	err := c.cc.Invoke(ctx, "/Operator/UpdateMarketFee", in, out, opts...)
+func (c *operatorClient) UpdateMarketStrategy(ctx context.Context, in *UpdateMarketStrategyRequest, opts ...grpc.CallOption) (*UpdateMarketStrategyReply, error) {
+	out := new(UpdateMarketStrategyReply)
+	err := c.cc.Invoke(ctx, "/Operator/UpdateMarketStrategy", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *operatorClient) UpdatePriceFeed(ctx context.Context, in *UpdatePriceFeedRequest, opts ...grpc.CallOption) (*UpdatePriceFeedReply, error) {
+	out := new(UpdatePriceFeedReply)
+	err := c.cc.Invoke(ctx, "/Operator/UpdatePriceFeed", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -184,15 +205,18 @@ type OperatorServer interface {
 	OpenMarket(context.Context, *OpenMarketRequest) (*OpenMarketReply, error)
 	// Makes the given market NOT tradabale
 	CloseMarket(context.Context, *CloseMarketRequest) (*CloseMarketReply, error)
-	// updates the price feed to be used for the given market
-	UpdatePriceFeed(context.Context, *UpdatePriceFeedRequest) (*UpdatePriceFeedReply, error)
-	// Manually updates the price for the given market
-	UpdateMarketPrice(context.Context, *UpdateMarketPriceRequest) (*UpdateMarketPriceReply, error)
+	// Get extended details for each markets either open, closed or to be funded.
+	ListMarket(context.Context, *ListMarketRequest) (*ListMarketReply, error)
 	// Changes the Liquidity Provider fee for the given market. I thsould be
 	// express in basis point. To change the fee on each swap from (current) 0.25%
 	// to 1% you need to pass down 100 The Market MUST be closed before doing this
 	// change.
 	UpdateMarketFee(context.Context, *UpdateMarketFeeRequest) (*UpdateMarketFeeReply, error)
+	// Manually updates the price for the given market
+	UpdateMarketPrice(context.Context, *UpdateMarketPriceRequest) (*UpdateMarketPriceReply, error)
+	UpdateMarketStrategy(context.Context, *UpdateMarketStrategyRequest) (*UpdateMarketStrategyReply, error)
+	// updates the price feed to be used for the given market
+	UpdatePriceFeed(context.Context, *UpdatePriceFeedRequest) (*UpdatePriceFeedReply, error)
 	// WithdrawMarket allows the operator to withdraw to external wallet funds
 	// from a specific market. The Market MUST be closed before doing this change.
 	WithdrawMarket(context.Context, *WithdrawMarketRequest) (*WithdrawMarketReply, error)
@@ -226,14 +250,20 @@ func (*UnimplementedOperatorServer) OpenMarket(context.Context, *OpenMarketReque
 func (*UnimplementedOperatorServer) CloseMarket(context.Context, *CloseMarketRequest) (*CloseMarketReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CloseMarket not implemented")
 }
-func (*UnimplementedOperatorServer) UpdatePriceFeed(context.Context, *UpdatePriceFeedRequest) (*UpdatePriceFeedReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdatePriceFeed not implemented")
+func (*UnimplementedOperatorServer) ListMarket(context.Context, *ListMarketRequest) (*ListMarketReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListMarket not implemented")
+}
+func (*UnimplementedOperatorServer) UpdateMarketFee(context.Context, *UpdateMarketFeeRequest) (*UpdateMarketFeeReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMarketFee not implemented")
 }
 func (*UnimplementedOperatorServer) UpdateMarketPrice(context.Context, *UpdateMarketPriceRequest) (*UpdateMarketPriceReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateMarketPrice not implemented")
 }
-func (*UnimplementedOperatorServer) UpdateMarketFee(context.Context, *UpdateMarketFeeRequest) (*UpdateMarketFeeReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateMarketFee not implemented")
+func (*UnimplementedOperatorServer) UpdateMarketStrategy(context.Context, *UpdateMarketStrategyRequest) (*UpdateMarketStrategyReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMarketStrategy not implemented")
+}
+func (*UnimplementedOperatorServer) UpdatePriceFeed(context.Context, *UpdatePriceFeedRequest) (*UpdatePriceFeedReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePriceFeed not implemented")
 }
 func (*UnimplementedOperatorServer) WithdrawMarket(context.Context, *WithdrawMarketRequest) (*WithdrawMarketReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WithdrawMarket not implemented")
@@ -358,20 +388,38 @@ func _Operator_CloseMarket_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Operator_UpdatePriceFeed_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdatePriceFeedRequest)
+func _Operator_ListMarket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListMarketRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OperatorServer).UpdatePriceFeed(ctx, in)
+		return srv.(OperatorServer).ListMarket(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/Operator/UpdatePriceFeed",
+		FullMethod: "/Operator/ListMarket",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OperatorServer).UpdatePriceFeed(ctx, req.(*UpdatePriceFeedRequest))
+		return srv.(OperatorServer).ListMarket(ctx, req.(*ListMarketRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Operator_UpdateMarketFee_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateMarketFeeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OperatorServer).UpdateMarketFee(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Operator/UpdateMarketFee",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OperatorServer).UpdateMarketFee(ctx, req.(*UpdateMarketFeeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -394,20 +442,38 @@ func _Operator_UpdateMarketPrice_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Operator_UpdateMarketFee_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateMarketFeeRequest)
+func _Operator_UpdateMarketStrategy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateMarketStrategyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OperatorServer).UpdateMarketFee(ctx, in)
+		return srv.(OperatorServer).UpdateMarketStrategy(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/Operator/UpdateMarketFee",
+		FullMethod: "/Operator/UpdateMarketStrategy",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OperatorServer).UpdateMarketFee(ctx, req.(*UpdateMarketFeeRequest))
+		return srv.(OperatorServer).UpdateMarketStrategy(ctx, req.(*UpdateMarketStrategyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Operator_UpdatePriceFeed_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatePriceFeedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OperatorServer).UpdatePriceFeed(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Operator/UpdatePriceFeed",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OperatorServer).UpdatePriceFeed(ctx, req.(*UpdatePriceFeedRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -495,16 +561,24 @@ var _Operator_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Operator_CloseMarket_Handler,
 		},
 		{
-			MethodName: "UpdatePriceFeed",
-			Handler:    _Operator_UpdatePriceFeed_Handler,
+			MethodName: "ListMarket",
+			Handler:    _Operator_ListMarket_Handler,
+		},
+		{
+			MethodName: "UpdateMarketFee",
+			Handler:    _Operator_UpdateMarketFee_Handler,
 		},
 		{
 			MethodName: "UpdateMarketPrice",
 			Handler:    _Operator_UpdateMarketPrice_Handler,
 		},
 		{
-			MethodName: "UpdateMarketFee",
-			Handler:    _Operator_UpdateMarketFee_Handler,
+			MethodName: "UpdateMarketStrategy",
+			Handler:    _Operator_UpdateMarketStrategy_Handler,
+		},
+		{
+			MethodName: "UpdatePriceFeed",
+			Handler:    _Operator_UpdatePriceFeed_Handler,
 		},
 		{
 			MethodName: "WithdrawMarket",

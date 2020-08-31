@@ -26,6 +26,8 @@ import {
   DepositMarketRequest,
   ListDepositMarketReply,
   ListDepositMarketRequest,
+  ListMarketReply,
+  ListMarketRequest,
   ListSwapsReply,
   ListSwapsRequest,
   OpenMarketReply,
@@ -36,6 +38,8 @@ import {
   UpdateMarketFeeRequest,
   UpdateMarketPriceReply,
   UpdateMarketPriceRequest,
+  UpdateMarketStrategyReply,
+  UpdateMarketStrategyRequest,
   UpdatePriceFeedReply,
   UpdatePriceFeedRequest,
   WithdrawMarketReply,
@@ -294,43 +298,82 @@ export class OperatorClient {
     this.methodInfoCloseMarket);
   }
 
-  methodInfoUpdatePriceFeed = new grpcWeb.AbstractClientBase.MethodInfo(
-    UpdatePriceFeedReply,
-    (request: UpdatePriceFeedRequest) => {
+  methodInfoListMarket = new grpcWeb.AbstractClientBase.MethodInfo(
+    ListMarketReply,
+    (request: ListMarketRequest) => {
       return request.serializeBinary();
     },
-    UpdatePriceFeedReply.deserializeBinary
+    ListMarketReply.deserializeBinary
   );
 
-  updatePriceFeed(
-    request: UpdatePriceFeedRequest,
-    metadata: grpcWeb.Metadata | null): Promise<UpdatePriceFeedReply>;
+  listMarket(
+    request: ListMarketRequest,
+    metadata: grpcWeb.Metadata | null): Promise<ListMarketReply>;
 
-  updatePriceFeed(
-    request: UpdatePriceFeedRequest,
+  listMarket(
+    request: ListMarketRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
-               response: UpdatePriceFeedReply) => void): grpcWeb.ClientReadableStream<UpdatePriceFeedReply>;
+               response: ListMarketReply) => void): grpcWeb.ClientReadableStream<ListMarketReply>;
 
-  updatePriceFeed(
-    request: UpdatePriceFeedRequest,
+  listMarket(
+    request: ListMarketRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.Error,
-               response: UpdatePriceFeedReply) => void) {
+               response: ListMarketReply) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
-        new URL('/Operator/UpdatePriceFeed', this.hostname_).toString(),
+        new URL('/Operator/ListMarket', this.hostname_).toString(),
         request,
         metadata || {},
-        this.methodInfoUpdatePriceFeed,
+        this.methodInfoListMarket,
         callback);
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/Operator/UpdatePriceFeed',
+      '/Operator/ListMarket',
     request,
     metadata || {},
-    this.methodInfoUpdatePriceFeed);
+    this.methodInfoListMarket);
+  }
+
+  methodInfoUpdateMarketFee = new grpcWeb.AbstractClientBase.MethodInfo(
+    UpdateMarketFeeReply,
+    (request: UpdateMarketFeeRequest) => {
+      return request.serializeBinary();
+    },
+    UpdateMarketFeeReply.deserializeBinary
+  );
+
+  updateMarketFee(
+    request: UpdateMarketFeeRequest,
+    metadata: grpcWeb.Metadata | null): Promise<UpdateMarketFeeReply>;
+
+  updateMarketFee(
+    request: UpdateMarketFeeRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: UpdateMarketFeeReply) => void): grpcWeb.ClientReadableStream<UpdateMarketFeeReply>;
+
+  updateMarketFee(
+    request: UpdateMarketFeeRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: UpdateMarketFeeReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        new URL('/Operator/UpdateMarketFee', this.hostname_).toString(),
+        request,
+        metadata || {},
+        this.methodInfoUpdateMarketFee,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/UpdateMarketFee',
+    request,
+    metadata || {},
+    this.methodInfoUpdateMarketFee);
   }
 
   methodInfoUpdateMarketPrice = new grpcWeb.AbstractClientBase.MethodInfo(
@@ -372,43 +415,82 @@ export class OperatorClient {
     this.methodInfoUpdateMarketPrice);
   }
 
-  methodInfoUpdateMarketFee = new grpcWeb.AbstractClientBase.MethodInfo(
-    UpdateMarketFeeReply,
-    (request: UpdateMarketFeeRequest) => {
+  methodInfoUpdateMarketStrategy = new grpcWeb.AbstractClientBase.MethodInfo(
+    UpdateMarketStrategyReply,
+    (request: UpdateMarketStrategyRequest) => {
       return request.serializeBinary();
     },
-    UpdateMarketFeeReply.deserializeBinary
+    UpdateMarketStrategyReply.deserializeBinary
   );
 
-  updateMarketFee(
-    request: UpdateMarketFeeRequest,
-    metadata: grpcWeb.Metadata | null): Promise<UpdateMarketFeeReply>;
+  updateMarketStrategy(
+    request: UpdateMarketStrategyRequest,
+    metadata: grpcWeb.Metadata | null): Promise<UpdateMarketStrategyReply>;
 
-  updateMarketFee(
-    request: UpdateMarketFeeRequest,
+  updateMarketStrategy(
+    request: UpdateMarketStrategyRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
-               response: UpdateMarketFeeReply) => void): grpcWeb.ClientReadableStream<UpdateMarketFeeReply>;
+               response: UpdateMarketStrategyReply) => void): grpcWeb.ClientReadableStream<UpdateMarketStrategyReply>;
 
-  updateMarketFee(
-    request: UpdateMarketFeeRequest,
+  updateMarketStrategy(
+    request: UpdateMarketStrategyRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.Error,
-               response: UpdateMarketFeeReply) => void) {
+               response: UpdateMarketStrategyReply) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
-        new URL('/Operator/UpdateMarketFee', this.hostname_).toString(),
+        new URL('/Operator/UpdateMarketStrategy', this.hostname_).toString(),
         request,
         metadata || {},
-        this.methodInfoUpdateMarketFee,
+        this.methodInfoUpdateMarketStrategy,
         callback);
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/Operator/UpdateMarketFee',
+      '/Operator/UpdateMarketStrategy',
     request,
     metadata || {},
-    this.methodInfoUpdateMarketFee);
+    this.methodInfoUpdateMarketStrategy);
+  }
+
+  methodInfoUpdatePriceFeed = new grpcWeb.AbstractClientBase.MethodInfo(
+    UpdatePriceFeedReply,
+    (request: UpdatePriceFeedRequest) => {
+      return request.serializeBinary();
+    },
+    UpdatePriceFeedReply.deserializeBinary
+  );
+
+  updatePriceFeed(
+    request: UpdatePriceFeedRequest,
+    metadata: grpcWeb.Metadata | null): Promise<UpdatePriceFeedReply>;
+
+  updatePriceFeed(
+    request: UpdatePriceFeedRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: UpdatePriceFeedReply) => void): grpcWeb.ClientReadableStream<UpdatePriceFeedReply>;
+
+  updatePriceFeed(
+    request: UpdatePriceFeedRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: UpdatePriceFeedReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        new URL('/Operator/UpdatePriceFeed', this.hostname_).toString(),
+        request,
+        metadata || {},
+        this.methodInfoUpdatePriceFeed,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/UpdatePriceFeed',
+    request,
+    metadata || {},
+    this.methodInfoUpdatePriceFeed);
   }
 
   methodInfoWithdrawMarket = new grpcWeb.AbstractClientBase.MethodInfo(

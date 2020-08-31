@@ -15,9 +15,11 @@ interface IOperatorService extends grpc.ServiceDefinition<grpc.UntypedServiceImp
     balanceFeeAccount: IOperatorService_IBalanceFeeAccount;
     openMarket: IOperatorService_IOpenMarket;
     closeMarket: IOperatorService_ICloseMarket;
-    updatePriceFeed: IOperatorService_IUpdatePriceFeed;
-    updateMarketPrice: IOperatorService_IUpdateMarketPrice;
+    listMarket: IOperatorService_IListMarket;
     updateMarketFee: IOperatorService_IUpdateMarketFee;
+    updateMarketPrice: IOperatorService_IUpdateMarketPrice;
+    updateMarketStrategy: IOperatorService_IUpdateMarketStrategy;
+    updatePriceFeed: IOperatorService_IUpdatePriceFeed;
     withdrawMarket: IOperatorService_IWithdrawMarket;
     listSwaps: IOperatorService_IListSwaps;
     reportMarketFee: IOperatorService_IReportMarketFee;
@@ -77,14 +79,23 @@ interface IOperatorService_ICloseMarket extends grpc.MethodDefinition<operator_p
     responseSerialize: grpc.serialize<operator_pb.CloseMarketReply>;
     responseDeserialize: grpc.deserialize<operator_pb.CloseMarketReply>;
 }
-interface IOperatorService_IUpdatePriceFeed extends grpc.MethodDefinition<operator_pb.UpdatePriceFeedRequest, operator_pb.UpdatePriceFeedReply> {
-    path: string; // "/.Operator/UpdatePriceFeed"
+interface IOperatorService_IListMarket extends grpc.MethodDefinition<operator_pb.ListMarketRequest, operator_pb.ListMarketReply> {
+    path: string; // "/.Operator/ListMarket"
     requestStream: false;
     responseStream: false;
-    requestSerialize: grpc.serialize<operator_pb.UpdatePriceFeedRequest>;
-    requestDeserialize: grpc.deserialize<operator_pb.UpdatePriceFeedRequest>;
-    responseSerialize: grpc.serialize<operator_pb.UpdatePriceFeedReply>;
-    responseDeserialize: grpc.deserialize<operator_pb.UpdatePriceFeedReply>;
+    requestSerialize: grpc.serialize<operator_pb.ListMarketRequest>;
+    requestDeserialize: grpc.deserialize<operator_pb.ListMarketRequest>;
+    responseSerialize: grpc.serialize<operator_pb.ListMarketReply>;
+    responseDeserialize: grpc.deserialize<operator_pb.ListMarketReply>;
+}
+interface IOperatorService_IUpdateMarketFee extends grpc.MethodDefinition<operator_pb.UpdateMarketFeeRequest, operator_pb.UpdateMarketFeeReply> {
+    path: string; // "/.Operator/UpdateMarketFee"
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<operator_pb.UpdateMarketFeeRequest>;
+    requestDeserialize: grpc.deserialize<operator_pb.UpdateMarketFeeRequest>;
+    responseSerialize: grpc.serialize<operator_pb.UpdateMarketFeeReply>;
+    responseDeserialize: grpc.deserialize<operator_pb.UpdateMarketFeeReply>;
 }
 interface IOperatorService_IUpdateMarketPrice extends grpc.MethodDefinition<operator_pb.UpdateMarketPriceRequest, operator_pb.UpdateMarketPriceReply> {
     path: string; // "/.Operator/UpdateMarketPrice"
@@ -95,14 +106,23 @@ interface IOperatorService_IUpdateMarketPrice extends grpc.MethodDefinition<oper
     responseSerialize: grpc.serialize<operator_pb.UpdateMarketPriceReply>;
     responseDeserialize: grpc.deserialize<operator_pb.UpdateMarketPriceReply>;
 }
-interface IOperatorService_IUpdateMarketFee extends grpc.MethodDefinition<operator_pb.UpdateMarketFeeRequest, operator_pb.UpdateMarketFeeReply> {
-    path: string; // "/.Operator/UpdateMarketFee"
+interface IOperatorService_IUpdateMarketStrategy extends grpc.MethodDefinition<operator_pb.UpdateMarketStrategyRequest, operator_pb.UpdateMarketStrategyReply> {
+    path: string; // "/.Operator/UpdateMarketStrategy"
     requestStream: false;
     responseStream: false;
-    requestSerialize: grpc.serialize<operator_pb.UpdateMarketFeeRequest>;
-    requestDeserialize: grpc.deserialize<operator_pb.UpdateMarketFeeRequest>;
-    responseSerialize: grpc.serialize<operator_pb.UpdateMarketFeeReply>;
-    responseDeserialize: grpc.deserialize<operator_pb.UpdateMarketFeeReply>;
+    requestSerialize: grpc.serialize<operator_pb.UpdateMarketStrategyRequest>;
+    requestDeserialize: grpc.deserialize<operator_pb.UpdateMarketStrategyRequest>;
+    responseSerialize: grpc.serialize<operator_pb.UpdateMarketStrategyReply>;
+    responseDeserialize: grpc.deserialize<operator_pb.UpdateMarketStrategyReply>;
+}
+interface IOperatorService_IUpdatePriceFeed extends grpc.MethodDefinition<operator_pb.UpdatePriceFeedRequest, operator_pb.UpdatePriceFeedReply> {
+    path: string; // "/.Operator/UpdatePriceFeed"
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<operator_pb.UpdatePriceFeedRequest>;
+    requestDeserialize: grpc.deserialize<operator_pb.UpdatePriceFeedRequest>;
+    responseSerialize: grpc.serialize<operator_pb.UpdatePriceFeedReply>;
+    responseDeserialize: grpc.deserialize<operator_pb.UpdatePriceFeedReply>;
 }
 interface IOperatorService_IWithdrawMarket extends grpc.MethodDefinition<operator_pb.WithdrawMarketRequest, operator_pb.WithdrawMarketReply> {
     path: string; // "/.Operator/WithdrawMarket"
@@ -141,9 +161,11 @@ export interface IOperatorServer {
     balanceFeeAccount: grpc.handleUnaryCall<operator_pb.BalanceFeeAccountRequest, operator_pb.BalanceFeeAccountReply>;
     openMarket: grpc.handleUnaryCall<operator_pb.OpenMarketRequest, operator_pb.OpenMarketReply>;
     closeMarket: grpc.handleUnaryCall<operator_pb.CloseMarketRequest, operator_pb.CloseMarketReply>;
-    updatePriceFeed: grpc.handleUnaryCall<operator_pb.UpdatePriceFeedRequest, operator_pb.UpdatePriceFeedReply>;
-    updateMarketPrice: grpc.handleUnaryCall<operator_pb.UpdateMarketPriceRequest, operator_pb.UpdateMarketPriceReply>;
+    listMarket: grpc.handleUnaryCall<operator_pb.ListMarketRequest, operator_pb.ListMarketReply>;
     updateMarketFee: grpc.handleUnaryCall<operator_pb.UpdateMarketFeeRequest, operator_pb.UpdateMarketFeeReply>;
+    updateMarketPrice: grpc.handleUnaryCall<operator_pb.UpdateMarketPriceRequest, operator_pb.UpdateMarketPriceReply>;
+    updateMarketStrategy: grpc.handleUnaryCall<operator_pb.UpdateMarketStrategyRequest, operator_pb.UpdateMarketStrategyReply>;
+    updatePriceFeed: grpc.handleUnaryCall<operator_pb.UpdatePriceFeedRequest, operator_pb.UpdatePriceFeedReply>;
     withdrawMarket: grpc.handleUnaryCall<operator_pb.WithdrawMarketRequest, operator_pb.WithdrawMarketReply>;
     listSwaps: grpc.handleUnaryCall<operator_pb.ListSwapsRequest, operator_pb.ListSwapsReply>;
     reportMarketFee: grpc.handleUnaryCall<operator_pb.ReportMarketFeeRequest, operator_pb.ReportMarketFeeReply>;
@@ -168,15 +190,21 @@ export interface IOperatorClient {
     closeMarket(request: operator_pb.CloseMarketRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.CloseMarketReply) => void): grpc.ClientUnaryCall;
     closeMarket(request: operator_pb.CloseMarketRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.CloseMarketReply) => void): grpc.ClientUnaryCall;
     closeMarket(request: operator_pb.CloseMarketRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.CloseMarketReply) => void): grpc.ClientUnaryCall;
-    updatePriceFeed(request: operator_pb.UpdatePriceFeedRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdatePriceFeedReply) => void): grpc.ClientUnaryCall;
-    updatePriceFeed(request: operator_pb.UpdatePriceFeedRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdatePriceFeedReply) => void): grpc.ClientUnaryCall;
-    updatePriceFeed(request: operator_pb.UpdatePriceFeedRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdatePriceFeedReply) => void): grpc.ClientUnaryCall;
-    updateMarketPrice(request: operator_pb.UpdateMarketPriceRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketPriceReply) => void): grpc.ClientUnaryCall;
-    updateMarketPrice(request: operator_pb.UpdateMarketPriceRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketPriceReply) => void): grpc.ClientUnaryCall;
-    updateMarketPrice(request: operator_pb.UpdateMarketPriceRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketPriceReply) => void): grpc.ClientUnaryCall;
+    listMarket(request: operator_pb.ListMarketRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.ListMarketReply) => void): grpc.ClientUnaryCall;
+    listMarket(request: operator_pb.ListMarketRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.ListMarketReply) => void): grpc.ClientUnaryCall;
+    listMarket(request: operator_pb.ListMarketRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.ListMarketReply) => void): grpc.ClientUnaryCall;
     updateMarketFee(request: operator_pb.UpdateMarketFeeRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketFeeReply) => void): grpc.ClientUnaryCall;
     updateMarketFee(request: operator_pb.UpdateMarketFeeRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketFeeReply) => void): grpc.ClientUnaryCall;
     updateMarketFee(request: operator_pb.UpdateMarketFeeRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketFeeReply) => void): grpc.ClientUnaryCall;
+    updateMarketPrice(request: operator_pb.UpdateMarketPriceRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketPriceReply) => void): grpc.ClientUnaryCall;
+    updateMarketPrice(request: operator_pb.UpdateMarketPriceRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketPriceReply) => void): grpc.ClientUnaryCall;
+    updateMarketPrice(request: operator_pb.UpdateMarketPriceRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketPriceReply) => void): grpc.ClientUnaryCall;
+    updateMarketStrategy(request: operator_pb.UpdateMarketStrategyRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketStrategyReply) => void): grpc.ClientUnaryCall;
+    updateMarketStrategy(request: operator_pb.UpdateMarketStrategyRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketStrategyReply) => void): grpc.ClientUnaryCall;
+    updateMarketStrategy(request: operator_pb.UpdateMarketStrategyRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketStrategyReply) => void): grpc.ClientUnaryCall;
+    updatePriceFeed(request: operator_pb.UpdatePriceFeedRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdatePriceFeedReply) => void): grpc.ClientUnaryCall;
+    updatePriceFeed(request: operator_pb.UpdatePriceFeedRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdatePriceFeedReply) => void): grpc.ClientUnaryCall;
+    updatePriceFeed(request: operator_pb.UpdatePriceFeedRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdatePriceFeedReply) => void): grpc.ClientUnaryCall;
     withdrawMarket(request: operator_pb.WithdrawMarketRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.WithdrawMarketReply) => void): grpc.ClientUnaryCall;
     withdrawMarket(request: operator_pb.WithdrawMarketRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.WithdrawMarketReply) => void): grpc.ClientUnaryCall;
     withdrawMarket(request: operator_pb.WithdrawMarketRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.WithdrawMarketReply) => void): grpc.ClientUnaryCall;
@@ -208,15 +236,21 @@ export class OperatorClient extends grpc.Client implements IOperatorClient {
     public closeMarket(request: operator_pb.CloseMarketRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.CloseMarketReply) => void): grpc.ClientUnaryCall;
     public closeMarket(request: operator_pb.CloseMarketRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.CloseMarketReply) => void): grpc.ClientUnaryCall;
     public closeMarket(request: operator_pb.CloseMarketRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.CloseMarketReply) => void): grpc.ClientUnaryCall;
-    public updatePriceFeed(request: operator_pb.UpdatePriceFeedRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdatePriceFeedReply) => void): grpc.ClientUnaryCall;
-    public updatePriceFeed(request: operator_pb.UpdatePriceFeedRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdatePriceFeedReply) => void): grpc.ClientUnaryCall;
-    public updatePriceFeed(request: operator_pb.UpdatePriceFeedRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdatePriceFeedReply) => void): grpc.ClientUnaryCall;
-    public updateMarketPrice(request: operator_pb.UpdateMarketPriceRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketPriceReply) => void): grpc.ClientUnaryCall;
-    public updateMarketPrice(request: operator_pb.UpdateMarketPriceRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketPriceReply) => void): grpc.ClientUnaryCall;
-    public updateMarketPrice(request: operator_pb.UpdateMarketPriceRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketPriceReply) => void): grpc.ClientUnaryCall;
+    public listMarket(request: operator_pb.ListMarketRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.ListMarketReply) => void): grpc.ClientUnaryCall;
+    public listMarket(request: operator_pb.ListMarketRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.ListMarketReply) => void): grpc.ClientUnaryCall;
+    public listMarket(request: operator_pb.ListMarketRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.ListMarketReply) => void): grpc.ClientUnaryCall;
     public updateMarketFee(request: operator_pb.UpdateMarketFeeRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketFeeReply) => void): grpc.ClientUnaryCall;
     public updateMarketFee(request: operator_pb.UpdateMarketFeeRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketFeeReply) => void): grpc.ClientUnaryCall;
     public updateMarketFee(request: operator_pb.UpdateMarketFeeRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketFeeReply) => void): grpc.ClientUnaryCall;
+    public updateMarketPrice(request: operator_pb.UpdateMarketPriceRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketPriceReply) => void): grpc.ClientUnaryCall;
+    public updateMarketPrice(request: operator_pb.UpdateMarketPriceRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketPriceReply) => void): grpc.ClientUnaryCall;
+    public updateMarketPrice(request: operator_pb.UpdateMarketPriceRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketPriceReply) => void): grpc.ClientUnaryCall;
+    public updateMarketStrategy(request: operator_pb.UpdateMarketStrategyRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketStrategyReply) => void): grpc.ClientUnaryCall;
+    public updateMarketStrategy(request: operator_pb.UpdateMarketStrategyRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketStrategyReply) => void): grpc.ClientUnaryCall;
+    public updateMarketStrategy(request: operator_pb.UpdateMarketStrategyRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdateMarketStrategyReply) => void): grpc.ClientUnaryCall;
+    public updatePriceFeed(request: operator_pb.UpdatePriceFeedRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdatePriceFeedReply) => void): grpc.ClientUnaryCall;
+    public updatePriceFeed(request: operator_pb.UpdatePriceFeedRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdatePriceFeedReply) => void): grpc.ClientUnaryCall;
+    public updatePriceFeed(request: operator_pb.UpdatePriceFeedRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.UpdatePriceFeedReply) => void): grpc.ClientUnaryCall;
     public withdrawMarket(request: operator_pb.WithdrawMarketRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.WithdrawMarketReply) => void): grpc.ClientUnaryCall;
     public withdrawMarket(request: operator_pb.WithdrawMarketRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.WithdrawMarketReply) => void): grpc.ClientUnaryCall;
     public withdrawMarket(request: operator_pb.WithdrawMarketRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.WithdrawMarketReply) => void): grpc.ClientUnaryCall;

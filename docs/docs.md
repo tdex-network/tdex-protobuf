@@ -21,8 +21,11 @@
     - [DepositMarketRequest](#.DepositMarketRequest)
     - [ListDepositMarketReply](#.ListDepositMarketReply)
     - [ListDepositMarketRequest](#.ListDepositMarketRequest)
+    - [ListMarketReply](#.ListMarketReply)
+    - [ListMarketRequest](#.ListMarketRequest)
     - [ListSwapsReply](#.ListSwapsReply)
     - [ListSwapsRequest](#.ListSwapsRequest)
+    - [MarketInfo](#.MarketInfo)
     - [OpenMarketReply](#.OpenMarketReply)
     - [OpenMarketRequest](#.OpenMarketRequest)
     - [ReportMarketFeeReply](#.ReportMarketFeeReply)
@@ -33,11 +36,14 @@
     - [UpdateMarketFeeRequest](#.UpdateMarketFeeRequest)
     - [UpdateMarketPriceReply](#.UpdateMarketPriceReply)
     - [UpdateMarketPriceRequest](#.UpdateMarketPriceRequest)
+    - [UpdateMarketStrategyReply](#.UpdateMarketStrategyReply)
+    - [UpdateMarketStrategyRequest](#.UpdateMarketStrategyRequest)
     - [UpdatePriceFeedReply](#.UpdatePriceFeedReply)
     - [UpdatePriceFeedRequest](#.UpdatePriceFeedRequest)
     - [WithdrawMarketReply](#.WithdrawMarketReply)
     - [WithdrawMarketRequest](#.WithdrawMarketRequest)
   
+    - [Strategy](#.Strategy)
     - [SwapStatus](#.SwapStatus)
   
     - [Operator](#.Operator)
@@ -319,6 +325,31 @@ BOTD#2
 
 
 
+<a name=".ListMarketReply"></a>
+
+### ListMarketReply
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| markets | [MarketInfo](#MarketInfo) | repeated |  |
+
+
+
+
+
+
+<a name=".ListMarketRequest"></a>
+
+### ListMarketRequest
+
+
+
+
+
+
+
 <a name=".ListSwapsReply"></a>
 
 ### ListSwapsReply
@@ -349,6 +380,24 @@ BOTD#2
 
 
 
+<a name=".MarketInfo"></a>
+
+### MarketInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| market | [Market](#Market) |  |  |
+| fee | [Fee](#Fee) |  |  |
+| tradable | [bool](#bool) |  |  |
+| strategy | [Strategy](#Strategy) |  |  |
+
+
+
+
+
+
 <a name=".OpenMarketReply"></a>
 
 ### OpenMarketReply
@@ -368,6 +417,7 @@ BOTD#2
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | market | [Market](#Market) |  | Market to be made tradable |
+| strategy | [Strategy](#Strategy) |  | Market making strategy to use |
 
 
 
@@ -500,6 +550,32 @@ BOTD#2
 
 
 
+<a name=".UpdateMarketStrategyReply"></a>
+
+### UpdateMarketStrategyReply
+
+
+
+
+
+
+
+<a name=".UpdateMarketStrategyRequest"></a>
+
+### UpdateMarketStrategyRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| market | [Market](#Market) |  | Market to chnage the strategy |
+| strategy | [Strategy](#Strategy) |  | Market making strategy to use |
+
+
+
+
+
+
 <a name=".UpdatePriceFeedReply"></a>
 
 ### UpdatePriceFeedReply
@@ -556,10 +632,23 @@ BOTD#2
  
 
 
+<a name=".Strategy"></a>
+
+### Strategy
+Custom types
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| PLUGGABLE | 0 |  |
+| BALANCED | 1 |  |
+| UNBALANCED | 2 |  |
+
+
+
 <a name=".SwapStatus"></a>
 
 ### SwapStatus
-Custom types
+
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -587,9 +676,11 @@ Service for operators to configure and manage a TDEX daemon
 | BalanceFeeAccount | [.BalanceFeeAccountRequest](#BalanceFeeAccountRequest) | [.BalanceFeeAccountReply](#BalanceFeeAccountReply) | Returns the aggregated balance of LBTC held in the fee account. |
 | OpenMarket | [.OpenMarketRequest](#OpenMarketRequest) | [.OpenMarketReply](#OpenMarketReply) | Makes the given market tradable |
 | CloseMarket | [.CloseMarketRequest](#CloseMarketRequest) | [.CloseMarketReply](#CloseMarketReply) | Makes the given market NOT tradabale |
-| UpdatePriceFeed | [.UpdatePriceFeedRequest](#UpdatePriceFeedRequest) | [.UpdatePriceFeedReply](#UpdatePriceFeedReply) | updates the price feed to be used for the given market |
-| UpdateMarketPrice | [.UpdateMarketPriceRequest](#UpdateMarketPriceRequest) | [.UpdateMarketPriceReply](#UpdateMarketPriceReply) | Manually updates the price for the given market |
+| ListMarket | [.ListMarketRequest](#ListMarketRequest) | [.ListMarketReply](#ListMarketReply) | Get extended details for each markets either open, closed or to be funded. |
 | UpdateMarketFee | [.UpdateMarketFeeRequest](#UpdateMarketFeeRequest) | [.UpdateMarketFeeReply](#UpdateMarketFeeReply) | Changes the Liquidity Provider fee for the given market. I thsould be express in basis point. To change the fee on each swap from (current) 0.25% to 1% you need to pass down 100 The Market MUST be closed before doing this change. |
+| UpdateMarketPrice | [.UpdateMarketPriceRequest](#UpdateMarketPriceRequest) | [.UpdateMarketPriceReply](#UpdateMarketPriceReply) | Manually updates the price for the given market |
+| UpdateMarketStrategy | [.UpdateMarketStrategyRequest](#UpdateMarketStrategyRequest) | [.UpdateMarketStrategyReply](#UpdateMarketStrategyReply) |  |
+| UpdatePriceFeed | [.UpdatePriceFeedRequest](#UpdatePriceFeedRequest) | [.UpdatePriceFeedReply](#UpdatePriceFeedReply) | updates the price feed to be used for the given market |
 | WithdrawMarket | [.WithdrawMarketRequest](#WithdrawMarketRequest) | [.WithdrawMarketReply](#WithdrawMarketReply) | WithdrawMarket allows the operator to withdraw to external wallet funds from a specific market. The Market MUST be closed before doing this change. |
 | ListSwaps | [.ListSwapsRequest](#ListSwapsRequest) | [.ListSwapsReply](#ListSwapsReply) | Returs all the swaps processed by the daemon (both attempted and completed) |
 | ReportMarketFee | [.ReportMarketFeeRequest](#ReportMarketFeeRequest) | [.ReportMarketFeeReply](#ReportMarketFeeReply) | Displays a report on how much the given market is collecting in Liquidity Provider fees |

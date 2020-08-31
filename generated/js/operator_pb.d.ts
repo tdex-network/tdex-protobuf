@@ -144,11 +144,48 @@ export namespace BalanceFeeAccountReply {
   }
 }
 
+export class ListMarketRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListMarketRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: ListMarketRequest): ListMarketRequest.AsObject;
+  static serializeBinaryToWriter(message: ListMarketRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListMarketRequest;
+  static deserializeBinaryFromReader(message: ListMarketRequest, reader: jspb.BinaryReader): ListMarketRequest;
+}
+
+export namespace ListMarketRequest {
+  export type AsObject = {
+  }
+}
+
+export class ListMarketReply extends jspb.Message {
+  getMarketsList(): Array<MarketInfo>;
+  setMarketsList(value: Array<MarketInfo>): ListMarketReply;
+  clearMarketsList(): ListMarketReply;
+  addMarkets(value?: MarketInfo, index?: number): MarketInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ListMarketReply.AsObject;
+  static toObject(includeInstance: boolean, msg: ListMarketReply): ListMarketReply.AsObject;
+  static serializeBinaryToWriter(message: ListMarketReply, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ListMarketReply;
+  static deserializeBinaryFromReader(message: ListMarketReply, reader: jspb.BinaryReader): ListMarketReply;
+}
+
+export namespace ListMarketReply {
+  export type AsObject = {
+    marketsList: Array<MarketInfo.AsObject>,
+  }
+}
+
 export class OpenMarketRequest extends jspb.Message {
   getMarket(): types_pb.Market | undefined;
   setMarket(value?: types_pb.Market): OpenMarketRequest;
   hasMarket(): boolean;
   clearMarket(): OpenMarketRequest;
+
+  getStrategy(): Strategy;
+  setStrategy(value: Strategy): OpenMarketRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): OpenMarketRequest.AsObject;
@@ -161,6 +198,7 @@ export class OpenMarketRequest extends jspb.Message {
 export namespace OpenMarketRequest {
   export type AsObject = {
     market?: types_pb.Market.AsObject,
+    strategy: Strategy,
   }
 }
 
@@ -208,6 +246,44 @@ export class CloseMarketReply extends jspb.Message {
 }
 
 export namespace CloseMarketReply {
+  export type AsObject = {
+  }
+}
+
+export class UpdateMarketStrategyRequest extends jspb.Message {
+  getMarket(): types_pb.Market | undefined;
+  setMarket(value?: types_pb.Market): UpdateMarketStrategyRequest;
+  hasMarket(): boolean;
+  clearMarket(): UpdateMarketStrategyRequest;
+
+  getStrategy(): Strategy;
+  setStrategy(value: Strategy): UpdateMarketStrategyRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateMarketStrategyRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateMarketStrategyRequest): UpdateMarketStrategyRequest.AsObject;
+  static serializeBinaryToWriter(message: UpdateMarketStrategyRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateMarketStrategyRequest;
+  static deserializeBinaryFromReader(message: UpdateMarketStrategyRequest, reader: jspb.BinaryReader): UpdateMarketStrategyRequest;
+}
+
+export namespace UpdateMarketStrategyRequest {
+  export type AsObject = {
+    market?: types_pb.Market.AsObject,
+    strategy: Strategy,
+  }
+}
+
+export class UpdateMarketStrategyReply extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UpdateMarketStrategyReply.AsObject;
+  static toObject(includeInstance: boolean, msg: UpdateMarketStrategyReply): UpdateMarketStrategyReply.AsObject;
+  static serializeBinaryToWriter(message: UpdateMarketStrategyReply, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UpdateMarketStrategyReply;
+  static deserializeBinaryFromReader(message: UpdateMarketStrategyReply, reader: jspb.BinaryReader): UpdateMarketStrategyReply;
+}
+
+export namespace UpdateMarketStrategyReply {
   export type AsObject = {
   }
 }
@@ -462,6 +538,40 @@ export namespace ReportMarketFeeReply {
   }
 }
 
+export class MarketInfo extends jspb.Message {
+  getMarket(): types_pb.Market | undefined;
+  setMarket(value?: types_pb.Market): MarketInfo;
+  hasMarket(): boolean;
+  clearMarket(): MarketInfo;
+
+  getFee(): types_pb.Fee | undefined;
+  setFee(value?: types_pb.Fee): MarketInfo;
+  hasFee(): boolean;
+  clearFee(): MarketInfo;
+
+  getTradable(): boolean;
+  setTradable(value: boolean): MarketInfo;
+
+  getStrategy(): Strategy;
+  setStrategy(value: Strategy): MarketInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): MarketInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: MarketInfo): MarketInfo.AsObject;
+  static serializeBinaryToWriter(message: MarketInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): MarketInfo;
+  static deserializeBinaryFromReader(message: MarketInfo, reader: jspb.BinaryReader): MarketInfo;
+}
+
+export namespace MarketInfo {
+  export type AsObject = {
+    market?: types_pb.Market.AsObject,
+    fee?: types_pb.Fee.AsObject,
+    tradable: boolean,
+    strategy: Strategy,
+  }
+}
+
 export class SwapInfo extends jspb.Message {
   getStatus(): SwapStatus;
   setStatus(value: SwapStatus): SwapInfo;
@@ -514,6 +624,11 @@ export namespace SwapInfo {
   }
 }
 
+export enum Strategy { 
+  PLUGGABLE = 0,
+  BALANCED = 1,
+  UNBALANCED = 2,
+}
 export enum SwapStatus { 
   UNDEFINED = 0,
   REQUEST = 1,
