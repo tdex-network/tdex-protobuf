@@ -294,6 +294,14 @@
                 </li>
               
                 <li>
+                  <a href="#.UpdatePriceFeedReply"><span class="badge">M</span>UpdatePriceFeedReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.UpdatePriceFeedRequest"><span class="badge">M</span>UpdatePriceFeedRequest</a>
+                </li>
+              
+                <li>
                   <a href="#.WithdrawMarketReply"><span class="badge">M</span>WithdrawMarketReply</a>
                 </li>
               
@@ -404,10 +412,6 @@
                 </li>
               
               
-                <li>
-                  <a href="#.TradeProposeRequest.Type"><span class="badge">E</span>TradeProposeRequest.Type</a>
-                </li>
-              
               
               
                 <li>
@@ -450,6 +454,10 @@
                   <a href="#.PriceWithFee"><span class="badge">M</span>PriceWithFee</a>
                 </li>
               
+              
+                <li>
+                  <a href="#.TradeType"><span class="badge">E</span>TradeType</a>
+                </li>
               
               
               
@@ -1225,6 +1233,20 @@ entry for each asset and the amount should be the aggregated total. </p></td>
 
         
       
+        <h3 id=".UpdatePriceFeedReply">UpdatePriceFeedReply</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id=".UpdatePriceFeedRequest">UpdatePriceFeedRequest</h3>
+        <p></p>
+
+        
+
+        
+      
         <h3 id=".WithdrawMarketReply">WithdrawMarketReply</h3>
         <p></p>
 
@@ -1393,6 +1415,13 @@ This is only used to deposit some LBTC to subsidize blockchain fees.</p></td>
                 <td><a href="#CloseMarketRequest">.CloseMarketRequest</a></td>
                 <td><a href="#CloseMarketReply">.CloseMarketReply</a></td>
                 <td><p>Makes the given market NOT tradabale</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdatePriceFeed</td>
+                <td><a href="#UpdatePriceFeedRequest">.UpdatePriceFeedRequest</a></td>
+                <td><a href="#UpdatePriceFeedReply">.UpdatePriceFeedReply</a></td>
+                <td><p>updates the price feed to be used for the given market</p></td>
               </tr>
             
               <tr>
@@ -1892,6 +1921,20 @@ hex encoded. </p></td>
                   <td><p> </p></td>
                 </tr>
               
+                <tr>
+                  <td>type</td>
+                  <td><a href="#TradeType">TradeType</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>base_amount</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -2042,7 +2085,7 @@ hex encoded. </p></td>
               
                 <tr>
                   <td>type</td>
-                  <td><a href="#TradeProposeRequest.Type">TradeProposeRequest.Type</a></td>
+                  <td><a href="#TradeType">TradeType</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -2063,29 +2106,6 @@ hex encoded. </p></td>
       
 
       
-        <h3 id=".TradeProposeRequest.Type">TradeProposeRequest.Type</h3>
-        <p></p>
-        <table class="enum-table">
-          <thead>
-            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            
-              <tr>
-                <td>BUY</td>
-                <td>0</td>
-                <td><p></p></td>
-              </tr>
-            
-              <tr>
-                <td>SELL</td>
-                <td>1</td>
-                <td><p></p></td>
-              </tr>
-            
-          </tbody>
-        </table>
-      
 
       
 
@@ -2102,35 +2122,53 @@ hex encoded. </p></td>
                 <td>Markets</td>
                 <td><a href="#MarketsRequest">.MarketsRequest</a></td>
                 <td><a href="#MarketsReply">.MarketsReply</a></td>
-                <td><p>Trader interface</p></td>
+                <td><p>Markets: List all the markets open for trading.</p></td>
               </tr>
             
               <tr>
                 <td>Balances</td>
                 <td><a href="#BalancesRequest">.BalancesRequest</a></td>
                 <td><a href="#BalancesReply">.BalancesReply</a></td>
-                <td><p></p></td>
+                <td><p>Balances: Gets the balances of the two current reserves in the given
+market.</p></td>
               </tr>
             
               <tr>
                 <td>MarketPrice</td>
                 <td><a href="#MarketPriceRequest">.MarketPriceRequest</a></td>
                 <td><a href="#MarketPriceReply">.MarketPriceReply</a></td>
-                <td><p></p></td>
+                <td><p>MarketPrice: Gets the current market price. In case of AMM startegy, the
+trade type and
+the amount of base asset to be either sent or received.
+
+If the type of the trade is BUY it means the base asset will be received by
+the trader.
+
+If the type of the trade is SELL it means the base asset will be sent by
+the trader.</p></td>
               </tr>
             
               <tr>
                 <td>TradePropose</td>
                 <td><a href="#TradeProposeRequest">.TradeProposeRequest</a></td>
                 <td><a href="#TradeProposeReply">.TradeProposeReply</a> stream</td>
-                <td><p></p></td>
+                <td><p>TradePropose: Sends a swap request message containing a partial signed
+transaction.
+
+If the type of the trade is BUY it means the base asset will be received by
+the trader.
+
+If the type of the trade is SELL it means the base asset will be sent by
+the trader.</p></td>
               </tr>
             
               <tr>
                 <td>TradeComplete</td>
                 <td><a href="#TradeCompleteRequest">.TradeCompleteRequest</a></td>
                 <td><a href="#TradeCompleteReply">.TradeCompleteReply</a> stream</td>
-                <td><p></p></td>
+                <td><p>TradeComplete: Sends the trader&#39;s counter-signed transaction to the
+provider. If something wrong, a swap fail message is sent. It returns the
+transaction hash of the broadcasted transaction.</p></td>
               </tr>
             
           </tbody>
@@ -2208,7 +2246,7 @@ hex encoded. </p></td>
         
       
         <h3 id=".Fee">Fee</h3>
-        <p>Custom Types</p>
+        <p></p>
 
         
           <table class="field-table">
@@ -2363,6 +2401,29 @@ hex encoded. </p></td>
         
       
 
+      
+        <h3 id=".TradeType">TradeType</h3>
+        <p>Custom Types</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>BUY</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SELL</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
 
       

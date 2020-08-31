@@ -17,11 +17,33 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TradeClient interface {
-	// Trader interface
+	// Markets: List all the markets open for trading.
 	Markets(ctx context.Context, in *MarketsRequest, opts ...grpc.CallOption) (*MarketsReply, error)
+	// Balances: Gets the balances of the two current reserves in the given
+	// market.
 	Balances(ctx context.Context, in *BalancesRequest, opts ...grpc.CallOption) (*BalancesReply, error)
+	// MarketPrice: Gets the current market price. In case of AMM startegy, the
+	// trade type and
+	// the amount of base asset to be either sent or received.
+	//
+	// If the type of the trade is BUY it means the base asset will be received by
+	// the trader.
+	//
+	// If the type of the trade is SELL it means the base asset will be sent by
+	// the trader.
 	MarketPrice(ctx context.Context, in *MarketPriceRequest, opts ...grpc.CallOption) (*MarketPriceReply, error)
+	// TradePropose: Sends a swap request message containing a partial signed
+	// transaction.
+	//
+	// If the type of the trade is BUY it means the base asset will be received by
+	// the trader.
+	//
+	// If the type of the trade is SELL it means the base asset will be sent by
+	// the trader.
 	TradePropose(ctx context.Context, in *TradeProposeRequest, opts ...grpc.CallOption) (Trade_TradeProposeClient, error)
+	// TradeComplete: Sends the trader's counter-signed transaction to the
+	// provider. If something wrong, a swap fail message is sent. It returns the
+	// transaction hash of the broadcasted transaction.
 	TradeComplete(ctx context.Context, in *TradeCompleteRequest, opts ...grpc.CallOption) (Trade_TradeCompleteClient, error)
 }
 
@@ -128,11 +150,33 @@ func (x *tradeTradeCompleteClient) Recv() (*TradeCompleteReply, error) {
 // All implementations must embed UnimplementedTradeServer
 // for forward compatibility
 type TradeServer interface {
-	// Trader interface
+	// Markets: List all the markets open for trading.
 	Markets(context.Context, *MarketsRequest) (*MarketsReply, error)
+	// Balances: Gets the balances of the two current reserves in the given
+	// market.
 	Balances(context.Context, *BalancesRequest) (*BalancesReply, error)
+	// MarketPrice: Gets the current market price. In case of AMM startegy, the
+	// trade type and
+	// the amount of base asset to be either sent or received.
+	//
+	// If the type of the trade is BUY it means the base asset will be received by
+	// the trader.
+	//
+	// If the type of the trade is SELL it means the base asset will be sent by
+	// the trader.
 	MarketPrice(context.Context, *MarketPriceRequest) (*MarketPriceReply, error)
+	// TradePropose: Sends a swap request message containing a partial signed
+	// transaction.
+	//
+	// If the type of the trade is BUY it means the base asset will be received by
+	// the trader.
+	//
+	// If the type of the trade is SELL it means the base asset will be sent by
+	// the trader.
 	TradePropose(*TradeProposeRequest, Trade_TradeProposeServer) error
+	// TradeComplete: Sends the trader's counter-signed transaction to the
+	// provider. If something wrong, a swap fail message is sent. It returns the
+	// transaction hash of the broadcasted transaction.
 	TradeComplete(*TradeCompleteRequest, Trade_TradeCompleteServer) error
 	mustEmbedUnimplementedTradeServer()
 }

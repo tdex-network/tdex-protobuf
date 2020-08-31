@@ -33,6 +33,8 @@
     - [UpdateMarketFeeRequest](#.UpdateMarketFeeRequest)
     - [UpdateMarketPriceReply](#.UpdateMarketPriceReply)
     - [UpdateMarketPriceRequest](#.UpdateMarketPriceRequest)
+    - [UpdatePriceFeedReply](#.UpdatePriceFeedReply)
+    - [UpdatePriceFeedRequest](#.UpdatePriceFeedRequest)
     - [WithdrawMarketReply](#.WithdrawMarketReply)
     - [WithdrawMarketRequest](#.WithdrawMarketRequest)
   
@@ -62,8 +64,6 @@
     - [TradeProposeReply](#.TradeProposeReply)
     - [TradeProposeRequest](#.TradeProposeRequest)
   
-    - [TradeProposeRequest.Type](#.TradeProposeRequest.Type)
-  
     - [Trade](#.Trade)
   
 - [types.proto](#types.proto)
@@ -74,6 +74,8 @@
     - [MarketWithFee](#.MarketWithFee)
     - [Price](#.Price)
     - [PriceWithFee](#.PriceWithFee)
+  
+    - [TradeType](#.TradeType)
   
 - [wallet.proto](#wallet.proto)
     - [ChangePasswordRequest](#.ChangePasswordRequest)
@@ -498,6 +500,26 @@ BOTD#2
 
 
 
+<a name=".UpdatePriceFeedReply"></a>
+
+### UpdatePriceFeedReply
+
+
+
+
+
+
+
+<a name=".UpdatePriceFeedRequest"></a>
+
+### UpdatePriceFeedRequest
+
+
+
+
+
+
+
 <a name=".WithdrawMarketReply"></a>
 
 ### WithdrawMarketReply
@@ -565,6 +587,7 @@ Service for operators to configure and manage a TDEX daemon
 | BalanceFeeAccount | [.BalanceFeeAccountRequest](#BalanceFeeAccountRequest) | [.BalanceFeeAccountReply](#BalanceFeeAccountReply) | Returns the aggregated balance of LBTC held in the fee account. |
 | OpenMarket | [.OpenMarketRequest](#OpenMarketRequest) | [.OpenMarketReply](#OpenMarketReply) | Makes the given market tradable |
 | CloseMarket | [.CloseMarketRequest](#CloseMarketRequest) | [.CloseMarketReply](#CloseMarketReply) | Makes the given market NOT tradabale |
+| UpdatePriceFeed | [.UpdatePriceFeedRequest](#UpdatePriceFeedRequest) | [.UpdatePriceFeedReply](#UpdatePriceFeedReply) | updates the price feed to be used for the given market |
 | UpdateMarketPrice | [.UpdateMarketPriceRequest](#UpdateMarketPriceRequest) | [.UpdateMarketPriceReply](#UpdateMarketPriceReply) | Manually updates the price for the given market |
 | UpdateMarketFee | [.UpdateMarketFeeRequest](#UpdateMarketFeeRequest) | [.UpdateMarketFeeReply](#UpdateMarketFeeReply) | Changes the Liquidity Provider fee for the given market. I thsould be express in basis point. To change the fee on each swap from (current) 0.25% to 1% you need to pass down 100 The Market MUST be closed before doing this change. |
 | WithdrawMarket | [.WithdrawMarketRequest](#WithdrawMarketRequest) | [.WithdrawMarketReply](#WithdrawMarketReply) | WithdrawMarket allows the operator to withdraw to external wallet funds from a specific market. The Market MUST be closed before doing this change. |
@@ -792,6 +815,8 @@ Service for operators to configure and manage a TDEX daemon
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | market | [Market](#Market) |  |  |
+| type | [TradeType](#TradeType) |  |  |
+| base_amount | [uint64](#uint64) |  |  |
 
 
 
@@ -880,7 +905,7 @@ BOTD#4 Service&#39;s messages
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | market | [Market](#Market) |  |  |
-| type | [TradeProposeRequest.Type](#TradeProposeRequest.Type) |  |  |
+| type | [TradeType](#TradeType) |  |  |
 | swap_request | [SwapRequest](#SwapRequest) |  |  |
 
 
@@ -888,18 +913,6 @@ BOTD#4 Service&#39;s messages
 
 
  
-
-
-<a name=".TradeProposeRequest.Type"></a>
-
-### TradeProposeRequest.Type
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| BUY | 0 |  |
-| SELL | 1 |  |
-
 
  
 
@@ -913,11 +926,19 @@ BOTD#4 Service&#39;s messages
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Markets | [.MarketsRequest](#MarketsRequest) | [.MarketsReply](#MarketsReply) | Trader interface |
-| Balances | [.BalancesRequest](#BalancesRequest) | [.BalancesReply](#BalancesReply) |  |
-| MarketPrice | [.MarketPriceRequest](#MarketPriceRequest) | [.MarketPriceReply](#MarketPriceReply) |  |
-| TradePropose | [.TradeProposeRequest](#TradeProposeRequest) | [.TradeProposeReply](#TradeProposeReply) stream |  |
-| TradeComplete | [.TradeCompleteRequest](#TradeCompleteRequest) | [.TradeCompleteReply](#TradeCompleteReply) stream |  |
+| Markets | [.MarketsRequest](#MarketsRequest) | [.MarketsReply](#MarketsReply) | Markets: List all the markets open for trading. |
+| Balances | [.BalancesRequest](#BalancesRequest) | [.BalancesReply](#BalancesReply) | Balances: Gets the balances of the two current reserves in the given market. |
+| MarketPrice | [.MarketPriceRequest](#MarketPriceRequest) | [.MarketPriceReply](#MarketPriceReply) | MarketPrice: Gets the current market price. In case of AMM startegy, the trade type and the amount of base asset to be either sent or received.
+
+If the type of the trade is BUY it means the base asset will be received by the trader.
+
+If the type of the trade is SELL it means the base asset will be sent by the trader. |
+| TradePropose | [.TradeProposeRequest](#TradeProposeRequest) | [.TradeProposeReply](#TradeProposeReply) stream | TradePropose: Sends a swap request message containing a partial signed transaction.
+
+If the type of the trade is BUY it means the base asset will be received by the trader.
+
+If the type of the trade is SELL it means the base asset will be sent by the trader. |
+| TradeComplete | [.TradeCompleteRequest](#TradeCompleteRequest) | [.TradeCompleteReply](#TradeCompleteReply) stream | TradeComplete: Sends the trader&#39;s counter-signed transaction to the provider. If something wrong, a swap fail message is sent. It returns the transaction hash of the broadcasted transaction. |
 
  
 
@@ -965,7 +986,7 @@ BOTD#4 Service&#39;s messages
 <a name=".Fee"></a>
 
 ### Fee
-Custom Types
+
 
 
 | Field | Type | Label | Description |
@@ -1042,6 +1063,18 @@ Custom Types
 
 
  
+
+
+<a name=".TradeType"></a>
+
+### TradeType
+Custom Types
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| BUY | 0 |  |
+| SELL | 1 |  |
+
 
  
 

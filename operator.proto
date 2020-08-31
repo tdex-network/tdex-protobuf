@@ -29,6 +29,9 @@ service Operator {
   // Makes the given market NOT tradabale
   rpc CloseMarket(CloseMarketRequest) returns (CloseMarketReply) {}
 
+  // updates the price feed to be used for the given market
+  rpc UpdatePriceFeed(UpdatePriceFeedRequest) returns (UpdatePriceFeedReply) {}
+
   // Manually updates the price for the given market
   rpc UpdateMarketPrice(UpdateMarketPriceRequest)
       returns (UpdateMarketPriceReply) {}
@@ -87,6 +90,9 @@ message UpdateMarketPriceRequest {
   Price price = 2;
 }
 message UpdateMarketPriceReply {}
+
+message UpdatePriceFeedRequest {}
+message UpdatePriceFeedReply {}
 
 message WithdrawMarketRequest {
   // Market from which funds need to be withdrawn

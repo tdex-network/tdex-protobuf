@@ -118,7 +118,7 @@ function deserialize_TradeProposeRequest(buffer_arg) {
 
 
 var TradeService = exports.TradeService = {
-  // Trader interface
+  // Markets: List all the markets open for trading.
 markets: {
     path: '/Trade/Markets',
     requestStream: false,
@@ -130,7 +130,9 @@ markets: {
     responseSerialize: serialize_MarketsReply,
     responseDeserialize: deserialize_MarketsReply,
   },
-  balances: {
+  // Balances: Gets the balances of the two current reserves in the given
+// market.
+balances: {
     path: '/Trade/Balances',
     requestStream: false,
     responseStream: false,
@@ -141,7 +143,16 @@ markets: {
     responseSerialize: serialize_BalancesReply,
     responseDeserialize: deserialize_BalancesReply,
   },
-  marketPrice: {
+  // MarketPrice: Gets the current market price. In case of AMM startegy, the
+// trade type and
+// the amount of base asset to be either sent or received.
+//
+// If the type of the trade is BUY it means the base asset will be received by
+// the trader.
+//
+// If the type of the trade is SELL it means the base asset will be sent by
+// the trader.
+marketPrice: {
     path: '/Trade/MarketPrice',
     requestStream: false,
     responseStream: false,
@@ -152,7 +163,15 @@ markets: {
     responseSerialize: serialize_MarketPriceReply,
     responseDeserialize: deserialize_MarketPriceReply,
   },
-  tradePropose: {
+  // TradePropose: Sends a swap request message containing a partial signed
+// transaction.
+//
+// If the type of the trade is BUY it means the base asset will be received by
+// the trader.
+//
+// If the type of the trade is SELL it means the base asset will be sent by
+// the trader.
+tradePropose: {
     path: '/Trade/TradePropose',
     requestStream: false,
     responseStream: true,
@@ -163,7 +182,10 @@ markets: {
     responseSerialize: serialize_TradeProposeReply,
     responseDeserialize: deserialize_TradeProposeReply,
   },
-  tradeComplete: {
+  // TradeComplete: Sends the trader's counter-signed transaction to the
+// provider. If something wrong, a swap fail message is sent. It returns the
+// transaction hash of the broadcasted transaction.
+tradeComplete: {
     path: '/Trade/TradeComplete',
     requestStream: false,
     responseStream: true,

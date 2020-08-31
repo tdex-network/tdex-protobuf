@@ -5,11 +5,37 @@ import "swap.proto";
 import "types.proto";
 
 service Trade {
-  // Trader interface
+  // Markets: List all the markets open for trading.
   rpc Markets(MarketsRequest) returns (MarketsReply);
+
+  // Balances: Gets the balances of the two current reserves in the given
+  // market.
   rpc Balances(BalancesRequest) returns (BalancesReply);
+
+  // MarketPrice: Gets the current market price. In case of AMM startegy, the
+  // trade type and
+  // the amount of base asset to be either sent or received.
+  //
+  // If the type of the trade is BUY it means the base asset will be received by
+  // the trader.
+  //
+  // If the type of the trade is SELL it means the base asset will be sent by
+  // the trader.
   rpc MarketPrice(MarketPriceRequest) returns (MarketPriceReply);
+
+  // TradePropose: Sends a swap request message containing a partial signed
+  // transaction.
+  //
+  // If the type of the trade is BUY it means the base asset will be received by
+  // the trader.
+  //
+  // If the type of the trade is SELL it means the base asset will be sent by
+  // the trader.
   rpc TradePropose(TradeProposeRequest) returns (stream TradeProposeReply);
+
+  // TradeComplete: Sends the trader's counter-signed transaction to the
+  // provider. If something wrong, a swap fail message is sent. It returns the
+  // transaction hash of the broadcasted transaction.
   rpc TradeComplete(TradeCompleteRequest) returns (stream TradeCompleteReply);
 }
 
@@ -20,16 +46,16 @@ message MarketsReply { repeated MarketWithFee markets = 1; }
 message BalancesRequest { Market market = 1; }
 message BalancesReply { repeated BalanceWithFee balances = 1; }
 
-message MarketPriceRequest { Market market = 1; }
+message MarketPriceRequest {
+  Market market = 1;
+  TradeType type = 2;
+  uint64 base_amount = 3;
+}
 message MarketPriceReply { repeated PriceWithFee prices = 1; }
 
 message TradeProposeRequest {
   Market market = 1;
-  enum Type {
-    BUY = 0;
-    SELL = 1;
-  }
-  Type type = 2;
+  TradeType type = 2;
   SwapRequest swap_request = 3;
 }
 message TradeProposeReply {

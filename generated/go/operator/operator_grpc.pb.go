@@ -31,6 +31,8 @@ type OperatorClient interface {
 	OpenMarket(ctx context.Context, in *OpenMarketRequest, opts ...grpc.CallOption) (*OpenMarketReply, error)
 	// Makes the given market NOT tradabale
 	CloseMarket(ctx context.Context, in *CloseMarketRequest, opts ...grpc.CallOption) (*CloseMarketReply, error)
+	// updates the price feed to be used for the given market
+	UpdatePriceFeed(ctx context.Context, in *UpdatePriceFeedRequest, opts ...grpc.CallOption) (*UpdatePriceFeedReply, error)
 	// Manually updates the price for the given market
 	UpdateMarketPrice(ctx context.Context, in *UpdateMarketPriceRequest, opts ...grpc.CallOption) (*UpdateMarketPriceReply, error)
 	// Changes the Liquidity Provider fee for the given market. I thsould be
@@ -110,6 +112,15 @@ func (c *operatorClient) CloseMarket(ctx context.Context, in *CloseMarketRequest
 	return out, nil
 }
 
+func (c *operatorClient) UpdatePriceFeed(ctx context.Context, in *UpdatePriceFeedRequest, opts ...grpc.CallOption) (*UpdatePriceFeedReply, error) {
+	out := new(UpdatePriceFeedReply)
+	err := c.cc.Invoke(ctx, "/Operator/UpdatePriceFeed", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *operatorClient) UpdateMarketPrice(ctx context.Context, in *UpdateMarketPriceRequest, opts ...grpc.CallOption) (*UpdateMarketPriceReply, error) {
 	out := new(UpdateMarketPriceReply)
 	err := c.cc.Invoke(ctx, "/Operator/UpdateMarketPrice", in, out, opts...)
@@ -173,6 +184,8 @@ type OperatorServer interface {
 	OpenMarket(context.Context, *OpenMarketRequest) (*OpenMarketReply, error)
 	// Makes the given market NOT tradabale
 	CloseMarket(context.Context, *CloseMarketRequest) (*CloseMarketReply, error)
+	// updates the price feed to be used for the given market
+	UpdatePriceFeed(context.Context, *UpdatePriceFeedRequest) (*UpdatePriceFeedReply, error)
 	// Manually updates the price for the given market
 	UpdateMarketPrice(context.Context, *UpdateMarketPriceRequest) (*UpdateMarketPriceReply, error)
 	// Changes the Liquidity Provider fee for the given market. I thsould be
@@ -212,6 +225,9 @@ func (*UnimplementedOperatorServer) OpenMarket(context.Context, *OpenMarketReque
 }
 func (*UnimplementedOperatorServer) CloseMarket(context.Context, *CloseMarketRequest) (*CloseMarketReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CloseMarket not implemented")
+}
+func (*UnimplementedOperatorServer) UpdatePriceFeed(context.Context, *UpdatePriceFeedRequest) (*UpdatePriceFeedReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdatePriceFeed not implemented")
 }
 func (*UnimplementedOperatorServer) UpdateMarketPrice(context.Context, *UpdateMarketPriceRequest) (*UpdateMarketPriceReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateMarketPrice not implemented")
@@ -342,6 +358,24 @@ func _Operator_CloseMarket_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Operator_UpdatePriceFeed_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdatePriceFeedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OperatorServer).UpdatePriceFeed(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Operator/UpdatePriceFeed",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OperatorServer).UpdatePriceFeed(ctx, req.(*UpdatePriceFeedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Operator_UpdateMarketPrice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateMarketPriceRequest)
 	if err := dec(in); err != nil {
@@ -459,6 +493,10 @@ var _Operator_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CloseMarket",
 			Handler:    _Operator_CloseMarket_Handler,
+		},
+		{
+			MethodName: "UpdatePriceFeed",
+			Handler:    _Operator_UpdatePriceFeed_Handler,
 		},
 		{
 			MethodName: "UpdateMarketPrice",
