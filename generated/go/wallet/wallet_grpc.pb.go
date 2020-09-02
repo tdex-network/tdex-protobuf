@@ -18,8 +18,8 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type WalletClient interface {
 	//
-	//GenSeed is the first method that should be used to instantiate a new lnd
-	//instance. This method allows a caller to generate a new BIP44 HD Wallet.
+	//GenSeed is the first method that should be used to instantiate a new tdexd
+	//instance. This method allows a caller to generate a new HD Wallet.
 	//If provided, the passphrase will be necessary
 	//to decrypt the cipherseed to expose the internal wallet seed.
 	//Once the cipherseed is obtained and verified by the user, the InitWallet
@@ -27,7 +27,7 @@ type WalletClient interface {
 	//wallet.
 	GenSeed(ctx context.Context, in *GenSeedRequest, opts ...grpc.CallOption) (*GenSeedResponse, error)
 	//
-	//InitWallet is used when lnd is starting up for the first time to fully
+	//InitWallet is used when tdexd is starting up for the first time to fully
 	//initialize the daemon and its internal wallet. At the very least a wallet
 	//password must be provided. This will be used to encrypt sensitive material
 	//on disk.
@@ -39,7 +39,7 @@ type WalletClient interface {
 	//the seed can be fed into this RPC in order to commit the new wallet.
 	InitWallet(ctx context.Context, in *InitWalletRequest, opts ...grpc.CallOption) (*InitWalletResponse, error)
 	//
-	//UnlockWallet is used at startup of lnd to provide a password to unlock
+	//UnlockWallet is used at startup of tdexd to provide a password to unlock
 	//the wallet database.
 	UnlockWallet(ctx context.Context, in *UnlockWalletRequest, opts ...grpc.CallOption) (*UnlockWalletResponse, error)
 	//
@@ -109,8 +109,8 @@ func (c *walletClient) SendToMany(ctx context.Context, in *SendToManyRequest, op
 // for forward compatibility
 type WalletServer interface {
 	//
-	//GenSeed is the first method that should be used to instantiate a new lnd
-	//instance. This method allows a caller to generate a new BIP44 HD Wallet.
+	//GenSeed is the first method that should be used to instantiate a new tdexd
+	//instance. This method allows a caller to generate a new HD Wallet.
 	//If provided, the passphrase will be necessary
 	//to decrypt the cipherseed to expose the internal wallet seed.
 	//Once the cipherseed is obtained and verified by the user, the InitWallet
@@ -118,7 +118,7 @@ type WalletServer interface {
 	//wallet.
 	GenSeed(context.Context, *GenSeedRequest) (*GenSeedResponse, error)
 	//
-	//InitWallet is used when lnd is starting up for the first time to fully
+	//InitWallet is used when tdexd is starting up for the first time to fully
 	//initialize the daemon and its internal wallet. At the very least a wallet
 	//password must be provided. This will be used to encrypt sensitive material
 	//on disk.
@@ -130,7 +130,7 @@ type WalletServer interface {
 	//the seed can be fed into this RPC in order to commit the new wallet.
 	InitWallet(context.Context, *InitWalletRequest) (*InitWalletResponse, error)
 	//
-	//UnlockWallet is used at startup of lnd to provide a password to unlock
+	//UnlockWallet is used at startup of tdexd to provide a password to unlock
 	//the wallet database.
 	UnlockWallet(context.Context, *UnlockWalletRequest) (*UnlockWalletResponse, error)
 	//
