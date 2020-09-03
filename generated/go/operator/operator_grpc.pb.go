@@ -43,8 +43,6 @@ type OperatorClient interface {
 	// Updates the current market making strategy, either using an automated
 	// market making formula or a pluggable price feed
 	UpdateMarketStrategy(ctx context.Context, in *UpdateMarketStrategyRequest, opts ...grpc.CallOption) (*UpdateMarketStrategyReply, error)
-	// updates the price feed to be used for the given market
-	UpdatePriceFeed(ctx context.Context, in *UpdatePriceFeedRequest, opts ...grpc.CallOption) (*UpdatePriceFeedReply, error)
 	// WithdrawMarket allows the operator to withdraw to external wallet funds
 	// from a specific market. The Market MUST be closed before doing this change.
 	WithdrawMarket(ctx context.Context, in *WithdrawMarketRequest, opts ...grpc.CallOption) (*WithdrawMarketReply, error)
@@ -153,15 +151,6 @@ func (c *operatorClient) UpdateMarketStrategy(ctx context.Context, in *UpdateMar
 	return out, nil
 }
 
-func (c *operatorClient) UpdatePriceFeed(ctx context.Context, in *UpdatePriceFeedRequest, opts ...grpc.CallOption) (*UpdatePriceFeedReply, error) {
-	out := new(UpdatePriceFeedReply)
-	err := c.cc.Invoke(ctx, "/Operator/UpdatePriceFeed", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *operatorClient) WithdrawMarket(ctx context.Context, in *WithdrawMarketRequest, opts ...grpc.CallOption) (*WithdrawMarketReply, error) {
 	out := new(WithdrawMarketReply)
 	err := c.cc.Invoke(ctx, "/Operator/WithdrawMarket", in, out, opts...)
@@ -219,8 +208,6 @@ type OperatorServer interface {
 	// Updates the current market making strategy, either using an automated
 	// market making formula or a pluggable price feed
 	UpdateMarketStrategy(context.Context, *UpdateMarketStrategyRequest) (*UpdateMarketStrategyReply, error)
-	// updates the price feed to be used for the given market
-	UpdatePriceFeed(context.Context, *UpdatePriceFeedRequest) (*UpdatePriceFeedReply, error)
 	// WithdrawMarket allows the operator to withdraw to external wallet funds
 	// from a specific market. The Market MUST be closed before doing this change.
 	WithdrawMarket(context.Context, *WithdrawMarketRequest) (*WithdrawMarketReply, error)
@@ -265,9 +252,6 @@ func (*UnimplementedOperatorServer) UpdateMarketPrice(context.Context, *UpdateMa
 }
 func (*UnimplementedOperatorServer) UpdateMarketStrategy(context.Context, *UpdateMarketStrategyRequest) (*UpdateMarketStrategyReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateMarketStrategy not implemented")
-}
-func (*UnimplementedOperatorServer) UpdatePriceFeed(context.Context, *UpdatePriceFeedRequest) (*UpdatePriceFeedReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdatePriceFeed not implemented")
 }
 func (*UnimplementedOperatorServer) WithdrawMarket(context.Context, *WithdrawMarketRequest) (*WithdrawMarketReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WithdrawMarket not implemented")
@@ -464,24 +448,6 @@ func _Operator_UpdateMarketStrategy_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Operator_UpdatePriceFeed_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdatePriceFeedRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(OperatorServer).UpdatePriceFeed(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/Operator/UpdatePriceFeed",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OperatorServer).UpdatePriceFeed(ctx, req.(*UpdatePriceFeedRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _Operator_WithdrawMarket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(WithdrawMarketRequest)
 	if err := dec(in); err != nil {
@@ -579,10 +545,6 @@ var _Operator_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateMarketStrategy",
 			Handler:    _Operator_UpdateMarketStrategy_Handler,
-		},
-		{
-			MethodName: "UpdatePriceFeed",
-			Handler:    _Operator_UpdatePriceFeed_Handler,
 		},
 		{
 			MethodName: "WithdrawMarket",

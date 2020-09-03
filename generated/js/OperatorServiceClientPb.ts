@@ -40,8 +40,6 @@ import {
   UpdateMarketPriceRequest,
   UpdateMarketStrategyReply,
   UpdateMarketStrategyRequest,
-  UpdatePriceFeedReply,
-  UpdatePriceFeedRequest,
   WithdrawMarketReply,
   WithdrawMarketRequest} from './operator_pb';
 
@@ -452,45 +450,6 @@ export class OperatorClient {
     request,
     metadata || {},
     this.methodInfoUpdateMarketStrategy);
-  }
-
-  methodInfoUpdatePriceFeed = new grpcWeb.AbstractClientBase.MethodInfo(
-    UpdatePriceFeedReply,
-    (request: UpdatePriceFeedRequest) => {
-      return request.serializeBinary();
-    },
-    UpdatePriceFeedReply.deserializeBinary
-  );
-
-  updatePriceFeed(
-    request: UpdatePriceFeedRequest,
-    metadata: grpcWeb.Metadata | null): Promise<UpdatePriceFeedReply>;
-
-  updatePriceFeed(
-    request: UpdatePriceFeedRequest,
-    metadata: grpcWeb.Metadata | null,
-    callback: (err: grpcWeb.Error,
-               response: UpdatePriceFeedReply) => void): grpcWeb.ClientReadableStream<UpdatePriceFeedReply>;
-
-  updatePriceFeed(
-    request: UpdatePriceFeedRequest,
-    metadata: grpcWeb.Metadata | null,
-    callback?: (err: grpcWeb.Error,
-               response: UpdatePriceFeedReply) => void) {
-    if (callback !== undefined) {
-      return this.client_.rpcCall(
-        new URL('/Operator/UpdatePriceFeed', this.hostname_).toString(),
-        request,
-        metadata || {},
-        this.methodInfoUpdatePriceFeed,
-        callback);
-    }
-    return this.client_.unaryCall(
-    this.hostname_ +
-      '/Operator/UpdatePriceFeed',
-    request,
-    metadata || {},
-    this.methodInfoUpdatePriceFeed);
   }
 
   methodInfoWithdrawMarket = new grpcWeb.AbstractClientBase.MethodInfo(

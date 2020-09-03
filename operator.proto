@@ -46,8 +46,6 @@ service Operator {
   // market making formula or a pluggable price feed
   rpc UpdateMarketStrategy(UpdateMarketStrategyRequest)
       returns (UpdateMarketStrategyReply) {}
-  // updates the price feed to be used for the given market
-  rpc UpdatePriceFeed(UpdatePriceFeedRequest) returns (UpdatePriceFeedReply) {}
 
   // WithdrawMarket allows the operator to withdraw to external wallet funds
   // from a specific market. The Market MUST be closed before doing this change.
@@ -106,9 +104,6 @@ message UpdateMarketPriceRequest {
   Price price = 2;
 }
 message UpdateMarketPriceReply {}
-
-message UpdatePriceFeedRequest {}
-message UpdatePriceFeedReply {}
 
 message WithdrawMarketRequest {
   // Market from which funds need to be withdrawn

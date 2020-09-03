@@ -269,28 +269,6 @@ function deserialize_UpdateMarketStrategyRequest(buffer_arg) {
   return operator_pb.UpdateMarketStrategyRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_UpdatePriceFeedReply(arg) {
-  if (!(arg instanceof operator_pb.UpdatePriceFeedReply)) {
-    throw new Error('Expected argument of type UpdatePriceFeedReply');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_UpdatePriceFeedReply(buffer_arg) {
-  return operator_pb.UpdatePriceFeedReply.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
-function serialize_UpdatePriceFeedRequest(arg) {
-  if (!(arg instanceof operator_pb.UpdatePriceFeedRequest)) {
-    throw new Error('Expected argument of type UpdatePriceFeedRequest');
-  }
-  return Buffer.from(arg.serializeBinary());
-}
-
-function deserialize_UpdatePriceFeedRequest(buffer_arg) {
-  return operator_pb.UpdatePriceFeedRequest.deserializeBinary(new Uint8Array(buffer_arg));
-}
-
 function serialize_WithdrawMarketReply(arg) {
   if (!(arg instanceof operator_pb.WithdrawMarketReply)) {
     throw new Error('Expected argument of type WithdrawMarketReply');
@@ -442,18 +420,6 @@ updateMarketStrategy: {
     requestDeserialize: deserialize_UpdateMarketStrategyRequest,
     responseSerialize: serialize_UpdateMarketStrategyReply,
     responseDeserialize: deserialize_UpdateMarketStrategyReply,
-  },
-  // updates the price feed to be used for the given market
-updatePriceFeed: {
-    path: '/Operator/UpdatePriceFeed',
-    requestStream: false,
-    responseStream: false,
-    requestType: operator_pb.UpdatePriceFeedRequest,
-    responseType: operator_pb.UpdatePriceFeedReply,
-    requestSerialize: serialize_UpdatePriceFeedRequest,
-    requestDeserialize: deserialize_UpdatePriceFeedRequest,
-    responseSerialize: serialize_UpdatePriceFeedReply,
-    responseDeserialize: deserialize_UpdatePriceFeedReply,
   },
   // WithdrawMarket allows the operator to withdraw to external wallet funds
 // from a specific market. The Market MUST be closed before doing this change.

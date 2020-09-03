@@ -40,8 +40,6 @@
     - [UpdateMarketPriceRequest](#.UpdateMarketPriceRequest)
     - [UpdateMarketStrategyReply](#.UpdateMarketStrategyReply)
     - [UpdateMarketStrategyRequest](#.UpdateMarketStrategyRequest)
-    - [UpdatePriceFeedReply](#.UpdatePriceFeedReply)
-    - [UpdatePriceFeedRequest](#.UpdatePriceFeedRequest)
     - [WithdrawMarketReply](#.WithdrawMarketReply)
     - [WithdrawMarketRequest](#.WithdrawMarketRequest)
   
@@ -605,26 +603,6 @@ BOTD#2
 
 
 
-<a name=".UpdatePriceFeedReply"></a>
-
-### UpdatePriceFeedReply
-
-
-
-
-
-
-
-<a name=".UpdatePriceFeedRequest"></a>
-
-### UpdatePriceFeedRequest
-
-
-
-
-
-
-
 <a name=".WithdrawMarketReply"></a>
 
 ### WithdrawMarketReply
@@ -709,7 +687,6 @@ Service for operators to configure and manage a TDEX daemon
 | UpdateMarketFee | [.UpdateMarketFeeRequest](#UpdateMarketFeeRequest) | [.UpdateMarketFeeReply](#UpdateMarketFeeReply) | Changes the Liquidity Provider fee for the given market. I thsould be express in basis point. To change the fee on each swap from (current) 0.25% to 1% you need to pass down 100 The Market MUST be closed before doing this change. |
 | UpdateMarketPrice | [.UpdateMarketPriceRequest](#UpdateMarketPriceRequest) | [.UpdateMarketPriceReply](#UpdateMarketPriceReply) | Manually updates the price for the given market |
 | UpdateMarketStrategy | [.UpdateMarketStrategyRequest](#UpdateMarketStrategyRequest) | [.UpdateMarketStrategyReply](#UpdateMarketStrategyReply) | Updates the current market making strategy, either using an automated market making formula or a pluggable price feed |
-| UpdatePriceFeed | [.UpdatePriceFeedRequest](#UpdatePriceFeedRequest) | [.UpdatePriceFeedReply](#UpdatePriceFeedReply) | updates the price feed to be used for the given market |
 | WithdrawMarket | [.WithdrawMarketRequest](#WithdrawMarketRequest) | [.WithdrawMarketReply](#WithdrawMarketReply) | WithdrawMarket allows the operator to withdraw to external wallet funds from a specific market. The Market MUST be closed before doing this change. |
 | ListSwaps | [.ListSwapsRequest](#ListSwapsRequest) | [.ListSwapsReply](#ListSwapsReply) | Returs all the swaps processed by the daemon (both attempted and completed) |
 | ReportMarketFee | [.ReportMarketFeeRequest](#ReportMarketFeeRequest) | [.ReportMarketFeeReply](#ReportMarketFeeReply) | Displays a report on how much the given market is collecting in Liquidity Provider fees |

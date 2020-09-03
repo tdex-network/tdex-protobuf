@@ -364,34 +364,6 @@ export namespace UpdateMarketPriceReply {
   }
 }
 
-export class UpdatePriceFeedRequest extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdatePriceFeedRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdatePriceFeedRequest): UpdatePriceFeedRequest.AsObject;
-  static serializeBinaryToWriter(message: UpdatePriceFeedRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdatePriceFeedRequest;
-  static deserializeBinaryFromReader(message: UpdatePriceFeedRequest, reader: jspb.BinaryReader): UpdatePriceFeedRequest;
-}
-
-export namespace UpdatePriceFeedRequest {
-  export type AsObject = {
-  }
-}
-
-export class UpdatePriceFeedReply extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): UpdatePriceFeedReply.AsObject;
-  static toObject(includeInstance: boolean, msg: UpdatePriceFeedReply): UpdatePriceFeedReply.AsObject;
-  static serializeBinaryToWriter(message: UpdatePriceFeedReply, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): UpdatePriceFeedReply;
-  static deserializeBinaryFromReader(message: UpdatePriceFeedReply, reader: jspb.BinaryReader): UpdatePriceFeedReply;
-}
-
-export namespace UpdatePriceFeedReply {
-  export type AsObject = {
-  }
-}
-
 export class WithdrawMarketRequest extends jspb.Message {
   getMarket(): types_pb.Market | undefined;
   setMarket(value?: types_pb.Market): WithdrawMarketRequest;
