@@ -47,6 +47,10 @@ type WalletClient interface {
 	//automatically unlock the wallet database if successful.
 	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error)
 	//
+	//WalletBalance returns total unspent outputs(confirmed and unconfirmed), all
+	//confirmed unspent outputs and all unconfirmed unspent outputs under control
+	//of the wallet.
+	WalletBalance(ctx context.Context, in *WalletBalanceRequest, opts ...grpc.CallOption) (*WalletBalanceResponse, error)
 	//SendToMany sends funds to many outputs
 	SendToMany(ctx context.Context, in *SendToManyRequest, opts ...grpc.CallOption) (*SendToManyReply, error)
 }
@@ -89,6 +93,15 @@ func (c *walletClient) UnlockWallet(ctx context.Context, in *UnlockWalletRequest
 func (c *walletClient) ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error) {
 	out := new(ChangePasswordResponse)
 	err := c.cc.Invoke(ctx, "/Wallet/ChangePassword", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *walletClient) WalletBalance(ctx context.Context, in *WalletBalanceRequest, opts ...grpc.CallOption) (*WalletBalanceResponse, error) {
+	out := new(WalletBalanceResponse)
+	err := c.cc.Invoke(ctx, "/Wallet/WalletBalance", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -138,6 +151,10 @@ type WalletServer interface {
 	//automatically unlock the wallet database if successful.
 	ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error)
 	//
+	//WalletBalance returns total unspent outputs(confirmed and unconfirmed), all
+	//confirmed unspent outputs and all unconfirmed unspent outputs under control
+	//of the wallet.
+	WalletBalance(context.Context, *WalletBalanceRequest) (*WalletBalanceResponse, error)
 	//SendToMany sends funds to many outputs
 	SendToMany(context.Context, *SendToManyRequest) (*SendToManyReply, error)
 	mustEmbedUnimplementedWalletServer()
@@ -158,6 +175,9 @@ func (*UnimplementedWalletServer) UnlockWallet(context.Context, *UnlockWalletReq
 }
 func (*UnimplementedWalletServer) ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangePassword not implemented")
+}
+func (*UnimplementedWalletServer) WalletBalance(context.Context, *WalletBalanceRequest) (*WalletBalanceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method WalletBalance not implemented")
 }
 func (*UnimplementedWalletServer) SendToMany(context.Context, *SendToManyRequest) (*SendToManyReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SendToMany not implemented")
@@ -240,6 +260,24 @@ func _Wallet_ChangePassword_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Wallet_WalletBalance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(WalletBalanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WalletServer).WalletBalance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Wallet/WalletBalance",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WalletServer).WalletBalance(ctx, req.(*WalletBalanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Wallet_SendToMany_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SendToManyRequest)
 	if err := dec(in); err != nil {
@@ -277,6 +315,10 @@ var _Wallet_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ChangePassword",
 			Handler:    _Wallet_ChangePassword_Handler,
+		},
+		{
+			MethodName: "WalletBalance",
+			Handler:    _Wallet_WalletBalance_Handler,
 		},
 		{
 			MethodName: "SendToMany",

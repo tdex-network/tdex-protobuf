@@ -15,6 +15,8 @@ import * as grpcWeb from 'grpc-web';
 
 import {
   Ack,
+  InfoReply,
+  InfoRequest,
   Init,
   SecretMessage} from './handshake_pb';
 
@@ -35,6 +37,45 @@ export class HandshakeClient {
     this.hostname_ = hostname;
     this.credentials_ = credentials;
     this.options_ = options;
+  }
+
+  methodInfoInfo = new grpcWeb.AbstractClientBase.MethodInfo(
+    InfoReply,
+    (request: InfoRequest) => {
+      return request.serializeBinary();
+    },
+    InfoReply.deserializeBinary
+  );
+
+  info(
+    request: InfoRequest,
+    metadata: grpcWeb.Metadata | null): Promise<InfoReply>;
+
+  info(
+    request: InfoRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: InfoReply) => void): grpcWeb.ClientReadableStream<InfoReply>;
+
+  info(
+    request: InfoRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: InfoReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        new URL('/Handshake/Info', this.hostname_).toString(),
+        request,
+        metadata || {},
+        this.methodInfoInfo,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Handshake/Info',
+    request,
+    metadata || {},
+    this.methodInfoInfo);
   }
 
   methodInfoConnect = new grpcWeb.AbstractClientBase.MethodInfo(

@@ -1,5 +1,45 @@
 import * as jspb from "google-protobuf"
 
+export class WalletBalanceRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): WalletBalanceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: WalletBalanceRequest): WalletBalanceRequest.AsObject;
+  static serializeBinaryToWriter(message: WalletBalanceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): WalletBalanceRequest;
+  static deserializeBinaryFromReader(message: WalletBalanceRequest, reader: jspb.BinaryReader): WalletBalanceRequest;
+}
+
+export namespace WalletBalanceRequest {
+  export type AsObject = {
+  }
+}
+
+export class WalletBalanceResponse extends jspb.Message {
+  getTotalBalance(): number;
+  setTotalBalance(value: number): WalletBalanceResponse;
+
+  getConfirmedBalance(): number;
+  setConfirmedBalance(value: number): WalletBalanceResponse;
+
+  getUnconfirmedBalance(): number;
+  setUnconfirmedBalance(value: number): WalletBalanceResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): WalletBalanceResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: WalletBalanceResponse): WalletBalanceResponse.AsObject;
+  static serializeBinaryToWriter(message: WalletBalanceResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): WalletBalanceResponse;
+  static deserializeBinaryFromReader(message: WalletBalanceResponse, reader: jspb.BinaryReader): WalletBalanceResponse;
+}
+
+export namespace WalletBalanceResponse {
+  export type AsObject = {
+    totalBalance: number,
+    confirmedBalance: number,
+    unconfirmedBalance: number,
+  }
+}
+
 export class GenSeedRequest extends jspb.Message {
   getPassphrase(): Uint8Array | string;
   getPassphrase_asU8(): Uint8Array;

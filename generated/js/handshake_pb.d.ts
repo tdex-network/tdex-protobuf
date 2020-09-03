@@ -24,6 +24,40 @@ export namespace SecretMessage {
   }
 }
 
+export class InfoRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): InfoRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: InfoRequest): InfoRequest.AsObject;
+  static serializeBinaryToWriter(message: InfoRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InfoRequest;
+  static deserializeBinaryFromReader(message: InfoRequest, reader: jspb.BinaryReader): InfoRequest;
+}
+
+export namespace InfoRequest {
+  export type AsObject = {
+  }
+}
+
+export class InfoReply extends jspb.Message {
+  getPubkey(): Uint8Array | string;
+  getPubkey_asU8(): Uint8Array;
+  getPubkey_asB64(): string;
+  setPubkey(value: Uint8Array | string): InfoReply;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): InfoReply.AsObject;
+  static toObject(includeInstance: boolean, msg: InfoReply): InfoReply.AsObject;
+  static serializeBinaryToWriter(message: InfoReply, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): InfoReply;
+  static deserializeBinaryFromReader(message: InfoReply, reader: jspb.BinaryReader): InfoReply;
+}
+
+export namespace InfoReply {
+  export type AsObject = {
+    pubkey: Uint8Array | string,
+  }
+}
+
 export class Init extends jspb.Message {
   getId(): string;
   setId(value: string): Init;

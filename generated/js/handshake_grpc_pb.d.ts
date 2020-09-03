@@ -8,11 +8,21 @@ import * as grpc from "@grpc/grpc-js";
 import * as handshake_pb from "./handshake_pb";
 
 interface IHandshakeService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
+    info: IHandshakeService_IInfo;
     connect: IHandshakeService_IConnect;
     unarySecret: IHandshakeService_IUnarySecret;
     streamSecret: IHandshakeService_IStreamSecret;
 }
 
+interface IHandshakeService_IInfo extends grpc.MethodDefinition<handshake_pb.InfoRequest, handshake_pb.InfoReply> {
+    path: string; // "/.Handshake/Info"
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<handshake_pb.InfoRequest>;
+    requestDeserialize: grpc.deserialize<handshake_pb.InfoRequest>;
+    responseSerialize: grpc.serialize<handshake_pb.InfoReply>;
+    responseDeserialize: grpc.deserialize<handshake_pb.InfoReply>;
+}
 interface IHandshakeService_IConnect extends grpc.MethodDefinition<handshake_pb.Init, handshake_pb.Ack> {
     path: string; // "/.Handshake/Connect"
     requestStream: false;
@@ -44,12 +54,16 @@ interface IHandshakeService_IStreamSecret extends grpc.MethodDefinition<handshak
 export const HandshakeService: IHandshakeService;
 
 export interface IHandshakeServer {
+    info: grpc.handleUnaryCall<handshake_pb.InfoRequest, handshake_pb.InfoReply>;
     connect: grpc.handleUnaryCall<handshake_pb.Init, handshake_pb.Ack>;
     unarySecret: grpc.handleUnaryCall<handshake_pb.SecretMessage, handshake_pb.SecretMessage>;
     streamSecret: grpc.handleServerStreamingCall<handshake_pb.SecretMessage, handshake_pb.SecretMessage>;
 }
 
 export interface IHandshakeClient {
+    info(request: handshake_pb.InfoRequest, callback: (error: grpc.ServiceError | null, response: handshake_pb.InfoReply) => void): grpc.ClientUnaryCall;
+    info(request: handshake_pb.InfoRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: handshake_pb.InfoReply) => void): grpc.ClientUnaryCall;
+    info(request: handshake_pb.InfoRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: handshake_pb.InfoReply) => void): grpc.ClientUnaryCall;
     connect(request: handshake_pb.Init, callback: (error: grpc.ServiceError | null, response: handshake_pb.Ack) => void): grpc.ClientUnaryCall;
     connect(request: handshake_pb.Init, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: handshake_pb.Ack) => void): grpc.ClientUnaryCall;
     connect(request: handshake_pb.Init, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: handshake_pb.Ack) => void): grpc.ClientUnaryCall;
@@ -62,6 +76,9 @@ export interface IHandshakeClient {
 
 export class HandshakeClient extends grpc.Client implements IHandshakeClient {
     constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);
+    public info(request: handshake_pb.InfoRequest, callback: (error: grpc.ServiceError | null, response: handshake_pb.InfoReply) => void): grpc.ClientUnaryCall;
+    public info(request: handshake_pb.InfoRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: handshake_pb.InfoReply) => void): grpc.ClientUnaryCall;
+    public info(request: handshake_pb.InfoRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: handshake_pb.InfoReply) => void): grpc.ClientUnaryCall;
     public connect(request: handshake_pb.Init, callback: (error: grpc.ServiceError | null, response: handshake_pb.Ack) => void): grpc.ClientUnaryCall;
     public connect(request: handshake_pb.Init, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: handshake_pb.Ack) => void): grpc.ClientUnaryCall;
     public connect(request: handshake_pb.Init, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: handshake_pb.Ack) => void): grpc.ClientUnaryCall;

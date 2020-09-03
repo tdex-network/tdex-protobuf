@@ -10,10 +10,17 @@ message SecretMessage {
 // BOTD#2
 service Handshake {
   // Handshake
+  rpc Info(InfoRequest) returns (InfoReply);
   rpc Connect(Init) returns (Ack);
   // Encrypted RPCs
   rpc UnarySecret(SecretMessage) returns (SecretMessage);
   rpc StreamSecret(SecretMessage) returns (stream SecretMessage);
+}
+
+message InfoRequest {}
+message InfoReply {
+  // Secp256k1 Node public key
+  bytes pubkey = 1;
 }
 
 message Init {

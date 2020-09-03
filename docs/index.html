@@ -183,6 +183,14 @@
                 </li>
               
                 <li>
+                  <a href="#.InfoReply"><span class="badge">M</span>InfoReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.InfoRequest"><span class="badge">M</span>InfoRequest</a>
+                </li>
+              
+                <li>
                   <a href="#.Init"><span class="badge">M</span>Init</a>
                 </li>
               
@@ -537,6 +545,14 @@
                   <a href="#.UnlockWalletResponse"><span class="badge">M</span>UnlockWalletResponse</a>
                 </li>
               
+                <li>
+                  <a href="#.WalletBalanceRequest"><span class="badge">M</span>WalletBalanceRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.WalletBalanceResponse"><span class="badge">M</span>WalletBalanceResponse</a>
+                </li>
+              
               
               
               
@@ -602,6 +618,37 @@ sha256(recipient_pubkey,sender_pubkey,recipient_ephemeral_pubkey) </p></td>
           </table>
 
           
+
+        
+      
+        <h3 id=".InfoReply">InfoReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>pubkey</td>
+                  <td><a href="#bytes">bytes</a></td>
+                  <td></td>
+                  <td><p>Secp256k1 Node public key </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".InfoRequest">InfoRequest</h3>
+        <p></p>
+
+        
 
         
       
@@ -704,10 +751,17 @@ sha256(sender_pubkey,recipient_pubkey,sender_ephemeral_pubkey) </p></td>
           <tbody>
             
               <tr>
+                <td>Info</td>
+                <td><a href="#InfoRequest">.InfoRequest</a></td>
+                <td><a href="#InfoReply">.InfoReply</a></td>
+                <td><p>Handshake</p></td>
+              </tr>
+            
+              <tr>
                 <td>Connect</td>
                 <td><a href="#Init">.Init</a></td>
                 <td><a href="#Ack">.Ack</a></td>
-                <td><p>Handshake</p></td>
+                <td><p></p></td>
               </tr>
             
               <tr>
@@ -2892,6 +2946,51 @@ function properly. </p></td>
 
         
       
+        <h3 id=".WalletBalanceRequest">WalletBalanceRequest</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id=".WalletBalanceResponse">WalletBalanceResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>total_balance</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>The balance of the wallet </p></td>
+                </tr>
+              
+                <tr>
+                  <td>confirmed_balance</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>The confirmed balance of a wallet(with &gt;= 1 confirmations) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>unconfirmed_balance</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>The unconfirmed balance of a wallet(with 0 confirmations) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
 
       
 
@@ -2949,6 +3048,15 @@ the wallet database.</p></td>
                 <td><a href="#ChangePasswordResponse">.ChangePasswordResponse</a></td>
                 <td><p>ChangePassword changes the password of the encrypted wallet. This will
 automatically unlock the wallet database if successful.</p></td>
+              </tr>
+            
+              <tr>
+                <td>WalletBalance</td>
+                <td><a href="#WalletBalanceRequest">.WalletBalanceRequest</a></td>
+                <td><a href="#WalletBalanceResponse">.WalletBalanceResponse</a></td>
+                <td><p>WalletBalance returns total unspent outputs(confirmed and unconfirmed), all
+confirmed unspent outputs and all unconfirmed unspent outputs under control
+of the wallet.</p></td>
               </tr>
             
               <tr>

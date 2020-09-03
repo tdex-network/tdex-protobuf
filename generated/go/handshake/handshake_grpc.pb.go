@@ -18,6 +18,7 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type HandshakeClient interface {
 	// Handshake
+	Info(ctx context.Context, in *InfoRequest, opts ...grpc.CallOption) (*InfoReply, error)
 	Connect(ctx context.Context, in *Init, opts ...grpc.CallOption) (*Ack, error)
 	// Encrypted RPCs
 	UnarySecret(ctx context.Context, in *SecretMessage, opts ...grpc.CallOption) (*SecretMessage, error)
@@ -30,6 +31,15 @@ type handshakeClient struct {
 
 func NewHandshakeClient(cc grpc.ClientConnInterface) HandshakeClient {
 	return &handshakeClient{cc}
+}
+
+func (c *handshakeClient) Info(ctx context.Context, in *InfoRequest, opts ...grpc.CallOption) (*InfoReply, error) {
+	out := new(InfoReply)
+	err := c.cc.Invoke(ctx, "/Handshake/Info", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *handshakeClient) Connect(ctx context.Context, in *Init, opts ...grpc.CallOption) (*Ack, error) {
@@ -87,6 +97,7 @@ func (x *handshakeStreamSecretClient) Recv() (*SecretMessage, error) {
 // for forward compatibility
 type HandshakeServer interface {
 	// Handshake
+	Info(context.Context, *InfoRequest) (*InfoReply, error)
 	Connect(context.Context, *Init) (*Ack, error)
 	// Encrypted RPCs
 	UnarySecret(context.Context, *SecretMessage) (*SecretMessage, error)
@@ -98,6 +109,9 @@ type HandshakeServer interface {
 type UnimplementedHandshakeServer struct {
 }
 
+func (*UnimplementedHandshakeServer) Info(context.Context, *InfoRequest) (*InfoReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Info not implemented")
+}
 func (*UnimplementedHandshakeServer) Connect(context.Context, *Init) (*Ack, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Connect not implemented")
 }
@@ -111,6 +125,24 @@ func (*UnimplementedHandshakeServer) mustEmbedUnimplementedHandshakeServer() {}
 
 func RegisterHandshakeServer(s *grpc.Server, srv HandshakeServer) {
 	s.RegisterService(&_Handshake_serviceDesc, srv)
+}
+
+func _Handshake_Info_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HandshakeServer).Info(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Handshake/Info",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HandshakeServer).Info(ctx, req.(*InfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _Handshake_Connect_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -174,6 +206,10 @@ var _Handshake_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "Handshake",
 	HandlerType: (*HandshakeServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Info",
+			Handler:    _Handshake_Info_Handler,
+		},
 		{
 			MethodName: "Connect",
 			Handler:    _Handshake_Connect_Handler,
