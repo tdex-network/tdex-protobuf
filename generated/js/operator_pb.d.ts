@@ -184,9 +184,6 @@ export class OpenMarketRequest extends jspb.Message {
   hasMarket(): boolean;
   clearMarket(): OpenMarketRequest;
 
-  getStrategy(): Strategy;
-  setStrategy(value: Strategy): OpenMarketRequest;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): OpenMarketRequest.AsObject;
   static toObject(includeInstance: boolean, msg: OpenMarketRequest): OpenMarketRequest.AsObject;
@@ -198,7 +195,6 @@ export class OpenMarketRequest extends jspb.Message {
 export namespace OpenMarketRequest {
   export type AsObject = {
     market?: types_pb.Market.AsObject,
-    strategy: Strategy,
   }
 }
 

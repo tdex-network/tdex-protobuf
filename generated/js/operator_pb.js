@@ -2019,8 +2019,7 @@ proto.OpenMarketRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.OpenMarketRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    market: (f = msg.getMarket()) && types_pb.Market.toObject(includeInstance, f),
-    strategy: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    market: (f = msg.getMarket()) && types_pb.Market.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2062,10 +2061,6 @@ proto.OpenMarketRequest.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,types_pb.Market.deserializeBinaryFromReader);
       msg.setMarket(value);
       break;
-    case 2:
-      var value = /** @type {!proto.Strategy} */ (reader.readEnum());
-      msg.setStrategy(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -2101,13 +2096,6 @@ proto.OpenMarketRequest.serializeBinaryToWriter = function(message, writer) {
       1,
       f,
       types_pb.Market.serializeBinaryToWriter
-    );
-  }
-  f = message.getStrategy();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      2,
-      f
     );
   }
 };
@@ -2147,24 +2135,6 @@ proto.OpenMarketRequest.prototype.clearMarket = function() {
  */
 proto.OpenMarketRequest.prototype.hasMarket = function() {
   return jspb.Message.getField(this, 1) != null;
-};
-
-
-/**
- * optional Strategy strategy = 2;
- * @return {!proto.Strategy}
- */
-proto.OpenMarketRequest.prototype.getStrategy = function() {
-  return /** @type {!proto.Strategy} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
-};
-
-
-/**
- * @param {!proto.Strategy} value
- * @return {!proto.OpenMarketRequest} returns this
- */
-proto.OpenMarketRequest.prototype.setStrategy = function(value) {
-  return jspb.Message.setProto3EnumField(this, 2, value);
 };
 
 

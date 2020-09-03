@@ -40,6 +40,8 @@ type OperatorClient interface {
 	UpdateMarketFee(ctx context.Context, in *UpdateMarketFeeRequest, opts ...grpc.CallOption) (*UpdateMarketFeeReply, error)
 	// Manually updates the price for the given market
 	UpdateMarketPrice(ctx context.Context, in *UpdateMarketPriceRequest, opts ...grpc.CallOption) (*UpdateMarketPriceReply, error)
+	// Updates the current market making strategy, either using an automated
+	// market making formula or a pluggable price feed
 	UpdateMarketStrategy(ctx context.Context, in *UpdateMarketStrategyRequest, opts ...grpc.CallOption) (*UpdateMarketStrategyReply, error)
 	// updates the price feed to be used for the given market
 	UpdatePriceFeed(ctx context.Context, in *UpdatePriceFeedRequest, opts ...grpc.CallOption) (*UpdatePriceFeedReply, error)
@@ -214,6 +216,8 @@ type OperatorServer interface {
 	UpdateMarketFee(context.Context, *UpdateMarketFeeRequest) (*UpdateMarketFeeReply, error)
 	// Manually updates the price for the given market
 	UpdateMarketPrice(context.Context, *UpdateMarketPriceRequest) (*UpdateMarketPriceReply, error)
+	// Updates the current market making strategy, either using an automated
+	// market making formula or a pluggable price feed
 	UpdateMarketStrategy(context.Context, *UpdateMarketStrategyRequest) (*UpdateMarketStrategyReply, error)
 	// updates the price feed to be used for the given market
 	UpdatePriceFeed(context.Context, *UpdatePriceFeedRequest) (*UpdatePriceFeedReply, error)

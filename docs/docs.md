@@ -447,7 +447,6 @@ BOTD#2
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | market | [Market](#Market) |  | Market to be made tradable |
-| strategy | [Strategy](#Strategy) |  | Market making strategy to use |
 
 
 
@@ -709,7 +708,7 @@ Service for operators to configure and manage a TDEX daemon
 | ListMarket | [.ListMarketRequest](#ListMarketRequest) | [.ListMarketReply](#ListMarketReply) | Get extended details for each markets either open, closed or to be funded. |
 | UpdateMarketFee | [.UpdateMarketFeeRequest](#UpdateMarketFeeRequest) | [.UpdateMarketFeeReply](#UpdateMarketFeeReply) | Changes the Liquidity Provider fee for the given market. I thsould be express in basis point. To change the fee on each swap from (current) 0.25% to 1% you need to pass down 100 The Market MUST be closed before doing this change. |
 | UpdateMarketPrice | [.UpdateMarketPriceRequest](#UpdateMarketPriceRequest) | [.UpdateMarketPriceReply](#UpdateMarketPriceReply) | Manually updates the price for the given market |
-| UpdateMarketStrategy | [.UpdateMarketStrategyRequest](#UpdateMarketStrategyRequest) | [.UpdateMarketStrategyReply](#UpdateMarketStrategyReply) |  |
+| UpdateMarketStrategy | [.UpdateMarketStrategyRequest](#UpdateMarketStrategyRequest) | [.UpdateMarketStrategyReply](#UpdateMarketStrategyReply) | Updates the current market making strategy, either using an automated market making formula or a pluggable price feed |
 | UpdatePriceFeed | [.UpdatePriceFeedRequest](#UpdatePriceFeedRequest) | [.UpdatePriceFeedReply](#UpdatePriceFeedReply) | updates the price feed to be used for the given market |
 | WithdrawMarket | [.WithdrawMarketRequest](#WithdrawMarketRequest) | [.WithdrawMarketReply](#WithdrawMarketReply) | WithdrawMarket allows the operator to withdraw to external wallet funds from a specific market. The Market MUST be closed before doing this change. |
 | ListSwaps | [.ListSwapsRequest](#ListSwapsRequest) | [.ListSwapsReply](#ListSwapsReply) | Returs all the swaps processed by the daemon (both attempted and completed) |

@@ -42,6 +42,8 @@ service Operator {
   rpc UpdateMarketPrice(UpdateMarketPriceRequest)
       returns (UpdateMarketPriceReply) {}
 
+  // Updates the current market making strategy, either using an automated
+  // market making formula or a pluggable price feed
   rpc UpdateMarketStrategy(UpdateMarketStrategyRequest)
       returns (UpdateMarketStrategyReply) {}
   // updates the price feed to be used for the given market
@@ -79,8 +81,7 @@ message ListMarketRequest {}
 message ListMarketReply { repeated MarketInfo markets = 1; }
 
 message OpenMarketRequest {
-  Market market = 1;     // Market to be made tradable
-  Strategy strategy = 2; // Market making strategy to use
+  Market market = 1; // Market to be made tradable
 }
 message OpenMarketReply {}
 

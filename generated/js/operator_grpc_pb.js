@@ -430,7 +430,9 @@ updateMarketPrice: {
     responseSerialize: serialize_UpdateMarketPriceReply,
     responseDeserialize: deserialize_UpdateMarketPriceReply,
   },
-  updateMarketStrategy: {
+  // Updates the current market making strategy, either using an automated
+// market making formula or a pluggable price feed
+updateMarketStrategy: {
     path: '/Operator/UpdateMarketStrategy',
     requestStream: false,
     responseStream: false,
