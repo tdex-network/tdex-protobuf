@@ -1312,7 +1312,7 @@ Custom Types
 | ----- | ---- | ----- | ----------- |
 | asset | [string](#string) |  |  |
 | value | [int64](#int64) |  | The value of the output being spent. |
-| script | [bytes](#bytes) |  | The script of the output being spent. |
+| address | [string](#string) |  | The confidential/non-confidential address of the output being spent. |
 
 
 

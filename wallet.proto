@@ -149,6 +149,6 @@ message TxOut {
   string asset = 1;
   // The value of the output being spent.
   int64 value = 2;
-  // The script of the output being spent.
-  bytes script = 3;
+  // The confidential/non-confidential address of the output being spent.
+  string address = 3;
 }
