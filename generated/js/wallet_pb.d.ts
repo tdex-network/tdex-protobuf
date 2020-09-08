@@ -249,10 +249,8 @@ export class TxOut extends jspb.Message {
   getValue(): number;
   setValue(value: number): TxOut;
 
-  getScript(): Uint8Array | string;
-  getScript_asU8(): Uint8Array;
-  getScript_asB64(): string;
-  setScript(value: Uint8Array | string): TxOut;
+  getAddress(): string;
+  setAddress(value: string): TxOut;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TxOut.AsObject;
@@ -266,7 +264,7 @@ export namespace TxOut {
   export type AsObject = {
     asset: string,
     value: number,
-    script: Uint8Array | string,
+    address: string,
   }
 }
 

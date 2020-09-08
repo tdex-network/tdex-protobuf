@@ -2182,7 +2182,7 @@ proto.TxOut.toObject = function(includeInstance, msg) {
   var f, obj = {
     asset: jspb.Message.getFieldWithDefault(msg, 1, ""),
     value: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    script: msg.getScript_asB64()
+    address: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -2228,8 +2228,8 @@ proto.TxOut.deserializeBinaryFromReader = function(msg, reader) {
       msg.setValue(value);
       break;
     case 3:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setScript(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAddress(value);
       break;
     default:
       reader.skipField();
@@ -2274,9 +2274,9 @@ proto.TxOut.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getScript_asU8();
+  f = message.getAddress();
   if (f.length > 0) {
-    writer.writeBytes(
+    writer.writeString(
       3,
       f
     );
@@ -2321,44 +2321,20 @@ proto.TxOut.prototype.setValue = function(value) {
 
 
 /**
- * optional bytes script = 3;
- * @return {!(string|Uint8Array)}
- */
-proto.TxOut.prototype.getScript = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
-};
-
-
-/**
- * optional bytes script = 3;
- * This is a type-conversion wrapper around `getScript()`
+ * optional string address = 3;
  * @return {string}
  */
-proto.TxOut.prototype.getScript_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getScript()));
+proto.TxOut.prototype.getAddress = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
 
 /**
- * optional bytes script = 3;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getScript()`
- * @return {!Uint8Array}
- */
-proto.TxOut.prototype.getScript_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getScript()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
+ * @param {string} value
  * @return {!proto.TxOut} returns this
  */
-proto.TxOut.prototype.setScript = function(value) {
-  return jspb.Message.setProto3BytesField(this, 3, value);
+proto.TxOut.prototype.setAddress = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
