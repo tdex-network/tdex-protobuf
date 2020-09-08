@@ -41,11 +41,6 @@ export namespace WalletBalanceResponse {
 }
 
 export class GenSeedRequest extends jspb.Message {
-  getPassphrase(): Uint8Array | string;
-  getPassphrase_asU8(): Uint8Array;
-  getPassphrase_asB64(): string;
-  setPassphrase(value: Uint8Array | string): GenSeedRequest;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GenSeedRequest.AsObject;
   static toObject(includeInstance: boolean, msg: GenSeedRequest): GenSeedRequest.AsObject;
@@ -56,7 +51,6 @@ export class GenSeedRequest extends jspb.Message {
 
 export namespace GenSeedRequest {
   export type AsObject = {
-    passphrase: Uint8Array | string,
   }
 }
 

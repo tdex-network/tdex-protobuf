@@ -621,7 +621,7 @@ proto.GenSeedRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.GenSeedRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    passphrase: msg.getPassphrase_asB64()
+
   };
 
   if (includeInstance) {
@@ -658,10 +658,6 @@ proto.GenSeedRequest.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setPassphrase(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -691,55 +687,6 @@ proto.GenSeedRequest.prototype.serializeBinary = function() {
  */
 proto.GenSeedRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getPassphrase_asU8();
-  if (f.length > 0) {
-    writer.writeBytes(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional bytes passphrase = 1;
- * @return {!(string|Uint8Array)}
- */
-proto.GenSeedRequest.prototype.getPassphrase = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * optional bytes passphrase = 1;
- * This is a type-conversion wrapper around `getPassphrase()`
- * @return {string}
- */
-proto.GenSeedRequest.prototype.getPassphrase_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getPassphrase()));
-};
-
-
-/**
- * optional bytes passphrase = 1;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getPassphrase()`
- * @return {!Uint8Array}
- */
-proto.GenSeedRequest.prototype.getPassphrase_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getPassphrase()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
- * @return {!proto.GenSeedRequest} returns this
- */
-proto.GenSeedRequest.prototype.setPassphrase = function(value) {
-  return jspb.Message.setProto3BytesField(this, 1, value);
 };
 
 

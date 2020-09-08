@@ -1220,11 +1220,6 @@ Custom Types
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| passphrase | [bytes](#bytes) |  | passphrase is an optional user provided passphrase that will be used to encrypt the generated seed. |
-
-
 
 
 
