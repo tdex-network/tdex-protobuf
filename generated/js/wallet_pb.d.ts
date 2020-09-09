@@ -1,45 +1,5 @@
 import * as jspb from "google-protobuf"
 
-export class WalletBalanceRequest extends jspb.Message {
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): WalletBalanceRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: WalletBalanceRequest): WalletBalanceRequest.AsObject;
-  static serializeBinaryToWriter(message: WalletBalanceRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): WalletBalanceRequest;
-  static deserializeBinaryFromReader(message: WalletBalanceRequest, reader: jspb.BinaryReader): WalletBalanceRequest;
-}
-
-export namespace WalletBalanceRequest {
-  export type AsObject = {
-  }
-}
-
-export class WalletBalanceResponse extends jspb.Message {
-  getTotalBalance(): number;
-  setTotalBalance(value: number): WalletBalanceResponse;
-
-  getConfirmedBalance(): number;
-  setConfirmedBalance(value: number): WalletBalanceResponse;
-
-  getUnconfirmedBalance(): number;
-  setUnconfirmedBalance(value: number): WalletBalanceResponse;
-
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): WalletBalanceResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: WalletBalanceResponse): WalletBalanceResponse.AsObject;
-  static serializeBinaryToWriter(message: WalletBalanceResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): WalletBalanceResponse;
-  static deserializeBinaryFromReader(message: WalletBalanceResponse, reader: jspb.BinaryReader): WalletBalanceResponse;
-}
-
-export namespace WalletBalanceResponse {
-  export type AsObject = {
-    totalBalance: number,
-    confirmedBalance: number,
-    unconfirmedBalance: number,
-  }
-}
-
 export class GenSeedRequest extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): GenSeedRequest.AsObject;
@@ -233,6 +193,96 @@ export class SendToManyReply extends jspb.Message {
 export namespace SendToManyReply {
   export type AsObject = {
     rawTx: Uint8Array | string,
+  }
+}
+
+export class WalletAddressRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): WalletAddressRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: WalletAddressRequest): WalletAddressRequest.AsObject;
+  static serializeBinaryToWriter(message: WalletAddressRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): WalletAddressRequest;
+  static deserializeBinaryFromReader(message: WalletAddressRequest, reader: jspb.BinaryReader): WalletAddressRequest;
+}
+
+export namespace WalletAddressRequest {
+  export type AsObject = {
+  }
+}
+
+export class WalletAddressReply extends jspb.Message {
+  getAddress(): string;
+  setAddress(value: string): WalletAddressReply;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): WalletAddressReply.AsObject;
+  static toObject(includeInstance: boolean, msg: WalletAddressReply): WalletAddressReply.AsObject;
+  static serializeBinaryToWriter(message: WalletAddressReply, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): WalletAddressReply;
+  static deserializeBinaryFromReader(message: WalletAddressReply, reader: jspb.BinaryReader): WalletAddressReply;
+}
+
+export namespace WalletAddressReply {
+  export type AsObject = {
+    address: string,
+  }
+}
+
+export class BalanceInfo extends jspb.Message {
+  getTotalBalance(): number;
+  setTotalBalance(value: number): BalanceInfo;
+
+  getConfirmedBalance(): number;
+  setConfirmedBalance(value: number): BalanceInfo;
+
+  getUnconfirmedBalance(): number;
+  setUnconfirmedBalance(value: number): BalanceInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): BalanceInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: BalanceInfo): BalanceInfo.AsObject;
+  static serializeBinaryToWriter(message: BalanceInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): BalanceInfo;
+  static deserializeBinaryFromReader(message: BalanceInfo, reader: jspb.BinaryReader): BalanceInfo;
+}
+
+export namespace BalanceInfo {
+  export type AsObject = {
+    totalBalance: number,
+    confirmedBalance: number,
+    unconfirmedBalance: number,
+  }
+}
+
+export class WalletBalanceRequest extends jspb.Message {
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): WalletBalanceRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: WalletBalanceRequest): WalletBalanceRequest.AsObject;
+  static serializeBinaryToWriter(message: WalletBalanceRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): WalletBalanceRequest;
+  static deserializeBinaryFromReader(message: WalletBalanceRequest, reader: jspb.BinaryReader): WalletBalanceRequest;
+}
+
+export namespace WalletBalanceRequest {
+  export type AsObject = {
+  }
+}
+
+export class WalletBalanceResponse extends jspb.Message {
+  getBalanceMap(): jspb.Map<string, BalanceInfo>;
+  clearBalanceMap(): WalletBalanceResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): WalletBalanceResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: WalletBalanceResponse): WalletBalanceResponse.AsObject;
+  static serializeBinaryToWriter(message: WalletBalanceResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): WalletBalanceResponse;
+  static deserializeBinaryFromReader(message: WalletBalanceResponse, reader: jspb.BinaryReader): WalletBalanceResponse;
+}
+
+export namespace WalletBalanceResponse {
+  export type AsObject = {
+    balanceMap: Array<[string, BalanceInfo.AsObject]>,
   }
 }
 

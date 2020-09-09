@@ -494,6 +494,10 @@
             <ul>
               
                 <li>
+                  <a href="#.BalanceInfo"><span class="badge">M</span>BalanceInfo</a>
+                </li>
+              
+                <li>
                   <a href="#.ChangePasswordRequest"><span class="badge">M</span>ChangePasswordRequest</a>
                 </li>
               
@@ -538,11 +542,23 @@
                 </li>
               
                 <li>
+                  <a href="#.WalletAddressReply"><span class="badge">M</span>WalletAddressReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.WalletAddressRequest"><span class="badge">M</span>WalletAddressRequest</a>
+                </li>
+              
+                <li>
                   <a href="#.WalletBalanceRequest"><span class="badge">M</span>WalletBalanceRequest</a>
                 </li>
               
                 <li>
                   <a href="#.WalletBalanceResponse"><span class="badge">M</span>WalletBalanceResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#.WalletBalanceResponse.BalanceEntry"><span class="badge">M</span>WalletBalanceResponse.BalanceEntry</a>
                 </li>
               
               
@@ -2644,6 +2660,44 @@ transaction hash of the broadcasted transaction.</p></td>
       <p></p>
 
       
+        <h3 id=".BalanceInfo">BalanceInfo</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>total_balance</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>The balance of the wallet </p></td>
+                </tr>
+              
+                <tr>
+                  <td>confirmed_balance</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>The confirmed balance of a wallet(with &gt;= 1 confirmations) </p></td>
+                </tr>
+              
+                <tr>
+                  <td>unconfirmed_balance</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>The unconfirmed balance of a wallet(with 0 confirmations) </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".ChangePasswordRequest">ChangePasswordRequest</h3>
         <p></p>
 
@@ -2836,7 +2890,7 @@ this transaction. </p></td>
                   <td>asset</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>The asset being spent </p></td>
                 </tr>
               
                 <tr>
@@ -2850,7 +2904,7 @@ this transaction. </p></td>
                   <td>address</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>The confidential/non-confidential address of the output being spent. </p></td>
+                  <td><p>The confidential address of the output being spent. </p></td>
                 </tr>
               
             </tbody>
@@ -2893,6 +2947,37 @@ function properly. </p></td>
 
         
       
+        <h3 id=".WalletAddressReply">WalletAddressReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The confidential address encoded using a blech32 format. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".WalletAddressRequest">WalletAddressRequest</h3>
+        <p></p>
+
+        
+
+        
+      
         <h3 id=".WalletBalanceRequest">WalletBalanceRequest</h3>
         <p></p>
 
@@ -2911,24 +2996,42 @@ function properly. </p></td>
             <tbody>
               
                 <tr>
-                  <td>total_balance</td>
-                  <td><a href="#uint64">uint64</a></td>
+                  <td>balance</td>
+                  <td><a href="#WalletBalanceResponse.BalanceEntry">WalletBalanceResponse.BalanceEntry</a></td>
+                  <td>repeated</td>
+                  <td><p>The balance info (total, confirmed, unconfirmed) of the wallet grouped by
+asset </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".WalletBalanceResponse.BalanceEntry">WalletBalanceResponse.BalanceEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>key</td>
+                  <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>The balance of the wallet </p></td>
+                  <td><p> </p></td>
                 </tr>
               
                 <tr>
-                  <td>confirmed_balance</td>
-                  <td><a href="#uint64">uint64</a></td>
+                  <td>value</td>
+                  <td><a href="#BalanceInfo">BalanceInfo</a></td>
                   <td></td>
-                  <td><p>The confirmed balance of a wallet(with &gt;= 1 confirmations) </p></td>
-                </tr>
-              
-                <tr>
-                  <td>unconfirmed_balance</td>
-                  <td><a href="#uint64">uint64</a></td>
-                  <td></td>
-                  <td><p>The unconfirmed balance of a wallet(with 0 confirmations) </p></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -2995,6 +3098,13 @@ the wallet database.</p></td>
                 <td><a href="#ChangePasswordResponse">.ChangePasswordResponse</a></td>
                 <td><p>ChangePassword changes the password of the encrypted wallet. This will
 automatically unlock the wallet database if successful.</p></td>
+              </tr>
+            
+              <tr>
+                <td>WalletAddress</td>
+                <td><a href="#WalletAddressRequest">.WalletAddressRequest</a></td>
+                <td><a href="#WalletAddressReply">.WalletAddressReply</a></td>
+                <td><p>WalletAddress returns a Liquid confidential p2wpkh address (BLECH32)</p></td>
               </tr>
             
               <tr>

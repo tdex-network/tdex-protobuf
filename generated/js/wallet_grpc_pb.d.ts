@@ -12,6 +12,7 @@ interface IWalletService extends grpc.ServiceDefinition<grpc.UntypedServiceImple
     initWallet: IWalletService_IInitWallet;
     unlockWallet: IWalletService_IUnlockWallet;
     changePassword: IWalletService_IChangePassword;
+    walletAddress: IWalletService_IWalletAddress;
     walletBalance: IWalletService_IWalletBalance;
     sendToMany: IWalletService_ISendToMany;
 }
@@ -52,6 +53,15 @@ interface IWalletService_IChangePassword extends grpc.MethodDefinition<wallet_pb
     responseSerialize: grpc.serialize<wallet_pb.ChangePasswordResponse>;
     responseDeserialize: grpc.deserialize<wallet_pb.ChangePasswordResponse>;
 }
+interface IWalletService_IWalletAddress extends grpc.MethodDefinition<wallet_pb.WalletAddressRequest, wallet_pb.WalletAddressReply> {
+    path: string; // "/.Wallet/WalletAddress"
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<wallet_pb.WalletAddressRequest>;
+    requestDeserialize: grpc.deserialize<wallet_pb.WalletAddressRequest>;
+    responseSerialize: grpc.serialize<wallet_pb.WalletAddressReply>;
+    responseDeserialize: grpc.deserialize<wallet_pb.WalletAddressReply>;
+}
 interface IWalletService_IWalletBalance extends grpc.MethodDefinition<wallet_pb.WalletBalanceRequest, wallet_pb.WalletBalanceResponse> {
     path: string; // "/.Wallet/WalletBalance"
     requestStream: false;
@@ -78,6 +88,7 @@ export interface IWalletServer {
     initWallet: grpc.handleUnaryCall<wallet_pb.InitWalletRequest, wallet_pb.InitWalletResponse>;
     unlockWallet: grpc.handleUnaryCall<wallet_pb.UnlockWalletRequest, wallet_pb.UnlockWalletResponse>;
     changePassword: grpc.handleUnaryCall<wallet_pb.ChangePasswordRequest, wallet_pb.ChangePasswordResponse>;
+    walletAddress: grpc.handleUnaryCall<wallet_pb.WalletAddressRequest, wallet_pb.WalletAddressReply>;
     walletBalance: grpc.handleUnaryCall<wallet_pb.WalletBalanceRequest, wallet_pb.WalletBalanceResponse>;
     sendToMany: grpc.handleUnaryCall<wallet_pb.SendToManyRequest, wallet_pb.SendToManyReply>;
 }
@@ -95,6 +106,9 @@ export interface IWalletClient {
     changePassword(request: wallet_pb.ChangePasswordRequest, callback: (error: grpc.ServiceError | null, response: wallet_pb.ChangePasswordResponse) => void): grpc.ClientUnaryCall;
     changePassword(request: wallet_pb.ChangePasswordRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: wallet_pb.ChangePasswordResponse) => void): grpc.ClientUnaryCall;
     changePassword(request: wallet_pb.ChangePasswordRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: wallet_pb.ChangePasswordResponse) => void): grpc.ClientUnaryCall;
+    walletAddress(request: wallet_pb.WalletAddressRequest, callback: (error: grpc.ServiceError | null, response: wallet_pb.WalletAddressReply) => void): grpc.ClientUnaryCall;
+    walletAddress(request: wallet_pb.WalletAddressRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: wallet_pb.WalletAddressReply) => void): grpc.ClientUnaryCall;
+    walletAddress(request: wallet_pb.WalletAddressRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: wallet_pb.WalletAddressReply) => void): grpc.ClientUnaryCall;
     walletBalance(request: wallet_pb.WalletBalanceRequest, callback: (error: grpc.ServiceError | null, response: wallet_pb.WalletBalanceResponse) => void): grpc.ClientUnaryCall;
     walletBalance(request: wallet_pb.WalletBalanceRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: wallet_pb.WalletBalanceResponse) => void): grpc.ClientUnaryCall;
     walletBalance(request: wallet_pb.WalletBalanceRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: wallet_pb.WalletBalanceResponse) => void): grpc.ClientUnaryCall;
@@ -117,6 +131,9 @@ export class WalletClient extends grpc.Client implements IWalletClient {
     public changePassword(request: wallet_pb.ChangePasswordRequest, callback: (error: grpc.ServiceError | null, response: wallet_pb.ChangePasswordResponse) => void): grpc.ClientUnaryCall;
     public changePassword(request: wallet_pb.ChangePasswordRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: wallet_pb.ChangePasswordResponse) => void): grpc.ClientUnaryCall;
     public changePassword(request: wallet_pb.ChangePasswordRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: wallet_pb.ChangePasswordResponse) => void): grpc.ClientUnaryCall;
+    public walletAddress(request: wallet_pb.WalletAddressRequest, callback: (error: grpc.ServiceError | null, response: wallet_pb.WalletAddressReply) => void): grpc.ClientUnaryCall;
+    public walletAddress(request: wallet_pb.WalletAddressRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: wallet_pb.WalletAddressReply) => void): grpc.ClientUnaryCall;
+    public walletAddress(request: wallet_pb.WalletAddressRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: wallet_pb.WalletAddressReply) => void): grpc.ClientUnaryCall;
     public walletBalance(request: wallet_pb.WalletBalanceRequest, callback: (error: grpc.ServiceError | null, response: wallet_pb.WalletBalanceResponse) => void): grpc.ClientUnaryCall;
     public walletBalance(request: wallet_pb.WalletBalanceRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: wallet_pb.WalletBalanceResponse) => void): grpc.ClientUnaryCall;
     public walletBalance(request: wallet_pb.WalletBalanceRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: wallet_pb.WalletBalanceResponse) => void): grpc.ClientUnaryCall;

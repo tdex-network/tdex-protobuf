@@ -84,6 +84,7 @@
     - [TradeType](#.TradeType)
   
 - [wallet.proto](#wallet.proto)
+    - [BalanceInfo](#.BalanceInfo)
     - [ChangePasswordRequest](#.ChangePasswordRequest)
     - [ChangePasswordResponse](#.ChangePasswordResponse)
     - [GenSeedRequest](#.GenSeedRequest)
@@ -95,8 +96,11 @@
     - [TxOut](#.TxOut)
     - [UnlockWalletRequest](#.UnlockWalletRequest)
     - [UnlockWalletResponse](#.UnlockWalletResponse)
+    - [WalletAddressReply](#.WalletAddressReply)
+    - [WalletAddressRequest](#.WalletAddressRequest)
     - [WalletBalanceRequest](#.WalletBalanceRequest)
     - [WalletBalanceResponse](#.WalletBalanceResponse)
+    - [WalletBalanceResponse.BalanceEntry](#.WalletBalanceResponse.BalanceEntry)
   
     - [Wallet](#.Wallet)
   
@@ -1188,6 +1192,23 @@ Custom Types
 
 
 
+<a name=".BalanceInfo"></a>
+
+### BalanceInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total_balance | [uint64](#uint64) |  | The balance of the wallet |
+| confirmed_balance | [uint64](#uint64) |  | The confirmed balance of a wallet(with &gt;= 1 confirmations) |
+| unconfirmed_balance | [uint64](#uint64) |  | The unconfirmed balance of a wallet(with 0 confirmations) |
+
+
+
+
+
+
 <a name=".ChangePasswordRequest"></a>
 
 ### ChangePasswordRequest
@@ -1305,9 +1326,9 @@ Custom Types
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| asset | [string](#string) |  |  |
+| asset | [string](#string) |  | The asset being spent |
 | value | [int64](#int64) |  | The value of the output being spent. |
-| address | [string](#string) |  | The confidential/non-confidential address of the output being spent. |
+| address | [string](#string) |  | The confidential address of the output being spent. |
 
 
 
@@ -1339,6 +1360,31 @@ Custom Types
 
 
 
+<a name=".WalletAddressReply"></a>
+
+### WalletAddressReply
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| address | [string](#string) |  | The confidential address encoded using a blech32 format. |
+
+
+
+
+
+
+<a name=".WalletAddressRequest"></a>
+
+### WalletAddressRequest
+
+
+
+
+
+
+
 <a name=".WalletBalanceRequest"></a>
 
 ### WalletBalanceRequest
@@ -1357,9 +1403,23 @@ Custom Types
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| total_balance | [uint64](#uint64) |  | The balance of the wallet |
-| confirmed_balance | [uint64](#uint64) |  | The confirmed balance of a wallet(with &gt;= 1 confirmations) |
-| unconfirmed_balance | [uint64](#uint64) |  | The unconfirmed balance of a wallet(with 0 confirmations) |
+| balance | [WalletBalanceResponse.BalanceEntry](#WalletBalanceResponse.BalanceEntry) | repeated | The balance info (total, confirmed, unconfirmed) of the wallet grouped by asset |
+
+
+
+
+
+
+<a name=".WalletBalanceResponse.BalanceEntry"></a>
+
+### WalletBalanceResponse.BalanceEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [BalanceInfo](#BalanceInfo) |  |  |
 
 
 
@@ -1383,6 +1443,7 @@ Service for Liquidity Providers to manage funds via walle RPC
 | InitWallet | [.InitWalletRequest](#InitWalletRequest) | [.InitWalletResponse](#InitWalletResponse) | InitWallet is used when tdexd is starting up for the first time to fully initialize the daemon and its internal wallet. At the very least a wallet password must be provided. This will be used to encrypt sensitive material on disk. In the case of a recovery scenario, the user can also specify their mnemonic and passphrase. If set, then the daemon will use this prior state to initialize its internal wallet. Alternatively, this can be used along with the GenSeed RPC to obtain a seed, then present it to the user. Once it has been verified by the user, the seed can be fed into this RPC in order to commit the new wallet. |
 | UnlockWallet | [.UnlockWalletRequest](#UnlockWalletRequest) | [.UnlockWalletResponse](#UnlockWalletResponse) | UnlockWallet is used at startup of tdexd to provide a password to unlock the wallet database. |
 | ChangePassword | [.ChangePasswordRequest](#ChangePasswordRequest) | [.ChangePasswordResponse](#ChangePasswordResponse) | ChangePassword changes the password of the encrypted wallet. This will automatically unlock the wallet database if successful. |
+| WalletAddress | [.WalletAddressRequest](#WalletAddressRequest) | [.WalletAddressReply](#WalletAddressReply) | WalletAddress returns a Liquid confidential p2wpkh address (BLECH32) |
 | WalletBalance | [.WalletBalanceRequest](#WalletBalanceRequest) | [.WalletBalanceResponse](#WalletBalanceResponse) | WalletBalance returns total unspent outputs(confirmed and unconfirmed), all confirmed unspent outputs and all unconfirmed unspent outputs under control of the wallet. |
 | SendToMany | [.SendToManyRequest](#SendToManyRequest) | [.SendToManyReply](#SendToManyReply) | SendToMany sends funds to many outputs |
 

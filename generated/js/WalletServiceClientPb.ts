@@ -24,6 +24,8 @@ import {
   SendToManyRequest,
   UnlockWalletRequest,
   UnlockWalletResponse,
+  WalletAddressReply,
+  WalletAddressRequest,
   WalletBalanceRequest,
   WalletBalanceResponse} from './wallet_pb';
 
@@ -200,6 +202,45 @@ export class WalletClient {
     request,
     metadata || {},
     this.methodInfoChangePassword);
+  }
+
+  methodInfoWalletAddress = new grpcWeb.AbstractClientBase.MethodInfo(
+    WalletAddressReply,
+    (request: WalletAddressRequest) => {
+      return request.serializeBinary();
+    },
+    WalletAddressReply.deserializeBinary
+  );
+
+  walletAddress(
+    request: WalletAddressRequest,
+    metadata: grpcWeb.Metadata | null): Promise<WalletAddressReply>;
+
+  walletAddress(
+    request: WalletAddressRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: WalletAddressReply) => void): grpcWeb.ClientReadableStream<WalletAddressReply>;
+
+  walletAddress(
+    request: WalletAddressRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: WalletAddressReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        new URL('/Wallet/WalletAddress', this.hostname_).toString(),
+        request,
+        metadata || {},
+        this.methodInfoWalletAddress,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Wallet/WalletAddress',
+    request,
+    metadata || {},
+    this.methodInfoWalletAddress);
   }
 
   methodInfoWalletBalance = new grpcWeb.AbstractClientBase.MethodInfo(
