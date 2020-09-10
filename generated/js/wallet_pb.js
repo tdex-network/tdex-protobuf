@@ -1537,7 +1537,7 @@ proto.SendToManyRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     outputsList: jspb.Message.toObjectList(msg.getOutputsList(),
     proto.TxOut.toObject, includeInstance),
-    satPerKw: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    millisatPerByte: jspb.Message.getFieldWithDefault(msg, 2, 0),
     push: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
@@ -1582,7 +1582,7 @@ proto.SendToManyRequest.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setSatPerKw(value);
+      msg.setMillisatPerByte(value);
       break;
     case 3:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -1625,7 +1625,7 @@ proto.SendToManyRequest.serializeBinaryToWriter = function(message, writer) {
       proto.TxOut.serializeBinaryToWriter
     );
   }
-  f = message.getSatPerKw();
+  f = message.getMillisatPerByte();
   if (f !== 0) {
     writer.writeInt64(
       2,
@@ -1681,10 +1681,10 @@ proto.SendToManyRequest.prototype.clearOutputsList = function() {
 
 
 /**
- * optional int64 sat_per_kw = 2;
+ * optional int64 millisat_per_byte = 2;
  * @return {number}
  */
-proto.SendToManyRequest.prototype.getSatPerKw = function() {
+proto.SendToManyRequest.prototype.getMillisatPerByte = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
@@ -1693,7 +1693,7 @@ proto.SendToManyRequest.prototype.getSatPerKw = function() {
  * @param {number} value
  * @return {!proto.SendToManyRequest} returns this
  */
-proto.SendToManyRequest.prototype.setSatPerKw = function(value) {
+proto.SendToManyRequest.prototype.setMillisatPerByte = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 

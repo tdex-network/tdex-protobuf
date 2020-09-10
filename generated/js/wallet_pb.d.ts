@@ -154,8 +154,8 @@ export class SendToManyRequest extends jspb.Message {
   clearOutputsList(): SendToManyRequest;
   addOutputs(value?: TxOut, index?: number): TxOut;
 
-  getSatPerKw(): number;
-  setSatPerKw(value: number): SendToManyRequest;
+  getMillisatPerByte(): number;
+  setMillisatPerByte(value: number): SendToManyRequest;
 
   getPush(): boolean;
   setPush(value: boolean): SendToManyRequest;
@@ -171,7 +171,7 @@ export class SendToManyRequest extends jspb.Message {
 export namespace SendToManyRequest {
   export type AsObject = {
     outputsList: Array<TxOut.AsObject>,
-    satPerKw: number,
+    millisatPerByte: number,
     push: boolean,
   }
 }

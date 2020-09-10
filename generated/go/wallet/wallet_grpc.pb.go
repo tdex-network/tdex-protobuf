@@ -20,23 +20,17 @@ type WalletClient interface {
 	//
 	//GenSeed is the first method that should be used to instantiate a new tdexd
 	//instance. This method allows a caller to generate a new HD Wallet.
-	//If provided, the passphrase will be necessary
-	//to decrypt the cipherseed to expose the internal wallet seed.
-	//Once the cipherseed is obtained and verified by the user, the InitWallet
+	//Once the seed is obtained and verified by the user, the InitWallet
 	//method should be used to commit the newly generated seed, and create the
 	//wallet.
 	GenSeed(ctx context.Context, in *GenSeedRequest, opts ...grpc.CallOption) (*GenSeedResponse, error)
 	//
 	//InitWallet is used when tdexd is starting up for the first time to fully
-	//initialize the daemon and its internal wallet. At the very least a wallet
-	//password must be provided. This will be used to encrypt sensitive material
-	//on disk.
-	//In the case of a recovery scenario, the user can also specify their
-	//mnemonic and passphrase. If set, then the daemon will use this prior state
-	//to initialize its internal wallet.
-	//Alternatively, this can be used along with the GenSeed RPC to obtain a
-	//seed, then present it to the user. Once it has been verified by the user,
-	//the seed can be fed into this RPC in order to commit the new wallet.
+	//initialize the daemon and its internal wallet. At the very least a mnemonic
+	//and a wallet password must be provided. This will be used to encrypt sensitive
+	//material on disk. Alternatively, this can be used along with the GenSeed RPC
+	//to obtain a seed, then present it to the user. Once it has been verified by
+	//the user, the seed can be fed into this RPC in order to commit the new wallet.
 	InitWallet(ctx context.Context, in *InitWalletRequest, opts ...grpc.CallOption) (*InitWalletResponse, error)
 	//
 	//UnlockWallet is used at startup of tdexd to provide a password to unlock
@@ -136,23 +130,17 @@ type WalletServer interface {
 	//
 	//GenSeed is the first method that should be used to instantiate a new tdexd
 	//instance. This method allows a caller to generate a new HD Wallet.
-	//If provided, the passphrase will be necessary
-	//to decrypt the cipherseed to expose the internal wallet seed.
-	//Once the cipherseed is obtained and verified by the user, the InitWallet
+	//Once the seed is obtained and verified by the user, the InitWallet
 	//method should be used to commit the newly generated seed, and create the
 	//wallet.
 	GenSeed(context.Context, *GenSeedRequest) (*GenSeedResponse, error)
 	//
 	//InitWallet is used when tdexd is starting up for the first time to fully
-	//initialize the daemon and its internal wallet. At the very least a wallet
-	//password must be provided. This will be used to encrypt sensitive material
-	//on disk.
-	//In the case of a recovery scenario, the user can also specify their
-	//mnemonic and passphrase. If set, then the daemon will use this prior state
-	//to initialize its internal wallet.
-	//Alternatively, this can be used along with the GenSeed RPC to obtain a
-	//seed, then present it to the user. Once it has been verified by the user,
-	//the seed can be fed into this RPC in order to commit the new wallet.
+	//initialize the daemon and its internal wallet. At the very least a mnemonic
+	//and a wallet password must be provided. This will be used to encrypt sensitive
+	//material on disk. Alternatively, this can be used along with the GenSeed RPC
+	//to obtain a seed, then present it to the user. Once it has been verified by
+	//the user, the seed can be fed into this RPC in order to commit the new wallet.
 	InitWallet(context.Context, *InitWalletRequest) (*InitWalletResponse, error)
 	//
 	//UnlockWallet is used at startup of tdexd to provide a password to unlock
