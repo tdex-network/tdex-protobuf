@@ -280,7 +280,8 @@ BOTD#2
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| address | [string](#string) |  |  |
+| address | [string](#string) |  | The confidential address encoded using a blech32 format. |
+| blinding | [string](#string) |  | The blinding private key for the given address encoded in hex format |
 
 
 

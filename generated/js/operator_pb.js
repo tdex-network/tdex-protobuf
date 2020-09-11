@@ -1353,7 +1353,8 @@ proto.DepositFeeAccountReply.prototype.toObject = function(opt_includeInstance) 
  */
 proto.DepositFeeAccountReply.toObject = function(includeInstance, msg) {
   var f, obj = {
-    address: jspb.Message.getFieldWithDefault(msg, 1, "")
+    address: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    blinding: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -1394,6 +1395,10 @@ proto.DepositFeeAccountReply.deserializeBinaryFromReader = function(msg, reader)
       var value = /** @type {string} */ (reader.readString());
       msg.setAddress(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBlinding(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1430,6 +1435,13 @@ proto.DepositFeeAccountReply.serializeBinaryToWriter = function(message, writer)
       f
     );
   }
+  f = message.getBlinding();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -1448,6 +1460,24 @@ proto.DepositFeeAccountReply.prototype.getAddress = function() {
  */
 proto.DepositFeeAccountReply.prototype.setAddress = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string blinding = 2;
+ * @return {string}
+ */
+proto.DepositFeeAccountReply.prototype.getBlinding = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.DepositFeeAccountReply} returns this
+ */
+proto.DepositFeeAccountReply.prototype.setBlinding = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

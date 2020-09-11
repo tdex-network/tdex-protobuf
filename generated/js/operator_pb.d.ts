@@ -98,6 +98,9 @@ export class DepositFeeAccountReply extends jspb.Message {
   getAddress(): string;
   setAddress(value: string): DepositFeeAccountReply;
 
+  getBlinding(): string;
+  setBlinding(value: string): DepositFeeAccountReply;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DepositFeeAccountReply.AsObject;
   static toObject(includeInstance: boolean, msg: DepositFeeAccountReply): DepositFeeAccountReply.AsObject;
@@ -109,6 +112,7 @@ export class DepositFeeAccountReply extends jspb.Message {
 export namespace DepositFeeAccountReply {
   export type AsObject = {
     address: string,
+    blinding: string,
   }
 }
 
