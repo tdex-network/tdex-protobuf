@@ -214,6 +214,9 @@ export class WalletAddressReply extends jspb.Message {
   getAddress(): string;
   setAddress(value: string): WalletAddressReply;
 
+  getBlinding(): string;
+  setBlinding(value: string): WalletAddressReply;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): WalletAddressReply.AsObject;
   static toObject(includeInstance: boolean, msg: WalletAddressReply): WalletAddressReply.AsObject;
@@ -225,6 +228,7 @@ export class WalletAddressReply extends jspb.Message {
 export namespace WalletAddressReply {
   export type AsObject = {
     address: string,
+    blinding: string,
   }
 }
 

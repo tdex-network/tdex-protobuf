@@ -2003,7 +2003,8 @@ proto.WalletAddressReply.prototype.toObject = function(opt_includeInstance) {
  */
 proto.WalletAddressReply.toObject = function(includeInstance, msg) {
   var f, obj = {
-    address: jspb.Message.getFieldWithDefault(msg, 1, "")
+    address: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    blinding: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -2044,6 +2045,10 @@ proto.WalletAddressReply.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setAddress(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setBlinding(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2080,6 +2085,13 @@ proto.WalletAddressReply.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getBlinding();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
+    );
+  }
 };
 
 
@@ -2098,6 +2110,24 @@ proto.WalletAddressReply.prototype.getAddress = function() {
  */
 proto.WalletAddressReply.prototype.setAddress = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional string blinding = 2;
+ * @return {string}
+ */
+proto.WalletAddressReply.prototype.getBlinding = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.WalletAddressReply} returns this
+ */
+proto.WalletAddressReply.prototype.setBlinding = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

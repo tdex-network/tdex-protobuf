@@ -130,6 +130,8 @@ message WalletAddressRequest {}
 message WalletAddressReply {
   // The confidential address encoded using a blech32 format.
   string address = 1;
+  // The blinding private key for the given address encoded in hex format
+  string blinding = 2;
 }
 
 message BalanceInfo {
