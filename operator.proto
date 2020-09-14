@@ -94,8 +94,14 @@ message CloseMarketRequest {
 message CloseMarketReply {}
 
 message UpdateMarketStrategyRequest {
-  Market market = 1;     // Market to chnage the strategy
-  Strategy strategy = 2; // Market making strategy to use
+  // Market to change the strategy of
+  Market market = 1;
+  // Market making strategy to use
+  StrategyType strategy_type = 2;
+  /*
+  JSON string representing additional metadata relative to the chosen strategy.
+  */
+  string metadata = 3;
 }
 message UpdateMarketStrategyReply {}
 
@@ -143,7 +149,7 @@ message ReportMarketFeeReply {
 }
 
 // Custom types
-enum Strategy {
+enum StrategyType {
   PLUGGABLE = 0;
   BALANCED = 1;
   UNBALANCED = 2;
@@ -160,7 +166,7 @@ message MarketInfo {
   Market market = 1;
   Fee fee = 2;
   bool tradable = 3;
-  Strategy strategy = 4;
+  StrategyType strategy_type = 4;
 }
 
 message SwapInfo {

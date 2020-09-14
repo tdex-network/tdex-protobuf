@@ -43,7 +43,7 @@
     - [WithdrawMarketReply](#.WithdrawMarketReply)
     - [WithdrawMarketRequest](#.WithdrawMarketRequest)
   
-    - [Strategy](#.Strategy)
+    - [StrategyType](#.StrategyType)
     - [SwapStatus](#.SwapStatus)
   
     - [Operator](#.Operator)
@@ -424,7 +424,7 @@ BOTD#2
 | market | [Market](#Market) |  |  |
 | fee | [Fee](#Fee) |  |  |
 | tradable | [bool](#bool) |  |  |
-| strategy | [Strategy](#Strategy) |  |  |
+| strategy_type | [StrategyType](#StrategyType) |  |  |
 
 
 
@@ -600,8 +600,9 @@ BOTD#2
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| market | [Market](#Market) |  | Market to chnage the strategy |
-| strategy | [Strategy](#Strategy) |  | Market making strategy to use |
+| market | [Market](#Market) |  | Market to change the strategy of |
+| strategy_type | [StrategyType](#StrategyType) |  | Market making strategy to use |
+| metadata | [string](#string) |  | JSON string representing additional metadata relative to the chosen strategy. |
 
 
 
@@ -644,9 +645,9 @@ BOTD#2
  
 
 
-<a name=".Strategy"></a>
+<a name=".StrategyType"></a>
 
-### Strategy
+### StrategyType
 Custom types
 
 | Name | Number | Description |

@@ -256,8 +256,11 @@ export class UpdateMarketStrategyRequest extends jspb.Message {
   hasMarket(): boolean;
   clearMarket(): UpdateMarketStrategyRequest;
 
-  getStrategy(): Strategy;
-  setStrategy(value: Strategy): UpdateMarketStrategyRequest;
+  getStrategyType(): StrategyType;
+  setStrategyType(value: StrategyType): UpdateMarketStrategyRequest;
+
+  getMetadata(): string;
+  setMetadata(value: string): UpdateMarketStrategyRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): UpdateMarketStrategyRequest.AsObject;
@@ -270,7 +273,8 @@ export class UpdateMarketStrategyRequest extends jspb.Message {
 export namespace UpdateMarketStrategyRequest {
   export type AsObject = {
     market?: types_pb.Market.AsObject,
-    strategy: Strategy,
+    strategyType: StrategyType,
+    metadata: string,
   }
 }
 
@@ -524,8 +528,8 @@ export class MarketInfo extends jspb.Message {
   getTradable(): boolean;
   setTradable(value: boolean): MarketInfo;
 
-  getStrategy(): Strategy;
-  setStrategy(value: Strategy): MarketInfo;
+  getStrategyType(): StrategyType;
+  setStrategyType(value: StrategyType): MarketInfo;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MarketInfo.AsObject;
@@ -540,7 +544,7 @@ export namespace MarketInfo {
     market?: types_pb.Market.AsObject,
     fee?: types_pb.Fee.AsObject,
     tradable: boolean,
-    strategy: Strategy,
+    strategyType: StrategyType,
   }
 }
 
@@ -596,7 +600,7 @@ export namespace SwapInfo {
   }
 }
 
-export enum Strategy { 
+export enum StrategyType { 
   PLUGGABLE = 0,
   BALANCED = 1,
   UNBALANCED = 2,

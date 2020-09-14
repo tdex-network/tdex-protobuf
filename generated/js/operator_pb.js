@@ -33,7 +33,7 @@ goog.exportSymbol('proto.OpenMarketReply', null, global);
 goog.exportSymbol('proto.OpenMarketRequest', null, global);
 goog.exportSymbol('proto.ReportMarketFeeReply', null, global);
 goog.exportSymbol('proto.ReportMarketFeeRequest', null, global);
-goog.exportSymbol('proto.Strategy', null, global);
+goog.exportSymbol('proto.StrategyType', null, global);
 goog.exportSymbol('proto.SwapInfo', null, global);
 goog.exportSymbol('proto.SwapStatus', null, global);
 goog.exportSymbol('proto.UpdateMarketFeeReply', null, global);
@@ -2510,7 +2510,8 @@ proto.UpdateMarketStrategyRequest.prototype.toObject = function(opt_includeInsta
 proto.UpdateMarketStrategyRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     market: (f = msg.getMarket()) && types_pb.Market.toObject(includeInstance, f),
-    strategy: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    strategyType: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    metadata: jspb.Message.getFieldWithDefault(msg, 3, "")
   };
 
   if (includeInstance) {
@@ -2553,8 +2554,12 @@ proto.UpdateMarketStrategyRequest.deserializeBinaryFromReader = function(msg, re
       msg.setMarket(value);
       break;
     case 2:
-      var value = /** @type {!proto.Strategy} */ (reader.readEnum());
-      msg.setStrategy(value);
+      var value = /** @type {!proto.StrategyType} */ (reader.readEnum());
+      msg.setStrategyType(value);
+      break;
+    case 3:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setMetadata(value);
       break;
     default:
       reader.skipField();
@@ -2593,10 +2598,17 @@ proto.UpdateMarketStrategyRequest.serializeBinaryToWriter = function(message, wr
       types_pb.Market.serializeBinaryToWriter
     );
   }
-  f = message.getStrategy();
+  f = message.getStrategyType();
   if (f !== 0.0) {
     writer.writeEnum(
       2,
+      f
+    );
+  }
+  f = message.getMetadata();
+  if (f.length > 0) {
+    writer.writeString(
+      3,
       f
     );
   }
@@ -2641,20 +2653,38 @@ proto.UpdateMarketStrategyRequest.prototype.hasMarket = function() {
 
 
 /**
- * optional Strategy strategy = 2;
- * @return {!proto.Strategy}
+ * optional StrategyType strategy_type = 2;
+ * @return {!proto.StrategyType}
  */
-proto.UpdateMarketStrategyRequest.prototype.getStrategy = function() {
-  return /** @type {!proto.Strategy} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+proto.UpdateMarketStrategyRequest.prototype.getStrategyType = function() {
+  return /** @type {!proto.StrategyType} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
 
 /**
- * @param {!proto.Strategy} value
+ * @param {!proto.StrategyType} value
  * @return {!proto.UpdateMarketStrategyRequest} returns this
  */
-proto.UpdateMarketStrategyRequest.prototype.setStrategy = function(value) {
+proto.UpdateMarketStrategyRequest.prototype.setStrategyType = function(value) {
   return jspb.Message.setProto3EnumField(this, 2, value);
+};
+
+
+/**
+ * optional string metadata = 3;
+ * @return {string}
+ */
+proto.UpdateMarketStrategyRequest.prototype.getMetadata = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.UpdateMarketStrategyRequest} returns this
+ */
+proto.UpdateMarketStrategyRequest.prototype.setMetadata = function(value) {
+  return jspb.Message.setProto3StringField(this, 3, value);
 };
 
 
@@ -4503,7 +4533,7 @@ proto.MarketInfo.toObject = function(includeInstance, msg) {
     market: (f = msg.getMarket()) && types_pb.Market.toObject(includeInstance, f),
     fee: (f = msg.getFee()) && types_pb.Fee.toObject(includeInstance, f),
     tradable: jspb.Message.getBooleanFieldWithDefault(msg, 3, false),
-    strategy: jspb.Message.getFieldWithDefault(msg, 4, 0)
+    strategyType: jspb.Message.getFieldWithDefault(msg, 4, 0)
   };
 
   if (includeInstance) {
@@ -4555,8 +4585,8 @@ proto.MarketInfo.deserializeBinaryFromReader = function(msg, reader) {
       msg.setTradable(value);
       break;
     case 4:
-      var value = /** @type {!proto.Strategy} */ (reader.readEnum());
-      msg.setStrategy(value);
+      var value = /** @type {!proto.StrategyType} */ (reader.readEnum());
+      msg.setStrategyType(value);
       break;
     default:
       reader.skipField();
@@ -4610,7 +4640,7 @@ proto.MarketInfo.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getStrategy();
+  f = message.getStrategyType();
   if (f !== 0.0) {
     writer.writeEnum(
       4,
@@ -4713,19 +4743,19 @@ proto.MarketInfo.prototype.setTradable = function(value) {
 
 
 /**
- * optional Strategy strategy = 4;
- * @return {!proto.Strategy}
+ * optional StrategyType strategy_type = 4;
+ * @return {!proto.StrategyType}
  */
-proto.MarketInfo.prototype.getStrategy = function() {
-  return /** @type {!proto.Strategy} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
+proto.MarketInfo.prototype.getStrategyType = function() {
+  return /** @type {!proto.StrategyType} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
 
 /**
- * @param {!proto.Strategy} value
+ * @param {!proto.StrategyType} value
  * @return {!proto.MarketInfo} returns this
  */
-proto.MarketInfo.prototype.setStrategy = function(value) {
+proto.MarketInfo.prototype.setStrategyType = function(value) {
   return jspb.Message.setProto3EnumField(this, 4, value);
 };
 
@@ -5124,7 +5154,7 @@ proto.SwapInfo.prototype.setCompleteTimeUnix = function(value) {
 /**
  * @enum {number}
  */
-proto.Strategy = {
+proto.StrategyType = {
   PLUGGABLE: 0,
   BALANCED: 1,
   UNBALANCED: 2

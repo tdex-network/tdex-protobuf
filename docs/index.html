@@ -331,7 +331,7 @@
               
               
                 <li>
-                  <a href="#.Strategy"><span class="badge">E</span>Strategy</a>
+                  <a href="#.StrategyType"><span class="badge">E</span>StrategyType</a>
                 </li>
               
                 <li>
@@ -1105,8 +1105,8 @@ sha256(sender_pubkey,recipient_pubkey,sender_ephemeral_pubkey) </p></td>
                 </tr>
               
                 <tr>
-                  <td>strategy</td>
-                  <td><a href="#Strategy">Strategy</a></td>
+                  <td>strategy_type</td>
+                  <td><a href="#StrategyType">StrategyType</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -1423,14 +1423,21 @@ entry for each asset and the amount should be the aggregated total. </p></td>
                   <td>market</td>
                   <td><a href="#Market">Market</a></td>
                   <td></td>
-                  <td><p>Market to chnage the strategy </p></td>
+                  <td><p>Market to change the strategy of </p></td>
                 </tr>
               
                 <tr>
-                  <td>strategy</td>
-                  <td><a href="#Strategy">Strategy</a></td>
+                  <td>strategy_type</td>
+                  <td><a href="#StrategyType">StrategyType</a></td>
                   <td></td>
                   <td><p>Market making strategy to use </p></td>
+                </tr>
+              
+                <tr>
+                  <td>metadata</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>JSON string representing additional metadata relative to the chosen strategy. </p></td>
                 </tr>
               
             </tbody>
@@ -1519,7 +1526,7 @@ used when crafting this transaction. </p></td>
       
 
       
-        <h3 id=".Strategy">Strategy</h3>
+        <h3 id=".StrategyType">StrategyType</h3>
         <p>Custom types</p>
         <table class="enum-table">
           <thead>
