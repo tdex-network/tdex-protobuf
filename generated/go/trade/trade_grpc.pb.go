@@ -11,7 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion6
+const _ = grpc.SupportPackageIsVersion7
 
 // TradeClient is the client API for Trade service.
 //
@@ -55,6 +55,10 @@ func NewTradeClient(cc grpc.ClientConnInterface) TradeClient {
 	return &tradeClient{cc}
 }
 
+var tradeMarketsStreamDesc = &grpc.StreamDesc{
+	StreamName: "Markets",
+}
+
 func (c *tradeClient) Markets(ctx context.Context, in *MarketsRequest, opts ...grpc.CallOption) (*MarketsReply, error) {
 	out := new(MarketsReply)
 	err := c.cc.Invoke(ctx, "/Trade/Markets", in, out, opts...)
@@ -62,6 +66,10 @@ func (c *tradeClient) Markets(ctx context.Context, in *MarketsRequest, opts ...g
 		return nil, err
 	}
 	return out, nil
+}
+
+var tradeBalancesStreamDesc = &grpc.StreamDesc{
+	StreamName: "Balances",
 }
 
 func (c *tradeClient) Balances(ctx context.Context, in *BalancesRequest, opts ...grpc.CallOption) (*BalancesReply, error) {
@@ -73,6 +81,10 @@ func (c *tradeClient) Balances(ctx context.Context, in *BalancesRequest, opts ..
 	return out, nil
 }
 
+var tradeMarketPriceStreamDesc = &grpc.StreamDesc{
+	StreamName: "MarketPrice",
+}
+
 func (c *tradeClient) MarketPrice(ctx context.Context, in *MarketPriceRequest, opts ...grpc.CallOption) (*MarketPriceReply, error) {
 	out := new(MarketPriceReply)
 	err := c.cc.Invoke(ctx, "/Trade/MarketPrice", in, out, opts...)
@@ -82,8 +94,13 @@ func (c *tradeClient) MarketPrice(ctx context.Context, in *MarketPriceRequest, o
 	return out, nil
 }
 
+var tradeTradeProposeStreamDesc = &grpc.StreamDesc{
+	StreamName:    "TradePropose",
+	ServerStreams: true,
+}
+
 func (c *tradeClient) TradePropose(ctx context.Context, in *TradeProposeRequest, opts ...grpc.CallOption) (Trade_TradeProposeClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Trade_serviceDesc.Streams[0], "/Trade/TradePropose", opts...)
+	stream, err := c.cc.NewStream(ctx, tradeTradeProposeStreamDesc, "/Trade/TradePropose", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -114,8 +131,13 @@ func (x *tradeTradeProposeClient) Recv() (*TradeProposeReply, error) {
 	return m, nil
 }
 
+var tradeTradeCompleteStreamDesc = &grpc.StreamDesc{
+	StreamName:    "TradeComplete",
+	ServerStreams: true,
+}
+
 func (c *tradeClient) TradeComplete(ctx context.Context, in *TradeCompleteRequest, opts ...grpc.CallOption) (Trade_TradeCompleteClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Trade_serviceDesc.Streams[1], "/Trade/TradeComplete", opts...)
+	stream, err := c.cc.NewStream(ctx, tradeTradeCompleteStreamDesc, "/Trade/TradeComplete", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -146,10 +168,236 @@ func (x *tradeTradeCompleteClient) Recv() (*TradeCompleteReply, error) {
 	return m, nil
 }
 
-// TradeServer is the server API for Trade service.
-// All implementations must embed UnimplementedTradeServer
-// for forward compatibility
-type TradeServer interface {
+// TradeService is the service API for Trade service.
+// Fields should be assigned to their respective handler implementations only before
+// RegisterTradeService is called.  Any unassigned fields will result in the
+// handler for that method returning an Unimplemented error.
+type TradeService struct {
+	// Markets: List all the markets open for trading.
+	Markets func(context.Context, *MarketsRequest) (*MarketsReply, error)
+	// Balances: Gets the balances of the two current reserves in the given
+	// market.
+	Balances func(context.Context, *BalancesRequest) (*BalancesReply, error)
+	// MarketPrice: Gets the current market price. In case of AMM startegy, the
+	// trade type and
+	// the amount of base asset to be either sent or received.
+	//
+	// If the type of the trade is BUY it means the base asset will be received by
+	// the trader.
+	//
+	// If the type of the trade is SELL it means the base asset will be sent by
+	// the trader.
+	MarketPrice func(context.Context, *MarketPriceRequest) (*MarketPriceReply, error)
+	// TradePropose: Sends a swap request message containing a partial signed
+	// transaction.
+	//
+	// If the type of the trade is BUY it means the base asset will be received by
+	// the trader.
+	//
+	// If the type of the trade is SELL it means the base asset will be sent by
+	// the trader.
+	TradePropose func(*TradeProposeRequest, Trade_TradeProposeServer) error
+	// TradeComplete: Sends the trader's counter-signed transaction to the
+	// provider. If something wrong, a swap fail message is sent. It returns the
+	// transaction hash of the broadcasted transaction.
+	TradeComplete func(*TradeCompleteRequest, Trade_TradeCompleteServer) error
+}
+
+func (s *TradeService) markets(_ interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MarketsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return s.Markets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     s,
+		FullMethod: "/Trade/Markets",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return s.Markets(ctx, req.(*MarketsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+func (s *TradeService) balances(_ interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BalancesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return s.Balances(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     s,
+		FullMethod: "/Trade/Balances",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return s.Balances(ctx, req.(*BalancesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+func (s *TradeService) marketPrice(_ interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MarketPriceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return s.MarketPrice(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     s,
+		FullMethod: "/Trade/MarketPrice",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return s.MarketPrice(ctx, req.(*MarketPriceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+func (s *TradeService) tradePropose(_ interface{}, stream grpc.ServerStream) error {
+	m := new(TradeProposeRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return s.TradePropose(m, &tradeTradeProposeServer{stream})
+}
+func (s *TradeService) tradeComplete(_ interface{}, stream grpc.ServerStream) error {
+	m := new(TradeCompleteRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return s.TradeComplete(m, &tradeTradeCompleteServer{stream})
+}
+
+type Trade_TradeProposeServer interface {
+	Send(*TradeProposeReply) error
+	grpc.ServerStream
+}
+
+type tradeTradeProposeServer struct {
+	grpc.ServerStream
+}
+
+func (x *tradeTradeProposeServer) Send(m *TradeProposeReply) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+type Trade_TradeCompleteServer interface {
+	Send(*TradeCompleteReply) error
+	grpc.ServerStream
+}
+
+type tradeTradeCompleteServer struct {
+	grpc.ServerStream
+}
+
+func (x *tradeTradeCompleteServer) Send(m *TradeCompleteReply) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+// RegisterTradeService registers a service implementation with a gRPC server.
+func RegisterTradeService(s grpc.ServiceRegistrar, srv *TradeService) {
+	srvCopy := *srv
+	if srvCopy.Markets == nil {
+		srvCopy.Markets = func(context.Context, *MarketsRequest) (*MarketsReply, error) {
+			return nil, status.Errorf(codes.Unimplemented, "method Markets not implemented")
+		}
+	}
+	if srvCopy.Balances == nil {
+		srvCopy.Balances = func(context.Context, *BalancesRequest) (*BalancesReply, error) {
+			return nil, status.Errorf(codes.Unimplemented, "method Balances not implemented")
+		}
+	}
+	if srvCopy.MarketPrice == nil {
+		srvCopy.MarketPrice = func(context.Context, *MarketPriceRequest) (*MarketPriceReply, error) {
+			return nil, status.Errorf(codes.Unimplemented, "method MarketPrice not implemented")
+		}
+	}
+	if srvCopy.TradePropose == nil {
+		srvCopy.TradePropose = func(*TradeProposeRequest, Trade_TradeProposeServer) error {
+			return status.Errorf(codes.Unimplemented, "method TradePropose not implemented")
+		}
+	}
+	if srvCopy.TradeComplete == nil {
+		srvCopy.TradeComplete = func(*TradeCompleteRequest, Trade_TradeCompleteServer) error {
+			return status.Errorf(codes.Unimplemented, "method TradeComplete not implemented")
+		}
+	}
+	sd := grpc.ServiceDesc{
+		ServiceName: "Trade",
+		Methods: []grpc.MethodDesc{
+			{
+				MethodName: "Markets",
+				Handler:    srvCopy.markets,
+			},
+			{
+				MethodName: "Balances",
+				Handler:    srvCopy.balances,
+			},
+			{
+				MethodName: "MarketPrice",
+				Handler:    srvCopy.marketPrice,
+			},
+		},
+		Streams: []grpc.StreamDesc{
+			{
+				StreamName:    "TradePropose",
+				Handler:       srvCopy.tradePropose,
+				ServerStreams: true,
+			},
+			{
+				StreamName:    "TradeComplete",
+				Handler:       srvCopy.tradeComplete,
+				ServerStreams: true,
+			},
+		},
+		Metadata: "trade.proto",
+	}
+
+	s.RegisterService(&sd, nil)
+}
+
+// NewTradeService creates a new TradeService containing the
+// implemented methods of the Trade service in s.  Any unimplemented
+// methods will result in the gRPC server returning an UNIMPLEMENTED status to the client.
+// This includes situations where the method handler is misspelled or has the wrong
+// signature.  For this reason, this function should be used with great care and
+// is not recommended to be used by most users.
+func NewTradeService(s interface{}) *TradeService {
+	ns := &TradeService{}
+	if h, ok := s.(interface {
+		Markets(context.Context, *MarketsRequest) (*MarketsReply, error)
+	}); ok {
+		ns.Markets = h.Markets
+	}
+	if h, ok := s.(interface {
+		Balances(context.Context, *BalancesRequest) (*BalancesReply, error)
+	}); ok {
+		ns.Balances = h.Balances
+	}
+	if h, ok := s.(interface {
+		MarketPrice(context.Context, *MarketPriceRequest) (*MarketPriceReply, error)
+	}); ok {
+		ns.MarketPrice = h.MarketPrice
+	}
+	if h, ok := s.(interface {
+		TradePropose(*TradeProposeRequest, Trade_TradeProposeServer) error
+	}); ok {
+		ns.TradePropose = h.TradePropose
+	}
+	if h, ok := s.(interface {
+		TradeComplete(*TradeCompleteRequest, Trade_TradeCompleteServer) error
+	}); ok {
+		ns.TradeComplete = h.TradeComplete
+	}
+	return ns
+}
+
+// UnstableTradeService is the service API for Trade service.
+// New methods may be added to this interface if they are added to the service
+// definition, which is not a backward-compatible change.  For this reason,
+// use of this type is not recommended.
+type UnstableTradeService interface {
 	// Markets: List all the markets open for trading.
 	Markets(context.Context, *MarketsRequest) (*MarketsReply, error)
 	// Balances: Gets the balances of the two current reserves in the given
@@ -178,158 +426,4 @@ type TradeServer interface {
 	// provider. If something wrong, a swap fail message is sent. It returns the
 	// transaction hash of the broadcasted transaction.
 	TradeComplete(*TradeCompleteRequest, Trade_TradeCompleteServer) error
-	mustEmbedUnimplementedTradeServer()
-}
-
-// UnimplementedTradeServer must be embedded to have forward compatible implementations.
-type UnimplementedTradeServer struct {
-}
-
-func (*UnimplementedTradeServer) Markets(context.Context, *MarketsRequest) (*MarketsReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Markets not implemented")
-}
-func (*UnimplementedTradeServer) Balances(context.Context, *BalancesRequest) (*BalancesReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Balances not implemented")
-}
-func (*UnimplementedTradeServer) MarketPrice(context.Context, *MarketPriceRequest) (*MarketPriceReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method MarketPrice not implemented")
-}
-func (*UnimplementedTradeServer) TradePropose(*TradeProposeRequest, Trade_TradeProposeServer) error {
-	return status.Errorf(codes.Unimplemented, "method TradePropose not implemented")
-}
-func (*UnimplementedTradeServer) TradeComplete(*TradeCompleteRequest, Trade_TradeCompleteServer) error {
-	return status.Errorf(codes.Unimplemented, "method TradeComplete not implemented")
-}
-func (*UnimplementedTradeServer) mustEmbedUnimplementedTradeServer() {}
-
-func RegisterTradeServer(s *grpc.Server, srv TradeServer) {
-	s.RegisterService(&_Trade_serviceDesc, srv)
-}
-
-func _Trade_Markets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MarketsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TradeServer).Markets(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/Trade/Markets",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TradeServer).Markets(ctx, req.(*MarketsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Trade_Balances_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BalancesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TradeServer).Balances(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/Trade/Balances",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TradeServer).Balances(ctx, req.(*BalancesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Trade_MarketPrice_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MarketPriceRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TradeServer).MarketPrice(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/Trade/MarketPrice",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TradeServer).MarketPrice(ctx, req.(*MarketPriceRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Trade_TradePropose_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(TradeProposeRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(TradeServer).TradePropose(m, &tradeTradeProposeServer{stream})
-}
-
-type Trade_TradeProposeServer interface {
-	Send(*TradeProposeReply) error
-	grpc.ServerStream
-}
-
-type tradeTradeProposeServer struct {
-	grpc.ServerStream
-}
-
-func (x *tradeTradeProposeServer) Send(m *TradeProposeReply) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func _Trade_TradeComplete_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(TradeCompleteRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(TradeServer).TradeComplete(m, &tradeTradeCompleteServer{stream})
-}
-
-type Trade_TradeCompleteServer interface {
-	Send(*TradeCompleteReply) error
-	grpc.ServerStream
-}
-
-type tradeTradeCompleteServer struct {
-	grpc.ServerStream
-}
-
-func (x *tradeTradeCompleteServer) Send(m *TradeCompleteReply) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-var _Trade_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "Trade",
-	HandlerType: (*TradeServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Markets",
-			Handler:    _Trade_Markets_Handler,
-		},
-		{
-			MethodName: "Balances",
-			Handler:    _Trade_Balances_Handler,
-		},
-		{
-			MethodName: "MarketPrice",
-			Handler:    _Trade_MarketPrice_Handler,
-		},
-	},
-	Streams: []grpc.StreamDesc{
-		{
-			StreamName:    "TradePropose",
-			Handler:       _Trade_TradePropose_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "TradeComplete",
-			Handler:       _Trade_TradeComplete_Handler,
-			ServerStreams: true,
-		},
-	},
-	Metadata: "trade.proto",
 }

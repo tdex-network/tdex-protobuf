@@ -12,7 +12,7 @@ service Wallet {
   method should be used to commit the newly generated seed, and create the
   wallet.
   */
-  rpc GenSeed(GenSeedRequest) returns (GenSeedResponse);
+  rpc GenSeed(GenSeedRequest) returns (GenSeedReply);
 
   /*
   InitWallet is used when tdexd is starting up for the first time to fully
@@ -22,19 +22,19 @@ service Wallet {
   to obtain a seed, then present it to the user. Once it has been verified by
   the user, the seed can be fed into this RPC in order to commit the new wallet.
   */
-  rpc InitWallet(InitWalletRequest) returns (InitWalletResponse);
+  rpc InitWallet(InitWalletRequest) returns (InitWalletReply);
 
   /*
   UnlockWallet is used at startup of tdexd to provide a password to unlock
   the wallet database.
   */
-  rpc UnlockWallet(UnlockWalletRequest) returns (UnlockWalletResponse);
+  rpc UnlockWallet(UnlockWalletRequest) returns (UnlockWalletReply);
 
   /*
   ChangePassword changes the password of the encrypted wallet. This will
   automatically unlock the wallet database if successful.
   */
-  rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
+  rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordReply);
 
   /*
   WalletAddress returns a Liquid confidential p2wpkh address (BLECH32)
@@ -46,14 +46,14 @@ service Wallet {
   confirmed unspent outputs and all unconfirmed unspent outputs under control
   of the wallet.
   */
-  rpc WalletBalance(WalletBalanceRequest) returns (WalletBalanceResponse);
+  rpc WalletBalance(WalletBalanceRequest) returns (WalletBalanceReply);
 
   /*SendToMany sends funds to many outputs */
   rpc SendToMany(SendToManyRequest) returns (SendToManyReply);
 }
 
 message GenSeedRequest {}
-message GenSeedResponse {
+message GenSeedReply {
   /*
   seed_mnemonic is a 24-word mnemonic that encodes a prior seed obtained
   by the user. This field is optional, as if not provided, then the daemon will
@@ -77,7 +77,7 @@ message InitWalletRequest {
   */
   repeated string seed_mnemonic = 2;
 }
-message InitWalletResponse {}
+message InitWalletReply {}
 
 message UnlockWalletRequest {
   /*
@@ -87,7 +87,7 @@ message UnlockWalletRequest {
   */
   bytes wallet_password = 1;
 }
-message UnlockWalletResponse {}
+message UnlockWalletReply {}
 
 message ChangePasswordRequest {
   /*
@@ -102,7 +102,7 @@ message ChangePasswordRequest {
   */
   bytes new_password = 2;
 }
-message ChangePasswordResponse {}
+message ChangePasswordReply {}
 
 message SendToManyRequest {
   /*
@@ -146,7 +146,7 @@ message BalanceInfo {
 }
 
 message WalletBalanceRequest {}
-message WalletBalanceResponse {
+message WalletBalanceReply {
   // The balance info (total, confirmed, unconfirmed) of the wallet grouped by
   // asset
   map<string, BalanceInfo> balance = 1;

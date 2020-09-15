@@ -134,7 +134,7 @@ message WithdrawMarketReply {
   bytes raw_tx = 1;
 }
 
-message ListSwapsRequest { SwapStatus status = 1; }
+message ListSwapsRequest {}
 message ListSwapsReply { repeated SwapInfo swaps = 1; }
 
 message ReportMarketFeeRequest {
@@ -179,7 +179,7 @@ message SwapInfo {
   uint64 amount_r = 4;
   // The responder's asset hash
   string asset_r = 5;
-  // The collected fee on the current swap.
+  // The collected fee on the current swap
   Fee market_fee = 6;
   // SwapRequest timestamp
   uint64 request_time_unix = 7;
@@ -187,4 +187,6 @@ message SwapInfo {
   uint64 accept_time_unix = 8;
   // SwapComplete timestap
   uint64 complete_time_unix = 9;
+  // expiration timestamp for the current swap
+  uint64 expiry_time_unix = 10;
 }

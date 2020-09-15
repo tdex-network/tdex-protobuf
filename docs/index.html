@@ -498,11 +498,15 @@
                 </li>
               
                 <li>
+                  <a href="#.ChangePasswordReply"><span class="badge">M</span>ChangePasswordReply</a>
+                </li>
+              
+                <li>
                   <a href="#.ChangePasswordRequest"><span class="badge">M</span>ChangePasswordRequest</a>
                 </li>
               
                 <li>
-                  <a href="#.ChangePasswordResponse"><span class="badge">M</span>ChangePasswordResponse</a>
+                  <a href="#.GenSeedReply"><span class="badge">M</span>GenSeedReply</a>
                 </li>
               
                 <li>
@@ -510,15 +514,11 @@
                 </li>
               
                 <li>
-                  <a href="#.GenSeedResponse"><span class="badge">M</span>GenSeedResponse</a>
+                  <a href="#.InitWalletReply"><span class="badge">M</span>InitWalletReply</a>
                 </li>
               
                 <li>
                   <a href="#.InitWalletRequest"><span class="badge">M</span>InitWalletRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#.InitWalletResponse"><span class="badge">M</span>InitWalletResponse</a>
                 </li>
               
                 <li>
@@ -534,11 +534,11 @@
                 </li>
               
                 <li>
-                  <a href="#.UnlockWalletRequest"><span class="badge">M</span>UnlockWalletRequest</a>
+                  <a href="#.UnlockWalletReply"><span class="badge">M</span>UnlockWalletReply</a>
                 </li>
               
                 <li>
-                  <a href="#.UnlockWalletResponse"><span class="badge">M</span>UnlockWalletResponse</a>
+                  <a href="#.UnlockWalletRequest"><span class="badge">M</span>UnlockWalletRequest</a>
                 </li>
               
                 <li>
@@ -550,15 +550,15 @@
                 </li>
               
                 <li>
+                  <a href="#.WalletBalanceReply"><span class="badge">M</span>WalletBalanceReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.WalletBalanceReply.BalanceEntry"><span class="badge">M</span>WalletBalanceReply.BalanceEntry</a>
+                </li>
+              
+                <li>
                   <a href="#.WalletBalanceRequest"><span class="badge">M</span>WalletBalanceRequest</a>
-                </li>
-              
-                <li>
-                  <a href="#.WalletBalanceResponse"><span class="badge">M</span>WalletBalanceResponse</a>
-                </li>
-              
-                <li>
-                  <a href="#.WalletBalanceResponse.BalanceEntry"><span class="badge">M</span>WalletBalanceResponse.BalanceEntry</a>
                 </li>
               
               
@@ -1053,23 +1053,6 @@ sha256(sender_pubkey,recipient_pubkey,sender_ephemeral_pubkey) </p></td>
         <p></p>
 
         
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>status</td>
-                  <td><a href="#SwapStatus">SwapStatus</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
 
         
       
@@ -1285,7 +1268,7 @@ entry for each asset and the amount should be the aggregated total. </p></td>
                   <td>market_fee</td>
                   <td><a href="#Fee">Fee</a></td>
                   <td></td>
-                  <td><p>The collected fee on the current swap. </p></td>
+                  <td><p>The collected fee on the current swap </p></td>
                 </tr>
               
                 <tr>
@@ -1307,6 +1290,13 @@ entry for each asset and the amount should be the aggregated total. </p></td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
                   <td><p>SwapComplete timestap </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expiry_time_unix</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>expiration timestamp for the current swap </p></td>
                 </tr>
               
             </tbody>
@@ -2712,6 +2702,13 @@ transaction hash of the broadcasted transaction.</p></td>
 
         
       
+        <h3 id=".ChangePasswordReply">ChangePasswordReply</h3>
+        <p></p>
+
+        
+
+        
+      
         <h3 id=".ChangePasswordRequest">ChangePasswordRequest</h3>
         <p></p>
 
@@ -2745,21 +2742,7 @@ daemon. </p></td>
 
         
       
-        <h3 id=".ChangePasswordResponse">ChangePasswordResponse</h3>
-        <p></p>
-
-        
-
-        
-      
-        <h3 id=".GenSeedRequest">GenSeedRequest</h3>
-        <p></p>
-
-        
-
-        
-      
-        <h3 id=".GenSeedResponse">GenSeedResponse</h3>
+        <h3 id=".GenSeedReply">GenSeedReply</h3>
         <p></p>
 
         
@@ -2783,6 +2766,20 @@ attempt to recover the wallet state linked to this cipher seed. </p></td>
           </table>
 
           
+
+        
+      
+        <h3 id=".GenSeedRequest">GenSeedRequest</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id=".InitWalletReply">InitWalletReply</h3>
+        <p></p>
+
+        
 
         
       
@@ -2817,13 +2814,6 @@ user. This MUST be a generated by the GenSeed method </p></td>
           </table>
 
           
-
-        
-      
-        <h3 id=".InitWalletResponse">InitWalletResponse</h3>
-        <p></p>
-
-        
 
         
       
@@ -2928,6 +2918,13 @@ this transaction. </p></td>
 
         
       
+        <h3 id=".UnlockWalletReply">UnlockWalletReply</h3>
+        <p></p>
+
+        
+
+        
+      
         <h3 id=".UnlockWalletRequest">UnlockWalletRequest</h3>
         <p></p>
 
@@ -2951,13 +2948,6 @@ function properly. </p></td>
           </table>
 
           
-
-        
-      
-        <h3 id=".UnlockWalletResponse">UnlockWalletResponse</h3>
-        <p></p>
-
-        
 
         
       
@@ -2999,14 +2989,7 @@ function properly. </p></td>
 
         
       
-        <h3 id=".WalletBalanceRequest">WalletBalanceRequest</h3>
-        <p></p>
-
-        
-
-        
-      
-        <h3 id=".WalletBalanceResponse">WalletBalanceResponse</h3>
+        <h3 id=".WalletBalanceReply">WalletBalanceReply</h3>
         <p></p>
 
         
@@ -3018,7 +3001,7 @@ function properly. </p></td>
               
                 <tr>
                   <td>balance</td>
-                  <td><a href="#WalletBalanceResponse.BalanceEntry">WalletBalanceResponse.BalanceEntry</a></td>
+                  <td><a href="#WalletBalanceReply.BalanceEntry">WalletBalanceReply.BalanceEntry</a></td>
                   <td>repeated</td>
                   <td><p>The balance info (total, confirmed, unconfirmed) of the wallet grouped by
 asset </p></td>
@@ -3031,7 +3014,7 @@ asset </p></td>
 
         
       
-        <h3 id=".WalletBalanceResponse.BalanceEntry">WalletBalanceResponse.BalanceEntry</h3>
+        <h3 id=".WalletBalanceReply.BalanceEntry">WalletBalanceReply.BalanceEntry</h3>
         <p></p>
 
         
@@ -3062,6 +3045,13 @@ asset </p></td>
 
         
       
+        <h3 id=".WalletBalanceRequest">WalletBalanceRequest</h3>
+        <p></p>
+
+        
+
+        
+      
 
       
 
@@ -3079,7 +3069,7 @@ asset </p></td>
               <tr>
                 <td>GenSeed</td>
                 <td><a href="#GenSeedRequest">.GenSeedRequest</a></td>
-                <td><a href="#GenSeedResponse">.GenSeedResponse</a></td>
+                <td><a href="#GenSeedReply">.GenSeedReply</a></td>
                 <td><p>GenSeed is the first method that should be used to instantiate a new tdexd
 instance. This method allows a caller to generate a new HD Wallet.
 Once the seed is obtained and verified by the user, the InitWallet
@@ -3090,7 +3080,7 @@ wallet.</p></td>
               <tr>
                 <td>InitWallet</td>
                 <td><a href="#InitWalletRequest">.InitWalletRequest</a></td>
-                <td><a href="#InitWalletResponse">.InitWalletResponse</a></td>
+                <td><a href="#InitWalletReply">.InitWalletReply</a></td>
                 <td><p>InitWallet is used when tdexd is starting up for the first time to fully
 initialize the daemon and its internal wallet. At the very least a mnemonic
 and a wallet password must be provided. This will be used to encrypt sensitive
@@ -3102,7 +3092,7 @@ the user, the seed can be fed into this RPC in order to commit the new wallet.</
               <tr>
                 <td>UnlockWallet</td>
                 <td><a href="#UnlockWalletRequest">.UnlockWalletRequest</a></td>
-                <td><a href="#UnlockWalletResponse">.UnlockWalletResponse</a></td>
+                <td><a href="#UnlockWalletReply">.UnlockWalletReply</a></td>
                 <td><p>UnlockWallet is used at startup of tdexd to provide a password to unlock
 the wallet database.</p></td>
               </tr>
@@ -3110,7 +3100,7 @@ the wallet database.</p></td>
               <tr>
                 <td>ChangePassword</td>
                 <td><a href="#ChangePasswordRequest">.ChangePasswordRequest</a></td>
-                <td><a href="#ChangePasswordResponse">.ChangePasswordResponse</a></td>
+                <td><a href="#ChangePasswordReply">.ChangePasswordReply</a></td>
                 <td><p>ChangePassword changes the password of the encrypted wallet. This will
 automatically unlock the wallet database if successful.</p></td>
               </tr>
@@ -3125,7 +3115,7 @@ automatically unlock the wallet database if successful.</p></td>
               <tr>
                 <td>WalletBalance</td>
                 <td><a href="#WalletBalanceRequest">.WalletBalanceRequest</a></td>
-                <td><a href="#WalletBalanceResponse">.WalletBalanceResponse</a></td>
+                <td><a href="#WalletBalanceReply">.WalletBalanceReply</a></td>
                 <td><p>WalletBalance returns total unspent outputs(confirmed and unconfirmed), all
 confirmed unspent outputs and all unconfirmed unspent outputs under control
 of the wallet.</p></td>
