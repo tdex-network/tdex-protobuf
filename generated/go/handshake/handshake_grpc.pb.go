@@ -11,7 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion7
+const _ = grpc.SupportPackageIsVersion6
 
 // HandshakeClient is the client API for Handshake service.
 //
@@ -33,10 +33,6 @@ func NewHandshakeClient(cc grpc.ClientConnInterface) HandshakeClient {
 	return &handshakeClient{cc}
 }
 
-var handshakeInfoStreamDesc = &grpc.StreamDesc{
-	StreamName: "Info",
-}
-
 func (c *handshakeClient) Info(ctx context.Context, in *InfoRequest, opts ...grpc.CallOption) (*InfoReply, error) {
 	out := new(InfoReply)
 	err := c.cc.Invoke(ctx, "/Handshake/Info", in, out, opts...)
@@ -44,10 +40,6 @@ func (c *handshakeClient) Info(ctx context.Context, in *InfoRequest, opts ...grp
 		return nil, err
 	}
 	return out, nil
-}
-
-var handshakeConnectStreamDesc = &grpc.StreamDesc{
-	StreamName: "Connect",
 }
 
 func (c *handshakeClient) Connect(ctx context.Context, in *Init, opts ...grpc.CallOption) (*Ack, error) {
@@ -59,10 +51,6 @@ func (c *handshakeClient) Connect(ctx context.Context, in *Init, opts ...grpc.Ca
 	return out, nil
 }
 
-var handshakeUnarySecretStreamDesc = &grpc.StreamDesc{
-	StreamName: "UnarySecret",
-}
-
 func (c *handshakeClient) UnarySecret(ctx context.Context, in *SecretMessage, opts ...grpc.CallOption) (*SecretMessage, error) {
 	out := new(SecretMessage)
 	err := c.cc.Invoke(ctx, "/Handshake/UnarySecret", in, out, opts...)
@@ -72,13 +60,8 @@ func (c *handshakeClient) UnarySecret(ctx context.Context, in *SecretMessage, op
 	return out, nil
 }
 
-var handshakeStreamSecretStreamDesc = &grpc.StreamDesc{
-	StreamName:    "StreamSecret",
-	ServerStreams: true,
-}
-
 func (c *handshakeClient) StreamSecret(ctx context.Context, in *SecretMessage, opts ...grpc.CallOption) (Handshake_StreamSecretClient, error) {
-	stream, err := c.cc.NewStream(ctx, handshakeStreamSecretStreamDesc, "/Handshake/StreamSecret", opts...)
+	stream, err := c.cc.NewStream(ctx, &_Handshake_serviceDesc.Streams[0], "/Handshake/StreamSecret", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -109,76 +92,101 @@ func (x *handshakeStreamSecretClient) Recv() (*SecretMessage, error) {
 	return m, nil
 }
 
-// HandshakeService is the service API for Handshake service.
-// Fields should be assigned to their respective handler implementations only before
-// RegisterHandshakeService is called.  Any unassigned fields will result in the
-// handler for that method returning an Unimplemented error.
-type HandshakeService struct {
+// HandshakeServer is the server API for Handshake service.
+// All implementations must embed UnimplementedHandshakeServer
+// for forward compatibility
+type HandshakeServer interface {
 	// Handshake
-	Info    func(context.Context, *InfoRequest) (*InfoReply, error)
-	Connect func(context.Context, *Init) (*Ack, error)
+	Info(context.Context, *InfoRequest) (*InfoReply, error)
+	Connect(context.Context, *Init) (*Ack, error)
 	// Encrypted RPCs
-	UnarySecret  func(context.Context, *SecretMessage) (*SecretMessage, error)
-	StreamSecret func(*SecretMessage, Handshake_StreamSecretServer) error
+	UnarySecret(context.Context, *SecretMessage) (*SecretMessage, error)
+	StreamSecret(*SecretMessage, Handshake_StreamSecretServer) error
+	mustEmbedUnimplementedHandshakeServer()
 }
 
-func (s *HandshakeService) info(_ interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+// UnimplementedHandshakeServer must be embedded to have forward compatible implementations.
+type UnimplementedHandshakeServer struct {
+}
+
+func (*UnimplementedHandshakeServer) Info(context.Context, *InfoRequest) (*InfoReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Info not implemented")
+}
+func (*UnimplementedHandshakeServer) Connect(context.Context, *Init) (*Ack, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Connect not implemented")
+}
+func (*UnimplementedHandshakeServer) UnarySecret(context.Context, *SecretMessage) (*SecretMessage, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnarySecret not implemented")
+}
+func (*UnimplementedHandshakeServer) StreamSecret(*SecretMessage, Handshake_StreamSecretServer) error {
+	return status.Errorf(codes.Unimplemented, "method StreamSecret not implemented")
+}
+func (*UnimplementedHandshakeServer) mustEmbedUnimplementedHandshakeServer() {}
+
+func RegisterHandshakeServer(s *grpc.Server, srv HandshakeServer) {
+	s.RegisterService(&_Handshake_serviceDesc, srv)
+}
+
+func _Handshake_Info_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(InfoRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return s.Info(ctx, in)
+		return srv.(HandshakeServer).Info(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
-		Server:     s,
+		Server:     srv,
 		FullMethod: "/Handshake/Info",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return s.Info(ctx, req.(*InfoRequest))
+		return srv.(HandshakeServer).Info(ctx, req.(*InfoRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
-func (s *HandshakeService) connect(_ interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+
+func _Handshake_Connect_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Init)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return s.Connect(ctx, in)
+		return srv.(HandshakeServer).Connect(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
-		Server:     s,
+		Server:     srv,
 		FullMethod: "/Handshake/Connect",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return s.Connect(ctx, req.(*Init))
+		return srv.(HandshakeServer).Connect(ctx, req.(*Init))
 	}
 	return interceptor(ctx, in, info, handler)
 }
-func (s *HandshakeService) unarySecret(_ interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+
+func _Handshake_UnarySecret_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SecretMessage)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return s.UnarySecret(ctx, in)
+		return srv.(HandshakeServer).UnarySecret(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
-		Server:     s,
+		Server:     srv,
 		FullMethod: "/Handshake/UnarySecret",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return s.UnarySecret(ctx, req.(*SecretMessage))
+		return srv.(HandshakeServer).UnarySecret(ctx, req.(*SecretMessage))
 	}
 	return interceptor(ctx, in, info, handler)
 }
-func (s *HandshakeService) streamSecret(_ interface{}, stream grpc.ServerStream) error {
+
+func _Handshake_StreamSecret_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(SecretMessage)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return s.StreamSecret(m, &handshakeStreamSecretServer{stream})
+	return srv.(HandshakeServer).StreamSecret(m, &handshakeStreamSecretServer{stream})
 }
 
 type Handshake_StreamSecretServer interface {
@@ -194,98 +202,29 @@ func (x *handshakeStreamSecretServer) Send(m *SecretMessage) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-// RegisterHandshakeService registers a service implementation with a gRPC server.
-func RegisterHandshakeService(s grpc.ServiceRegistrar, srv *HandshakeService) {
-	srvCopy := *srv
-	if srvCopy.Info == nil {
-		srvCopy.Info = func(context.Context, *InfoRequest) (*InfoReply, error) {
-			return nil, status.Errorf(codes.Unimplemented, "method Info not implemented")
-		}
-	}
-	if srvCopy.Connect == nil {
-		srvCopy.Connect = func(context.Context, *Init) (*Ack, error) {
-			return nil, status.Errorf(codes.Unimplemented, "method Connect not implemented")
-		}
-	}
-	if srvCopy.UnarySecret == nil {
-		srvCopy.UnarySecret = func(context.Context, *SecretMessage) (*SecretMessage, error) {
-			return nil, status.Errorf(codes.Unimplemented, "method UnarySecret not implemented")
-		}
-	}
-	if srvCopy.StreamSecret == nil {
-		srvCopy.StreamSecret = func(*SecretMessage, Handshake_StreamSecretServer) error {
-			return status.Errorf(codes.Unimplemented, "method StreamSecret not implemented")
-		}
-	}
-	sd := grpc.ServiceDesc{
-		ServiceName: "Handshake",
-		Methods: []grpc.MethodDesc{
-			{
-				MethodName: "Info",
-				Handler:    srvCopy.info,
-			},
-			{
-				MethodName: "Connect",
-				Handler:    srvCopy.connect,
-			},
-			{
-				MethodName: "UnarySecret",
-				Handler:    srvCopy.unarySecret,
-			},
+var _Handshake_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "Handshake",
+	HandlerType: (*HandshakeServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Info",
+			Handler:    _Handshake_Info_Handler,
 		},
-		Streams: []grpc.StreamDesc{
-			{
-				StreamName:    "StreamSecret",
-				Handler:       srvCopy.streamSecret,
-				ServerStreams: true,
-			},
+		{
+			MethodName: "Connect",
+			Handler:    _Handshake_Connect_Handler,
 		},
-		Metadata: "handshake.proto",
-	}
-
-	s.RegisterService(&sd, nil)
-}
-
-// NewHandshakeService creates a new HandshakeService containing the
-// implemented methods of the Handshake service in s.  Any unimplemented
-// methods will result in the gRPC server returning an UNIMPLEMENTED status to the client.
-// This includes situations where the method handler is misspelled or has the wrong
-// signature.  For this reason, this function should be used with great care and
-// is not recommended to be used by most users.
-func NewHandshakeService(s interface{}) *HandshakeService {
-	ns := &HandshakeService{}
-	if h, ok := s.(interface {
-		Info(context.Context, *InfoRequest) (*InfoReply, error)
-	}); ok {
-		ns.Info = h.Info
-	}
-	if h, ok := s.(interface {
-		Connect(context.Context, *Init) (*Ack, error)
-	}); ok {
-		ns.Connect = h.Connect
-	}
-	if h, ok := s.(interface {
-		UnarySecret(context.Context, *SecretMessage) (*SecretMessage, error)
-	}); ok {
-		ns.UnarySecret = h.UnarySecret
-	}
-	if h, ok := s.(interface {
-		StreamSecret(*SecretMessage, Handshake_StreamSecretServer) error
-	}); ok {
-		ns.StreamSecret = h.StreamSecret
-	}
-	return ns
-}
-
-// UnstableHandshakeService is the service API for Handshake service.
-// New methods may be added to this interface if they are added to the service
-// definition, which is not a backward-compatible change.  For this reason,
-// use of this type is not recommended.
-type UnstableHandshakeService interface {
-	// Handshake
-	Info(context.Context, *InfoRequest) (*InfoReply, error)
-	Connect(context.Context, *Init) (*Ack, error)
-	// Encrypted RPCs
-	UnarySecret(context.Context, *SecretMessage) (*SecretMessage, error)
-	StreamSecret(*SecretMessage, Handshake_StreamSecretServer) error
+		{
+			MethodName: "UnarySecret",
+			Handler:    _Handshake_UnarySecret_Handler,
+		},
+	},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "StreamSecret",
+			Handler:       _Handshake_StreamSecret_Handler,
+			ServerStreams: true,
+		},
+	},
+	Metadata: "handshake.proto",
 }

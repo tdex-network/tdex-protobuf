@@ -433,9 +433,6 @@ export namespace WithdrawMarketReply {
 }
 
 export class ListSwapsRequest extends jspb.Message {
-  getStatus(): SwapStatus;
-  setStatus(value: SwapStatus): ListSwapsRequest;
-
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ListSwapsRequest.AsObject;
   static toObject(includeInstance: boolean, msg: ListSwapsRequest): ListSwapsRequest.AsObject;
@@ -446,7 +443,6 @@ export class ListSwapsRequest extends jspb.Message {
 
 export namespace ListSwapsRequest {
   export type AsObject = {
-    status: SwapStatus,
   }
 }
 
@@ -578,6 +574,9 @@ export class SwapInfo extends jspb.Message {
   getCompleteTimeUnix(): number;
   setCompleteTimeUnix(value: number): SwapInfo;
 
+  getExpiryTimeUnix(): number;
+  setExpiryTimeUnix(value: number): SwapInfo;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): SwapInfo.AsObject;
   static toObject(includeInstance: boolean, msg: SwapInfo): SwapInfo.AsObject;
@@ -597,6 +596,7 @@ export namespace SwapInfo {
     requestTimeUnix: number,
     acceptTimeUnix: number,
     completeTimeUnix: number,
+    expiryTimeUnix: number,
   }
 }
 

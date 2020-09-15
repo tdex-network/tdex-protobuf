@@ -3896,7 +3896,7 @@ proto.ListSwapsRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.ListSwapsRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    status: jspb.Message.getFieldWithDefault(msg, 1, 0)
+
   };
 
   if (includeInstance) {
@@ -3933,10 +3933,6 @@ proto.ListSwapsRequest.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {!proto.SwapStatus} */ (reader.readEnum());
-      msg.setStatus(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -3966,31 +3962,6 @@ proto.ListSwapsRequest.prototype.serializeBinary = function() {
  */
 proto.ListSwapsRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getStatus();
-  if (f !== 0.0) {
-    writer.writeEnum(
-      1,
-      f
-    );
-  }
-};
-
-
-/**
- * optional SwapStatus status = 1;
- * @return {!proto.SwapStatus}
- */
-proto.ListSwapsRequest.prototype.getStatus = function() {
-  return /** @type {!proto.SwapStatus} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
-};
-
-
-/**
- * @param {!proto.SwapStatus} value
- * @return {!proto.ListSwapsRequest} returns this
- */
-proto.ListSwapsRequest.prototype.setStatus = function(value) {
-  return jspb.Message.setProto3EnumField(this, 1, value);
 };
 
 
@@ -4800,7 +4771,8 @@ proto.SwapInfo.toObject = function(includeInstance, msg) {
     marketFee: (f = msg.getMarketFee()) && types_pb.Fee.toObject(includeInstance, f),
     requestTimeUnix: jspb.Message.getFieldWithDefault(msg, 7, 0),
     acceptTimeUnix: jspb.Message.getFieldWithDefault(msg, 8, 0),
-    completeTimeUnix: jspb.Message.getFieldWithDefault(msg, 9, 0)
+    completeTimeUnix: jspb.Message.getFieldWithDefault(msg, 9, 0),
+    expiryTimeUnix: jspb.Message.getFieldWithDefault(msg, 10, 0)
   };
 
   if (includeInstance) {
@@ -4873,6 +4845,10 @@ proto.SwapInfo.deserializeBinaryFromReader = function(msg, reader) {
     case 9:
       var value = /** @type {number} */ (reader.readUint64());
       msg.setCompleteTimeUnix(value);
+      break;
+    case 10:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setExpiryTimeUnix(value);
       break;
     default:
       reader.skipField();
@@ -4964,6 +4940,13 @@ proto.SwapInfo.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0) {
     writer.writeUint64(
       9,
+      f
+    );
+  }
+  f = message.getExpiryTimeUnix();
+  if (f !== 0) {
+    writer.writeUint64(
+      10,
       f
     );
   }
@@ -5148,6 +5131,24 @@ proto.SwapInfo.prototype.getCompleteTimeUnix = function() {
  */
 proto.SwapInfo.prototype.setCompleteTimeUnix = function(value) {
   return jspb.Message.setProto3IntField(this, 9, value);
+};
+
+
+/**
+ * optional uint64 expiry_time_unix = 10;
+ * @return {number}
+ */
+proto.SwapInfo.prototype.getExpiryTimeUnix = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 10, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.SwapInfo} returns this
+ */
+proto.SwapInfo.prototype.setExpiryTimeUnix = function(value) {
+  return jspb.Message.setProto3IntField(this, 10, value);
 };
 
 
