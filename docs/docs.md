@@ -1439,12 +1439,12 @@ Custom Types
 <a name=".Wallet"></a>
 
 ### Wallet
-Service for Liquidity Providers to manage funds via walle RPC
+Service for Liquidity Providers to manage funds via wallet RPC
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | GenSeed | [.GenSeedRequest](#GenSeedRequest) | [.GenSeedReply](#GenSeedReply) | GenSeed is the first method that should be used to instantiate a new tdexd instance. This method allows a caller to generate a new HD Wallet. Once the seed is obtained and verified by the user, the InitWallet method should be used to commit the newly generated seed, and create the wallet. |
-| InitWallet | [.InitWalletRequest](#InitWalletRequest) | [.InitWalletReply](#InitWalletReply) | InitWallet is used when tdexd is starting up for the first time to fully initialize the daemon and its internal wallet. At the very least a mnemonic and a wallet password must be provided. This will be used to encrypt sensitive material on disk. Alternatively, this can be used along with the GenSeed RPC to obtain a seed, then present it to the user. Once it has been verified by the user, the seed can be fed into this RPC in order to commit the new wallet. |
+| InitWallet | [.InitWalletRequest](#InitWalletRequest) | [.InitWalletReply](#InitWalletReply) stream | InitWallet is used when tdexd is starting up for the first time to fully initialize the daemon and its internal wallet. At the very least a mnemonic and a wallet password must be provided. This will be used to encrypt sensitive material on disk. Alternatively, this can be used along with the GenSeed RPC to obtain a seed, then present it to the user. Once it has been verified by the user, the seed can be fed into this RPC in order to commit the new wallet. |
 | UnlockWallet | [.UnlockWalletRequest](#UnlockWalletRequest) | [.UnlockWalletReply](#UnlockWalletReply) | UnlockWallet is used at startup of tdexd to provide a password to unlock the wallet database. |
 | ChangePassword | [.ChangePasswordRequest](#ChangePasswordRequest) | [.ChangePasswordReply](#ChangePasswordReply) | ChangePassword changes the password of the encrypted wallet. This will automatically unlock the wallet database if successful. |
 | WalletAddress | [.WalletAddressRequest](#WalletAddressRequest) | [.WalletAddressReply](#WalletAddressReply) | WalletAddress returns a Liquid confidential p2wpkh address (BLECH32) |

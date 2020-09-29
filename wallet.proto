@@ -22,7 +22,7 @@ service Wallet {
   to obtain a seed, then present it to the user. Once it has been verified by
   the user, the seed can be fed into this RPC in order to commit the new wallet.
   */
-  rpc InitWallet(InitWalletRequest) returns (InitWalletReply);
+  rpc InitWallet(InitWalletRequest) returns (stream InitWalletReply);
 
   /*
   UnlockWallet is used at startup of tdexd to provide a password to unlock
