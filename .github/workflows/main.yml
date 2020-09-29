@@ -3,8 +3,6 @@ name: Compile protobuf stubs
 on:
   push:
     branches: [beta]
-  pull_request:
-    branches: [beta]
 
 jobs:
   # This workflow contains a single job called "build"
@@ -37,7 +35,6 @@ jobs:
         uses: github-actions-x/commit@v2.7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: ${{ github.head_ref }}
-          commit-message: 'go protobuf stubs'
+          push-branch: 'beta'
+          commit-message: 'Generate protobuf stubs'
           force-add: 'true'
-          files: generated/go
