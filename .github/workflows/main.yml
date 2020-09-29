@@ -36,7 +36,7 @@ jobs:
         uses: github-actions-x/commit@v2.7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: 'beta'
+          push-branch: 'gh-action'
           commit-message: 'publish'
           force-add: 'true'
           files: generated/go
