@@ -19,15 +19,13 @@ jobs:
         with:
           go-version: ^1.14
         id: go
+      
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
 
       - name: Install Protoc
         uses: arduino/setup-protoc@v1
       
-         # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
-
       - name: Install protoc-gen-go, protoc-gen-go-grpc and build go stubs
         run: |
           git branch
@@ -39,7 +37,7 @@ jobs:
         uses: github-actions-x/commit@v2.7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          #push-branch: 'gh-action'
-          commit-message: 'publish'
+          push-branch: ${{ github.head_ref }}
+          commit-message: 'go protobuf stubs'
           force-add: 'true'
           files: generated/go
