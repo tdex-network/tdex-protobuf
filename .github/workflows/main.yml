@@ -17,24 +17,28 @@ jobs:
         with:
           go-version: ^1.14
         id: go
-      
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
       - name: Install Protoc
         uses: arduino/setup-protoc@v1
-      
-      - name: Install protoc-gen-go, protoc-gen-go-grpc and build go stubs
-        run: |
-          git branch
-          go get google.golang.org/grpc/cmd/protoc-gen-go-grpc
-          go get google.golang.org/protobuf/cmd/protoc-gen-go
-          make go
 
-      - name: Commit and Push
-        uses: github-actions-x/commit@v2.7
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          push-branch: 'beta'
-          commit-message: 'Generate protobuf stubs'
-          force-add: 'true'
+      - name: Install protoc-gen-go and protoc-gen-go-grpc
+        run: |
+          export GO111MODULE=on
+          go get google.golang.org/protobuf/cmd/protoc-gen-go
+          git clone -b v1.31.0 https://github.com/grpc/grpc-go
+          cd grpc-go/cmd/protoc-gen-go-grpc
+          go install .
+
+      - name: Compile Go stubs
+        run: make go
+
+      - name: Commit generated stubs
+        run: |
+          git config --local user.email "$(git log --format='%ae' HEAD^!)"
+          git config --local user.name "$(git log --format='%an' HEAD^!)"
+          git add generated
+          git commit -m "Automated: Update protobuf stubs"
+          git push

@@ -2,7 +2,7 @@ syntax = "proto3";
 option go_package = "github.com/tdex-network/tdex-protobuf/generated/go/wallet";
 
 /**
- * Service for Liquidity Providers to manage funds via walle RPC
+ * Service for Liquidity Providers to manage funds via wallet RPC
  */
 service Wallet {
   /*
