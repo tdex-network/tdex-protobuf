@@ -1,0 +1,40 @@
+name: Compile protobuf stubs
+
+on:
+  push:
+    branches: [beta]
+
+jobs:
+  # This workflow contains a single job called "compile"
+  compile:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Set up Go 1.14.x
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.14
+        id: go
+      
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v1
+      
+      - name: Install protoc-gen-go, protoc-gen-go-grpc and build go stubs
+        run: |
+          git branch
+          go get google.golang.org/grpc/cmd/protoc-gen-go-grpc
+          go get google.golang.org/protobuf/cmd/protoc-gen-go
+          make go
+
+      - name: Commit and Push
+        uses: github-actions-x/commit@v2.7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          push-branch: 'beta'
+          commit-message: 'Generate protobuf stubs'
+          force-add: 'true'
