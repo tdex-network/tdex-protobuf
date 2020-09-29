@@ -26,14 +26,13 @@ jobs:
       - name: Install Protoc
         uses: arduino/setup-protoc@v1
 
-      - name: Install protoc-gen-go
+      - name: Install protoc-gen-go and build go stubs
         run: |
           go get google.golang.org/protobuf/cmd/protoc-gen-go
           go install google.golang.org/protobuf/cmd/protoc-gen-go
+          make go
 
-      - name: Build Go stubs
-        run: make go
-
+  
       - name: Commit and Push
         uses: github-actions-x/commit@v2.7
         with:
