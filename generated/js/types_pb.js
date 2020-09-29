@@ -1244,7 +1244,8 @@ proto.PriceWithFee.prototype.toObject = function(opt_includeInstance) {
 proto.PriceWithFee.toObject = function(includeInstance, msg) {
   var f, obj = {
     price: (f = msg.getPrice()) && proto.Price.toObject(includeInstance, f),
-    fee: (f = msg.getFee()) && proto.Fee.toObject(includeInstance, f)
+    fee: (f = msg.getFee()) && proto.Fee.toObject(includeInstance, f),
+    amount: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -1291,6 +1292,10 @@ proto.PriceWithFee.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,proto.Fee.deserializeBinaryFromReader);
       msg.setFee(value);
       break;
+    case 3:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setAmount(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1334,6 +1339,13 @@ proto.PriceWithFee.serializeBinaryToWriter = function(message, writer) {
       2,
       f,
       proto.Fee.serializeBinaryToWriter
+    );
+  }
+  f = message.getAmount();
+  if (f !== 0) {
+    writer.writeUint64(
+      3,
+      f
     );
   }
 };
@@ -1410,6 +1422,24 @@ proto.PriceWithFee.prototype.clearFee = function() {
  */
 proto.PriceWithFee.prototype.hasFee = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * optional uint64 amount = 3;
+ * @return {number}
+ */
+proto.PriceWithFee.prototype.getAmount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.PriceWithFee} returns this
+ */
+proto.PriceWithFee.prototype.setAmount = function(value) {
+  return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 

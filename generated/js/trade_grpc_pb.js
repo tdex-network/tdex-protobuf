@@ -147,6 +147,9 @@ balances: {
 // trade type and
 // the amount of base asset to be either sent or received.
 //
+// BUY = quote asset as input
+// SELL = base asset as input
+//
 // If the type of the trade is BUY it means the base asset will be received by
 // the trader.
 //
@@ -165,6 +168,10 @@ marketPrice: {
   },
   // TradePropose: Sends a swap request message containing a partial signed
 // transaction.
+//
+// BUY = quote asset as input
+// SELL = base asset as input
+//
 //
 // If the type of the trade is BUY it means the base asset will be received by
 // the trader.

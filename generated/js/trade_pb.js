@@ -842,7 +842,7 @@ proto.MarketPriceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     market: (f = msg.getMarket()) && types_pb.Market.toObject(includeInstance, f),
     type: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    baseAmount: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    amount: jspb.Message.getFieldWithDefault(msg, 3, 0)
   };
 
   if (includeInstance) {
@@ -890,7 +890,7 @@ proto.MarketPriceRequest.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 3:
       var value = /** @type {number} */ (reader.readUint64());
-      msg.setBaseAmount(value);
+      msg.setAmount(value);
       break;
     default:
       reader.skipField();
@@ -936,7 +936,7 @@ proto.MarketPriceRequest.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getBaseAmount();
+  f = message.getAmount();
   if (f !== 0) {
     writer.writeUint64(
       3,
@@ -1002,10 +1002,10 @@ proto.MarketPriceRequest.prototype.setType = function(value) {
 
 
 /**
- * optional uint64 base_amount = 3;
+ * optional uint64 amount = 3;
  * @return {number}
  */
-proto.MarketPriceRequest.prototype.getBaseAmount = function() {
+proto.MarketPriceRequest.prototype.getAmount = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
@@ -1014,7 +1014,7 @@ proto.MarketPriceRequest.prototype.getBaseAmount = function() {
  * @param {number} value
  * @return {!proto.MarketPriceRequest} returns this
  */
-proto.MarketPriceRequest.prototype.setBaseAmount = function(value) {
+proto.MarketPriceRequest.prototype.setAmount = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
 };
 

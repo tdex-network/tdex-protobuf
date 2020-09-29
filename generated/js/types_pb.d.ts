@@ -151,6 +151,9 @@ export class PriceWithFee extends jspb.Message {
   hasFee(): boolean;
   clearFee(): PriceWithFee;
 
+  getAmount(): number;
+  setAmount(value: number): PriceWithFee;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): PriceWithFee.AsObject;
   static toObject(includeInstance: boolean, msg: PriceWithFee): PriceWithFee.AsObject;
@@ -163,6 +166,7 @@ export namespace PriceWithFee {
   export type AsObject = {
     price?: Price.AsObject,
     fee?: Fee.AsObject,
+    amount: number,
   }
 }
 

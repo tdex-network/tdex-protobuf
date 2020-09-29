@@ -915,7 +915,7 @@ Service for operators to configure and manage a TDEX daemon
 | ----- | ---- | ----- | ----------- |
 | market | [Market](#Market) |  |  |
 | type | [TradeType](#TradeType) |  |  |
-| base_amount | [uint64](#uint64) |  |  |
+| amount | [uint64](#uint64) |  |  |
 
 
 
@@ -1029,10 +1029,14 @@ BOTD#4 Service&#39;s messages
 | Balances | [.BalancesRequest](#BalancesRequest) | [.BalancesReply](#BalancesReply) | Balances: Gets the balances of the two current reserves in the given market. |
 | MarketPrice | [.MarketPriceRequest](#MarketPriceRequest) | [.MarketPriceReply](#MarketPriceReply) | MarketPrice: Gets the current market price. In case of AMM startegy, the trade type and the amount of base asset to be either sent or received.
 
+BUY = quote asset as input SELL = base asset as input
+
 If the type of the trade is BUY it means the base asset will be received by the trader.
 
 If the type of the trade is SELL it means the base asset will be sent by the trader. |
 | TradePropose | [.TradeProposeRequest](#TradeProposeRequest) | [.TradeProposeReply](#TradeProposeReply) stream | TradePropose: Sends a swap request message containing a partial signed transaction.
+
+BUY = quote asset as input SELL = base asset as input
 
 If the type of the trade is BUY it means the base asset will be received by the trader.
 
@@ -1156,6 +1160,7 @@ If the type of the trade is SELL it means the base asset will be sent by the tra
 | ----- | ---- | ----- | ----------- |
 | price | [Price](#Price) |  |  |
 | fee | [Fee](#Fee) |  |  |
+| amount | [uint64](#uint64) |  |  |
 
 
 

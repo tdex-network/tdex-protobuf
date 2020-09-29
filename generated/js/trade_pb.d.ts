@@ -86,8 +86,8 @@ export class MarketPriceRequest extends jspb.Message {
   getType(): types_pbTradeType;
   setType(value: types_pbTradeType): MarketPriceRequest;
 
-  getBaseAmount(): number;
-  setBaseAmount(value: number): MarketPriceRequest;
+  getAmount(): number;
+  setAmount(value: number): MarketPriceRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MarketPriceRequest.AsObject;
@@ -101,7 +101,7 @@ export namespace MarketPriceRequest {
   export type AsObject = {
     market?: types_pb.Market.AsObject,
     type: types_pbTradeType,
-    baseAmount: number,
+    amount: number,
   }
 }
 
