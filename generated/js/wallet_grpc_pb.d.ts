@@ -5,6 +5,7 @@
 /* eslint-disable */
 
 import * as grpc from "@grpc/grpc-js";
+import {handleClientStreamingCall} from "@grpc/grpc-js/build/src/server-call";
 import * as wallet_pb from "./wallet_pb";
 
 interface IWalletService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
@@ -18,7 +19,7 @@ interface IWalletService extends grpc.ServiceDefinition<grpc.UntypedServiceImple
 }
 
 interface IWalletService_IGenSeed extends grpc.MethodDefinition<wallet_pb.GenSeedRequest, wallet_pb.GenSeedReply> {
-    path: string; // "/.Wallet/GenSeed"
+    path: "/Wallet/GenSeed";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<wallet_pb.GenSeedRequest>;
@@ -27,16 +28,16 @@ interface IWalletService_IGenSeed extends grpc.MethodDefinition<wallet_pb.GenSee
     responseDeserialize: grpc.deserialize<wallet_pb.GenSeedReply>;
 }
 interface IWalletService_IInitWallet extends grpc.MethodDefinition<wallet_pb.InitWalletRequest, wallet_pb.InitWalletReply> {
-    path: string; // "/.Wallet/InitWallet"
+    path: "/Wallet/InitWallet";
     requestStream: false;
-    responseStream: false;
+    responseStream: true;
     requestSerialize: grpc.serialize<wallet_pb.InitWalletRequest>;
     requestDeserialize: grpc.deserialize<wallet_pb.InitWalletRequest>;
     responseSerialize: grpc.serialize<wallet_pb.InitWalletReply>;
     responseDeserialize: grpc.deserialize<wallet_pb.InitWalletReply>;
 }
 interface IWalletService_IUnlockWallet extends grpc.MethodDefinition<wallet_pb.UnlockWalletRequest, wallet_pb.UnlockWalletReply> {
-    path: string; // "/.Wallet/UnlockWallet"
+    path: "/Wallet/UnlockWallet";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<wallet_pb.UnlockWalletRequest>;
@@ -45,7 +46,7 @@ interface IWalletService_IUnlockWallet extends grpc.MethodDefinition<wallet_pb.U
     responseDeserialize: grpc.deserialize<wallet_pb.UnlockWalletReply>;
 }
 interface IWalletService_IChangePassword extends grpc.MethodDefinition<wallet_pb.ChangePasswordRequest, wallet_pb.ChangePasswordReply> {
-    path: string; // "/.Wallet/ChangePassword"
+    path: "/Wallet/ChangePassword";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<wallet_pb.ChangePasswordRequest>;
@@ -54,7 +55,7 @@ interface IWalletService_IChangePassword extends grpc.MethodDefinition<wallet_pb
     responseDeserialize: grpc.deserialize<wallet_pb.ChangePasswordReply>;
 }
 interface IWalletService_IWalletAddress extends grpc.MethodDefinition<wallet_pb.WalletAddressRequest, wallet_pb.WalletAddressReply> {
-    path: string; // "/.Wallet/WalletAddress"
+    path: "/Wallet/WalletAddress";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<wallet_pb.WalletAddressRequest>;
@@ -63,7 +64,7 @@ interface IWalletService_IWalletAddress extends grpc.MethodDefinition<wallet_pb.
     responseDeserialize: grpc.deserialize<wallet_pb.WalletAddressReply>;
 }
 interface IWalletService_IWalletBalance extends grpc.MethodDefinition<wallet_pb.WalletBalanceRequest, wallet_pb.WalletBalanceReply> {
-    path: string; // "/.Wallet/WalletBalance"
+    path: "/Wallet/WalletBalance";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<wallet_pb.WalletBalanceRequest>;
@@ -72,7 +73,7 @@ interface IWalletService_IWalletBalance extends grpc.MethodDefinition<wallet_pb.
     responseDeserialize: grpc.deserialize<wallet_pb.WalletBalanceReply>;
 }
 interface IWalletService_ISendToMany extends grpc.MethodDefinition<wallet_pb.SendToManyRequest, wallet_pb.SendToManyReply> {
-    path: string; // "/.Wallet/SendToMany"
+    path: "/Wallet/SendToMany";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<wallet_pb.SendToManyRequest>;
@@ -85,7 +86,7 @@ export const WalletService: IWalletService;
 
 export interface IWalletServer {
     genSeed: grpc.handleUnaryCall<wallet_pb.GenSeedRequest, wallet_pb.GenSeedReply>;
-    initWallet: grpc.handleUnaryCall<wallet_pb.InitWalletRequest, wallet_pb.InitWalletReply>;
+    initWallet: grpc.handleServerStreamingCall<wallet_pb.InitWalletRequest, wallet_pb.InitWalletReply>;
     unlockWallet: grpc.handleUnaryCall<wallet_pb.UnlockWalletRequest, wallet_pb.UnlockWalletReply>;
     changePassword: grpc.handleUnaryCall<wallet_pb.ChangePasswordRequest, wallet_pb.ChangePasswordReply>;
     walletAddress: grpc.handleUnaryCall<wallet_pb.WalletAddressRequest, wallet_pb.WalletAddressReply>;
@@ -97,9 +98,8 @@ export interface IWalletClient {
     genSeed(request: wallet_pb.GenSeedRequest, callback: (error: grpc.ServiceError | null, response: wallet_pb.GenSeedReply) => void): grpc.ClientUnaryCall;
     genSeed(request: wallet_pb.GenSeedRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: wallet_pb.GenSeedReply) => void): grpc.ClientUnaryCall;
     genSeed(request: wallet_pb.GenSeedRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: wallet_pb.GenSeedReply) => void): grpc.ClientUnaryCall;
-    initWallet(request: wallet_pb.InitWalletRequest, callback: (error: grpc.ServiceError | null, response: wallet_pb.InitWalletReply) => void): grpc.ClientUnaryCall;
-    initWallet(request: wallet_pb.InitWalletRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: wallet_pb.InitWalletReply) => void): grpc.ClientUnaryCall;
-    initWallet(request: wallet_pb.InitWalletRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: wallet_pb.InitWalletReply) => void): grpc.ClientUnaryCall;
+    initWallet(request: wallet_pb.InitWalletRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<wallet_pb.InitWalletReply>;
+    initWallet(request: wallet_pb.InitWalletRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<wallet_pb.InitWalletReply>;
     unlockWallet(request: wallet_pb.UnlockWalletRequest, callback: (error: grpc.ServiceError | null, response: wallet_pb.UnlockWalletReply) => void): grpc.ClientUnaryCall;
     unlockWallet(request: wallet_pb.UnlockWalletRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: wallet_pb.UnlockWalletReply) => void): grpc.ClientUnaryCall;
     unlockWallet(request: wallet_pb.UnlockWalletRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: wallet_pb.UnlockWalletReply) => void): grpc.ClientUnaryCall;
@@ -118,13 +118,12 @@ export interface IWalletClient {
 }
 
 export class WalletClient extends grpc.Client implements IWalletClient {
-    constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);
+    constructor(address: string, credentials: grpc.ChannelCredentials, options?: Partial<grpc.ClientOptions>);
     public genSeed(request: wallet_pb.GenSeedRequest, callback: (error: grpc.ServiceError | null, response: wallet_pb.GenSeedReply) => void): grpc.ClientUnaryCall;
     public genSeed(request: wallet_pb.GenSeedRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: wallet_pb.GenSeedReply) => void): grpc.ClientUnaryCall;
     public genSeed(request: wallet_pb.GenSeedRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: wallet_pb.GenSeedReply) => void): grpc.ClientUnaryCall;
-    public initWallet(request: wallet_pb.InitWalletRequest, callback: (error: grpc.ServiceError | null, response: wallet_pb.InitWalletReply) => void): grpc.ClientUnaryCall;
-    public initWallet(request: wallet_pb.InitWalletRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: wallet_pb.InitWalletReply) => void): grpc.ClientUnaryCall;
-    public initWallet(request: wallet_pb.InitWalletRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: wallet_pb.InitWalletReply) => void): grpc.ClientUnaryCall;
+    public initWallet(request: wallet_pb.InitWalletRequest, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<wallet_pb.InitWalletReply>;
+    public initWallet(request: wallet_pb.InitWalletRequest, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<wallet_pb.InitWalletReply>;
     public unlockWallet(request: wallet_pb.UnlockWalletRequest, callback: (error: grpc.ServiceError | null, response: wallet_pb.UnlockWalletReply) => void): grpc.ClientUnaryCall;
     public unlockWallet(request: wallet_pb.UnlockWalletRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: wallet_pb.UnlockWalletReply) => void): grpc.ClientUnaryCall;
     public unlockWallet(request: wallet_pb.UnlockWalletRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: wallet_pb.UnlockWalletReply) => void): grpc.ClientUnaryCall;

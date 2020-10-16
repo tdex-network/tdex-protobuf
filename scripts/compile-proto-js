@@ -19,13 +19,12 @@ GRPC_WEB_PLUGIN="./node_modules/.bin/protoc-gen-grpc-web"
 ${GRPC_TOOLS_NODE_PROTOC} \
   --js_out=import_style=commonjs,binary:./generated/js \
   --grpc_out=grpc_js:./generated/js \
-  --plugin=protoc-gen-grpc="${GRPC_TOOLS_NODE_PROTOC_PLUGIN}" \
   trade.proto operator.proto
 
 ${GRPC_TOOLS_NODE_PROTOC} \
   --js_out=import_style=commonjs,binary:./generated/js \
   --plugin=protoc-gen-ts="${PROTOC_GEN_TS_PATH}" \
-  --ts_out=./generated/js \
+  --ts_out=grpc_js:./generated/js \
   *.proto
 
 ${GRPC_TOOLS_NODE_PROTOC} \
@@ -33,9 +32,5 @@ ${GRPC_TOOLS_NODE_PROTOC} \
   --grpc-web_out=import_style=typescript,mode=grpcwebtext:./generated/js \
   --plugin=protoc-gen-grpc-web=${GRPC_WEB_PLUGIN} \
   *.proto
-
-sed -i "" -e \
-  "s/from \"grpc\"/from \"@grpc\/grpc-js\"/g" \
-  "./generated/js/"*
 
 popd
