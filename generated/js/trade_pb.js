@@ -1877,7 +1877,8 @@ proto.TradeCompleteReply.prototype.toObject = function(opt_includeInstance) {
  */
 proto.TradeCompleteReply.toObject = function(includeInstance, msg) {
   var f, obj = {
-    txid: jspb.Message.getFieldWithDefault(msg, 1, "")
+    txid: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    swapFail: (f = msg.getSwapFail()) && swap_pb.SwapFail.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1918,6 +1919,11 @@ proto.TradeCompleteReply.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {string} */ (reader.readString());
       msg.setTxid(value);
       break;
+    case 2:
+      var value = new swap_pb.SwapFail;
+      reader.readMessage(value,swap_pb.SwapFail.deserializeBinaryFromReader);
+      msg.setSwapFail(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1954,6 +1960,14 @@ proto.TradeCompleteReply.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getSwapFail();
+  if (f != null) {
+    writer.writeMessage(
+      2,
+      f,
+      swap_pb.SwapFail.serializeBinaryToWriter
+    );
+  }
 };
 
 
@@ -1972,6 +1986,43 @@ proto.TradeCompleteReply.prototype.getTxid = function() {
  */
 proto.TradeCompleteReply.prototype.setTxid = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
+};
+
+
+/**
+ * optional SwapFail swap_fail = 2;
+ * @return {?proto.SwapFail}
+ */
+proto.TradeCompleteReply.prototype.getSwapFail = function() {
+  return /** @type{?proto.SwapFail} */ (
+    jspb.Message.getWrapperField(this, swap_pb.SwapFail, 2));
+};
+
+
+/**
+ * @param {?proto.SwapFail|undefined} value
+ * @return {!proto.TradeCompleteReply} returns this
+*/
+proto.TradeCompleteReply.prototype.setSwapFail = function(value) {
+  return jspb.Message.setWrapperField(this, 2, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.TradeCompleteReply} returns this
+ */
+proto.TradeCompleteReply.prototype.clearSwapFail = function() {
+  return this.setSwapFail(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.TradeCompleteReply.prototype.hasSwapFail = function() {
+  return jspb.Message.getField(this, 2) != null;
 };
 
 

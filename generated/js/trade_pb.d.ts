@@ -215,6 +215,11 @@ export class TradeCompleteReply extends jspb.Message {
   getTxid(): string;
   setTxid(value: string): TradeCompleteReply;
 
+  getSwapFail(): swap_pb.SwapFail | undefined;
+  setSwapFail(value?: swap_pb.SwapFail): TradeCompleteReply;
+  hasSwapFail(): boolean;
+  clearSwapFail(): TradeCompleteReply;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): TradeCompleteReply.AsObject;
   static toObject(includeInstance: boolean, msg: TradeCompleteReply): TradeCompleteReply.AsObject;
@@ -226,6 +231,7 @@ export class TradeCompleteReply extends jspb.Message {
 export namespace TradeCompleteReply {
   export type AsObject = {
     txid: string,
+    swapFail?: swap_pb.SwapFail.AsObject,
   }
 }
 
