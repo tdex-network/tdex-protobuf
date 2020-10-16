@@ -31,7 +31,7 @@ type WalletClient interface {
 	//material on disk. Alternatively, this can be used along with the GenSeed RPC
 	//to obtain a seed, then present it to the user. Once it has been verified by
 	//the user, the seed can be fed into this RPC in order to commit the new wallet.
-	InitWallet(ctx context.Context, in *InitWalletRequest, opts ...grpc.CallOption) (*InitWalletReply, error)
+	InitWallet(ctx context.Context, in *InitWalletRequest, opts ...grpc.CallOption) (Wallet_InitWalletClient, error)
 	//
 	//UnlockWallet is used at startup of tdexd to provide a password to unlock
 	//the wallet database.
@@ -69,13 +69,36 @@ func (c *walletClient) GenSeed(ctx context.Context, in *GenSeedRequest, opts ...
 	return out, nil
 }
 
-func (c *walletClient) InitWallet(ctx context.Context, in *InitWalletRequest, opts ...grpc.CallOption) (*InitWalletReply, error) {
-	out := new(InitWalletReply)
-	err := c.cc.Invoke(ctx, "/Wallet/InitWallet", in, out, opts...)
+func (c *walletClient) InitWallet(ctx context.Context, in *InitWalletRequest, opts ...grpc.CallOption) (Wallet_InitWalletClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Wallet_serviceDesc.Streams[0], "/Wallet/InitWallet", opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &walletInitWalletClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Wallet_InitWalletClient interface {
+	Recv() (*InitWalletReply, error)
+	grpc.ClientStream
+}
+
+type walletInitWalletClient struct {
+	grpc.ClientStream
+}
+
+func (x *walletInitWalletClient) Recv() (*InitWalletReply, error) {
+	m := new(InitWalletReply)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 func (c *walletClient) UnlockWallet(ctx context.Context, in *UnlockWalletRequest, opts ...grpc.CallOption) (*UnlockWalletReply, error) {
@@ -141,7 +164,7 @@ type WalletServer interface {
 	//material on disk. Alternatively, this can be used along with the GenSeed RPC
 	//to obtain a seed, then present it to the user. Once it has been verified by
 	//the user, the seed can be fed into this RPC in order to commit the new wallet.
-	InitWallet(context.Context, *InitWalletRequest) (*InitWalletReply, error)
+	InitWallet(*InitWalletRequest, Wallet_InitWalletServer) error
 	//
 	//UnlockWallet is used at startup of tdexd to provide a password to unlock
 	//the wallet database.
@@ -170,8 +193,8 @@ type UnimplementedWalletServer struct {
 func (*UnimplementedWalletServer) GenSeed(context.Context, *GenSeedRequest) (*GenSeedReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GenSeed not implemented")
 }
-func (*UnimplementedWalletServer) InitWallet(context.Context, *InitWalletRequest) (*InitWalletReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method InitWallet not implemented")
+func (*UnimplementedWalletServer) InitWallet(*InitWalletRequest, Wallet_InitWalletServer) error {
+	return status.Errorf(codes.Unimplemented, "method InitWallet not implemented")
 }
 func (*UnimplementedWalletServer) UnlockWallet(context.Context, *UnlockWalletRequest) (*UnlockWalletReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnlockWallet not implemented")
@@ -212,22 +235,25 @@ func _Wallet_GenSeed_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Wallet_InitWallet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(InitWalletRequest)
-	if err := dec(in); err != nil {
-		return nil, err
+func _Wallet_InitWallet_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(InitWalletRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
 	}
-	if interceptor == nil {
-		return srv.(WalletServer).InitWallet(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/Wallet/InitWallet",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WalletServer).InitWallet(ctx, req.(*InitWalletRequest))
-	}
-	return interceptor(ctx, in, info, handler)
+	return srv.(WalletServer).InitWallet(m, &walletInitWalletServer{stream})
+}
+
+type Wallet_InitWalletServer interface {
+	Send(*InitWalletReply) error
+	grpc.ServerStream
+}
+
+type walletInitWalletServer struct {
+	grpc.ServerStream
+}
+
+func (x *walletInitWalletServer) Send(m *InitWalletReply) error {
+	return x.ServerStream.SendMsg(m)
 }
 
 func _Wallet_UnlockWallet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -329,10 +355,6 @@ var _Wallet_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Wallet_GenSeed_Handler,
 		},
 		{
-			MethodName: "InitWallet",
-			Handler:    _Wallet_InitWallet_Handler,
-		},
-		{
 			MethodName: "UnlockWallet",
 			Handler:    _Wallet_UnlockWallet_Handler,
 		},
@@ -353,6 +375,12 @@ var _Wallet_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Wallet_SendToMany_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "InitWallet",
+			Handler:       _Wallet_InitWallet_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "wallet.proto",
 }

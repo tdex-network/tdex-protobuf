@@ -5,6 +5,7 @@
 /* eslint-disable */
 
 import * as grpc from "@grpc/grpc-js";
+import {handleClientStreamingCall} from "@grpc/grpc-js/build/src/server-call";
 import * as operator_pb from "./operator_pb";
 import * as types_pb from "./types_pb";
 
@@ -25,7 +26,7 @@ interface IOperatorService extends grpc.ServiceDefinition<grpc.UntypedServiceImp
 }
 
 interface IOperatorService_IDepositMarket extends grpc.MethodDefinition<operator_pb.DepositMarketRequest, operator_pb.DepositMarketReply> {
-    path: string; // "/.Operator/DepositMarket"
+    path: "/Operator/DepositMarket";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<operator_pb.DepositMarketRequest>;
@@ -34,7 +35,7 @@ interface IOperatorService_IDepositMarket extends grpc.MethodDefinition<operator
     responseDeserialize: grpc.deserialize<operator_pb.DepositMarketReply>;
 }
 interface IOperatorService_IListDepositMarket extends grpc.MethodDefinition<operator_pb.ListDepositMarketRequest, operator_pb.ListDepositMarketReply> {
-    path: string; // "/.Operator/ListDepositMarket"
+    path: "/Operator/ListDepositMarket";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<operator_pb.ListDepositMarketRequest>;
@@ -43,7 +44,7 @@ interface IOperatorService_IListDepositMarket extends grpc.MethodDefinition<oper
     responseDeserialize: grpc.deserialize<operator_pb.ListDepositMarketReply>;
 }
 interface IOperatorService_IDepositFeeAccount extends grpc.MethodDefinition<operator_pb.DepositFeeAccountRequest, operator_pb.DepositFeeAccountReply> {
-    path: string; // "/.Operator/DepositFeeAccount"
+    path: "/Operator/DepositFeeAccount";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<operator_pb.DepositFeeAccountRequest>;
@@ -52,7 +53,7 @@ interface IOperatorService_IDepositFeeAccount extends grpc.MethodDefinition<oper
     responseDeserialize: grpc.deserialize<operator_pb.DepositFeeAccountReply>;
 }
 interface IOperatorService_IBalanceFeeAccount extends grpc.MethodDefinition<operator_pb.BalanceFeeAccountRequest, operator_pb.BalanceFeeAccountReply> {
-    path: string; // "/.Operator/BalanceFeeAccount"
+    path: "/Operator/BalanceFeeAccount";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<operator_pb.BalanceFeeAccountRequest>;
@@ -61,7 +62,7 @@ interface IOperatorService_IBalanceFeeAccount extends grpc.MethodDefinition<oper
     responseDeserialize: grpc.deserialize<operator_pb.BalanceFeeAccountReply>;
 }
 interface IOperatorService_IOpenMarket extends grpc.MethodDefinition<operator_pb.OpenMarketRequest, operator_pb.OpenMarketReply> {
-    path: string; // "/.Operator/OpenMarket"
+    path: "/Operator/OpenMarket";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<operator_pb.OpenMarketRequest>;
@@ -70,7 +71,7 @@ interface IOperatorService_IOpenMarket extends grpc.MethodDefinition<operator_pb
     responseDeserialize: grpc.deserialize<operator_pb.OpenMarketReply>;
 }
 interface IOperatorService_ICloseMarket extends grpc.MethodDefinition<operator_pb.CloseMarketRequest, operator_pb.CloseMarketReply> {
-    path: string; // "/.Operator/CloseMarket"
+    path: "/Operator/CloseMarket";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<operator_pb.CloseMarketRequest>;
@@ -79,7 +80,7 @@ interface IOperatorService_ICloseMarket extends grpc.MethodDefinition<operator_p
     responseDeserialize: grpc.deserialize<operator_pb.CloseMarketReply>;
 }
 interface IOperatorService_IListMarket extends grpc.MethodDefinition<operator_pb.ListMarketRequest, operator_pb.ListMarketReply> {
-    path: string; // "/.Operator/ListMarket"
+    path: "/Operator/ListMarket";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<operator_pb.ListMarketRequest>;
@@ -88,7 +89,7 @@ interface IOperatorService_IListMarket extends grpc.MethodDefinition<operator_pb
     responseDeserialize: grpc.deserialize<operator_pb.ListMarketReply>;
 }
 interface IOperatorService_IUpdateMarketFee extends grpc.MethodDefinition<operator_pb.UpdateMarketFeeRequest, operator_pb.UpdateMarketFeeReply> {
-    path: string; // "/.Operator/UpdateMarketFee"
+    path: "/Operator/UpdateMarketFee";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<operator_pb.UpdateMarketFeeRequest>;
@@ -97,7 +98,7 @@ interface IOperatorService_IUpdateMarketFee extends grpc.MethodDefinition<operat
     responseDeserialize: grpc.deserialize<operator_pb.UpdateMarketFeeReply>;
 }
 interface IOperatorService_IUpdateMarketPrice extends grpc.MethodDefinition<operator_pb.UpdateMarketPriceRequest, operator_pb.UpdateMarketPriceReply> {
-    path: string; // "/.Operator/UpdateMarketPrice"
+    path: "/Operator/UpdateMarketPrice";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<operator_pb.UpdateMarketPriceRequest>;
@@ -106,7 +107,7 @@ interface IOperatorService_IUpdateMarketPrice extends grpc.MethodDefinition<oper
     responseDeserialize: grpc.deserialize<operator_pb.UpdateMarketPriceReply>;
 }
 interface IOperatorService_IUpdateMarketStrategy extends grpc.MethodDefinition<operator_pb.UpdateMarketStrategyRequest, operator_pb.UpdateMarketStrategyReply> {
-    path: string; // "/.Operator/UpdateMarketStrategy"
+    path: "/Operator/UpdateMarketStrategy";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<operator_pb.UpdateMarketStrategyRequest>;
@@ -115,7 +116,7 @@ interface IOperatorService_IUpdateMarketStrategy extends grpc.MethodDefinition<o
     responseDeserialize: grpc.deserialize<operator_pb.UpdateMarketStrategyReply>;
 }
 interface IOperatorService_IWithdrawMarket extends grpc.MethodDefinition<operator_pb.WithdrawMarketRequest, operator_pb.WithdrawMarketReply> {
-    path: string; // "/.Operator/WithdrawMarket"
+    path: "/Operator/WithdrawMarket";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<operator_pb.WithdrawMarketRequest>;
@@ -124,7 +125,7 @@ interface IOperatorService_IWithdrawMarket extends grpc.MethodDefinition<operato
     responseDeserialize: grpc.deserialize<operator_pb.WithdrawMarketReply>;
 }
 interface IOperatorService_IListSwaps extends grpc.MethodDefinition<operator_pb.ListSwapsRequest, operator_pb.ListSwapsReply> {
-    path: string; // "/.Operator/ListSwaps"
+    path: "/Operator/ListSwaps";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<operator_pb.ListSwapsRequest>;
@@ -133,7 +134,7 @@ interface IOperatorService_IListSwaps extends grpc.MethodDefinition<operator_pb.
     responseDeserialize: grpc.deserialize<operator_pb.ListSwapsReply>;
 }
 interface IOperatorService_IReportMarketFee extends grpc.MethodDefinition<operator_pb.ReportMarketFeeRequest, operator_pb.ReportMarketFeeReply> {
-    path: string; // "/.Operator/ReportMarketFee"
+    path: "/Operator/ReportMarketFee";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<operator_pb.ReportMarketFeeRequest>;
@@ -203,7 +204,7 @@ export interface IOperatorClient {
 }
 
 export class OperatorClient extends grpc.Client implements IOperatorClient {
-    constructor(address: string, credentials: grpc.ChannelCredentials, options?: object);
+    constructor(address: string, credentials: grpc.ChannelCredentials, options?: Partial<grpc.ClientOptions>);
     public depositMarket(request: operator_pb.DepositMarketRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositMarketReply) => void): grpc.ClientUnaryCall;
     public depositMarket(request: operator_pb.DepositMarketRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositMarketReply) => void): grpc.ClientUnaryCall;
     public depositMarket(request: operator_pb.DepositMarketRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.DepositMarketReply) => void): grpc.ClientUnaryCall;

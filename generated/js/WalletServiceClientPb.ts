@@ -97,33 +97,12 @@ export class WalletClient {
 
   initWallet(
     request: InitWalletRequest,
-    metadata: grpcWeb.Metadata | null): Promise<InitWalletReply>;
-
-  initWallet(
-    request: InitWalletRequest,
-    metadata: grpcWeb.Metadata | null,
-    callback: (err: grpcWeb.Error,
-               response: InitWalletReply) => void): grpcWeb.ClientReadableStream<InitWalletReply>;
-
-  initWallet(
-    request: InitWalletRequest,
-    metadata: grpcWeb.Metadata | null,
-    callback?: (err: grpcWeb.Error,
-               response: InitWalletReply) => void) {
-    if (callback !== undefined) {
-      return this.client_.rpcCall(
-        new URL('/Wallet/InitWallet', this.hostname_).toString(),
-        request,
-        metadata || {},
-        this.methodInfoInitWallet,
-        callback);
-    }
-    return this.client_.unaryCall(
-    this.hostname_ +
-      '/Wallet/InitWallet',
-    request,
-    metadata || {},
-    this.methodInfoInitWallet);
+    metadata?: grpcWeb.Metadata) {
+    return this.client_.serverStreaming(
+      new URL('/Wallet/InitWallet', this.hostname_).toString(),
+      request,
+      metadata || {},
+      this.methodInfoInitWallet);
   }
 
   methodInfoUnlockWallet = new grpcWeb.AbstractClientBase.MethodInfo(
