@@ -42,7 +42,7 @@ service Wallet {
   rpc WalletAddress(WalletAddressRequest) returns (WalletAddressReply);
 
   /*
-  WalletBalance returns total unspent outputs(confirmed and unconfirmed), all
+  WalletBalance returns total unspent outputs (confirmed and unconfirmed), all
   confirmed unspent outputs and all unconfirmed unspent outputs under control
   of the wallet.
   */
@@ -54,12 +54,6 @@ service Wallet {
 
 message GenSeedRequest {}
 message GenSeedReply {
-  /*
-  seed_mnemonic is a 24-word mnemonic that encodes a prior seed obtained
-  by the user. This field is optional, as if not provided, then the daemon will
-  generate a new cipher seed for the user. Otherwise, then the daemon will
-  attempt to recover the wallet state linked to this cipher seed.
-  */
   repeated string seed_mnemonic = 1;
 }
 
