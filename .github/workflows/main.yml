@@ -2,7 +2,7 @@ name: Compile protobuf stubs
 
 on:
   push:
-    branches: [beta]
+    branches: [test]
 
 jobs:
   # This workflow contains a single job called "compile"
@@ -34,6 +34,12 @@ jobs:
 
       - name: Compile Go stubs
         run: make go
+
+      - name: Compile JS stubs
+        run: make js
+
+      - name: Documentation
+        run: make doc
 
       - name: Commit generated stubs
         run: |
