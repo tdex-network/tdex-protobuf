@@ -44,7 +44,7 @@ type WalletClient interface {
 	//WalletAddress returns a Liquid confidential p2wpkh address (BLECH32)
 	WalletAddress(ctx context.Context, in *WalletAddressRequest, opts ...grpc.CallOption) (*WalletAddressReply, error)
 	//
-	//WalletBalance returns total unspent outputs(confirmed and unconfirmed), all
+	//WalletBalance returns total unspent outputs (confirmed and unconfirmed), all
 	//confirmed unspent outputs and all unconfirmed unspent outputs under control
 	//of the wallet.
 	WalletBalance(ctx context.Context, in *WalletBalanceRequest, opts ...grpc.CallOption) (*WalletBalanceReply, error)
@@ -177,7 +177,7 @@ type WalletServer interface {
 	//WalletAddress returns a Liquid confidential p2wpkh address (BLECH32)
 	WalletAddress(context.Context, *WalletAddressRequest) (*WalletAddressReply, error)
 	//
-	//WalletBalance returns total unspent outputs(confirmed and unconfirmed), all
+	//WalletBalance returns total unspent outputs (confirmed and unconfirmed), all
 	//confirmed unspent outputs and all unconfirmed unspent outputs under control
 	//of the wallet.
 	WalletBalance(context.Context, *WalletBalanceRequest) (*WalletBalanceReply, error)

@@ -68,11 +68,6 @@ type GenSeedReply struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	//
-	//seed_mnemonic is a 24-word mnemonic that encodes a prior seed obtained
-	//by the user. This field is optional, as if not provided, then the daemon will
-	//generate a new cipher seed for the user. Otherwise, then the daemon will
-	//attempt to recover the wallet state linked to this cipher seed.
 	SeedMnemonic []string `protobuf:"bytes,1,rep,name=seed_mnemonic,json=seedMnemonic,proto3" json:"seed_mnemonic,omitempty"`
 }
 

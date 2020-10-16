@@ -239,7 +239,7 @@ walletAddress: {
     responseDeserialize: deserialize_WalletAddressReply,
   },
   //
-// WalletBalance returns total unspent outputs(confirmed and unconfirmed), all
+// WalletBalance returns total unspent outputs (confirmed and unconfirmed), all
 // confirmed unspent outputs and all unconfirmed unspent outputs under control
 // of the wallet.
 walletBalance: {
