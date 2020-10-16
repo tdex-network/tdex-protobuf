@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+enum TransportType {
+    INSECURE = 0;
+    ONION = 1;
+    TLS = 2;
+    MTLS = 3;
+    NOISE = 4;
+}
+
+message Transport {
+    TransportType type = 1;
+    string name = 2;
+    bytes data = 3;
+}
+
+message AvailableTransport {
+    repeated TransportType transport = 1;
+}
