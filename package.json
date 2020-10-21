@@ -13,6 +13,6 @@
     "protoc-gen-grpc-web": "^1.2.0"
   },
   "dependencies": {
-    "grpc-web": "~1.2.0"
+    "grpc-web": "1.2.0"
   }
 }
