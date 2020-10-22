@@ -37,7 +37,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install grpc-js and grpc-web tools
-        run: yarn
+        run: yarn --check-files
 
       - name: Compile Go stubs
         run: make go
