@@ -383,13 +383,11 @@ export class WithdrawMarketRequest extends jspb.Message {
   hasBalanceToWithdraw(): boolean;
   clearBalanceToWithdraw(): WithdrawMarketRequest;
 
-  getSatPerKw(): number;
-  setSatPerKw(value: number): WithdrawMarketRequest;
+  getMillisatPerByte(): number;
+  setMillisatPerByte(value: number): WithdrawMarketRequest;
 
-  getScript(): Uint8Array | string;
-  getScript_asU8(): Uint8Array;
-  getScript_asB64(): string;
-  setScript(value: Uint8Array | string): WithdrawMarketRequest;
+  getAddress(): string;
+  setAddress(value: string): WithdrawMarketRequest;
 
   getPush(): boolean;
   setPush(value: boolean): WithdrawMarketRequest;
@@ -406,8 +404,8 @@ export namespace WithdrawMarketRequest {
   export type AsObject = {
     market?: types_pb.Market.AsObject,
     balanceToWithdraw?: types_pb.Balance.AsObject,
-    satPerKw: number,
-    script: Uint8Array | string,
+    millisatPerByte: number,
+    address: string,
     push: boolean,
   }
 }

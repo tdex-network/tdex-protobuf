@@ -3428,8 +3428,8 @@ proto.WithdrawMarketRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     market: (f = msg.getMarket()) && types_pb.Market.toObject(includeInstance, f),
     balanceToWithdraw: (f = msg.getBalanceToWithdraw()) && types_pb.Balance.toObject(includeInstance, f),
-    satPerKw: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    script: msg.getScript_asB64(),
+    millisatPerByte: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    address: jspb.Message.getFieldWithDefault(msg, 4, ""),
     push: jspb.Message.getBooleanFieldWithDefault(msg, 5, false)
   };
 
@@ -3479,11 +3479,11 @@ proto.WithdrawMarketRequest.deserializeBinaryFromReader = function(msg, reader) 
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setSatPerKw(value);
+      msg.setMillisatPerByte(value);
       break;
     case 4:
-      var value = /** @type {!Uint8Array} */ (reader.readBytes());
-      msg.setScript(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAddress(value);
       break;
     case 5:
       var value = /** @type {boolean} */ (reader.readBool());
@@ -3534,16 +3534,16 @@ proto.WithdrawMarketRequest.serializeBinaryToWriter = function(message, writer) 
       types_pb.Balance.serializeBinaryToWriter
     );
   }
-  f = message.getSatPerKw();
+  f = message.getMillisatPerByte();
   if (f !== 0) {
     writer.writeInt64(
       3,
       f
     );
   }
-  f = message.getScript_asU8();
+  f = message.getAddress();
   if (f.length > 0) {
-    writer.writeBytes(
+    writer.writeString(
       4,
       f
     );
@@ -3633,10 +3633,10 @@ proto.WithdrawMarketRequest.prototype.hasBalanceToWithdraw = function() {
 
 
 /**
- * optional int64 sat_per_kw = 3;
+ * optional int64 millisat_per_byte = 3;
  * @return {number}
  */
-proto.WithdrawMarketRequest.prototype.getSatPerKw = function() {
+proto.WithdrawMarketRequest.prototype.getMillisatPerByte = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
@@ -3645,50 +3645,26 @@ proto.WithdrawMarketRequest.prototype.getSatPerKw = function() {
  * @param {number} value
  * @return {!proto.WithdrawMarketRequest} returns this
  */
-proto.WithdrawMarketRequest.prototype.setSatPerKw = function(value) {
+proto.WithdrawMarketRequest.prototype.setMillisatPerByte = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 /**
- * optional bytes script = 4;
- * @return {!(string|Uint8Array)}
- */
-proto.WithdrawMarketRequest.prototype.getScript = function() {
-  return /** @type {!(string|Uint8Array)} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
-};
-
-
-/**
- * optional bytes script = 4;
- * This is a type-conversion wrapper around `getScript()`
+ * optional string address = 4;
  * @return {string}
  */
-proto.WithdrawMarketRequest.prototype.getScript_asB64 = function() {
-  return /** @type {string} */ (jspb.Message.bytesAsB64(
-      this.getScript()));
+proto.WithdrawMarketRequest.prototype.getAddress = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
 
 /**
- * optional bytes script = 4;
- * Note that Uint8Array is not supported on all browsers.
- * @see http://caniuse.com/Uint8Array
- * This is a type-conversion wrapper around `getScript()`
- * @return {!Uint8Array}
- */
-proto.WithdrawMarketRequest.prototype.getScript_asU8 = function() {
-  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
-      this.getScript()));
-};
-
-
-/**
- * @param {!(string|Uint8Array)} value
+ * @param {string} value
  * @return {!proto.WithdrawMarketRequest} returns this
  */
-proto.WithdrawMarketRequest.prototype.setScript = function(value) {
-  return jspb.Message.setProto3BytesField(this, 4, value);
+proto.WithdrawMarketRequest.prototype.setAddress = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
