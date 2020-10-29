@@ -1054,10 +1054,10 @@ type WithdrawMarketRequest struct {
 	Market *types.Market `protobuf:"bytes,1,opt,name=market,proto3" json:"market,omitempty"`
 	// Amount for base and quote asset to be withdrawn
 	BalanceToWithdraw *types.Balance `protobuf:"bytes,2,opt,name=balance_to_withdraw,json=balanceToWithdraw,proto3" json:"balance_to_withdraw,omitempty"`
-	// The number of satoshis per kilo weight that should be
+	// The number of millisatoshis per byte that should be
 	// used when crafting this transaction.
 	MillisatPerByte int64 `protobuf:"varint,3,opt,name=millisat_per_byte,json=millisatPerByte,proto3" json:"millisat_per_byte,omitempty"`
-	// The script of the output being spent.
+	// The address to send to the funds
 	Address string `protobuf:"bytes,4,opt,name=address,proto3" json:"address,omitempty"`
 	// Optional: if true the transaction will be pushed to the network
 	Push bool `protobuf:"varint,5,opt,name=push,proto3" json:"push,omitempty"`
