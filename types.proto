@@ -2,10 +2,6 @@ syntax = "proto3";
 option go_package = "github.com/tdex-network/tdex-protobuf/generated/go/types";
 
 // Custom Types
-enum TradeType {
-  BUY = 0;
-  SELL = 1;
-}
 message Fee {
   string asset = 1;
   int64 basis_point = 2;

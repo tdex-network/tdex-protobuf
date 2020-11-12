@@ -53,6 +53,12 @@ message MarketsReply { repeated MarketWithFee markets = 1; }
 message BalancesRequest { Market market = 1; }
 message BalancesReply { repeated BalanceWithFee balances = 1; }
 
+
+enum TradeType {
+  BUY = 0;
+  SELL = 1;
+}
+
 message MarketPriceRequest {
   Market market = 1;
   TradeType type = 2;
