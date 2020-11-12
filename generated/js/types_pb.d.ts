@@ -170,7 +170,3 @@ export namespace PriceWithFee {
   }
 }
 
-export enum TradeType { 
-  BUY = 0,
-  SELL = 1,
-}

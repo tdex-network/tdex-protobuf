@@ -83,8 +83,8 @@ export class MarketPriceRequest extends jspb.Message {
   hasMarket(): boolean;
   clearMarket(): MarketPriceRequest;
 
-  getType(): types_pbTradeType;
-  setType(value: types_pbTradeType): MarketPriceRequest;
+  getType(): TradeType;
+  setType(value: TradeType): MarketPriceRequest;
 
   getAmount(): number;
   setAmount(value: number): MarketPriceRequest;
@@ -100,7 +100,7 @@ export class MarketPriceRequest extends jspb.Message {
 export namespace MarketPriceRequest {
   export type AsObject = {
     market?: types_pb.Market.AsObject,
-    type: types_pbTradeType,
+    type: TradeType,
     amount: number,
   }
 }
@@ -131,8 +131,8 @@ export class TradeProposeRequest extends jspb.Message {
   hasMarket(): boolean;
   clearMarket(): TradeProposeRequest;
 
-  getType(): types_pbTradeType;
-  setType(value: types_pbTradeType): TradeProposeRequest;
+  getType(): TradeType;
+  setType(value: TradeType): TradeProposeRequest;
 
   getSwapRequest(): swap_pb.SwapRequest | undefined;
   setSwapRequest(value?: swap_pb.SwapRequest): TradeProposeRequest;
@@ -150,7 +150,7 @@ export class TradeProposeRequest extends jspb.Message {
 export namespace TradeProposeRequest {
   export type AsObject = {
     market?: types_pb.Market.AsObject,
-    type: types_pbTradeType,
+    type: TradeType,
     swapRequest?: swap_pb.SwapRequest.AsObject,
   }
 }
@@ -235,3 +235,7 @@ export namespace TradeCompleteReply {
   }
 }
 
+export enum TradeType { 
+  BUY = 0,
+  SELL = 1,
+}

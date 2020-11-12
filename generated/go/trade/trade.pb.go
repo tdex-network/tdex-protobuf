@@ -27,6 +27,52 @@ const (
 // of the legacy proto package is being used.
 const _ = proto.ProtoPackageIsVersion4
 
+type TradeType int32
+
+const (
+	TradeType_BUY  TradeType = 0
+	TradeType_SELL TradeType = 1
+)
+
+// Enum value maps for TradeType.
+var (
+	TradeType_name = map[int32]string{
+		0: "BUY",
+		1: "SELL",
+	}
+	TradeType_value = map[string]int32{
+		"BUY":  0,
+		"SELL": 1,
+	}
+)
+
+func (x TradeType) Enum() *TradeType {
+	p := new(TradeType)
+	*p = x
+	return p
+}
+
+func (x TradeType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (TradeType) Descriptor() protoreflect.EnumDescriptor {
+	return file_trade_proto_enumTypes[0].Descriptor()
+}
+
+func (TradeType) Type() protoreflect.EnumType {
+	return &file_trade_proto_enumTypes[0]
+}
+
+func (x TradeType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use TradeType.Descriptor instead.
+func (TradeType) EnumDescriptor() ([]byte, []int) {
+	return file_trade_proto_rawDescGZIP(), []int{0}
+}
+
 // BOTD#4 Service's messages
 type MarketsRequest struct {
 	state         protoimpl.MessageState
@@ -212,9 +258,9 @@ type MarketPriceRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Market *types.Market   `protobuf:"bytes,1,opt,name=market,proto3" json:"market,omitempty"`
-	Type   types.TradeType `protobuf:"varint,2,opt,name=type,proto3,enum=TradeType" json:"type,omitempty"`
-	Amount uint64          `protobuf:"varint,3,opt,name=amount,proto3" json:"amount,omitempty"`
+	Market *types.Market `protobuf:"bytes,1,opt,name=market,proto3" json:"market,omitempty"`
+	Type   TradeType     `protobuf:"varint,2,opt,name=type,proto3,enum=TradeType" json:"type,omitempty"`
+	Amount uint64        `protobuf:"varint,3,opt,name=amount,proto3" json:"amount,omitempty"`
 }
 
 func (x *MarketPriceRequest) Reset() {
@@ -256,11 +302,11 @@ func (x *MarketPriceRequest) GetMarket() *types.Market {
 	return nil
 }
 
-func (x *MarketPriceRequest) GetType() types.TradeType {
+func (x *MarketPriceRequest) GetType() TradeType {
 	if x != nil {
 		return x.Type
 	}
-	return types.TradeType_BUY
+	return TradeType_BUY
 }
 
 func (x *MarketPriceRequest) GetAmount() uint64 {
@@ -323,7 +369,7 @@ type TradeProposeRequest struct {
 	unknownFields protoimpl.UnknownFields
 
 	Market      *types.Market     `protobuf:"bytes,1,opt,name=market,proto3" json:"market,omitempty"`
-	Type        types.TradeType   `protobuf:"varint,2,opt,name=type,proto3,enum=TradeType" json:"type,omitempty"`
+	Type        TradeType         `protobuf:"varint,2,opt,name=type,proto3,enum=TradeType" json:"type,omitempty"`
 	SwapRequest *swap.SwapRequest `protobuf:"bytes,3,opt,name=swap_request,json=swapRequest,proto3" json:"swap_request,omitempty"`
 }
 
@@ -366,11 +412,11 @@ func (x *TradeProposeRequest) GetMarket() *types.Market {
 	return nil
 }
 
-func (x *TradeProposeRequest) GetType() types.TradeType {
+func (x *TradeProposeRequest) GetType() TradeType {
 	if x != nil {
 		return x.Type
 	}
-	return types.TradeType_BUY
+	return TradeType_BUY
 }
 
 func (x *TradeProposeRequest) GetSwapRequest() *swap.SwapRequest {
@@ -611,7 +657,9 @@ var file_trade_proto_rawDesc = []byte{
 	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x74, 0x78, 0x69, 0x64, 0x12, 0x26, 0x0a, 0x09,
 	0x73, 0x77, 0x61, 0x70, 0x5f, 0x66, 0x61, 0x69, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32,
 	0x09, 0x2e, 0x53, 0x77, 0x61, 0x70, 0x46, 0x61, 0x69, 0x6c, 0x52, 0x08, 0x73, 0x77, 0x61, 0x70,
-	0x46, 0x61, 0x69, 0x6c, 0x32, 0x92, 0x02, 0x0a, 0x05, 0x54, 0x72, 0x61, 0x64, 0x65, 0x12, 0x29,
+	0x46, 0x61, 0x69, 0x6c, 0x2a, 0x1e, 0x0a, 0x09, 0x54, 0x72, 0x61, 0x64, 0x65, 0x54, 0x79, 0x70,
+	0x65, 0x12, 0x07, 0x0a, 0x03, 0x42, 0x55, 0x59, 0x10, 0x00, 0x12, 0x08, 0x0a, 0x04, 0x53, 0x45,
+	0x4c, 0x4c, 0x10, 0x01, 0x32, 0x92, 0x02, 0x0a, 0x05, 0x54, 0x72, 0x61, 0x64, 0x65, 0x12, 0x29,
 	0x0a, 0x07, 0x4d, 0x61, 0x72, 0x6b, 0x65, 0x74, 0x73, 0x12, 0x0f, 0x2e, 0x4d, 0x61, 0x72, 0x6b,
 	0x65, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0d, 0x2e, 0x4d, 0x61, 0x72,
 	0x6b, 0x65, 0x74, 0x73, 0x52, 0x65, 0x70, 0x6c, 0x79, 0x12, 0x2c, 0x0a, 0x08, 0x42, 0x61, 0x6c,
@@ -647,22 +695,23 @@ func file_trade_proto_rawDescGZIP() []byte {
 	return file_trade_proto_rawDescData
 }
 
+var file_trade_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_trade_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_trade_proto_goTypes = []interface{}{
-	(*MarketsRequest)(nil),       // 0: MarketsRequest
-	(*MarketsReply)(nil),         // 1: MarketsReply
-	(*BalancesRequest)(nil),      // 2: BalancesRequest
-	(*BalancesReply)(nil),        // 3: BalancesReply
-	(*MarketPriceRequest)(nil),   // 4: MarketPriceRequest
-	(*MarketPriceReply)(nil),     // 5: MarketPriceReply
-	(*TradeProposeRequest)(nil),  // 6: TradeProposeRequest
-	(*TradeProposeReply)(nil),    // 7: TradeProposeReply
-	(*TradeCompleteRequest)(nil), // 8: TradeCompleteRequest
-	(*TradeCompleteReply)(nil),   // 9: TradeCompleteReply
-	(*types.MarketWithFee)(nil),  // 10: MarketWithFee
-	(*types.Market)(nil),         // 11: Market
-	(*types.BalanceWithFee)(nil), // 12: BalanceWithFee
-	(types.TradeType)(0),         // 13: TradeType
+	(TradeType)(0),               // 0: TradeType
+	(*MarketsRequest)(nil),       // 1: MarketsRequest
+	(*MarketsReply)(nil),         // 2: MarketsReply
+	(*BalancesRequest)(nil),      // 3: BalancesRequest
+	(*BalancesReply)(nil),        // 4: BalancesReply
+	(*MarketPriceRequest)(nil),   // 5: MarketPriceRequest
+	(*MarketPriceReply)(nil),     // 6: MarketPriceReply
+	(*TradeProposeRequest)(nil),  // 7: TradeProposeRequest
+	(*TradeProposeReply)(nil),    // 8: TradeProposeReply
+	(*TradeCompleteRequest)(nil), // 9: TradeCompleteRequest
+	(*TradeCompleteReply)(nil),   // 10: TradeCompleteReply
+	(*types.MarketWithFee)(nil),  // 11: MarketWithFee
+	(*types.Market)(nil),         // 12: Market
+	(*types.BalanceWithFee)(nil), // 13: BalanceWithFee
 	(*types.PriceWithFee)(nil),   // 14: PriceWithFee
 	(*swap.SwapRequest)(nil),     // 15: SwapRequest
 	(*swap.SwapAccept)(nil),      // 16: SwapAccept
@@ -670,30 +719,30 @@ var file_trade_proto_goTypes = []interface{}{
 	(*swap.SwapComplete)(nil),    // 18: SwapComplete
 }
 var file_trade_proto_depIdxs = []int32{
-	10, // 0: MarketsReply.markets:type_name -> MarketWithFee
-	11, // 1: BalancesRequest.market:type_name -> Market
-	12, // 2: BalancesReply.balances:type_name -> BalanceWithFee
-	11, // 3: MarketPriceRequest.market:type_name -> Market
-	13, // 4: MarketPriceRequest.type:type_name -> TradeType
+	11, // 0: MarketsReply.markets:type_name -> MarketWithFee
+	12, // 1: BalancesRequest.market:type_name -> Market
+	13, // 2: BalancesReply.balances:type_name -> BalanceWithFee
+	12, // 3: MarketPriceRequest.market:type_name -> Market
+	0,  // 4: MarketPriceRequest.type:type_name -> TradeType
 	14, // 5: MarketPriceReply.prices:type_name -> PriceWithFee
-	11, // 6: TradeProposeRequest.market:type_name -> Market
-	13, // 7: TradeProposeRequest.type:type_name -> TradeType
+	12, // 6: TradeProposeRequest.market:type_name -> Market
+	0,  // 7: TradeProposeRequest.type:type_name -> TradeType
 	15, // 8: TradeProposeRequest.swap_request:type_name -> SwapRequest
 	16, // 9: TradeProposeReply.swap_accept:type_name -> SwapAccept
 	17, // 10: TradeProposeReply.swap_fail:type_name -> SwapFail
 	18, // 11: TradeCompleteRequest.swap_complete:type_name -> SwapComplete
 	17, // 12: TradeCompleteRequest.swap_fail:type_name -> SwapFail
 	17, // 13: TradeCompleteReply.swap_fail:type_name -> SwapFail
-	0,  // 14: Trade.Markets:input_type -> MarketsRequest
-	2,  // 15: Trade.Balances:input_type -> BalancesRequest
-	4,  // 16: Trade.MarketPrice:input_type -> MarketPriceRequest
-	6,  // 17: Trade.TradePropose:input_type -> TradeProposeRequest
-	8,  // 18: Trade.TradeComplete:input_type -> TradeCompleteRequest
-	1,  // 19: Trade.Markets:output_type -> MarketsReply
-	3,  // 20: Trade.Balances:output_type -> BalancesReply
-	5,  // 21: Trade.MarketPrice:output_type -> MarketPriceReply
-	7,  // 22: Trade.TradePropose:output_type -> TradeProposeReply
-	9,  // 23: Trade.TradeComplete:output_type -> TradeCompleteReply
+	1,  // 14: Trade.Markets:input_type -> MarketsRequest
+	3,  // 15: Trade.Balances:input_type -> BalancesRequest
+	5,  // 16: Trade.MarketPrice:input_type -> MarketPriceRequest
+	7,  // 17: Trade.TradePropose:input_type -> TradeProposeRequest
+	9,  // 18: Trade.TradeComplete:input_type -> TradeCompleteRequest
+	2,  // 19: Trade.Markets:output_type -> MarketsReply
+	4,  // 20: Trade.Balances:output_type -> BalancesReply
+	6,  // 21: Trade.MarketPrice:output_type -> MarketPriceReply
+	8,  // 22: Trade.TradePropose:output_type -> TradeProposeReply
+	10, // 23: Trade.TradeComplete:output_type -> TradeCompleteReply
 	19, // [19:24] is the sub-list for method output_type
 	14, // [14:19] is the sub-list for method input_type
 	14, // [14:14] is the sub-list for extension type_name
@@ -833,13 +882,14 @@ func file_trade_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_trade_proto_rawDesc,
-			NumEnums:      0,
+			NumEnums:      1,
 			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_trade_proto_goTypes,
 		DependencyIndexes: file_trade_proto_depIdxs,
+		EnumInfos:         file_trade_proto_enumTypes,
 		MessageInfos:      file_trade_proto_msgTypes,
 	}.Build()
 	File_trade_proto = out.File

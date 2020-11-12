@@ -61,6 +61,8 @@
     - [TradeProposeReply](#.TradeProposeReply)
     - [TradeProposeRequest](#.TradeProposeRequest)
   
+    - [TradeType](#.TradeType)
+  
     - [Trade](#.Trade)
   
 - [transport.proto](#transport.proto)
@@ -77,8 +79,6 @@
     - [MarketWithFee](#.MarketWithFee)
     - [Price](#.Price)
     - [PriceWithFee](#.PriceWithFee)
-  
-    - [TradeType](#.TradeType)
   
 - [wallet.proto](#wallet.proto)
     - [BalanceInfo](#.BalanceInfo)
@@ -904,6 +904,18 @@ BOTD#4 Service&#39;s messages
 
  
 
+
+<a name=".TradeType"></a>
+
+### TradeType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| BUY | 0 |  |
+| SELL | 1 |  |
+
+
  
 
  
@@ -1043,7 +1055,7 @@ If the type of the trade is SELL it means the base asset will be sent by the tra
 <a name=".Fee"></a>
 
 ### Fee
-
+Custom Types
 
 
 | Field | Type | Label | Description |
@@ -1121,18 +1133,6 @@ If the type of the trade is SELL it means the base asset will be sent by the tra
 
 
  
-
-
-<a name=".TradeType"></a>
-
-### TradeType
-Custom Types
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| BUY | 0 |  |
-| SELL | 1 |  |
-
 
  
 

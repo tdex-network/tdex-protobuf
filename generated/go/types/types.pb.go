@@ -26,52 +26,6 @@ const (
 const _ = proto.ProtoPackageIsVersion4
 
 // Custom Types
-type TradeType int32
-
-const (
-	TradeType_BUY  TradeType = 0
-	TradeType_SELL TradeType = 1
-)
-
-// Enum value maps for TradeType.
-var (
-	TradeType_name = map[int32]string{
-		0: "BUY",
-		1: "SELL",
-	}
-	TradeType_value = map[string]int32{
-		"BUY":  0,
-		"SELL": 1,
-	}
-)
-
-func (x TradeType) Enum() *TradeType {
-	p := new(TradeType)
-	*p = x
-	return p
-}
-
-func (x TradeType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (TradeType) Descriptor() protoreflect.EnumDescriptor {
-	return file_types_proto_enumTypes[0].Descriptor()
-}
-
-func (TradeType) Type() protoreflect.EnumType {
-	return &file_types_proto_enumTypes[0]
-}
-
-func (x TradeType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use TradeType.Descriptor instead.
-func (TradeType) EnumDescriptor() ([]byte, []int) {
-	return file_types_proto_rawDescGZIP(), []int{0}
-}
-
 type Fee struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -502,9 +456,7 @@ var file_types_proto_rawDesc = []byte{
 	0x69, 0x63, 0x65, 0x12, 0x16, 0x0a, 0x03, 0x66, 0x65, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b,
 	0x32, 0x04, 0x2e, 0x46, 0x65, 0x65, 0x52, 0x03, 0x66, 0x65, 0x65, 0x12, 0x16, 0x0a, 0x06, 0x61,
 	0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x61, 0x6d, 0x6f,
-	0x75, 0x6e, 0x74, 0x2a, 0x1e, 0x0a, 0x09, 0x54, 0x72, 0x61, 0x64, 0x65, 0x54, 0x79, 0x70, 0x65,
-	0x12, 0x07, 0x0a, 0x03, 0x42, 0x55, 0x59, 0x10, 0x00, 0x12, 0x08, 0x0a, 0x04, 0x53, 0x45, 0x4c,
-	0x4c, 0x10, 0x01, 0x42, 0x3a, 0x5a, 0x38, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
+	0x75, 0x6e, 0x74, 0x42, 0x3a, 0x5a, 0x38, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
 	0x6d, 0x2f, 0x74, 0x64, 0x65, 0x78, 0x2d, 0x6e, 0x65, 0x74, 0x77, 0x6f, 0x72, 0x6b, 0x2f, 0x74,
 	0x64, 0x65, 0x78, 0x2d, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x67, 0x65, 0x6e,
 	0x65, 0x72, 0x61, 0x74, 0x65, 0x64, 0x2f, 0x67, 0x6f, 0x2f, 0x74, 0x79, 0x70, 0x65, 0x73, 0x62,
@@ -523,25 +475,23 @@ func file_types_proto_rawDescGZIP() []byte {
 	return file_types_proto_rawDescData
 }
 
-var file_types_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_types_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_types_proto_goTypes = []interface{}{
-	(TradeType)(0),         // 0: TradeType
-	(*Fee)(nil),            // 1: Fee
-	(*Balance)(nil),        // 2: Balance
-	(*BalanceWithFee)(nil), // 3: BalanceWithFee
-	(*Market)(nil),         // 4: Market
-	(*MarketWithFee)(nil),  // 5: MarketWithFee
-	(*Price)(nil),          // 6: Price
-	(*PriceWithFee)(nil),   // 7: PriceWithFee
+	(*Fee)(nil),            // 0: Fee
+	(*Balance)(nil),        // 1: Balance
+	(*BalanceWithFee)(nil), // 2: BalanceWithFee
+	(*Market)(nil),         // 3: Market
+	(*MarketWithFee)(nil),  // 4: MarketWithFee
+	(*Price)(nil),          // 5: Price
+	(*PriceWithFee)(nil),   // 6: PriceWithFee
 }
 var file_types_proto_depIdxs = []int32{
-	2, // 0: BalanceWithFee.balance:type_name -> Balance
-	1, // 1: BalanceWithFee.fee:type_name -> Fee
-	4, // 2: MarketWithFee.market:type_name -> Market
-	1, // 3: MarketWithFee.fee:type_name -> Fee
-	6, // 4: PriceWithFee.price:type_name -> Price
-	1, // 5: PriceWithFee.fee:type_name -> Fee
+	1, // 0: BalanceWithFee.balance:type_name -> Balance
+	0, // 1: BalanceWithFee.fee:type_name -> Fee
+	3, // 2: MarketWithFee.market:type_name -> Market
+	0, // 3: MarketWithFee.fee:type_name -> Fee
+	5, // 4: PriceWithFee.price:type_name -> Price
+	0, // 5: PriceWithFee.fee:type_name -> Fee
 	6, // [6:6] is the sub-list for method output_type
 	6, // [6:6] is the sub-list for method input_type
 	6, // [6:6] is the sub-list for extension type_name
@@ -645,14 +595,13 @@ func file_types_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_types_proto_rawDesc,
-			NumEnums:      1,
+			NumEnums:      0,
 			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
 		GoTypes:           file_types_proto_goTypes,
 		DependencyIndexes: file_types_proto_depIdxs,
-		EnumInfos:         file_types_proto_enumTypes,
 		MessageInfos:      file_types_proto_msgTypes,
 	}.Build()
 	File_types_proto = out.File
