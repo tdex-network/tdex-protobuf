@@ -76,7 +76,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.DepositMarketReply = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.DepositMarketReply.repeatedFields_, null);
 };
 goog.inherits(proto.DepositMarketReply, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -664,7 +664,8 @@ proto.DepositMarketRequest.prototype.toObject = function(opt_includeInstance) {
  */
 proto.DepositMarketRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    market: (f = msg.getMarket()) && types_pb.Market.toObject(includeInstance, f)
+    market: (f = msg.getMarket()) && types_pb.Market.toObject(includeInstance, f),
+    numofaddresses: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -706,6 +707,10 @@ proto.DepositMarketRequest.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,types_pb.Market.deserializeBinaryFromReader);
       msg.setMarket(value);
       break;
+    case 2:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setNumofaddresses(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -741,6 +746,13 @@ proto.DepositMarketRequest.serializeBinaryToWriter = function(message, writer) {
       1,
       f,
       types_pb.Market.serializeBinaryToWriter
+    );
+  }
+  f = message.getNumofaddresses();
+  if (f !== 0) {
+    writer.writeInt64(
+      2,
+      f
     );
   }
 };
@@ -783,6 +795,31 @@ proto.DepositMarketRequest.prototype.hasMarket = function() {
 };
 
 
+/**
+ * optional int64 numOfAddresses = 2;
+ * @return {number}
+ */
+proto.DepositMarketRequest.prototype.getNumofaddresses = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.DepositMarketRequest} returns this
+ */
+proto.DepositMarketRequest.prototype.setNumofaddresses = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.DepositMarketReply.repeatedFields_ = [1];
 
 
 
@@ -815,7 +852,7 @@ proto.DepositMarketReply.prototype.toObject = function(opt_includeInstance) {
  */
 proto.DepositMarketReply.toObject = function(includeInstance, msg) {
   var f, obj = {
-    address: jspb.Message.getFieldWithDefault(msg, 1, "")
+    addressesList: (f = jspb.Message.getRepeatedField(msg, 1)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -854,7 +891,7 @@ proto.DepositMarketReply.deserializeBinaryFromReader = function(msg, reader) {
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAddress(value);
+      msg.addAddresses(value);
       break;
     default:
       reader.skipField();
@@ -885,9 +922,9 @@ proto.DepositMarketReply.prototype.serializeBinary = function() {
  */
 proto.DepositMarketReply.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAddress();
+  f = message.getAddressesList();
   if (f.length > 0) {
-    writer.writeString(
+    writer.writeRepeatedString(
       1,
       f
     );
@@ -896,20 +933,39 @@ proto.DepositMarketReply.serializeBinaryToWriter = function(message, writer) {
 
 
 /**
- * optional string address = 1;
- * @return {string}
+ * repeated string addresses = 1;
+ * @return {!Array<string>}
  */
-proto.DepositMarketReply.prototype.getAddress = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.DepositMarketReply.prototype.getAddressesList = function() {
+  return /** @type {!Array<string>} */ (jspb.Message.getRepeatedField(this, 1));
+};
+
+
+/**
+ * @param {!Array<string>} value
+ * @return {!proto.DepositMarketReply} returns this
+ */
+proto.DepositMarketReply.prototype.setAddressesList = function(value) {
+  return jspb.Message.setField(this, 1, value || []);
 };
 
 
 /**
  * @param {string} value
+ * @param {number=} opt_index
  * @return {!proto.DepositMarketReply} returns this
  */
-proto.DepositMarketReply.prototype.setAddress = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.DepositMarketReply.prototype.addAddresses = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 1, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.DepositMarketReply} returns this
+ */
+proto.DepositMarketReply.prototype.clearAddressesList = function() {
+  return this.setAddressesList([]);
 };
 
 

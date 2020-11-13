@@ -196,7 +196,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| address | [string](#string) |  |  |
+| addresses | [string](#string) | repeated |  |
 
 
 
@@ -212,6 +212,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | market | [Market](#Market) |  | Market to get an address from. Could be empty. |
+| numOfAddresses | [int64](#int64) |  | Number of addresses to be derived for market. |
 
 
 
