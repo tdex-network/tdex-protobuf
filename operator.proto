@@ -61,7 +61,7 @@ service Operator {
 
 message DepositMarketRequest {
   Market market = 1; // Market to get an address from. Could be empty.
-  int64 numOfAddresses = 2; // Number of addresses to be derived for market.
+  int64 num_of_addresses = 2; // Number of addresses to be derived for market.
 }
 message DepositMarketReply { repeated string addresses = 1; }
 
