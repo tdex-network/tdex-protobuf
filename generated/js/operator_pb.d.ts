@@ -8,8 +8,8 @@ export class DepositMarketRequest extends jspb.Message {
   hasMarket(): boolean;
   clearMarket(): DepositMarketRequest;
 
-  getNumofaddresses(): number;
-  setNumofaddresses(value: number): DepositMarketRequest;
+  getNumOfAddresses(): number;
+  setNumOfAddresses(value: number): DepositMarketRequest;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DepositMarketRequest.AsObject;
@@ -22,7 +22,7 @@ export class DepositMarketRequest extends jspb.Message {
 export namespace DepositMarketRequest {
   export type AsObject = {
     market?: types_pb.Market.AsObject,
-    numofaddresses: number,
+    numOfAddresses: number,
   }
 }
 

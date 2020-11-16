@@ -665,7 +665,7 @@ proto.DepositMarketRequest.prototype.toObject = function(opt_includeInstance) {
 proto.DepositMarketRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     market: (f = msg.getMarket()) && types_pb.Market.toObject(includeInstance, f),
-    numofaddresses: jspb.Message.getFieldWithDefault(msg, 2, 0)
+    numOfAddresses: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
   if (includeInstance) {
@@ -709,7 +709,7 @@ proto.DepositMarketRequest.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt64());
-      msg.setNumofaddresses(value);
+      msg.setNumOfAddresses(value);
       break;
     default:
       reader.skipField();
@@ -748,7 +748,7 @@ proto.DepositMarketRequest.serializeBinaryToWriter = function(message, writer) {
       types_pb.Market.serializeBinaryToWriter
     );
   }
-  f = message.getNumofaddresses();
+  f = message.getNumOfAddresses();
   if (f !== 0) {
     writer.writeInt64(
       2,
@@ -796,10 +796,10 @@ proto.DepositMarketRequest.prototype.hasMarket = function() {
 
 
 /**
- * optional int64 numOfAddresses = 2;
+ * optional int64 num_of_addresses = 2;
  * @return {number}
  */
-proto.DepositMarketRequest.prototype.getNumofaddresses = function() {
+proto.DepositMarketRequest.prototype.getNumOfAddresses = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
 };
 
@@ -808,7 +808,7 @@ proto.DepositMarketRequest.prototype.getNumofaddresses = function() {
  * @param {number} value
  * @return {!proto.DepositMarketRequest} returns this
  */
-proto.DepositMarketRequest.prototype.setNumofaddresses = function(value) {
+proto.DepositMarketRequest.prototype.setNumOfAddresses = function(value) {
   return jspb.Message.setProto3IntField(this, 2, value);
 };
 

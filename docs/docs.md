@@ -212,7 +212,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | market | [Market](#Market) |  | Market to get an address from. Could be empty. |
-| numOfAddresses | [int64](#int64) |  | Number of addresses to be derived for market. |
+| num_of_addresses | [int64](#int64) |  | Number of addresses to be derived for market. |
 
 
 
