@@ -70,12 +70,11 @@ message ListDepositMarketRequest {
 }
 message ListDepositMarketReply { repeated string address = 1; }
 
-message DepositFeeAccountRequest {}
+message DepositFeeAccountRequest {
+  int64 num_of_addresses = 1; // Number of addresses to be derived for Fee Account.
+}
 message DepositFeeAccountReply {
-  // The confidential address encoded using a blech32 format.
-  string address = 1;
-  // The blinding private key for the given address encoded in hex format
-  string blinding = 2;
+  AddressInfo address_info = 1; // AddressInfo contains address and blinding key
 }
 
 message BalanceFeeAccountRequest {}
