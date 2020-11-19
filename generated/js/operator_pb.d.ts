@@ -87,6 +87,9 @@ export namespace ListDepositMarketReply {
 }
 
 export class DepositFeeAccountRequest extends jspb.Message {
+  getNumOfAddresses(): number;
+  setNumOfAddresses(value: number): DepositFeeAccountRequest;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DepositFeeAccountRequest.AsObject;
   static toObject(includeInstance: boolean, msg: DepositFeeAccountRequest): DepositFeeAccountRequest.AsObject;
@@ -97,15 +100,15 @@ export class DepositFeeAccountRequest extends jspb.Message {
 
 export namespace DepositFeeAccountRequest {
   export type AsObject = {
+    numOfAddresses: number,
   }
 }
 
 export class DepositFeeAccountReply extends jspb.Message {
-  getAddress(): string;
-  setAddress(value: string): DepositFeeAccountReply;
-
-  getBlinding(): string;
-  setBlinding(value: string): DepositFeeAccountReply;
+  getAddressInfo(): types_pb.AddressInfo | undefined;
+  setAddressInfo(value?: types_pb.AddressInfo): DepositFeeAccountReply;
+  hasAddressInfo(): boolean;
+  clearAddressInfo(): DepositFeeAccountReply;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DepositFeeAccountReply.AsObject;
@@ -117,8 +120,7 @@ export class DepositFeeAccountReply extends jspb.Message {
 
 export namespace DepositFeeAccountReply {
   export type AsObject = {
-    address: string,
-    blinding: string,
+    addressInfo?: types_pb.AddressInfo.AsObject,
   }
 }
 
