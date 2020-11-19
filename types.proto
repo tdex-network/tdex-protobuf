@@ -32,7 +32,7 @@ message PriceWithFee {
   uint64 amount = 3;
 }
 
-message AddressInfo {
+message AddressWithBlindingKey {
   // The confidential address encoded using a blech32 format.
   string address = 1;
   // The blinding private key for the given address encoded in hex format
