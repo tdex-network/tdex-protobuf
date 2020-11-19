@@ -1445,7 +1445,7 @@ proto.DepositFeeAccountReply.prototype.toObject = function(opt_includeInstance) 
  */
 proto.DepositFeeAccountReply.toObject = function(includeInstance, msg) {
   var f, obj = {
-    addressInfoList: jspb.Message.toObjectList(msg.getAddressInfoList(),
+    addressWithBlindingKeyList: jspb.Message.toObjectList(msg.getAddressWithBlindingKeyList(),
     types_pb.AddressWithBlindingKey.toObject, includeInstance)
   };
 
@@ -1486,7 +1486,7 @@ proto.DepositFeeAccountReply.deserializeBinaryFromReader = function(msg, reader)
     case 1:
       var value = new types_pb.AddressWithBlindingKey;
       reader.readMessage(value,types_pb.AddressWithBlindingKey.deserializeBinaryFromReader);
-      msg.addAddressInfo(value);
+      msg.addAddressWithBlindingKey(value);
       break;
     default:
       reader.skipField();
@@ -1517,7 +1517,7 @@ proto.DepositFeeAccountReply.prototype.serializeBinary = function() {
  */
 proto.DepositFeeAccountReply.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAddressInfoList();
+  f = message.getAddressWithBlindingKeyList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
@@ -1529,10 +1529,10 @@ proto.DepositFeeAccountReply.serializeBinaryToWriter = function(message, writer)
 
 
 /**
- * repeated AddressWithBlindingKey address_info = 1;
+ * repeated AddressWithBlindingKey address_with_blinding_key = 1;
  * @return {!Array<!proto.AddressWithBlindingKey>}
  */
-proto.DepositFeeAccountReply.prototype.getAddressInfoList = function() {
+proto.DepositFeeAccountReply.prototype.getAddressWithBlindingKeyList = function() {
   return /** @type{!Array<!proto.AddressWithBlindingKey>} */ (
     jspb.Message.getRepeatedWrapperField(this, types_pb.AddressWithBlindingKey, 1));
 };
@@ -1542,7 +1542,7 @@ proto.DepositFeeAccountReply.prototype.getAddressInfoList = function() {
  * @param {!Array<!proto.AddressWithBlindingKey>} value
  * @return {!proto.DepositFeeAccountReply} returns this
 */
-proto.DepositFeeAccountReply.prototype.setAddressInfoList = function(value) {
+proto.DepositFeeAccountReply.prototype.setAddressWithBlindingKeyList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
@@ -1552,7 +1552,7 @@ proto.DepositFeeAccountReply.prototype.setAddressInfoList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.AddressWithBlindingKey}
  */
-proto.DepositFeeAccountReply.prototype.addAddressInfo = function(opt_value, opt_index) {
+proto.DepositFeeAccountReply.prototype.addAddressWithBlindingKey = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.AddressWithBlindingKey, opt_index);
 };
 
@@ -1561,8 +1561,8 @@ proto.DepositFeeAccountReply.prototype.addAddressInfo = function(opt_value, opt_
  * Clears the list making it empty but non-null.
  * @return {!proto.DepositFeeAccountReply} returns this
  */
-proto.DepositFeeAccountReply.prototype.clearAddressInfoList = function() {
-  return this.setAddressInfoList([]);
+proto.DepositFeeAccountReply.prototype.clearAddressWithBlindingKeyList = function() {
+  return this.setAddressWithBlindingKeyList([]);
 };
 
 

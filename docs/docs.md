@@ -171,7 +171,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| address_info | [AddressWithBlindingKey](#AddressWithBlindingKey) | repeated | AddressInfo contains address and blinding key |
+| address_with_blinding_key | [AddressWithBlindingKey](#AddressWithBlindingKey) | repeated | AddressInfo contains address and blinding key |
 
 
 
