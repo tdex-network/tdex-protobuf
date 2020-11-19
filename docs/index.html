@@ -443,6 +443,10 @@
             <ul>
               
                 <li>
+                  <a href="#.AddressInfo"><span class="badge">M</span>AddressInfo</a>
+                </li>
+              
+                <li>
                   <a href="#.Balance"><span class="badge">M</span>Balance</a>
                 </li>
               
@@ -644,17 +648,10 @@
             <tbody>
               
                 <tr>
-                  <td>address</td>
-                  <td><a href="#string">string</a></td>
+                  <td>address_info</td>
+                  <td><a href="#AddressInfo">AddressInfo</a></td>
                   <td></td>
-                  <td><p>The confidential address encoded using a blech32 format. </p></td>
-                </tr>
-              
-                <tr>
-                  <td>blinding</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>The blinding private key for the given address encoded in hex format </p></td>
+                  <td><p>AddressInfo contains address and blinding key </p></td>
                 </tr>
               
             </tbody>
@@ -668,6 +665,23 @@
         <p></p>
 
         
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>num_of_addresses</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Number of addresses to be derived for Fee Account. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
 
         
       
@@ -2343,6 +2357,37 @@ transaction hash of the broadcasted transaction.</p></td>
       </div>
       <p></p>
 
+      
+        <h3 id=".AddressInfo">AddressInfo</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>address</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The confidential address encoded using a blech32 format. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>blinding</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The blinding private key for the given address encoded in hex format </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
       
         <h3 id=".Balance">Balance</h3>
         <p></p>

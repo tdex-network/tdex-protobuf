@@ -1308,7 +1308,7 @@ proto.DepositFeeAccountRequest.prototype.toObject = function(opt_includeInstance
  */
 proto.DepositFeeAccountRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    numOfAddresses: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
 
   if (includeInstance) {
@@ -1345,6 +1345,10 @@ proto.DepositFeeAccountRequest.deserializeBinaryFromReader = function(msg, reade
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readInt64());
+      msg.setNumOfAddresses(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -1374,6 +1378,31 @@ proto.DepositFeeAccountRequest.prototype.serializeBinary = function() {
  */
 proto.DepositFeeAccountRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getNumOfAddresses();
+  if (f !== 0) {
+    writer.writeInt64(
+      1,
+      f
+    );
+  }
+};
+
+
+/**
+ * optional int64 num_of_addresses = 1;
+ * @return {number}
+ */
+proto.DepositFeeAccountRequest.prototype.getNumOfAddresses = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.DepositFeeAccountRequest} returns this
+ */
+proto.DepositFeeAccountRequest.prototype.setNumOfAddresses = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
@@ -1409,8 +1438,7 @@ proto.DepositFeeAccountReply.prototype.toObject = function(opt_includeInstance) 
  */
 proto.DepositFeeAccountReply.toObject = function(includeInstance, msg) {
   var f, obj = {
-    address: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    blinding: jspb.Message.getFieldWithDefault(msg, 2, "")
+    addressInfo: (f = msg.getAddressInfo()) && types_pb.AddressInfo.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1448,12 +1476,9 @@ proto.DepositFeeAccountReply.deserializeBinaryFromReader = function(msg, reader)
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setAddress(value);
-      break;
-    case 2:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setBlinding(value);
+      var value = new types_pb.AddressInfo;
+      reader.readMessage(value,types_pb.AddressInfo.deserializeBinaryFromReader);
+      msg.setAddressInfo(value);
       break;
     default:
       reader.skipField();
@@ -1484,56 +1509,51 @@ proto.DepositFeeAccountReply.prototype.serializeBinary = function() {
  */
 proto.DepositFeeAccountReply.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAddress();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getAddressInfo();
+  if (f != null) {
+    writer.writeMessage(
       1,
-      f
-    );
-  }
-  f = message.getBlinding();
-  if (f.length > 0) {
-    writer.writeString(
-      2,
-      f
+      f,
+      types_pb.AddressInfo.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional string address = 1;
- * @return {string}
+ * optional AddressInfo address_info = 1;
+ * @return {?proto.AddressInfo}
  */
-proto.DepositFeeAccountReply.prototype.getAddress = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
+proto.DepositFeeAccountReply.prototype.getAddressInfo = function() {
+  return /** @type{?proto.AddressInfo} */ (
+    jspb.Message.getWrapperField(this, types_pb.AddressInfo, 1));
 };
 
 
 /**
- * @param {string} value
+ * @param {?proto.AddressInfo|undefined} value
+ * @return {!proto.DepositFeeAccountReply} returns this
+*/
+proto.DepositFeeAccountReply.prototype.setAddressInfo = function(value) {
+  return jspb.Message.setWrapperField(this, 1, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
  * @return {!proto.DepositFeeAccountReply} returns this
  */
-proto.DepositFeeAccountReply.prototype.setAddress = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
+proto.DepositFeeAccountReply.prototype.clearAddressInfo = function() {
+  return this.setAddressInfo(undefined);
 };
 
 
 /**
- * optional string blinding = 2;
- * @return {string}
+ * Returns whether this field is set.
+ * @return {boolean}
  */
-proto.DepositFeeAccountReply.prototype.getBlinding = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.DepositFeeAccountReply} returns this
- */
-proto.DepositFeeAccountReply.prototype.setBlinding = function(value) {
-  return jspb.Message.setProto3StringField(this, 2, value);
+proto.DepositFeeAccountReply.prototype.hasAddressInfo = function() {
+  return jspb.Message.getField(this, 1) != null;
 };
 
 

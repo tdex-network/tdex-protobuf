@@ -170,3 +170,25 @@ export namespace PriceWithFee {
   }
 }
 
+export class AddressInfo extends jspb.Message {
+  getAddress(): string;
+  setAddress(value: string): AddressInfo;
+
+  getBlinding(): string;
+  setBlinding(value: string): AddressInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): AddressInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: AddressInfo): AddressInfo.AsObject;
+  static serializeBinaryToWriter(message: AddressInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddressInfo;
+  static deserializeBinaryFromReader(message: AddressInfo, reader: jspb.BinaryReader): AddressInfo;
+}
+
+export namespace AddressInfo {
+  export type AsObject = {
+    address: string,
+    blinding: string,
+  }
+}
+

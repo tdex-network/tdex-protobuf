@@ -72,6 +72,7 @@
     - [TransportType](#.TransportType)
   
 - [types.proto](#types.proto)
+    - [AddressInfo](#.AddressInfo)
     - [Balance](#.Balance)
     - [BalanceWithFee](#.BalanceWithFee)
     - [Fee](#.Fee)
@@ -170,8 +171,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| address | [string](#string) |  | The confidential address encoded using a blech32 format. |
-| blinding | [string](#string) |  | The blinding private key for the given address encoded in hex format |
+| address_info | [AddressInfo](#AddressInfo) |  | AddressInfo contains address and blinding key |
 
 
 
@@ -182,6 +182,11 @@
 
 ### DepositFeeAccountRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| num_of_addresses | [int64](#int64) |  | Number of addresses to be derived for Fee Account. |
 
 
 
@@ -1018,6 +1023,22 @@ If the type of the trade is SELL it means the base asset will be sent by the tra
 <p align="right"><a href="#top">Top</a></p>
 
 ## types.proto
+
+
+
+<a name=".AddressInfo"></a>
+
+### AddressInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| address | [string](#string) |  | The confidential address encoded using a blech32 format. |
+| blinding | [string](#string) |  | The blinding private key for the given address encoded in hex format |
+
+
+
 
 
 
