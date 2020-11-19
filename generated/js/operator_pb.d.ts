@@ -105,10 +105,10 @@ export namespace DepositFeeAccountRequest {
 }
 
 export class DepositFeeAccountReply extends jspb.Message {
-  getAddressInfo(): types_pb.AddressInfo | undefined;
-  setAddressInfo(value?: types_pb.AddressInfo): DepositFeeAccountReply;
-  hasAddressInfo(): boolean;
-  clearAddressInfo(): DepositFeeAccountReply;
+  getAddressInfoList(): Array<types_pb.AddressWithBlindingKey>;
+  setAddressInfoList(value: Array<types_pb.AddressWithBlindingKey>): DepositFeeAccountReply;
+  clearAddressInfoList(): DepositFeeAccountReply;
+  addAddressInfo(value?: types_pb.AddressWithBlindingKey, index?: number): types_pb.AddressWithBlindingKey;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): DepositFeeAccountReply.AsObject;
@@ -120,7 +120,7 @@ export class DepositFeeAccountReply extends jspb.Message {
 
 export namespace DepositFeeAccountReply {
   export type AsObject = {
-    addressInfo?: types_pb.AddressInfo.AsObject,
+    addressInfoList: Array<types_pb.AddressWithBlindingKey.AsObject>,
   }
 }
 

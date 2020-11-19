@@ -12,7 +12,7 @@ var jspb = require('google-protobuf');
 var goog = jspb;
 var global = Function('return this')();
 
-goog.exportSymbol('proto.AddressInfo', null, global);
+goog.exportSymbol('proto.AddressWithBlindingKey', null, global);
 goog.exportSymbol('proto.Balance', null, global);
 goog.exportSymbol('proto.BalanceWithFee', null, global);
 goog.exportSymbol('proto.Fee', null, global);
@@ -177,16 +177,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.AddressInfo = function(opt_data) {
+proto.AddressWithBlindingKey = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.AddressInfo, jspb.Message);
+goog.inherits(proto.AddressWithBlindingKey, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.AddressInfo.displayName = 'proto.AddressInfo';
+  proto.AddressWithBlindingKey.displayName = 'proto.AddressWithBlindingKey';
 }
 
 
@@ -1480,8 +1480,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.AddressInfo.prototype.toObject = function(opt_includeInstance) {
-  return proto.AddressInfo.toObject(opt_includeInstance, this);
+proto.AddressWithBlindingKey.prototype.toObject = function(opt_includeInstance) {
+  return proto.AddressWithBlindingKey.toObject(opt_includeInstance, this);
 };
 
 
@@ -1490,11 +1490,11 @@ proto.AddressInfo.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.AddressInfo} msg The msg instance to transform.
+ * @param {!proto.AddressWithBlindingKey} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.AddressInfo.toObject = function(includeInstance, msg) {
+proto.AddressWithBlindingKey.toObject = function(includeInstance, msg) {
   var f, obj = {
     address: jspb.Message.getFieldWithDefault(msg, 1, ""),
     blinding: jspb.Message.getFieldWithDefault(msg, 2, "")
@@ -1511,23 +1511,23 @@ proto.AddressInfo.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.AddressInfo}
+ * @return {!proto.AddressWithBlindingKey}
  */
-proto.AddressInfo.deserializeBinary = function(bytes) {
+proto.AddressWithBlindingKey.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.AddressInfo;
-  return proto.AddressInfo.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.AddressWithBlindingKey;
+  return proto.AddressWithBlindingKey.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.AddressInfo} msg The message object to deserialize into.
+ * @param {!proto.AddressWithBlindingKey} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.AddressInfo}
+ * @return {!proto.AddressWithBlindingKey}
  */
-proto.AddressInfo.deserializeBinaryFromReader = function(msg, reader) {
+proto.AddressWithBlindingKey.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -1555,9 +1555,9 @@ proto.AddressInfo.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.AddressInfo.prototype.serializeBinary = function() {
+proto.AddressWithBlindingKey.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.AddressInfo.serializeBinaryToWriter(this, writer);
+  proto.AddressWithBlindingKey.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -1565,11 +1565,11 @@ proto.AddressInfo.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.AddressInfo} message
+ * @param {!proto.AddressWithBlindingKey} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.AddressInfo.serializeBinaryToWriter = function(message, writer) {
+proto.AddressWithBlindingKey.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getAddress();
   if (f.length > 0) {
@@ -1592,16 +1592,16 @@ proto.AddressInfo.serializeBinaryToWriter = function(message, writer) {
  * optional string address = 1;
  * @return {string}
  */
-proto.AddressInfo.prototype.getAddress = function() {
+proto.AddressWithBlindingKey.prototype.getAddress = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.AddressInfo} returns this
+ * @return {!proto.AddressWithBlindingKey} returns this
  */
-proto.AddressInfo.prototype.setAddress = function(value) {
+proto.AddressWithBlindingKey.prototype.setAddress = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -1610,16 +1610,16 @@ proto.AddressInfo.prototype.setAddress = function(value) {
  * optional string blinding = 2;
  * @return {string}
  */
-proto.AddressInfo.prototype.getBlinding = function() {
+proto.AddressWithBlindingKey.prototype.getBlinding = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
 
 /**
  * @param {string} value
- * @return {!proto.AddressInfo} returns this
+ * @return {!proto.AddressWithBlindingKey} returns this
  */
-proto.AddressInfo.prototype.setBlinding = function(value) {
+proto.AddressWithBlindingKey.prototype.setBlinding = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
