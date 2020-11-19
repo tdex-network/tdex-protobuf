@@ -72,7 +72,7 @@
     - [TransportType](#.TransportType)
   
 - [types.proto](#types.proto)
-    - [AddressInfo](#.AddressInfo)
+    - [AddressWithBlindingKey](#.AddressWithBlindingKey)
     - [Balance](#.Balance)
     - [BalanceWithFee](#.BalanceWithFee)
     - [Fee](#.Fee)
@@ -171,7 +171,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| address_info | [AddressInfo](#AddressInfo) |  | AddressInfo contains address and blinding key |
+| address_info | [AddressWithBlindingKey](#AddressWithBlindingKey) | repeated | AddressInfo contains address and blinding key |
 
 
 
@@ -1026,9 +1026,9 @@ If the type of the trade is SELL it means the base asset will be sent by the tra
 
 
 
-<a name=".AddressInfo"></a>
+<a name=".AddressWithBlindingKey"></a>
 
-### AddressInfo
+### AddressWithBlindingKey
 
 
 

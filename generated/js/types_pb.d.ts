@@ -170,22 +170,22 @@ export namespace PriceWithFee {
   }
 }
 
-export class AddressInfo extends jspb.Message {
+export class AddressWithBlindingKey extends jspb.Message {
   getAddress(): string;
-  setAddress(value: string): AddressInfo;
+  setAddress(value: string): AddressWithBlindingKey;
 
   getBlinding(): string;
-  setBlinding(value: string): AddressInfo;
+  setBlinding(value: string): AddressWithBlindingKey;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AddressInfo.AsObject;
-  static toObject(includeInstance: boolean, msg: AddressInfo): AddressInfo.AsObject;
-  static serializeBinaryToWriter(message: AddressInfo, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AddressInfo;
-  static deserializeBinaryFromReader(message: AddressInfo, reader: jspb.BinaryReader): AddressInfo;
+  toObject(includeInstance?: boolean): AddressWithBlindingKey.AsObject;
+  static toObject(includeInstance: boolean, msg: AddressWithBlindingKey): AddressWithBlindingKey.AsObject;
+  static serializeBinaryToWriter(message: AddressWithBlindingKey, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): AddressWithBlindingKey;
+  static deserializeBinaryFromReader(message: AddressWithBlindingKey, reader: jspb.BinaryReader): AddressWithBlindingKey;
 }
 
-export namespace AddressInfo {
+export namespace AddressWithBlindingKey {
   export type AsObject = {
     address: string,
     blinding: string,

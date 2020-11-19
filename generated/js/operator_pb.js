@@ -160,7 +160,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.DepositFeeAccountReply = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.DepositFeeAccountReply.repeatedFields_, null);
 };
 goog.inherits(proto.DepositFeeAccountReply, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -1407,6 +1407,13 @@ proto.DepositFeeAccountRequest.prototype.setNumOfAddresses = function(value) {
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.DepositFeeAccountReply.repeatedFields_ = [1];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -1438,7 +1445,8 @@ proto.DepositFeeAccountReply.prototype.toObject = function(opt_includeInstance) 
  */
 proto.DepositFeeAccountReply.toObject = function(includeInstance, msg) {
   var f, obj = {
-    addressInfo: (f = msg.getAddressInfo()) && types_pb.AddressInfo.toObject(includeInstance, f)
+    addressInfoList: jspb.Message.toObjectList(msg.getAddressInfoList(),
+    types_pb.AddressWithBlindingKey.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -1476,9 +1484,9 @@ proto.DepositFeeAccountReply.deserializeBinaryFromReader = function(msg, reader)
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new types_pb.AddressInfo;
-      reader.readMessage(value,types_pb.AddressInfo.deserializeBinaryFromReader);
-      msg.setAddressInfo(value);
+      var value = new types_pb.AddressWithBlindingKey;
+      reader.readMessage(value,types_pb.AddressWithBlindingKey.deserializeBinaryFromReader);
+      msg.addAddressInfo(value);
       break;
     default:
       reader.skipField();
@@ -1509,51 +1517,52 @@ proto.DepositFeeAccountReply.prototype.serializeBinary = function() {
  */
 proto.DepositFeeAccountReply.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAddressInfo();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getAddressInfoList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
       1,
       f,
-      types_pb.AddressInfo.serializeBinaryToWriter
+      types_pb.AddressWithBlindingKey.serializeBinaryToWriter
     );
   }
 };
 
 
 /**
- * optional AddressInfo address_info = 1;
- * @return {?proto.AddressInfo}
+ * repeated AddressWithBlindingKey address_info = 1;
+ * @return {!Array<!proto.AddressWithBlindingKey>}
  */
-proto.DepositFeeAccountReply.prototype.getAddressInfo = function() {
-  return /** @type{?proto.AddressInfo} */ (
-    jspb.Message.getWrapperField(this, types_pb.AddressInfo, 1));
+proto.DepositFeeAccountReply.prototype.getAddressInfoList = function() {
+  return /** @type{!Array<!proto.AddressWithBlindingKey>} */ (
+    jspb.Message.getRepeatedWrapperField(this, types_pb.AddressWithBlindingKey, 1));
 };
 
 
 /**
- * @param {?proto.AddressInfo|undefined} value
+ * @param {!Array<!proto.AddressWithBlindingKey>} value
  * @return {!proto.DepositFeeAccountReply} returns this
 */
-proto.DepositFeeAccountReply.prototype.setAddressInfo = function(value) {
-  return jspb.Message.setWrapperField(this, 1, value);
+proto.DepositFeeAccountReply.prototype.setAddressInfoList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * Clears the message field making it undefined.
+ * @param {!proto.AddressWithBlindingKey=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.AddressWithBlindingKey}
+ */
+proto.DepositFeeAccountReply.prototype.addAddressInfo = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.AddressWithBlindingKey, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
  * @return {!proto.DepositFeeAccountReply} returns this
  */
-proto.DepositFeeAccountReply.prototype.clearAddressInfo = function() {
-  return this.setAddressInfo(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {boolean}
- */
-proto.DepositFeeAccountReply.prototype.hasAddressInfo = function() {
-  return jspb.Message.getField(this, 1) != null;
+proto.DepositFeeAccountReply.prototype.clearAddressInfoList = function() {
+  return this.setAddressInfoList([]);
 };
 
 
