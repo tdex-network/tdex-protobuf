@@ -74,7 +74,7 @@ message DepositFeeAccountRequest {
   int64 num_of_addresses = 1; // Number of addresses to be derived for Fee Account.
 }
 message DepositFeeAccountReply {
-  repeated AddressWithBlindingKey address_info = 1; // AddressInfo contains address and blinding key
+  repeated AddressWithBlindingKey address_with_blinding_key = 1; // AddressInfo contains address and blinding key
 }
 
 message BalanceFeeAccountRequest {}
