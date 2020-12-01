@@ -812,6 +812,7 @@ Service for operators to configure and manage a TDEX daemon
 | market | [Market](#Market) |  |  |
 | type | [TradeType](#TradeType) |  |  |
 | amount | [uint64](#uint64) |  |  |
+| asset | [string](#string) |  |  |
 
 
 
@@ -1149,6 +1150,7 @@ Custom Types
 | price | [Price](#Price) |  |  |
 | fee | [Fee](#Fee) |  |  |
 | amount | [uint64](#uint64) |  |  |
+| asset | [string](#string) |  |  |
 
 
 
