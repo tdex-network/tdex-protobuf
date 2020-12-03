@@ -211,6 +211,10 @@
                 </li>
               
                 <li>
+                  <a href="#.FeeInfo"><span class="badge">M</span>FeeInfo</a>
+                </li>
+              
+                <li>
                   <a href="#.ListDepositMarketReply"><span class="badge">M</span>ListDepositMarketReply</a>
                 </li>
               
@@ -740,6 +744,58 @@
 
         
       
+        <h3 id=".FeeInfo">FeeInfo</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>trade_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>basis_point</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>amount</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>market_price</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".ListDepositMarketReply">ListDepositMarketReply</h3>
         <p></p>
 
@@ -938,7 +994,7 @@
               
                 <tr>
                   <td>collected_fees</td>
-                  <td><a href="#Fee">Fee</a></td>
+                  <td><a href="#FeeInfo">FeeInfo</a></td>
                   <td>repeated</td>
                   <td><p>List of the all unique fee being collected on each swap. </p></td>
                 </tr>
@@ -2467,13 +2523,6 @@ transaction hash of the broadcasted transaction.</p></td>
               <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
             </thead>
             <tbody>
-              
-                <tr>
-                  <td>asset</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
               
                 <tr>
                   <td>basis_point</td>

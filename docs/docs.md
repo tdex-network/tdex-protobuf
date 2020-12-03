@@ -12,6 +12,7 @@
     - [DepositFeeAccountRequest](#.DepositFeeAccountRequest)
     - [DepositMarketReply](#.DepositMarketReply)
     - [DepositMarketRequest](#.DepositMarketRequest)
+    - [FeeInfo](#.FeeInfo)
     - [ListDepositMarketReply](#.ListDepositMarketReply)
     - [ListDepositMarketRequest](#.ListDepositMarketRequest)
     - [ListMarketReply](#.ListMarketReply)
@@ -224,6 +225,25 @@
 
 
 
+<a name=".FeeInfo"></a>
+
+### FeeInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_id | [string](#string) |  |  |
+| basis_point | [int64](#int64) |  |  |
+| asset | [string](#string) |  |  |
+| amount | [uint64](#uint64) |  |  |
+| market_price | [float](#float) |  |  |
+
+
+
+
+
+
 <a name=".ListDepositMarketReply"></a>
 
 ### ListDepositMarketReply
@@ -355,7 +375,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| collected_fees | [Fee](#Fee) | repeated | List of the all unique fee being collected on each swap. |
+| collected_fees | [FeeInfo](#FeeInfo) | repeated | List of the all unique fee being collected on each swap. |
 | total_collected_fees_per_asset | [ReportMarketFeeReply.TotalCollectedFeesPerAssetEntry](#ReportMarketFeeReply.TotalCollectedFeesPerAssetEntry) | repeated | Map of aggreagated fee count grouped by asset. There should be one unique entry for each asset and the amount should be the aggregated total. |
 
 
@@ -1083,7 +1103,6 @@ Custom Types
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| asset | [string](#string) |  |  |
 | basis_point | [int64](#int64) |  |  |
 
 

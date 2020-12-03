@@ -493,10 +493,10 @@ export namespace ReportMarketFeeRequest {
 }
 
 export class ReportMarketFeeReply extends jspb.Message {
-  getCollectedFeesList(): Array<types_pb.Fee>;
-  setCollectedFeesList(value: Array<types_pb.Fee>): ReportMarketFeeReply;
+  getCollectedFeesList(): Array<FeeInfo>;
+  setCollectedFeesList(value: Array<FeeInfo>): ReportMarketFeeReply;
   clearCollectedFeesList(): ReportMarketFeeReply;
-  addCollectedFees(value?: types_pb.Fee, index?: number): types_pb.Fee;
+  addCollectedFees(value?: FeeInfo, index?: number): FeeInfo;
 
   getTotalCollectedFeesPerAssetMap(): jspb.Map<string, number>;
   clearTotalCollectedFeesPerAssetMap(): ReportMarketFeeReply;
@@ -511,7 +511,7 @@ export class ReportMarketFeeReply extends jspb.Message {
 
 export namespace ReportMarketFeeReply {
   export type AsObject = {
-    collectedFeesList: Array<types_pb.Fee.AsObject>,
+    collectedFeesList: Array<FeeInfo.AsObject>,
     totalCollectedFeesPerAssetMap: Array<[string, number]>,
   }
 }
@@ -603,6 +603,40 @@ export namespace SwapInfo {
     acceptTimeUnix: number,
     completeTimeUnix: number,
     expiryTimeUnix: number,
+  }
+}
+
+export class FeeInfo extends jspb.Message {
+  getTradeId(): string;
+  setTradeId(value: string): FeeInfo;
+
+  getBasisPoint(): number;
+  setBasisPoint(value: number): FeeInfo;
+
+  getAsset(): string;
+  setAsset(value: string): FeeInfo;
+
+  getAmount(): number;
+  setAmount(value: number): FeeInfo;
+
+  getMarketPrice(): number;
+  setMarketPrice(value: number): FeeInfo;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): FeeInfo.AsObject;
+  static toObject(includeInstance: boolean, msg: FeeInfo): FeeInfo.AsObject;
+  static serializeBinaryToWriter(message: FeeInfo, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): FeeInfo;
+  static deserializeBinaryFromReader(message: FeeInfo, reader: jspb.BinaryReader): FeeInfo;
+}
+
+export namespace FeeInfo {
+  export type AsObject = {
+    tradeId: string,
+    basisPoint: number,
+    asset: string,
+    amount: number,
+    marketPrice: number,
   }
 }
 

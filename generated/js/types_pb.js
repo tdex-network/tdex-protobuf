@@ -220,7 +220,6 @@ proto.Fee.prototype.toObject = function(opt_includeInstance) {
  */
 proto.Fee.toObject = function(includeInstance, msg) {
   var f, obj = {
-    asset: jspb.Message.getFieldWithDefault(msg, 1, ""),
     basisPoint: jspb.Message.getFieldWithDefault(msg, 2, 0)
   };
 
@@ -258,10 +257,6 @@ proto.Fee.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setAsset(value);
-      break;
     case 2:
       var value = /** @type {number} */ (reader.readInt64());
       msg.setBasisPoint(value);
@@ -295,13 +290,6 @@ proto.Fee.prototype.serializeBinary = function() {
  */
 proto.Fee.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAsset();
-  if (f.length > 0) {
-    writer.writeString(
-      1,
-      f
-    );
-  }
   f = message.getBasisPoint();
   if (f !== 0) {
     writer.writeInt64(
@@ -309,24 +297,6 @@ proto.Fee.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-};
-
-
-/**
- * optional string asset = 1;
- * @return {string}
- */
-proto.Fee.prototype.getAsset = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
-};
-
-
-/**
- * @param {string} value
- * @return {!proto.Fee} returns this
- */
-proto.Fee.prototype.setAsset = function(value) {
-  return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 

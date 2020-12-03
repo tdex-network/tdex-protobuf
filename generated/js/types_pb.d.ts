@@ -1,9 +1,6 @@
 import * as jspb from "google-protobuf"
 
 export class Fee extends jspb.Message {
-  getAsset(): string;
-  setAsset(value: string): Fee;
-
   getBasisPoint(): number;
   setBasisPoint(value: number): Fee;
 
@@ -17,7 +14,6 @@ export class Fee extends jspb.Message {
 
 export namespace Fee {
   export type AsObject = {
-    asset: string,
     basisPoint: number,
   }
 }
