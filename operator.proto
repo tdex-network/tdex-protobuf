@@ -142,7 +142,7 @@ message ReportMarketFeeRequest {
 }
 message ReportMarketFeeReply {
   // List of the all unique fee being collected on each swap.
-  repeated Fee collected_fees = 1;
+  repeated FeeInfo collected_fees = 1;
   // Map of aggreagated fee count grouped by asset. There should be one unique
   // entry for each asset and the amount should be the aggregated total.
   map<string, int64> total_collected_fees_per_asset = 2;
