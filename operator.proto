@@ -142,7 +142,7 @@ message ReportMarketFeeRequest {
 }
 message ReportMarketFeeReply {
   // List of the all unique fee being collected on each swap.
-  repeated Fee collected_fees = 1;
+  repeated FeeInfo collected_fees = 1;
   // Map of aggreagated fee count grouped by asset. There should be one unique
   // entry for each asset and the amount should be the aggregated total.
   map<string, int64> total_collected_fees_per_asset = 2;
@@ -189,4 +189,12 @@ message SwapInfo {
   uint64 complete_time_unix = 9;
   // expiration timestamp for the current swap
   uint64 expiry_time_unix = 10;
+}
+
+message FeeInfo {
+  string trade_id = 1;
+  int64 basis_point = 2;
+  string asset = 3;
+  uint64 amount = 4;
+  float market_price = 5;
 }
