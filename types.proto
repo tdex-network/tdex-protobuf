@@ -38,11 +38,3 @@ message AddressWithBlindingKey {
   // The blinding private key for the given address encoded in hex format
   string blinding = 2;
 }
-
-message FeeInfo {
-  string trade_id = 1;
-  int64 fee_basis_point = 2;
-  string fee_asset = 3;
-  uint64 fee_amount = 4;
-  float market_price = 5;
-}
