@@ -24,7 +24,7 @@ type TradeClient interface {
 	Balances(ctx context.Context, in *BalancesRequest, opts ...grpc.CallOption) (*BalancesReply, error)
 	// MarketPrice: Gets the current market price. In case of AMM startegy, the
 	// trade type and
-	// the amount of base asset to be either sent or received.
+	// the amount of asset to be either sent or received.
 	//
 	// BUY = quote asset as input
 	// SELL = base asset as input
@@ -164,7 +164,7 @@ type TradeServer interface {
 	Balances(context.Context, *BalancesRequest) (*BalancesReply, error)
 	// MarketPrice: Gets the current market price. In case of AMM startegy, the
 	// trade type and
-	// the amount of base asset to be either sent or received.
+	// the amount of asset to be either sent or received.
 	//
 	// BUY = quote asset as input
 	// SELL = base asset as input

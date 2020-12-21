@@ -1,8 +1,10 @@
-import * as jspb from "google-protobuf"
+import * as jspb from 'google-protobuf'
+
+
 
 export class Transport extends jspb.Message {
-  getType(): TransportType;
-  setType(value: TransportType): Transport;
+  getType(): ransportType;
+  setType(value: ransportType): Transport;
 
   getName(): string;
   setName(value: string): Transport;
@@ -22,17 +24,17 @@ export class Transport extends jspb.Message {
 
 export namespace Transport {
   export type AsObject = {
-    type: TransportType,
+    type: ransportType,
     name: string,
     data: Uint8Array | string,
   }
 }
 
 export class AvailableTransport extends jspb.Message {
-  getTransportList(): Array<TransportType>;
-  setTransportList(value: Array<TransportType>): AvailableTransport;
+  getTransportList(): Array<ransportType>;
+  setTransportList(value: Array<ransportType>): AvailableTransport;
   clearTransportList(): AvailableTransport;
-  addTransport(value: TransportType, index?: number): AvailableTransport;
+  addTransport(value: ransportType, index?: number): AvailableTransport;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): AvailableTransport.AsObject;
@@ -44,7 +46,7 @@ export class AvailableTransport extends jspb.Message {
 
 export namespace AvailableTransport {
   export type AsObject = {
-    transportList: Array<TransportType>,
+    transportList: Array<ransportType>,
   }
 }
 

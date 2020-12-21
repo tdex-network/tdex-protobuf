@@ -1,7 +1,8 @@
-import * as jspb from "google-protobuf"
+import * as jspb from 'google-protobuf'
 
 import * as swap_pb from './swap_pb';
 import * as types_pb from './types_pb';
+
 
 export class MarketsRequest extends jspb.Message {
   serializeBinary(): Uint8Array;
@@ -83,8 +84,8 @@ export class MarketPriceRequest extends jspb.Message {
   hasMarket(): boolean;
   clearMarket(): MarketPriceRequest;
 
-  getType(): TradeType;
-  setType(value: TradeType): MarketPriceRequest;
+  getType(): radeType;
+  setType(value: radeType): MarketPriceRequest;
 
   getAmount(): number;
   setAmount(value: number): MarketPriceRequest;
@@ -103,7 +104,7 @@ export class MarketPriceRequest extends jspb.Message {
 export namespace MarketPriceRequest {
   export type AsObject = {
     market?: types_pb.Market.AsObject,
-    type: TradeType,
+    type: radeType,
     amount: number,
     asset: string,
   }
@@ -135,8 +136,8 @@ export class TradeProposeRequest extends jspb.Message {
   hasMarket(): boolean;
   clearMarket(): TradeProposeRequest;
 
-  getType(): TradeType;
-  setType(value: TradeType): TradeProposeRequest;
+  getType(): radeType;
+  setType(value: radeType): TradeProposeRequest;
 
   getSwapRequest(): swap_pb.SwapRequest | undefined;
   setSwapRequest(value?: swap_pb.SwapRequest): TradeProposeRequest;
@@ -154,7 +155,7 @@ export class TradeProposeRequest extends jspb.Message {
 export namespace TradeProposeRequest {
   export type AsObject = {
     market?: types_pb.Market.AsObject,
-    type: TradeType,
+    type: radeType,
     swapRequest?: swap_pb.SwapRequest.AsObject,
   }
 }

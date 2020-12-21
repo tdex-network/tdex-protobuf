@@ -957,7 +957,7 @@ BOTD#4 Service&#39;s messages
 | ----------- | ------------ | ------------- | ------------|
 | Markets | [.MarketsRequest](#MarketsRequest) | [.MarketsReply](#MarketsReply) | Markets: List all the markets open for trading. |
 | Balances | [.BalancesRequest](#BalancesRequest) | [.BalancesReply](#BalancesReply) | Balances: Gets the balances of the two current reserves in the given market. |
-| MarketPrice | [.MarketPriceRequest](#MarketPriceRequest) | [.MarketPriceReply](#MarketPriceReply) | MarketPrice: Gets the current market price. In case of AMM startegy, the trade type and the amount of base asset to be either sent or received.
+| MarketPrice | [.MarketPriceRequest](#MarketPriceRequest) | [.MarketPriceReply](#MarketPriceReply) | MarketPrice: Gets the current market price. In case of AMM startegy, the trade type and the amount of asset to be either sent or received.
 
 BUY = quote asset as input SELL = base asset as input
 

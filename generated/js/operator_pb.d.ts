@@ -1,6 +1,7 @@
-import * as jspb from "google-protobuf"
+import * as jspb from 'google-protobuf'
 
 import * as types_pb from './types_pb';
+
 
 export class DepositMarketRequest extends jspb.Message {
   getMarket(): types_pb.Market | undefined;
@@ -264,8 +265,8 @@ export class UpdateMarketStrategyRequest extends jspb.Message {
   hasMarket(): boolean;
   clearMarket(): UpdateMarketStrategyRequest;
 
-  getStrategyType(): StrategyType;
-  setStrategyType(value: StrategyType): UpdateMarketStrategyRequest;
+  getStrategyType(): trategyType;
+  setStrategyType(value: trategyType): UpdateMarketStrategyRequest;
 
   getMetadata(): string;
   setMetadata(value: string): UpdateMarketStrategyRequest;
@@ -281,7 +282,7 @@ export class UpdateMarketStrategyRequest extends jspb.Message {
 export namespace UpdateMarketStrategyRequest {
   export type AsObject = {
     market?: types_pb.Market.AsObject,
-    strategyType: StrategyType,
+    strategyType: trategyType,
     metadata: string,
   }
 }
@@ -530,8 +531,8 @@ export class MarketInfo extends jspb.Message {
   getTradable(): boolean;
   setTradable(value: boolean): MarketInfo;
 
-  getStrategyType(): StrategyType;
-  setStrategyType(value: StrategyType): MarketInfo;
+  getStrategyType(): trategyType;
+  setStrategyType(value: trategyType): MarketInfo;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): MarketInfo.AsObject;
@@ -546,13 +547,13 @@ export namespace MarketInfo {
     market?: types_pb.Market.AsObject,
     fee?: types_pb.Fee.AsObject,
     tradable: boolean,
-    strategyType: StrategyType,
+    strategyType: trategyType,
   }
 }
 
 export class SwapInfo extends jspb.Message {
-  getStatus(): SwapStatus;
-  setStatus(value: SwapStatus): SwapInfo;
+  getStatus(): wapStatus;
+  setStatus(value: wapStatus): SwapInfo;
 
   getAmountP(): number;
   setAmountP(value: number): SwapInfo;
@@ -593,7 +594,7 @@ export class SwapInfo extends jspb.Message {
 
 export namespace SwapInfo {
   export type AsObject = {
-    status: SwapStatus,
+    status: wapStatus,
     amountP: number,
     assetP: string,
     amountR: number,
