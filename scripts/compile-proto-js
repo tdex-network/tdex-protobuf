@@ -23,14 +23,15 @@ ${GRPC_TOOLS_NODE_PROTOC} \
 
 ${GRPC_TOOLS_NODE_PROTOC} \
   --js_out=import_style=commonjs,binary:./generated/js \
-  --plugin=protoc-gen-ts="${PROTOC_GEN_TS_PATH}" \
-  --ts_out=grpc_js:./generated/js \
+  --grpc-web_out=import_style=typescript,mode=grpcwebtext:./generated/js \
+  --plugin=protoc-gen-grpc-web=${GRPC_WEB_PLUGIN} \
   *.proto
 
 ${GRPC_TOOLS_NODE_PROTOC} \
   --js_out=import_style=commonjs,binary:./generated/js \
-  --grpc-web_out=import_style=typescript,mode=grpcwebtext:./generated/js \
-  --plugin=protoc-gen-grpc-web=${GRPC_WEB_PLUGIN} \
+  --plugin=protoc-gen-ts="${PROTOC_GEN_TS_PATH}" \
+  --ts_out=grpc_js:./generated/js \
   *.proto
+
 
 popd
