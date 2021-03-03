@@ -57,6 +57,9 @@ export class InitWalletRequest extends jspb.Message {
     setSeedMnemonicList(value: Array<string>): InitWalletRequest;
     addSeedMnemonic(value: string, index?: number): string;
 
+    getRestore(): boolean;
+    setRestore(value: boolean): InitWalletRequest;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): InitWalletRequest.AsObject;
@@ -72,6 +75,7 @@ export namespace InitWalletRequest {
     export type AsObject = {
         walletPassword: Uint8Array | string,
         seedMnemonicList: Array<string>,
+        restore: boolean,
     }
 }
 
