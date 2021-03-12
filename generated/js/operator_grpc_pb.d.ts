@@ -23,6 +23,8 @@ interface IOperatorService extends grpc.ServiceDefinition<grpc.UntypedServiceImp
     withdrawMarket: IOperatorService_IWithdrawMarket;
     listSwaps: IOperatorService_IListSwaps;
     reportMarketFee: IOperatorService_IReportMarketFee;
+    claimMarketDeposit: IOperatorService_IClaimMarketDeposit;
+    claimFeeDeposit: IOperatorService_IClaimFeeDeposit;
 }
 
 interface IOperatorService_IDepositMarket extends grpc.MethodDefinition<operator_pb.DepositMarketRequest, operator_pb.DepositMarketReply> {
@@ -142,6 +144,24 @@ interface IOperatorService_IReportMarketFee extends grpc.MethodDefinition<operat
     responseSerialize: grpc.serialize<operator_pb.ReportMarketFeeReply>;
     responseDeserialize: grpc.deserialize<operator_pb.ReportMarketFeeReply>;
 }
+interface IOperatorService_IClaimMarketDeposit extends grpc.MethodDefinition<operator_pb.ClaimMarketDepositRequest, operator_pb.ClaimMarketDepositReply> {
+    path: "/Operator/ClaimMarketDeposit";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<operator_pb.ClaimMarketDepositRequest>;
+    requestDeserialize: grpc.deserialize<operator_pb.ClaimMarketDepositRequest>;
+    responseSerialize: grpc.serialize<operator_pb.ClaimMarketDepositReply>;
+    responseDeserialize: grpc.deserialize<operator_pb.ClaimMarketDepositReply>;
+}
+interface IOperatorService_IClaimFeeDeposit extends grpc.MethodDefinition<operator_pb.ClaimFeeDepositRequest, operator_pb.ClaimFeeDepositReply> {
+    path: "/Operator/ClaimFeeDeposit";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<operator_pb.ClaimFeeDepositRequest>;
+    requestDeserialize: grpc.deserialize<operator_pb.ClaimFeeDepositRequest>;
+    responseSerialize: grpc.serialize<operator_pb.ClaimFeeDepositReply>;
+    responseDeserialize: grpc.deserialize<operator_pb.ClaimFeeDepositReply>;
+}
 
 export const OperatorService: IOperatorService;
 
@@ -159,6 +179,8 @@ export interface IOperatorServer {
     withdrawMarket: grpc.handleUnaryCall<operator_pb.WithdrawMarketRequest, operator_pb.WithdrawMarketReply>;
     listSwaps: grpc.handleUnaryCall<operator_pb.ListSwapsRequest, operator_pb.ListSwapsReply>;
     reportMarketFee: grpc.handleUnaryCall<operator_pb.ReportMarketFeeRequest, operator_pb.ReportMarketFeeReply>;
+    claimMarketDeposit: grpc.handleUnaryCall<operator_pb.ClaimMarketDepositRequest, operator_pb.ClaimMarketDepositReply>;
+    claimFeeDeposit: grpc.handleUnaryCall<operator_pb.ClaimFeeDepositRequest, operator_pb.ClaimFeeDepositReply>;
 }
 
 export interface IOperatorClient {
@@ -201,6 +223,12 @@ export interface IOperatorClient {
     reportMarketFee(request: operator_pb.ReportMarketFeeRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.ReportMarketFeeReply) => void): grpc.ClientUnaryCall;
     reportMarketFee(request: operator_pb.ReportMarketFeeRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.ReportMarketFeeReply) => void): grpc.ClientUnaryCall;
     reportMarketFee(request: operator_pb.ReportMarketFeeRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.ReportMarketFeeReply) => void): grpc.ClientUnaryCall;
+    claimMarketDeposit(request: operator_pb.ClaimMarketDepositRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.ClaimMarketDepositReply) => void): grpc.ClientUnaryCall;
+    claimMarketDeposit(request: operator_pb.ClaimMarketDepositRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.ClaimMarketDepositReply) => void): grpc.ClientUnaryCall;
+    claimMarketDeposit(request: operator_pb.ClaimMarketDepositRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.ClaimMarketDepositReply) => void): grpc.ClientUnaryCall;
+    claimFeeDeposit(request: operator_pb.ClaimFeeDepositRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.ClaimFeeDepositReply) => void): grpc.ClientUnaryCall;
+    claimFeeDeposit(request: operator_pb.ClaimFeeDepositRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.ClaimFeeDepositReply) => void): grpc.ClientUnaryCall;
+    claimFeeDeposit(request: operator_pb.ClaimFeeDepositRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.ClaimFeeDepositReply) => void): grpc.ClientUnaryCall;
 }
 
 export class OperatorClient extends grpc.Client implements IOperatorClient {
@@ -244,4 +272,10 @@ export class OperatorClient extends grpc.Client implements IOperatorClient {
     public reportMarketFee(request: operator_pb.ReportMarketFeeRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.ReportMarketFeeReply) => void): grpc.ClientUnaryCall;
     public reportMarketFee(request: operator_pb.ReportMarketFeeRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.ReportMarketFeeReply) => void): grpc.ClientUnaryCall;
     public reportMarketFee(request: operator_pb.ReportMarketFeeRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.ReportMarketFeeReply) => void): grpc.ClientUnaryCall;
+    public claimMarketDeposit(request: operator_pb.ClaimMarketDepositRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.ClaimMarketDepositReply) => void): grpc.ClientUnaryCall;
+    public claimMarketDeposit(request: operator_pb.ClaimMarketDepositRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.ClaimMarketDepositReply) => void): grpc.ClientUnaryCall;
+    public claimMarketDeposit(request: operator_pb.ClaimMarketDepositRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.ClaimMarketDepositReply) => void): grpc.ClientUnaryCall;
+    public claimFeeDeposit(request: operator_pb.ClaimFeeDepositRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.ClaimFeeDepositReply) => void): grpc.ClientUnaryCall;
+    public claimFeeDeposit(request: operator_pb.ClaimFeeDepositRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.ClaimFeeDepositReply) => void): grpc.ClientUnaryCall;
+    public claimFeeDeposit(request: operator_pb.ClaimFeeDepositRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.ClaimFeeDepositReply) => void): grpc.ClientUnaryCall;
 }

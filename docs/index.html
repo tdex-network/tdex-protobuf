@@ -187,6 +187,22 @@
                 </li>
               
                 <li>
+                  <a href="#.ClaimFeeDepositReply"><span class="badge">M</span>ClaimFeeDepositReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.ClaimFeeDepositRequest"><span class="badge">M</span>ClaimFeeDepositRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.ClaimMarketDepositReply"><span class="badge">M</span>ClaimMarketDepositReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.ClaimMarketDepositRequest"><span class="badge">M</span>ClaimMarketDepositRequest</a>
+                </li>
+              
+                <li>
                   <a href="#.CloseMarketReply"><span class="badge">M</span>CloseMarketReply</a>
                 </li>
               
@@ -478,6 +494,10 @@
                   <a href="#.PriceWithFee"><span class="badge">M</span>PriceWithFee</a>
                 </li>
               
+                <li>
+                  <a href="#.TxOutpoint"><span class="badge">M</span>TxOutpoint</a>
+                </li>
+              
               
               
               
@@ -607,6 +627,75 @@
         <p></p>
 
         
+
+        
+      
+        <h3 id=".ClaimFeeDepositReply">ClaimFeeDepositReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>outpoints</td>
+                  <td><a href="#TxOutpoint">TxOutpoint</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".ClaimFeeDepositRequest">ClaimFeeDepositRequest</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id=".ClaimMarketDepositReply">ClaimMarketDepositReply</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id=".ClaimMarketDepositRequest">ClaimMarketDepositRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>market</td>
+                  <td><a href="#Market">Market</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>outpoints</td>
+                  <td><a href="#TxOutpoint">TxOutpoint</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
 
         
       
@@ -1539,6 +1628,22 @@ from a specific market. The Market MUST be closed before doing this change.</p><
                 <td><a href="#ReportMarketFeeReply">.ReportMarketFeeReply</a></td>
                 <td><p>Displays a report on how much the given market is collecting in Liquidity
 Provider fees</p></td>
+              </tr>
+            
+              <tr>
+                <td>ClaimMarketDeposit</td>
+                <td><a href="#ClaimMarketDepositRequest">.ClaimMarketDepositRequest</a></td>
+                <td><a href="#ClaimMarketDepositReply">.ClaimMarketDepositReply</a></td>
+                <td><p>Operator can provide transaction(s) outpoints of deposits made to create a new market.
+The transaction must be visible and confirmed, otherwise an error will be returned,
+inviting the operator to retry again</p></td>
+              </tr>
+            
+              <tr>
+                <td>ClaimFeeDeposit</td>
+                <td><a href="#ClaimFeeDepositRequest">.ClaimFeeDepositRequest</a></td>
+                <td><a href="#ClaimFeeDepositReply">.ClaimFeeDepositReply</a></td>
+                <td><p></p></td>
               </tr>
             
           </tbody>
@@ -2665,6 +2770,37 @@ transaction hash of the broadcasted transaction.</p></td>
                 <tr>
                   <td>asset</td>
                   <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".TxOutpoint">TxOutpoint</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>tx_hash</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>index</td>
+                  <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>

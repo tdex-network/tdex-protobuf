@@ -7,6 +7,93 @@
 import * as jspb from "google-protobuf";
 import * as types_pb from "./types_pb";
 
+export class ClaimMarketDepositRequest extends jspb.Message { 
+
+    hasMarket(): boolean;
+    clearMarket(): void;
+    getMarket(): types_pb.Market | undefined;
+    setMarket(value?: types_pb.Market): ClaimMarketDepositRequest;
+
+    clearOutpointsList(): void;
+    getOutpointsList(): Array<types_pb.TxOutpoint>;
+    setOutpointsList(value: Array<types_pb.TxOutpoint>): ClaimMarketDepositRequest;
+    addOutpoints(value?: types_pb.TxOutpoint, index?: number): types_pb.TxOutpoint;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ClaimMarketDepositRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: ClaimMarketDepositRequest): ClaimMarketDepositRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ClaimMarketDepositRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ClaimMarketDepositRequest;
+    static deserializeBinaryFromReader(message: ClaimMarketDepositRequest, reader: jspb.BinaryReader): ClaimMarketDepositRequest;
+}
+
+export namespace ClaimMarketDepositRequest {
+    export type AsObject = {
+        market?: types_pb.Market.AsObject,
+        outpointsList: Array<types_pb.TxOutpoint.AsObject>,
+    }
+}
+
+export class ClaimMarketDepositReply extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ClaimMarketDepositReply.AsObject;
+    static toObject(includeInstance: boolean, msg: ClaimMarketDepositReply): ClaimMarketDepositReply.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ClaimMarketDepositReply, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ClaimMarketDepositReply;
+    static deserializeBinaryFromReader(message: ClaimMarketDepositReply, reader: jspb.BinaryReader): ClaimMarketDepositReply;
+}
+
+export namespace ClaimMarketDepositReply {
+    export type AsObject = {
+    }
+}
+
+export class ClaimFeeDepositRequest extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ClaimFeeDepositRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: ClaimFeeDepositRequest): ClaimFeeDepositRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ClaimFeeDepositRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ClaimFeeDepositRequest;
+    static deserializeBinaryFromReader(message: ClaimFeeDepositRequest, reader: jspb.BinaryReader): ClaimFeeDepositRequest;
+}
+
+export namespace ClaimFeeDepositRequest {
+    export type AsObject = {
+    }
+}
+
+export class ClaimFeeDepositReply extends jspb.Message { 
+    clearOutpointsList(): void;
+    getOutpointsList(): Array<types_pb.TxOutpoint>;
+    setOutpointsList(value: Array<types_pb.TxOutpoint>): ClaimFeeDepositReply;
+    addOutpoints(value?: types_pb.TxOutpoint, index?: number): types_pb.TxOutpoint;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ClaimFeeDepositReply.AsObject;
+    static toObject(includeInstance: boolean, msg: ClaimFeeDepositReply): ClaimFeeDepositReply.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ClaimFeeDepositReply, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ClaimFeeDepositReply;
+    static deserializeBinaryFromReader(message: ClaimFeeDepositReply, reader: jspb.BinaryReader): ClaimFeeDepositReply;
+}
+
+export namespace ClaimFeeDepositReply {
+    export type AsObject = {
+        outpointsList: Array<types_pb.TxOutpoint.AsObject>,
+    }
+}
+
 export class DepositMarketRequest extends jspb.Message { 
 
     hasMarket(): boolean;

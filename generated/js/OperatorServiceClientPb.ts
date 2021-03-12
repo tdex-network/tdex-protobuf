@@ -555,5 +555,85 @@ export class OperatorClient {
     this.methodInfoReportMarketFee);
   }
 
+  methodInfoClaimMarketDeposit = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.ClaimMarketDepositReply,
+    (request: operator_pb.ClaimMarketDepositRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.ClaimMarketDepositReply.deserializeBinary
+  );
+
+  claimMarketDeposit(
+    request: operator_pb.ClaimMarketDepositRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.ClaimMarketDepositReply>;
+
+  claimMarketDeposit(
+    request: operator_pb.ClaimMarketDepositRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.ClaimMarketDepositReply) => void): grpcWeb.ClientReadableStream<operator_pb.ClaimMarketDepositReply>;
+
+  claimMarketDeposit(
+    request: operator_pb.ClaimMarketDepositRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.ClaimMarketDepositReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/ClaimMarketDeposit',
+        request,
+        metadata || {},
+        this.methodInfoClaimMarketDeposit,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/ClaimMarketDeposit',
+    request,
+    metadata || {},
+    this.methodInfoClaimMarketDeposit);
+  }
+
+  methodInfoClaimFeeDeposit = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.ClaimFeeDepositReply,
+    (request: operator_pb.ClaimFeeDepositRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.ClaimFeeDepositReply.deserializeBinary
+  );
+
+  claimFeeDeposit(
+    request: operator_pb.ClaimFeeDepositRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.ClaimFeeDepositReply>;
+
+  claimFeeDeposit(
+    request: operator_pb.ClaimFeeDepositRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.ClaimFeeDepositReply) => void): grpcWeb.ClientReadableStream<operator_pb.ClaimFeeDepositReply>;
+
+  claimFeeDeposit(
+    request: operator_pb.ClaimFeeDepositRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.ClaimFeeDepositReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/ClaimFeeDeposit',
+        request,
+        metadata || {},
+        this.methodInfoClaimFeeDeposit,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/ClaimFeeDeposit',
+    request,
+    metadata || {},
+    this.methodInfoClaimFeeDeposit);
+  }
+
 }
 

@@ -27,6 +27,50 @@ function deserialize_BalanceFeeAccountRequest(buffer_arg) {
   return operator_pb.BalanceFeeAccountRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_ClaimFeeDepositReply(arg) {
+  if (!(arg instanceof operator_pb.ClaimFeeDepositReply)) {
+    throw new Error('Expected argument of type ClaimFeeDepositReply');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ClaimFeeDepositReply(buffer_arg) {
+  return operator_pb.ClaimFeeDepositReply.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ClaimFeeDepositRequest(arg) {
+  if (!(arg instanceof operator_pb.ClaimFeeDepositRequest)) {
+    throw new Error('Expected argument of type ClaimFeeDepositRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ClaimFeeDepositRequest(buffer_arg) {
+  return operator_pb.ClaimFeeDepositRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ClaimMarketDepositReply(arg) {
+  if (!(arg instanceof operator_pb.ClaimMarketDepositReply)) {
+    throw new Error('Expected argument of type ClaimMarketDepositReply');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ClaimMarketDepositReply(buffer_arg) {
+  return operator_pb.ClaimMarketDepositReply.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ClaimMarketDepositRequest(arg) {
+  if (!(arg instanceof operator_pb.ClaimMarketDepositRequest)) {
+    throw new Error('Expected argument of type ClaimMarketDepositRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ClaimMarketDepositRequest(buffer_arg) {
+  return operator_pb.ClaimMarketDepositRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_CloseMarketReply(arg) {
   if (!(arg instanceof operator_pb.CloseMarketReply)) {
     throw new Error('Expected argument of type CloseMarketReply');
@@ -458,6 +502,31 @@ reportMarketFee: {
     requestDeserialize: deserialize_ReportMarketFeeRequest,
     responseSerialize: serialize_ReportMarketFeeReply,
     responseDeserialize: deserialize_ReportMarketFeeReply,
+  },
+  // Operator can provide transaction(s) outpoints of deposits made to create a new market.
+// The transaction must be visible and confirmed, otherwise an error will be returned,
+// inviting the operator to retry again
+claimMarketDeposit: {
+    path: '/Operator/ClaimMarketDeposit',
+    requestStream: false,
+    responseStream: false,
+    requestType: operator_pb.ClaimMarketDepositRequest,
+    responseType: operator_pb.ClaimMarketDepositReply,
+    requestSerialize: serialize_ClaimMarketDepositRequest,
+    requestDeserialize: deserialize_ClaimMarketDepositRequest,
+    responseSerialize: serialize_ClaimMarketDepositReply,
+    responseDeserialize: deserialize_ClaimMarketDepositReply,
+  },
+  claimFeeDeposit: {
+    path: '/Operator/ClaimFeeDeposit',
+    requestStream: false,
+    responseStream: false,
+    requestType: operator_pb.ClaimFeeDepositRequest,
+    responseType: operator_pb.ClaimFeeDepositReply,
+    requestSerialize: serialize_ClaimFeeDepositRequest,
+    requestDeserialize: deserialize_ClaimFeeDepositRequest,
+    responseSerialize: serialize_ClaimFeeDepositReply,
+    responseDeserialize: deserialize_ClaimFeeDepositReply,
   },
 };
 

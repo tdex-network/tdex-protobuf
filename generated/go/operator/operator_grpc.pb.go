@@ -51,6 +51,11 @@ type OperatorClient interface {
 	// Displays a report on how much the given market is collecting in Liquidity
 	// Provider fees
 	ReportMarketFee(ctx context.Context, in *ReportMarketFeeRequest, opts ...grpc.CallOption) (*ReportMarketFeeReply, error)
+	// Operator can provide transaction(s) outpoints of deposits made to create a new market.
+	// The transaction must be visible and confirmed, otherwise an error will be returned,
+	// inviting the operator to retry again
+	ClaimMarketDeposit(ctx context.Context, in *ClaimMarketDepositRequest, opts ...grpc.CallOption) (*ClaimMarketDepositReply, error)
+	ClaimFeeDeposit(ctx context.Context, in *ClaimFeeDepositRequest, opts ...grpc.CallOption) (*ClaimFeeDepositReply, error)
 }
 
 type operatorClient struct {
@@ -178,6 +183,24 @@ func (c *operatorClient) ReportMarketFee(ctx context.Context, in *ReportMarketFe
 	return out, nil
 }
 
+func (c *operatorClient) ClaimMarketDeposit(ctx context.Context, in *ClaimMarketDepositRequest, opts ...grpc.CallOption) (*ClaimMarketDepositReply, error) {
+	out := new(ClaimMarketDepositReply)
+	err := c.cc.Invoke(ctx, "/Operator/ClaimMarketDeposit", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *operatorClient) ClaimFeeDeposit(ctx context.Context, in *ClaimFeeDepositRequest, opts ...grpc.CallOption) (*ClaimFeeDepositReply, error) {
+	out := new(ClaimFeeDepositReply)
+	err := c.cc.Invoke(ctx, "/Operator/ClaimFeeDeposit", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OperatorServer is the server API for Operator service.
 // All implementations must embed UnimplementedOperatorServer
 // for forward compatibility
@@ -216,6 +239,11 @@ type OperatorServer interface {
 	// Displays a report on how much the given market is collecting in Liquidity
 	// Provider fees
 	ReportMarketFee(context.Context, *ReportMarketFeeRequest) (*ReportMarketFeeReply, error)
+	// Operator can provide transaction(s) outpoints of deposits made to create a new market.
+	// The transaction must be visible and confirmed, otherwise an error will be returned,
+	// inviting the operator to retry again
+	ClaimMarketDeposit(context.Context, *ClaimMarketDepositRequest) (*ClaimMarketDepositReply, error)
+	ClaimFeeDeposit(context.Context, *ClaimFeeDepositRequest) (*ClaimFeeDepositReply, error)
 	mustEmbedUnimplementedOperatorServer()
 }
 
@@ -261,6 +289,12 @@ func (*UnimplementedOperatorServer) ListSwaps(context.Context, *ListSwapsRequest
 }
 func (*UnimplementedOperatorServer) ReportMarketFee(context.Context, *ReportMarketFeeRequest) (*ReportMarketFeeReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReportMarketFee not implemented")
+}
+func (*UnimplementedOperatorServer) ClaimMarketDeposit(context.Context, *ClaimMarketDepositRequest) (*ClaimMarketDepositReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ClaimMarketDeposit not implemented")
+}
+func (*UnimplementedOperatorServer) ClaimFeeDeposit(context.Context, *ClaimFeeDepositRequest) (*ClaimFeeDepositReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ClaimFeeDeposit not implemented")
 }
 func (*UnimplementedOperatorServer) mustEmbedUnimplementedOperatorServer() {}
 
@@ -502,6 +536,42 @@ func _Operator_ReportMarketFee_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Operator_ClaimMarketDeposit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ClaimMarketDepositRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OperatorServer).ClaimMarketDeposit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Operator/ClaimMarketDeposit",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OperatorServer).ClaimMarketDeposit(ctx, req.(*ClaimMarketDepositRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Operator_ClaimFeeDeposit_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ClaimFeeDepositRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OperatorServer).ClaimFeeDeposit(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Operator/ClaimFeeDeposit",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OperatorServer).ClaimFeeDeposit(ctx, req.(*ClaimFeeDepositRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Operator_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "Operator",
 	HandlerType: (*OperatorServer)(nil),
@@ -557,6 +627,14 @@ var _Operator_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReportMarketFee",
 			Handler:    _Operator_ReportMarketFee_Handler,
+		},
+		{
+			MethodName: "ClaimMarketDeposit",
+			Handler:    _Operator_ClaimMarketDeposit_Handler,
+		},
+		{
+			MethodName: "ClaimFeeDeposit",
+			Handler:    _Operator_ClaimFeeDeposit_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

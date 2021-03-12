@@ -6,6 +6,10 @@
 - [operator.proto](#operator.proto)
     - [BalanceFeeAccountReply](#.BalanceFeeAccountReply)
     - [BalanceFeeAccountRequest](#.BalanceFeeAccountRequest)
+    - [ClaimFeeDepositReply](#.ClaimFeeDepositReply)
+    - [ClaimFeeDepositRequest](#.ClaimFeeDepositRequest)
+    - [ClaimMarketDepositReply](#.ClaimMarketDepositReply)
+    - [ClaimMarketDepositRequest](#.ClaimMarketDepositRequest)
     - [CloseMarketReply](#.CloseMarketReply)
     - [CloseMarketRequest](#.CloseMarketRequest)
     - [DepositFeeAccountReply](#.DepositFeeAccountReply)
@@ -81,6 +85,7 @@
     - [MarketWithFee](#.MarketWithFee)
     - [Price](#.Price)
     - [PriceWithFee](#.PriceWithFee)
+    - [TxOutpoint](#.TxOutpoint)
   
 - [wallet.proto](#wallet.proto)
     - [BalanceInfo](#.BalanceInfo)
@@ -133,6 +138,57 @@
 
 ### BalanceFeeAccountRequest
 
+
+
+
+
+
+
+<a name=".ClaimFeeDepositReply"></a>
+
+### ClaimFeeDepositReply
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| outpoints | [TxOutpoint](#TxOutpoint) | repeated |  |
+
+
+
+
+
+
+<a name=".ClaimFeeDepositRequest"></a>
+
+### ClaimFeeDepositRequest
+
+
+
+
+
+
+
+<a name=".ClaimMarketDepositReply"></a>
+
+### ClaimMarketDepositReply
+
+
+
+
+
+
+
+<a name=".ClaimMarketDepositRequest"></a>
+
+### ClaimMarketDepositRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| market | [Market](#Market) |  |  |
+| outpoints | [TxOutpoint](#TxOutpoint) | repeated |  |
 
 
 
@@ -608,6 +664,8 @@ Service for operators to configure and manage a TDEX daemon
 | WithdrawMarket | [.WithdrawMarketRequest](#WithdrawMarketRequest) | [.WithdrawMarketReply](#WithdrawMarketReply) | WithdrawMarket allows the operator to withdraw to external wallet funds from a specific market. The Market MUST be closed before doing this change. |
 | ListSwaps | [.ListSwapsRequest](#ListSwapsRequest) | [.ListSwapsReply](#ListSwapsReply) | Returs all the swaps processed by the daemon (both attempted and completed) |
 | ReportMarketFee | [.ReportMarketFeeRequest](#ReportMarketFeeRequest) | [.ReportMarketFeeReply](#ReportMarketFeeReply) | Displays a report on how much the given market is collecting in Liquidity Provider fees |
+| ClaimMarketDeposit | [.ClaimMarketDepositRequest](#ClaimMarketDepositRequest) | [.ClaimMarketDepositReply](#ClaimMarketDepositReply) | Operator can provide transaction(s) outpoints of deposits made to create a new market. The transaction must be visible and confirmed, otherwise an error will be returned, inviting the operator to retry again |
+| ClaimFeeDeposit | [.ClaimFeeDepositRequest](#ClaimFeeDepositRequest) | [.ClaimFeeDepositReply](#ClaimFeeDepositReply) |  |
 
  
 
@@ -1170,6 +1228,22 @@ Custom Types
 | fee | [Fee](#Fee) |  |  |
 | amount | [uint64](#uint64) |  |  |
 | asset | [string](#string) |  |  |
+
+
+
+
+
+
+<a name=".TxOutpoint"></a>
+
+### TxOutpoint
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| tx_hash | [string](#string) |  |  |
+| index | [int32](#int32) |  |  |
 
 
 
