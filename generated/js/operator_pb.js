@@ -315,7 +315,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.ClaimFeeDepositRequest = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.ClaimFeeDepositRequest.repeatedFields_, null);
 };
 goog.inherits(proto.ClaimFeeDepositRequest, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -336,7 +336,7 @@ if (goog.DEBUG && !COMPILED) {
  * @constructor
  */
 proto.ClaimFeeDepositReply = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, proto.ClaimFeeDepositReply.repeatedFields_, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
 goog.inherits(proto.ClaimFeeDepositReply, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
@@ -2505,6 +2505,13 @@ proto.ClaimMarketDepositReply.serializeBinaryToWriter = function(message, writer
 
 
 
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.ClaimFeeDepositRequest.repeatedFields_ = [1];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -2536,7 +2543,8 @@ proto.ClaimFeeDepositRequest.prototype.toObject = function(opt_includeInstance) 
  */
 proto.ClaimFeeDepositRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    outpointsList: jspb.Message.toObjectList(msg.getOutpointsList(),
+    proto.TxOutpoint.toObject, includeInstance)
   };
 
   if (includeInstance) {
@@ -2573,6 +2581,11 @@ proto.ClaimFeeDepositRequest.deserializeBinaryFromReader = function(msg, reader)
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = new proto.TxOutpoint;
+      reader.readMessage(value,proto.TxOutpoint.deserializeBinaryFromReader);
+      msg.addOutpoints(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2602,16 +2615,55 @@ proto.ClaimFeeDepositRequest.prototype.serializeBinary = function() {
  */
 proto.ClaimFeeDepositRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getOutpointsList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
+      1,
+      f,
+      proto.TxOutpoint.serializeBinaryToWriter
+    );
+  }
 };
 
 
+/**
+ * repeated TxOutpoint outpoints = 1;
+ * @return {!Array<!proto.TxOutpoint>}
+ */
+proto.ClaimFeeDepositRequest.prototype.getOutpointsList = function() {
+  return /** @type{!Array<!proto.TxOutpoint>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.TxOutpoint, 1));
+};
+
 
 /**
- * List of repeated fields within this message type.
- * @private {!Array<number>}
- * @const
+ * @param {!Array<!proto.TxOutpoint>} value
+ * @return {!proto.ClaimFeeDepositRequest} returns this
+*/
+proto.ClaimFeeDepositRequest.prototype.setOutpointsList = function(value) {
+  return jspb.Message.setRepeatedWrapperField(this, 1, value);
+};
+
+
+/**
+ * @param {!proto.TxOutpoint=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.TxOutpoint}
  */
-proto.ClaimFeeDepositReply.repeatedFields_ = [1];
+proto.ClaimFeeDepositRequest.prototype.addOutpoints = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.TxOutpoint, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.ClaimFeeDepositRequest} returns this
+ */
+proto.ClaimFeeDepositRequest.prototype.clearOutpointsList = function() {
+  return this.setOutpointsList([]);
+};
+
+
 
 
 
@@ -2644,8 +2696,7 @@ proto.ClaimFeeDepositReply.prototype.toObject = function(opt_includeInstance) {
  */
 proto.ClaimFeeDepositReply.toObject = function(includeInstance, msg) {
   var f, obj = {
-    outpointsList: jspb.Message.toObjectList(msg.getOutpointsList(),
-    proto.TxOutpoint.toObject, includeInstance)
+
   };
 
   if (includeInstance) {
@@ -2682,11 +2733,6 @@ proto.ClaimFeeDepositReply.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
-    case 1:
-      var value = new proto.TxOutpoint;
-      reader.readMessage(value,proto.TxOutpoint.deserializeBinaryFromReader);
-      msg.addOutpoints(value);
-      break;
     default:
       reader.skipField();
       break;
@@ -2716,52 +2762,6 @@ proto.ClaimFeeDepositReply.prototype.serializeBinary = function() {
  */
 proto.ClaimFeeDepositReply.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getOutpointsList();
-  if (f.length > 0) {
-    writer.writeRepeatedMessage(
-      1,
-      f,
-      proto.TxOutpoint.serializeBinaryToWriter
-    );
-  }
-};
-
-
-/**
- * repeated TxOutpoint outpoints = 1;
- * @return {!Array<!proto.TxOutpoint>}
- */
-proto.ClaimFeeDepositReply.prototype.getOutpointsList = function() {
-  return /** @type{!Array<!proto.TxOutpoint>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.TxOutpoint, 1));
-};
-
-
-/**
- * @param {!Array<!proto.TxOutpoint>} value
- * @return {!proto.ClaimFeeDepositReply} returns this
-*/
-proto.ClaimFeeDepositReply.prototype.setOutpointsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 1, value);
-};
-
-
-/**
- * @param {!proto.TxOutpoint=} opt_value
- * @param {number=} opt_index
- * @return {!proto.TxOutpoint}
- */
-proto.ClaimFeeDepositReply.prototype.addOutpoints = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.TxOutpoint, opt_index);
-};
-
-
-/**
- * Clears the list making it empty but non-null.
- * @return {!proto.ClaimFeeDepositReply} returns this
- */
-proto.ClaimFeeDepositReply.prototype.clearOutpointsList = function() {
-  return this.setOutpointsList([]);
 };
 
 

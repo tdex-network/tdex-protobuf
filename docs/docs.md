@@ -150,11 +150,6 @@
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| outpoints | [TxOutpoint](#TxOutpoint) | repeated |  |
-
-
 
 
 
@@ -163,6 +158,11 @@
 
 ### ClaimFeeDepositRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| outpoints | [TxOutpoint](#TxOutpoint) | repeated |  |
 
 
 

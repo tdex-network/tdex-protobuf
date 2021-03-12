@@ -275,6 +275,11 @@ export namespace ClaimMarketDepositReply {
 }
 
 export class ClaimFeeDepositRequest extends jspb.Message { 
+    clearOutpointsList(): void;
+    getOutpointsList(): Array<TxOutpoint>;
+    setOutpointsList(value: Array<TxOutpoint>): ClaimFeeDepositRequest;
+    addOutpoints(value?: TxOutpoint, index?: number): TxOutpoint;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ClaimFeeDepositRequest.AsObject;
@@ -288,15 +293,11 @@ export class ClaimFeeDepositRequest extends jspb.Message {
 
 export namespace ClaimFeeDepositRequest {
     export type AsObject = {
+        outpointsList: Array<TxOutpoint.AsObject>,
     }
 }
 
 export class ClaimFeeDepositReply extends jspb.Message { 
-    clearOutpointsList(): void;
-    getOutpointsList(): Array<TxOutpoint>;
-    setOutpointsList(value: Array<TxOutpoint>): ClaimFeeDepositReply;
-    addOutpoints(value?: TxOutpoint, index?: number): TxOutpoint;
-
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): ClaimFeeDepositReply.AsObject;
@@ -310,7 +311,6 @@ export class ClaimFeeDepositReply extends jspb.Message {
 
 export namespace ClaimFeeDepositReply {
     export type AsObject = {
-        outpointsList: Array<TxOutpoint.AsObject>,
     }
 }
 
