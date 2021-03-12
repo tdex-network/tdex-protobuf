@@ -57,6 +57,25 @@ service Operator {
   // Displays a report on how much the given market is collecting in Liquidity
   // Provider fees
   rpc ReportMarketFee(ReportMarketFeeRequest) returns (ReportMarketFeeReply) {}
+
+  // Operator can provide transaction(s) outpoints of deposits made to create a new market.
+  // The transaction must be visible and confirmed, otherwise an error will be returned,
+  // inviting the operator to retry again
+  rpc ClaimMarketDeposit(ClaimMarketDepositRequest) returns (ClaimMarketDepositReply) {}
+  rpc ClaimFeeDeposit(ClaimFeeDepositRequest) returns (ClaimFeeDepositReply) {}
+}
+
+message ClaimMarketDepositRequest {
+  Market market = 1;
+  repeated TxOutpoint outpoints = 2;
+}
+
+message ClaimMarketDepositReply {}
+
+message ClaimFeeDepositRequest {}
+
+message ClaimFeeDepositReply {
+  repeated TxOutpoint outpoints = 1;
 }
 
 message DepositMarketRequest {
