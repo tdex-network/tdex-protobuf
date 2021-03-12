@@ -227,28 +227,3 @@ export namespace AddressWithBlindingKey {
         blinding: string,
     }
 }
-
-export class TxOutpoint extends jspb.Message { 
-    getTxHash(): string;
-    setTxHash(value: string): TxOutpoint;
-
-    getIndex(): number;
-    setIndex(value: number): TxOutpoint;
-
-
-    serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): TxOutpoint.AsObject;
-    static toObject(includeInstance: boolean, msg: TxOutpoint): TxOutpoint.AsObject;
-    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
-    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: TxOutpoint, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): TxOutpoint;
-    static deserializeBinaryFromReader(message: TxOutpoint, reader: jspb.BinaryReader): TxOutpoint;
-}
-
-export namespace TxOutpoint {
-    export type AsObject = {
-        txHash: string,
-        index: number,
-    }
-}

@@ -30,6 +30,7 @@
     - [ReportMarketFeeReply.TotalCollectedFeesPerAssetEntry](#.ReportMarketFeeReply.TotalCollectedFeesPerAssetEntry)
     - [ReportMarketFeeRequest](#.ReportMarketFeeRequest)
     - [SwapInfo](#.SwapInfo)
+    - [TxOutpoint](#.TxOutpoint)
     - [UpdateMarketFeeReply](#.UpdateMarketFeeReply)
     - [UpdateMarketFeeRequest](#.UpdateMarketFeeRequest)
     - [UpdateMarketPriceReply](#.UpdateMarketPriceReply)
@@ -85,7 +86,6 @@
     - [MarketWithFee](#.MarketWithFee)
     - [Price](#.Price)
     - [PriceWithFee](#.PriceWithFee)
-    - [TxOutpoint](#.TxOutpoint)
   
 - [wallet.proto](#wallet.proto)
     - [BalanceInfo](#.BalanceInfo)
@@ -494,6 +494,22 @@
 
 
 
+<a name=".TxOutpoint"></a>
+
+### TxOutpoint
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| hash | [string](#string) |  |  |
+| index | [int32](#int32) |  |  |
+
+
+
+
+
+
 <a name=".UpdateMarketFeeReply"></a>
 
 ### UpdateMarketFeeReply
@@ -655,6 +671,8 @@ Service for operators to configure and manage a TDEX daemon
 | ListDepositMarket | [.ListDepositMarketRequest](#ListDepositMarketRequest) | [.ListDepositMarketReply](#ListDepositMarketReply) | Returns the list of previously generated addresses for the given market. |
 | DepositFeeAccount | [.DepositFeeAccountRequest](#DepositFeeAccountRequest) | [.DepositFeeAccountReply](#DepositFeeAccountReply) | Returns a new derived address from the fee account. This is only used to deposit some LBTC to subsidize blockchain fees. |
 | BalanceFeeAccount | [.BalanceFeeAccountRequest](#BalanceFeeAccountRequest) | [.BalanceFeeAccountReply](#BalanceFeeAccountReply) | Returns the aggregated balance of LBTC held in the fee account. |
+| ClaimMarketDeposit | [.ClaimMarketDepositRequest](#ClaimMarketDepositRequest) | [.ClaimMarketDepositReply](#ClaimMarketDepositReply) | Operator can provide transaction(s) outpoints of deposits made to fund a new market. The transaction must be visible and confirmed, otherwise an error will be returned, inviting the operator to retry again |
+| ClaimFeeDeposit | [.ClaimFeeDepositRequest](#ClaimFeeDepositRequest) | [.ClaimFeeDepositReply](#ClaimFeeDepositReply) | Operator can provide transaction(s) outpoints of deposits made to fund the fee account. The transaction must be visible and confirmed, otherwise an error will be returned, inviting the operator to retry again |
 | OpenMarket | [.OpenMarketRequest](#OpenMarketRequest) | [.OpenMarketReply](#OpenMarketReply) | Makes the given market tradable |
 | CloseMarket | [.CloseMarketRequest](#CloseMarketRequest) | [.CloseMarketReply](#CloseMarketReply) | Makes the given market NOT tradabale |
 | ListMarket | [.ListMarketRequest](#ListMarketRequest) | [.ListMarketReply](#ListMarketReply) | Get extended details for each markets either open, closed or to be funded. |
@@ -664,8 +682,6 @@ Service for operators to configure and manage a TDEX daemon
 | WithdrawMarket | [.WithdrawMarketRequest](#WithdrawMarketRequest) | [.WithdrawMarketReply](#WithdrawMarketReply) | WithdrawMarket allows the operator to withdraw to external wallet funds from a specific market. The Market MUST be closed before doing this change. |
 | ListSwaps | [.ListSwapsRequest](#ListSwapsRequest) | [.ListSwapsReply](#ListSwapsReply) | Returs all the swaps processed by the daemon (both attempted and completed) |
 | ReportMarketFee | [.ReportMarketFeeRequest](#ReportMarketFeeRequest) | [.ReportMarketFeeReply](#ReportMarketFeeReply) | Displays a report on how much the given market is collecting in Liquidity Provider fees |
-| ClaimMarketDeposit | [.ClaimMarketDepositRequest](#ClaimMarketDepositRequest) | [.ClaimMarketDepositReply](#ClaimMarketDepositReply) | Operator can provide transaction(s) outpoints of deposits made to create a new market. The transaction must be visible and confirmed, otherwise an error will be returned, inviting the operator to retry again |
-| ClaimFeeDeposit | [.ClaimFeeDepositRequest](#ClaimFeeDepositRequest) | [.ClaimFeeDepositReply](#ClaimFeeDepositReply) |  |
 
  
 
@@ -1228,22 +1244,6 @@ Custom Types
 | fee | [Fee](#Fee) |  |  |
 | amount | [uint64](#uint64) |  |  |
 | asset | [string](#string) |  |  |
-
-
-
-
-
-
-<a name=".TxOutpoint"></a>
-
-### TxOutpoint
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| tx_hash | [string](#string) |  |  |
-| index | [int32](#int32) |  |  |
 
 
 

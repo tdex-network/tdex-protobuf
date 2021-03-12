@@ -389,6 +389,34 @@ balanceFeeAccount: {
     responseSerialize: serialize_BalanceFeeAccountReply,
     responseDeserialize: deserialize_BalanceFeeAccountReply,
   },
+  // Operator can provide transaction(s) outpoints of deposits made to fund a new market.
+// The transaction must be visible and confirmed, otherwise an error will be returned,
+// inviting the operator to retry again
+claimMarketDeposit: {
+    path: '/Operator/ClaimMarketDeposit',
+    requestStream: false,
+    responseStream: false,
+    requestType: operator_pb.ClaimMarketDepositRequest,
+    responseType: operator_pb.ClaimMarketDepositReply,
+    requestSerialize: serialize_ClaimMarketDepositRequest,
+    requestDeserialize: deserialize_ClaimMarketDepositRequest,
+    responseSerialize: serialize_ClaimMarketDepositReply,
+    responseDeserialize: deserialize_ClaimMarketDepositReply,
+  },
+  // Operator can provide transaction(s) outpoints of deposits made to fund the fee account.
+// The transaction must be visible and confirmed, otherwise an error will be returned,
+// inviting the operator to retry again
+claimFeeDeposit: {
+    path: '/Operator/ClaimFeeDeposit',
+    requestStream: false,
+    responseStream: false,
+    requestType: operator_pb.ClaimFeeDepositRequest,
+    responseType: operator_pb.ClaimFeeDepositReply,
+    requestSerialize: serialize_ClaimFeeDepositRequest,
+    requestDeserialize: deserialize_ClaimFeeDepositRequest,
+    responseSerialize: serialize_ClaimFeeDepositReply,
+    responseDeserialize: deserialize_ClaimFeeDepositReply,
+  },
   // Makes the given market tradable
 openMarket: {
     path: '/Operator/OpenMarket',
@@ -502,31 +530,6 @@ reportMarketFee: {
     requestDeserialize: deserialize_ReportMarketFeeRequest,
     responseSerialize: serialize_ReportMarketFeeReply,
     responseDeserialize: deserialize_ReportMarketFeeReply,
-  },
-  // Operator can provide transaction(s) outpoints of deposits made to create a new market.
-// The transaction must be visible and confirmed, otherwise an error will be returned,
-// inviting the operator to retry again
-claimMarketDeposit: {
-    path: '/Operator/ClaimMarketDeposit',
-    requestStream: false,
-    responseStream: false,
-    requestType: operator_pb.ClaimMarketDepositRequest,
-    responseType: operator_pb.ClaimMarketDepositReply,
-    requestSerialize: serialize_ClaimMarketDepositRequest,
-    requestDeserialize: deserialize_ClaimMarketDepositRequest,
-    responseSerialize: serialize_ClaimMarketDepositReply,
-    responseDeserialize: deserialize_ClaimMarketDepositReply,
-  },
-  claimFeeDeposit: {
-    path: '/Operator/ClaimFeeDeposit',
-    requestStream: false,
-    responseStream: false,
-    requestType: operator_pb.ClaimFeeDepositRequest,
-    responseType: operator_pb.ClaimFeeDepositReply,
-    requestSerialize: serialize_ClaimFeeDepositRequest,
-    requestDeserialize: deserialize_ClaimFeeDepositRequest,
-    responseSerialize: serialize_ClaimFeeDepositReply,
-    responseDeserialize: deserialize_ClaimFeeDepositReply,
   },
 };
 

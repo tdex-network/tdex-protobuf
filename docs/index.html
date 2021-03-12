@@ -283,6 +283,10 @@
                 </li>
               
                 <li>
+                  <a href="#.TxOutpoint"><span class="badge">M</span>TxOutpoint</a>
+                </li>
+              
+                <li>
                   <a href="#.UpdateMarketFeeReply"><span class="badge">M</span>UpdateMarketFeeReply</a>
                 </li>
               
@@ -492,10 +496,6 @@
               
                 <li>
                   <a href="#.PriceWithFee"><span class="badge">M</span>PriceWithFee</a>
-                </li>
-              
-                <li>
-                  <a href="#.TxOutpoint"><span class="badge">M</span>TxOutpoint</a>
                 </li>
               
               
@@ -1245,6 +1245,37 @@ entry for each asset and the amount should be the aggregated total. </p></td>
 
         
       
+        <h3 id=".TxOutpoint">TxOutpoint</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>hash</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>index</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".UpdateMarketFeeReply">UpdateMarketFeeReply</h3>
         <p></p>
 
@@ -1562,6 +1593,24 @@ This is only used to deposit some LBTC to subsidize blockchain fees.</p></td>
               </tr>
             
               <tr>
+                <td>ClaimMarketDeposit</td>
+                <td><a href="#ClaimMarketDepositRequest">.ClaimMarketDepositRequest</a></td>
+                <td><a href="#ClaimMarketDepositReply">.ClaimMarketDepositReply</a></td>
+                <td><p>Operator can provide transaction(s) outpoints of deposits made to fund a new market.
+The transaction must be visible and confirmed, otherwise an error will be returned,
+inviting the operator to retry again</p></td>
+              </tr>
+            
+              <tr>
+                <td>ClaimFeeDeposit</td>
+                <td><a href="#ClaimFeeDepositRequest">.ClaimFeeDepositRequest</a></td>
+                <td><a href="#ClaimFeeDepositReply">.ClaimFeeDepositReply</a></td>
+                <td><p>Operator can provide transaction(s) outpoints of deposits made to fund the fee account.
+The transaction must be visible and confirmed, otherwise an error will be returned,
+inviting the operator to retry again</p></td>
+              </tr>
+            
+              <tr>
                 <td>OpenMarket</td>
                 <td><a href="#OpenMarketRequest">.OpenMarketRequest</a></td>
                 <td><a href="#OpenMarketReply">.OpenMarketReply</a></td>
@@ -1628,22 +1677,6 @@ from a specific market. The Market MUST be closed before doing this change.</p><
                 <td><a href="#ReportMarketFeeReply">.ReportMarketFeeReply</a></td>
                 <td><p>Displays a report on how much the given market is collecting in Liquidity
 Provider fees</p></td>
-              </tr>
-            
-              <tr>
-                <td>ClaimMarketDeposit</td>
-                <td><a href="#ClaimMarketDepositRequest">.ClaimMarketDepositRequest</a></td>
-                <td><a href="#ClaimMarketDepositReply">.ClaimMarketDepositReply</a></td>
-                <td><p>Operator can provide transaction(s) outpoints of deposits made to create a new market.
-The transaction must be visible and confirmed, otherwise an error will be returned,
-inviting the operator to retry again</p></td>
-              </tr>
-            
-              <tr>
-                <td>ClaimFeeDeposit</td>
-                <td><a href="#ClaimFeeDepositRequest">.ClaimFeeDepositRequest</a></td>
-                <td><a href="#ClaimFeeDepositReply">.ClaimFeeDepositReply</a></td>
-                <td><p></p></td>
               </tr>
             
           </tbody>
@@ -2770,37 +2803,6 @@ transaction hash of the broadcasted transaction.</p></td>
                 <tr>
                   <td>asset</td>
                   <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id=".TxOutpoint">TxOutpoint</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>tx_hash</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>index</td>
-                  <td><a href="#int32">int32</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
