@@ -24,6 +24,17 @@ service Operator {
   rpc BalanceFeeAccount(BalanceFeeAccountRequest)
       returns (BalanceFeeAccountReply) {}
 
+    // Operator can provide transaction(s) outpoints of deposits made to fund a new market.
+  // The transaction must be visible and confirmed, otherwise an error will be returned,
+  // inviting the operator to retry again
+  rpc ClaimMarketDeposit(ClaimMarketDepositRequest) returns (ClaimMarketDepositReply) {}
+
+  
+  // Operator can provide transaction(s) outpoints of deposits made to fund the fee account.
+  // The transaction must be visible and confirmed, otherwise an error will be returned,
+  // inviting the operator to retry again
+  rpc ClaimFeeDeposit(ClaimFeeDepositRequest) returns (ClaimFeeDepositReply) {}
+
   // Makes the given market tradable
   rpc OpenMarket(OpenMarketRequest) returns (OpenMarketReply) {}
   // Makes the given market NOT tradabale
@@ -57,25 +68,6 @@ service Operator {
   // Displays a report on how much the given market is collecting in Liquidity
   // Provider fees
   rpc ReportMarketFee(ReportMarketFeeRequest) returns (ReportMarketFeeReply) {}
-
-  // Operator can provide transaction(s) outpoints of deposits made to create a new market.
-  // The transaction must be visible and confirmed, otherwise an error will be returned,
-  // inviting the operator to retry again
-  rpc ClaimMarketDeposit(ClaimMarketDepositRequest) returns (ClaimMarketDepositReply) {}
-  rpc ClaimFeeDeposit(ClaimFeeDepositRequest) returns (ClaimFeeDepositReply) {}
-}
-
-message ClaimMarketDepositRequest {
-  Market market = 1;
-  repeated TxOutpoint outpoints = 2;
-}
-
-message ClaimMarketDepositReply {}
-
-message ClaimFeeDepositRequest {}
-
-message ClaimFeeDepositReply {
-  repeated TxOutpoint outpoints = 1;
 }
 
 message DepositMarketRequest {
@@ -101,6 +93,19 @@ message BalanceFeeAccountReply { int64 balance = 1; }
 
 message ListMarketRequest {}
 message ListMarketReply { repeated MarketInfo markets = 1; }
+
+message ClaimMarketDepositRequest {
+  Market market = 1;
+  repeated TxOutpoint outpoints = 2;
+}
+
+message ClaimMarketDepositReply {}
+
+message ClaimFeeDepositRequest {}
+
+message ClaimFeeDepositReply {
+  repeated TxOutpoint outpoints = 1;
+}
 
 message OpenMarketRequest {
   Market market = 1; // Market to be made tradable
@@ -216,4 +221,9 @@ message FeeInfo {
   string asset = 3;
   uint64 amount = 4;
   float market_price = 5;
+}
+
+message TxOutpoint {
+  string hash = 1;
+  int32 index = 2;
 }
