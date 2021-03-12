@@ -7,6 +7,8 @@
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
+/* eslint-disable */
+// @ts-nocheck
 
 var jspb = require('google-protobuf');
 var goog = jspb;
@@ -843,7 +845,8 @@ proto.MarketPriceRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
     market: (f = msg.getMarket()) && types_pb.Market.toObject(includeInstance, f),
     type: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    amount: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    amount: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    asset: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -893,6 +896,10 @@ proto.MarketPriceRequest.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {number} */ (reader.readUint64());
       msg.setAmount(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAsset(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -941,6 +948,13 @@ proto.MarketPriceRequest.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0) {
     writer.writeUint64(
       3,
+      f
+    );
+  }
+  f = message.getAsset();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
       f
     );
   }
@@ -1017,6 +1031,24 @@ proto.MarketPriceRequest.prototype.getAmount = function() {
  */
 proto.MarketPriceRequest.prototype.setAmount = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional string asset = 4;
+ * @return {string}
+ */
+proto.MarketPriceRequest.prototype.getAsset = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.MarketPriceRequest} returns this
+ */
+proto.MarketPriceRequest.prototype.setAsset = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 

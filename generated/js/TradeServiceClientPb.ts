@@ -13,30 +13,18 @@
 
 import * as grpcWeb from 'grpc-web';
 
-import * as swap_pb from './swap_pb';
-import * as types_pb from './types_pb';
+import * as trade_pb from './trade_pb';
 
-import {
-  BalancesReply,
-  BalancesRequest,
-  MarketPriceReply,
-  MarketPriceRequest,
-  MarketsReply,
-  MarketsRequest,
-  TradeCompleteReply,
-  TradeCompleteRequest,
-  TradeProposeReply,
-  TradeProposeRequest} from './trade_pb';
 
 export class TradeClient {
   client_: grpcWeb.AbstractClientBase;
   hostname_: string;
   credentials_: null | { [index: string]: string; };
-  options_: null | { [index: string]: string; };
+  options_: null | { [index: string]: any; };
 
   constructor (hostname: string,
                credentials?: null | { [index: string]: string; },
-               options?: null | { [index: string]: string; }) {
+               options?: null | { [index: string]: any; }) {
     if (!options) options = {};
     if (!credentials) credentials = {};
     options['format'] = 'text';
@@ -48,31 +36,32 @@ export class TradeClient {
   }
 
   methodInfoMarkets = new grpcWeb.AbstractClientBase.MethodInfo(
-    MarketsReply,
-    (request: MarketsRequest) => {
+    trade_pb.MarketsReply,
+    (request: trade_pb.MarketsRequest) => {
       return request.serializeBinary();
     },
-    MarketsReply.deserializeBinary
+    trade_pb.MarketsReply.deserializeBinary
   );
 
   markets(
-    request: MarketsRequest,
-    metadata: grpcWeb.Metadata | null): Promise<MarketsReply>;
+    request: trade_pb.MarketsRequest,
+    metadata: grpcWeb.Metadata | null): Promise<trade_pb.MarketsReply>;
 
   markets(
-    request: MarketsRequest,
+    request: trade_pb.MarketsRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
-               response: MarketsReply) => void): grpcWeb.ClientReadableStream<MarketsReply>;
+               response: trade_pb.MarketsReply) => void): grpcWeb.ClientReadableStream<trade_pb.MarketsReply>;
 
   markets(
-    request: MarketsRequest,
+    request: trade_pb.MarketsRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.Error,
-               response: MarketsReply) => void) {
+               response: trade_pb.MarketsReply) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
-        new URL('/Trade/Markets', this.hostname_).toString(),
+        this.hostname_ +
+          '/Trade/Markets',
         request,
         metadata || {},
         this.methodInfoMarkets,
@@ -87,31 +76,32 @@ export class TradeClient {
   }
 
   methodInfoBalances = new grpcWeb.AbstractClientBase.MethodInfo(
-    BalancesReply,
-    (request: BalancesRequest) => {
+    trade_pb.BalancesReply,
+    (request: trade_pb.BalancesRequest) => {
       return request.serializeBinary();
     },
-    BalancesReply.deserializeBinary
+    trade_pb.BalancesReply.deserializeBinary
   );
 
   balances(
-    request: BalancesRequest,
-    metadata: grpcWeb.Metadata | null): Promise<BalancesReply>;
+    request: trade_pb.BalancesRequest,
+    metadata: grpcWeb.Metadata | null): Promise<trade_pb.BalancesReply>;
 
   balances(
-    request: BalancesRequest,
+    request: trade_pb.BalancesRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
-               response: BalancesReply) => void): grpcWeb.ClientReadableStream<BalancesReply>;
+               response: trade_pb.BalancesReply) => void): grpcWeb.ClientReadableStream<trade_pb.BalancesReply>;
 
   balances(
-    request: BalancesRequest,
+    request: trade_pb.BalancesRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.Error,
-               response: BalancesReply) => void) {
+               response: trade_pb.BalancesReply) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
-        new URL('/Trade/Balances', this.hostname_).toString(),
+        this.hostname_ +
+          '/Trade/Balances',
         request,
         metadata || {},
         this.methodInfoBalances,
@@ -126,31 +116,32 @@ export class TradeClient {
   }
 
   methodInfoMarketPrice = new grpcWeb.AbstractClientBase.MethodInfo(
-    MarketPriceReply,
-    (request: MarketPriceRequest) => {
+    trade_pb.MarketPriceReply,
+    (request: trade_pb.MarketPriceRequest) => {
       return request.serializeBinary();
     },
-    MarketPriceReply.deserializeBinary
+    trade_pb.MarketPriceReply.deserializeBinary
   );
 
   marketPrice(
-    request: MarketPriceRequest,
-    metadata: grpcWeb.Metadata | null): Promise<MarketPriceReply>;
+    request: trade_pb.MarketPriceRequest,
+    metadata: grpcWeb.Metadata | null): Promise<trade_pb.MarketPriceReply>;
 
   marketPrice(
-    request: MarketPriceRequest,
+    request: trade_pb.MarketPriceRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
-               response: MarketPriceReply) => void): grpcWeb.ClientReadableStream<MarketPriceReply>;
+               response: trade_pb.MarketPriceReply) => void): grpcWeb.ClientReadableStream<trade_pb.MarketPriceReply>;
 
   marketPrice(
-    request: MarketPriceRequest,
+    request: trade_pb.MarketPriceRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.Error,
-               response: MarketPriceReply) => void) {
+               response: trade_pb.MarketPriceReply) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
-        new URL('/Trade/MarketPrice', this.hostname_).toString(),
+        this.hostname_ +
+          '/Trade/MarketPrice',
         request,
         metadata || {},
         this.methodInfoMarketPrice,
@@ -165,36 +156,38 @@ export class TradeClient {
   }
 
   methodInfoTradePropose = new grpcWeb.AbstractClientBase.MethodInfo(
-    TradeProposeReply,
-    (request: TradeProposeRequest) => {
+    trade_pb.TradeProposeReply,
+    (request: trade_pb.TradeProposeRequest) => {
       return request.serializeBinary();
     },
-    TradeProposeReply.deserializeBinary
+    trade_pb.TradeProposeReply.deserializeBinary
   );
 
   tradePropose(
-    request: TradeProposeRequest,
+    request: trade_pb.TradeProposeRequest,
     metadata?: grpcWeb.Metadata) {
     return this.client_.serverStreaming(
-      new URL('/Trade/TradePropose', this.hostname_).toString(),
+      this.hostname_ +
+        '/Trade/TradePropose',
       request,
       metadata || {},
       this.methodInfoTradePropose);
   }
 
   methodInfoTradeComplete = new grpcWeb.AbstractClientBase.MethodInfo(
-    TradeCompleteReply,
-    (request: TradeCompleteRequest) => {
+    trade_pb.TradeCompleteReply,
+    (request: trade_pb.TradeCompleteRequest) => {
       return request.serializeBinary();
     },
-    TradeCompleteReply.deserializeBinary
+    trade_pb.TradeCompleteReply.deserializeBinary
   );
 
   tradeComplete(
-    request: TradeCompleteRequest,
+    request: trade_pb.TradeCompleteRequest,
     metadata?: grpcWeb.Metadata) {
     return this.client_.serverStreaming(
-      new URL('/Trade/TradeComplete', this.hostname_).toString(),
+      this.hostname_ +
+        '/Trade/TradeComplete',
       request,
       metadata || {},
       this.methodInfoTradeComplete);

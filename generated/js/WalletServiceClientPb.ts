@@ -13,31 +13,18 @@
 
 import * as grpcWeb from 'grpc-web';
 
-import {
-  ChangePasswordReply,
-  ChangePasswordRequest,
-  GenSeedReply,
-  GenSeedRequest,
-  InitWalletReply,
-  InitWalletRequest,
-  SendToManyReply,
-  SendToManyRequest,
-  UnlockWalletReply,
-  UnlockWalletRequest,
-  WalletAddressReply,
-  WalletAddressRequest,
-  WalletBalanceReply,
-  WalletBalanceRequest} from './wallet_pb';
+import * as wallet_pb from './wallet_pb';
+
 
 export class WalletClient {
   client_: grpcWeb.AbstractClientBase;
   hostname_: string;
   credentials_: null | { [index: string]: string; };
-  options_: null | { [index: string]: string; };
+  options_: null | { [index: string]: any; };
 
   constructor (hostname: string,
                credentials?: null | { [index: string]: string; },
-               options?: null | { [index: string]: string; }) {
+               options?: null | { [index: string]: any; }) {
     if (!options) options = {};
     if (!credentials) credentials = {};
     options['format'] = 'text';
@@ -49,31 +36,32 @@ export class WalletClient {
   }
 
   methodInfoGenSeed = new grpcWeb.AbstractClientBase.MethodInfo(
-    GenSeedReply,
-    (request: GenSeedRequest) => {
+    wallet_pb.GenSeedReply,
+    (request: wallet_pb.GenSeedRequest) => {
       return request.serializeBinary();
     },
-    GenSeedReply.deserializeBinary
+    wallet_pb.GenSeedReply.deserializeBinary
   );
 
   genSeed(
-    request: GenSeedRequest,
-    metadata: grpcWeb.Metadata | null): Promise<GenSeedReply>;
+    request: wallet_pb.GenSeedRequest,
+    metadata: grpcWeb.Metadata | null): Promise<wallet_pb.GenSeedReply>;
 
   genSeed(
-    request: GenSeedRequest,
+    request: wallet_pb.GenSeedRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
-               response: GenSeedReply) => void): grpcWeb.ClientReadableStream<GenSeedReply>;
+               response: wallet_pb.GenSeedReply) => void): grpcWeb.ClientReadableStream<wallet_pb.GenSeedReply>;
 
   genSeed(
-    request: GenSeedRequest,
+    request: wallet_pb.GenSeedRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.Error,
-               response: GenSeedReply) => void) {
+               response: wallet_pb.GenSeedReply) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
-        new URL('/Wallet/GenSeed', this.hostname_).toString(),
+        this.hostname_ +
+          '/Wallet/GenSeed',
         request,
         metadata || {},
         this.methodInfoGenSeed,
@@ -88,49 +76,51 @@ export class WalletClient {
   }
 
   methodInfoInitWallet = new grpcWeb.AbstractClientBase.MethodInfo(
-    InitWalletReply,
-    (request: InitWalletRequest) => {
+    wallet_pb.InitWalletReply,
+    (request: wallet_pb.InitWalletRequest) => {
       return request.serializeBinary();
     },
-    InitWalletReply.deserializeBinary
+    wallet_pb.InitWalletReply.deserializeBinary
   );
 
   initWallet(
-    request: InitWalletRequest,
+    request: wallet_pb.InitWalletRequest,
     metadata?: grpcWeb.Metadata) {
     return this.client_.serverStreaming(
-      new URL('/Wallet/InitWallet', this.hostname_).toString(),
+      this.hostname_ +
+        '/Wallet/InitWallet',
       request,
       metadata || {},
       this.methodInfoInitWallet);
   }
 
   methodInfoUnlockWallet = new grpcWeb.AbstractClientBase.MethodInfo(
-    UnlockWalletReply,
-    (request: UnlockWalletRequest) => {
+    wallet_pb.UnlockWalletReply,
+    (request: wallet_pb.UnlockWalletRequest) => {
       return request.serializeBinary();
     },
-    UnlockWalletReply.deserializeBinary
+    wallet_pb.UnlockWalletReply.deserializeBinary
   );
 
   unlockWallet(
-    request: UnlockWalletRequest,
-    metadata: grpcWeb.Metadata | null): Promise<UnlockWalletReply>;
+    request: wallet_pb.UnlockWalletRequest,
+    metadata: grpcWeb.Metadata | null): Promise<wallet_pb.UnlockWalletReply>;
 
   unlockWallet(
-    request: UnlockWalletRequest,
+    request: wallet_pb.UnlockWalletRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
-               response: UnlockWalletReply) => void): grpcWeb.ClientReadableStream<UnlockWalletReply>;
+               response: wallet_pb.UnlockWalletReply) => void): grpcWeb.ClientReadableStream<wallet_pb.UnlockWalletReply>;
 
   unlockWallet(
-    request: UnlockWalletRequest,
+    request: wallet_pb.UnlockWalletRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.Error,
-               response: UnlockWalletReply) => void) {
+               response: wallet_pb.UnlockWalletReply) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
-        new URL('/Wallet/UnlockWallet', this.hostname_).toString(),
+        this.hostname_ +
+          '/Wallet/UnlockWallet',
         request,
         metadata || {},
         this.methodInfoUnlockWallet,
@@ -145,31 +135,32 @@ export class WalletClient {
   }
 
   methodInfoChangePassword = new grpcWeb.AbstractClientBase.MethodInfo(
-    ChangePasswordReply,
-    (request: ChangePasswordRequest) => {
+    wallet_pb.ChangePasswordReply,
+    (request: wallet_pb.ChangePasswordRequest) => {
       return request.serializeBinary();
     },
-    ChangePasswordReply.deserializeBinary
+    wallet_pb.ChangePasswordReply.deserializeBinary
   );
 
   changePassword(
-    request: ChangePasswordRequest,
-    metadata: grpcWeb.Metadata | null): Promise<ChangePasswordReply>;
+    request: wallet_pb.ChangePasswordRequest,
+    metadata: grpcWeb.Metadata | null): Promise<wallet_pb.ChangePasswordReply>;
 
   changePassword(
-    request: ChangePasswordRequest,
+    request: wallet_pb.ChangePasswordRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
-               response: ChangePasswordReply) => void): grpcWeb.ClientReadableStream<ChangePasswordReply>;
+               response: wallet_pb.ChangePasswordReply) => void): grpcWeb.ClientReadableStream<wallet_pb.ChangePasswordReply>;
 
   changePassword(
-    request: ChangePasswordRequest,
+    request: wallet_pb.ChangePasswordRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.Error,
-               response: ChangePasswordReply) => void) {
+               response: wallet_pb.ChangePasswordReply) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
-        new URL('/Wallet/ChangePassword', this.hostname_).toString(),
+        this.hostname_ +
+          '/Wallet/ChangePassword',
         request,
         metadata || {},
         this.methodInfoChangePassword,
@@ -184,31 +175,32 @@ export class WalletClient {
   }
 
   methodInfoWalletAddress = new grpcWeb.AbstractClientBase.MethodInfo(
-    WalletAddressReply,
-    (request: WalletAddressRequest) => {
+    wallet_pb.WalletAddressReply,
+    (request: wallet_pb.WalletAddressRequest) => {
       return request.serializeBinary();
     },
-    WalletAddressReply.deserializeBinary
+    wallet_pb.WalletAddressReply.deserializeBinary
   );
 
   walletAddress(
-    request: WalletAddressRequest,
-    metadata: grpcWeb.Metadata | null): Promise<WalletAddressReply>;
+    request: wallet_pb.WalletAddressRequest,
+    metadata: grpcWeb.Metadata | null): Promise<wallet_pb.WalletAddressReply>;
 
   walletAddress(
-    request: WalletAddressRequest,
+    request: wallet_pb.WalletAddressRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
-               response: WalletAddressReply) => void): grpcWeb.ClientReadableStream<WalletAddressReply>;
+               response: wallet_pb.WalletAddressReply) => void): grpcWeb.ClientReadableStream<wallet_pb.WalletAddressReply>;
 
   walletAddress(
-    request: WalletAddressRequest,
+    request: wallet_pb.WalletAddressRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.Error,
-               response: WalletAddressReply) => void) {
+               response: wallet_pb.WalletAddressReply) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
-        new URL('/Wallet/WalletAddress', this.hostname_).toString(),
+        this.hostname_ +
+          '/Wallet/WalletAddress',
         request,
         metadata || {},
         this.methodInfoWalletAddress,
@@ -223,31 +215,32 @@ export class WalletClient {
   }
 
   methodInfoWalletBalance = new grpcWeb.AbstractClientBase.MethodInfo(
-    WalletBalanceReply,
-    (request: WalletBalanceRequest) => {
+    wallet_pb.WalletBalanceReply,
+    (request: wallet_pb.WalletBalanceRequest) => {
       return request.serializeBinary();
     },
-    WalletBalanceReply.deserializeBinary
+    wallet_pb.WalletBalanceReply.deserializeBinary
   );
 
   walletBalance(
-    request: WalletBalanceRequest,
-    metadata: grpcWeb.Metadata | null): Promise<WalletBalanceReply>;
+    request: wallet_pb.WalletBalanceRequest,
+    metadata: grpcWeb.Metadata | null): Promise<wallet_pb.WalletBalanceReply>;
 
   walletBalance(
-    request: WalletBalanceRequest,
+    request: wallet_pb.WalletBalanceRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
-               response: WalletBalanceReply) => void): grpcWeb.ClientReadableStream<WalletBalanceReply>;
+               response: wallet_pb.WalletBalanceReply) => void): grpcWeb.ClientReadableStream<wallet_pb.WalletBalanceReply>;
 
   walletBalance(
-    request: WalletBalanceRequest,
+    request: wallet_pb.WalletBalanceRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.Error,
-               response: WalletBalanceReply) => void) {
+               response: wallet_pb.WalletBalanceReply) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
-        new URL('/Wallet/WalletBalance', this.hostname_).toString(),
+        this.hostname_ +
+          '/Wallet/WalletBalance',
         request,
         metadata || {},
         this.methodInfoWalletBalance,
@@ -262,31 +255,32 @@ export class WalletClient {
   }
 
   methodInfoSendToMany = new grpcWeb.AbstractClientBase.MethodInfo(
-    SendToManyReply,
-    (request: SendToManyRequest) => {
+    wallet_pb.SendToManyReply,
+    (request: wallet_pb.SendToManyRequest) => {
       return request.serializeBinary();
     },
-    SendToManyReply.deserializeBinary
+    wallet_pb.SendToManyReply.deserializeBinary
   );
 
   sendToMany(
-    request: SendToManyRequest,
-    metadata: grpcWeb.Metadata | null): Promise<SendToManyReply>;
+    request: wallet_pb.SendToManyRequest,
+    metadata: grpcWeb.Metadata | null): Promise<wallet_pb.SendToManyReply>;
 
   sendToMany(
-    request: SendToManyRequest,
+    request: wallet_pb.SendToManyRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
-               response: SendToManyReply) => void): grpcWeb.ClientReadableStream<SendToManyReply>;
+               response: wallet_pb.SendToManyReply) => void): grpcWeb.ClientReadableStream<wallet_pb.SendToManyReply>;
 
   sendToMany(
-    request: SendToManyRequest,
+    request: wallet_pb.SendToManyRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.Error,
-               response: SendToManyReply) => void) {
+               response: wallet_pb.SendToManyReply) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
-        new URL('/Wallet/SendToMany', this.hostname_).toString(),
+        this.hostname_ +
+          '/Wallet/SendToMany',
         request,
         metadata || {},
         this.methodInfoSendToMany,

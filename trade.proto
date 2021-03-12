@@ -14,7 +14,7 @@ service Trade {
 
   // MarketPrice: Gets the current market price. In case of AMM startegy, the
   // trade type and
-  // the amount of base asset to be either sent or received.
+  // the amount of asset to be either sent or received.
   //
   // BUY = quote asset as input
   // SELL = base asset as input
@@ -63,6 +63,7 @@ message MarketPriceRequest {
   Market market = 1;
   TradeType type = 2;
   uint64 amount = 3;
+  string asset = 4;
 }
 message MarketPriceReply { repeated PriceWithFee prices = 1; }
 

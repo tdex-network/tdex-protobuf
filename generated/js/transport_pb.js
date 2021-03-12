@@ -7,6 +7,8 @@
  * @public
  */
 // GENERATED CODE -- DO NOT EDIT!
+/* eslint-disable */
+// @ts-nocheck
 
 var jspb = require('google-protobuf');
 var goog = jspb;
@@ -348,8 +350,10 @@ proto.AvailableTransport.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = /** @type {!Array<!proto.TransportType>} */ (reader.readPackedEnum());
-      msg.setTransportList(value);
+      var values = /** @type {!Array<!proto.TransportType>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addTransport(values[i]);
+      }
       break;
     default:
       reader.skipField();

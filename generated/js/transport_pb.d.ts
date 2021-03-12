@@ -1,57 +1,69 @@
-import * as jspb from "google-protobuf"
+// package: 
+// file: transport.proto
 
-export class Transport extends jspb.Message {
-  getType(): TransportType;
-  setType(value: TransportType): Transport;
+/* tslint:disable */
+/* eslint-disable */
 
-  getName(): string;
-  setName(value: string): Transport;
+import * as jspb from "google-protobuf";
 
-  getData(): Uint8Array | string;
-  getData_asU8(): Uint8Array;
-  getData_asB64(): string;
-  setData(value: Uint8Array | string): Transport;
+export class Transport extends jspb.Message { 
+    getType(): TransportType;
+    setType(value: TransportType): Transport;
 
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Transport.AsObject;
-  static toObject(includeInstance: boolean, msg: Transport): Transport.AsObject;
-  static serializeBinaryToWriter(message: Transport, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Transport;
-  static deserializeBinaryFromReader(message: Transport, reader: jspb.BinaryReader): Transport;
+    getName(): string;
+    setName(value: string): Transport;
+
+    getData(): Uint8Array | string;
+    getData_asU8(): Uint8Array;
+    getData_asB64(): string;
+    setData(value: Uint8Array | string): Transport;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Transport.AsObject;
+    static toObject(includeInstance: boolean, msg: Transport): Transport.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Transport, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Transport;
+    static deserializeBinaryFromReader(message: Transport, reader: jspb.BinaryReader): Transport;
 }
 
 export namespace Transport {
-  export type AsObject = {
-    type: TransportType,
-    name: string,
-    data: Uint8Array | string,
-  }
+    export type AsObject = {
+        type: TransportType,
+        name: string,
+        data: Uint8Array | string,
+    }
 }
 
-export class AvailableTransport extends jspb.Message {
-  getTransportList(): Array<TransportType>;
-  setTransportList(value: Array<TransportType>): AvailableTransport;
-  clearTransportList(): AvailableTransport;
-  addTransport(value: TransportType, index?: number): AvailableTransport;
+export class AvailableTransport extends jspb.Message { 
+    clearTransportList(): void;
+    getTransportList(): Array<TransportType>;
+    setTransportList(value: Array<TransportType>): AvailableTransport;
+    addTransport(value: TransportType, index?: number): TransportType;
 
-  serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): AvailableTransport.AsObject;
-  static toObject(includeInstance: boolean, msg: AvailableTransport): AvailableTransport.AsObject;
-  static serializeBinaryToWriter(message: AvailableTransport, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): AvailableTransport;
-  static deserializeBinaryFromReader(message: AvailableTransport, reader: jspb.BinaryReader): AvailableTransport;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): AvailableTransport.AsObject;
+    static toObject(includeInstance: boolean, msg: AvailableTransport): AvailableTransport.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: AvailableTransport, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): AvailableTransport;
+    static deserializeBinaryFromReader(message: AvailableTransport, reader: jspb.BinaryReader): AvailableTransport;
 }
 
 export namespace AvailableTransport {
-  export type AsObject = {
-    transportList: Array<TransportType>,
-  }
+    export type AsObject = {
+        transportList: Array<TransportType>,
+    }
 }
 
-export enum TransportType { 
-  INSECURE = 0,
-  ONION = 1,
-  TLS = 2,
-  MTLS = 3,
-  NOISE = 4,
+export enum TransportType {
+    INSECURE = 0,
+    ONION = 1,
+    TLS = 2,
+    MTLS = 3,
+    NOISE = 4,
 }
