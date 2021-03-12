@@ -101,11 +101,11 @@ message ClaimMarketDepositRequest {
 
 message ClaimMarketDepositReply {}
 
-message ClaimFeeDepositRequest {}
-
-message ClaimFeeDepositReply {
+message ClaimFeeDepositRequest {
   repeated TxOutpoint outpoints = 1;
 }
+
+message ClaimFeeDepositReply {}
 
 message OpenMarketRequest {
   Market market = 1; // Market to be made tradable
