@@ -45,8 +45,3 @@ message AddressWithBlindingKey {
   string blinding = 2;
 }
 
-message TxOutpoint {
-  string tx_hash = 1;
-  int32 index = 2;
-}
-
