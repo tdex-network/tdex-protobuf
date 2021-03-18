@@ -68,7 +68,13 @@ service Operator {
   // Displays a report on how much the given market is collecting in Liquidity
   // Provider fees
   rpc ReportMarketFee(ReportMarketFeeRequest) returns (ReportMarketFeeReply) {}
+
+  // Triggers reloading of unspents for stored addresses from blockchain
+  rpc ReloadUtxos(ReloadUtxosRequest) returns(ReloadUtxosReply) {}
 }
+
+message ReloadUtxosRequest {}
+message ReloadUtxosReply {}
 
 message DepositMarketRequest {
   Market market = 1; // Market to get an address from. Could be empty.
