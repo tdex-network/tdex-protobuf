@@ -59,6 +59,8 @@ type OperatorClient interface {
 	// Displays a report on how much the given market is collecting in Liquidity
 	// Provider fees
 	ReportMarketFee(ctx context.Context, in *ReportMarketFeeRequest, opts ...grpc.CallOption) (*ReportMarketFeeReply, error)
+	// Triggers reloading of unspents for stored addresses from blockchain
+	ReloadUtxos(ctx context.Context, in *ReloadUtxosRequest, opts ...grpc.CallOption) (*ReloadUtxosReply, error)
 }
 
 type operatorClient struct {
@@ -204,6 +206,15 @@ func (c *operatorClient) ReportMarketFee(ctx context.Context, in *ReportMarketFe
 	return out, nil
 }
 
+func (c *operatorClient) ReloadUtxos(ctx context.Context, in *ReloadUtxosRequest, opts ...grpc.CallOption) (*ReloadUtxosReply, error) {
+	out := new(ReloadUtxosReply)
+	err := c.cc.Invoke(ctx, "/Operator/ReloadUtxos", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OperatorServer is the server API for Operator service.
 // All implementations must embed UnimplementedOperatorServer
 // for forward compatibility
@@ -250,6 +261,8 @@ type OperatorServer interface {
 	// Displays a report on how much the given market is collecting in Liquidity
 	// Provider fees
 	ReportMarketFee(context.Context, *ReportMarketFeeRequest) (*ReportMarketFeeReply, error)
+	// Triggers reloading of unspents for stored addresses from blockchain
+	ReloadUtxos(context.Context, *ReloadUtxosRequest) (*ReloadUtxosReply, error)
 	mustEmbedUnimplementedOperatorServer()
 }
 
@@ -301,6 +314,9 @@ func (*UnimplementedOperatorServer) ListSwaps(context.Context, *ListSwapsRequest
 }
 func (*UnimplementedOperatorServer) ReportMarketFee(context.Context, *ReportMarketFeeRequest) (*ReportMarketFeeReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReportMarketFee not implemented")
+}
+func (*UnimplementedOperatorServer) ReloadUtxos(context.Context, *ReloadUtxosRequest) (*ReloadUtxosReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReloadUtxos not implemented")
 }
 func (*UnimplementedOperatorServer) mustEmbedUnimplementedOperatorServer() {}
 
@@ -578,6 +594,24 @@ func _Operator_ReportMarketFee_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Operator_ReloadUtxos_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReloadUtxosRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OperatorServer).ReloadUtxos(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Operator/ReloadUtxos",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OperatorServer).ReloadUtxos(ctx, req.(*ReloadUtxosRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Operator_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "Operator",
 	HandlerType: (*OperatorServer)(nil),
@@ -641,6 +675,10 @@ var _Operator_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReportMarketFee",
 			Handler:    _Operator_ReportMarketFee_Handler,
+		},
+		{
+			MethodName: "ReloadUtxos",
+			Handler:    _Operator_ReloadUtxos_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

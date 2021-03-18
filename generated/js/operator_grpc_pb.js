@@ -225,6 +225,28 @@ function deserialize_OpenMarketRequest(buffer_arg) {
   return operator_pb.OpenMarketRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_ReloadUtxosReply(arg) {
+  if (!(arg instanceof operator_pb.ReloadUtxosReply)) {
+    throw new Error('Expected argument of type ReloadUtxosReply');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ReloadUtxosReply(buffer_arg) {
+  return operator_pb.ReloadUtxosReply.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ReloadUtxosRequest(arg) {
+  if (!(arg instanceof operator_pb.ReloadUtxosRequest)) {
+    throw new Error('Expected argument of type ReloadUtxosRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ReloadUtxosRequest(buffer_arg) {
+  return operator_pb.ReloadUtxosRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_ReportMarketFeeReply(arg) {
   if (!(arg instanceof operator_pb.ReportMarketFeeReply)) {
     throw new Error('Expected argument of type ReportMarketFeeReply');
@@ -530,6 +552,18 @@ reportMarketFee: {
     requestDeserialize: deserialize_ReportMarketFeeRequest,
     responseSerialize: serialize_ReportMarketFeeReply,
     responseDeserialize: deserialize_ReportMarketFeeReply,
+  },
+  // Triggers reloading of unspents for stored addresses from blockchain
+reloadUtxos: {
+    path: '/Operator/ReloadUtxos',
+    requestStream: false,
+    responseStream: false,
+    requestType: operator_pb.ReloadUtxosRequest,
+    responseType: operator_pb.ReloadUtxosReply,
+    requestSerialize: serialize_ReloadUtxosRequest,
+    requestDeserialize: deserialize_ReloadUtxosRequest,
+    responseSerialize: serialize_ReloadUtxosReply,
+    responseDeserialize: deserialize_ReloadUtxosReply,
   },
 };
 

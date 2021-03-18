@@ -26,6 +26,8 @@
     - [MarketInfo](#.MarketInfo)
     - [OpenMarketReply](#.OpenMarketReply)
     - [OpenMarketRequest](#.OpenMarketRequest)
+    - [ReloadUtxosReply](#.ReloadUtxosReply)
+    - [ReloadUtxosRequest](#.ReloadUtxosRequest)
     - [ReportMarketFeeReply](#.ReportMarketFeeReply)
     - [ReportMarketFeeReply.TotalCollectedFeesPerAssetEntry](#.ReportMarketFeeReply.TotalCollectedFeesPerAssetEntry)
     - [ReportMarketFeeRequest](#.ReportMarketFeeRequest)
@@ -423,6 +425,26 @@
 
 
 
+<a name=".ReloadUtxosReply"></a>
+
+### ReloadUtxosReply
+
+
+
+
+
+
+
+<a name=".ReloadUtxosRequest"></a>
+
+### ReloadUtxosRequest
+
+
+
+
+
+
+
 <a name=".ReportMarketFeeReply"></a>
 
 ### ReportMarketFeeReply
@@ -682,6 +704,7 @@ Service for operators to configure and manage a TDEX daemon
 | WithdrawMarket | [.WithdrawMarketRequest](#WithdrawMarketRequest) | [.WithdrawMarketReply](#WithdrawMarketReply) | WithdrawMarket allows the operator to withdraw to external wallet funds from a specific market. The Market MUST be closed before doing this change. |
 | ListSwaps | [.ListSwapsRequest](#ListSwapsRequest) | [.ListSwapsReply](#ListSwapsReply) | Returs all the swaps processed by the daemon (both attempted and completed) |
 | ReportMarketFee | [.ReportMarketFeeRequest](#ReportMarketFeeRequest) | [.ReportMarketFeeReply](#ReportMarketFeeReply) | Displays a report on how much the given market is collecting in Liquidity Provider fees |
+| ReloadUtxos | [.ReloadUtxosRequest](#ReloadUtxosRequest) | [.ReloadUtxosReply](#ReloadUtxosReply) | Triggers reloading of unspents for stored addresses from blockchain |
 
  
 

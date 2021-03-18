@@ -635,5 +635,45 @@ export class OperatorClient {
     this.methodInfoReportMarketFee);
   }
 
+  methodInfoReloadUtxos = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.ReloadUtxosReply,
+    (request: operator_pb.ReloadUtxosRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.ReloadUtxosReply.deserializeBinary
+  );
+
+  reloadUtxos(
+    request: operator_pb.ReloadUtxosRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.ReloadUtxosReply>;
+
+  reloadUtxos(
+    request: operator_pb.ReloadUtxosRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.ReloadUtxosReply) => void): grpcWeb.ClientReadableStream<operator_pb.ReloadUtxosReply>;
+
+  reloadUtxos(
+    request: operator_pb.ReloadUtxosRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.ReloadUtxosReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/ReloadUtxos',
+        request,
+        metadata || {},
+        this.methodInfoReloadUtxos,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/ReloadUtxos',
+    request,
+    metadata || {},
+    this.methodInfoReloadUtxos);
+  }
+
 }
 

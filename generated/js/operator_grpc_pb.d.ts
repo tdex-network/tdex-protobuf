@@ -25,6 +25,7 @@ interface IOperatorService extends grpc.ServiceDefinition<grpc.UntypedServiceImp
     withdrawMarket: IOperatorService_IWithdrawMarket;
     listSwaps: IOperatorService_IListSwaps;
     reportMarketFee: IOperatorService_IReportMarketFee;
+    reloadUtxos: IOperatorService_IReloadUtxos;
 }
 
 interface IOperatorService_IDepositMarket extends grpc.MethodDefinition<operator_pb.DepositMarketRequest, operator_pb.DepositMarketReply> {
@@ -162,6 +163,15 @@ interface IOperatorService_IReportMarketFee extends grpc.MethodDefinition<operat
     responseSerialize: grpc.serialize<operator_pb.ReportMarketFeeReply>;
     responseDeserialize: grpc.deserialize<operator_pb.ReportMarketFeeReply>;
 }
+interface IOperatorService_IReloadUtxos extends grpc.MethodDefinition<operator_pb.ReloadUtxosRequest, operator_pb.ReloadUtxosReply> {
+    path: "/Operator/ReloadUtxos";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<operator_pb.ReloadUtxosRequest>;
+    requestDeserialize: grpc.deserialize<operator_pb.ReloadUtxosRequest>;
+    responseSerialize: grpc.serialize<operator_pb.ReloadUtxosReply>;
+    responseDeserialize: grpc.deserialize<operator_pb.ReloadUtxosReply>;
+}
 
 export const OperatorService: IOperatorService;
 
@@ -181,6 +191,7 @@ export interface IOperatorServer {
     withdrawMarket: grpc.handleUnaryCall<operator_pb.WithdrawMarketRequest, operator_pb.WithdrawMarketReply>;
     listSwaps: grpc.handleUnaryCall<operator_pb.ListSwapsRequest, operator_pb.ListSwapsReply>;
     reportMarketFee: grpc.handleUnaryCall<operator_pb.ReportMarketFeeRequest, operator_pb.ReportMarketFeeReply>;
+    reloadUtxos: grpc.handleUnaryCall<operator_pb.ReloadUtxosRequest, operator_pb.ReloadUtxosReply>;
 }
 
 export interface IOperatorClient {
@@ -229,6 +240,9 @@ export interface IOperatorClient {
     reportMarketFee(request: operator_pb.ReportMarketFeeRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.ReportMarketFeeReply) => void): grpc.ClientUnaryCall;
     reportMarketFee(request: operator_pb.ReportMarketFeeRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.ReportMarketFeeReply) => void): grpc.ClientUnaryCall;
     reportMarketFee(request: operator_pb.ReportMarketFeeRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.ReportMarketFeeReply) => void): grpc.ClientUnaryCall;
+    reloadUtxos(request: operator_pb.ReloadUtxosRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.ReloadUtxosReply) => void): grpc.ClientUnaryCall;
+    reloadUtxos(request: operator_pb.ReloadUtxosRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.ReloadUtxosReply) => void): grpc.ClientUnaryCall;
+    reloadUtxos(request: operator_pb.ReloadUtxosRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.ReloadUtxosReply) => void): grpc.ClientUnaryCall;
 }
 
 export class OperatorClient extends grpc.Client implements IOperatorClient {
@@ -278,4 +292,7 @@ export class OperatorClient extends grpc.Client implements IOperatorClient {
     public reportMarketFee(request: operator_pb.ReportMarketFeeRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.ReportMarketFeeReply) => void): grpc.ClientUnaryCall;
     public reportMarketFee(request: operator_pb.ReportMarketFeeRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.ReportMarketFeeReply) => void): grpc.ClientUnaryCall;
     public reportMarketFee(request: operator_pb.ReportMarketFeeRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.ReportMarketFeeReply) => void): grpc.ClientUnaryCall;
+    public reloadUtxos(request: operator_pb.ReloadUtxosRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.ReloadUtxosReply) => void): grpc.ClientUnaryCall;
+    public reloadUtxos(request: operator_pb.ReloadUtxosRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.ReloadUtxosReply) => void): grpc.ClientUnaryCall;
+    public reloadUtxos(request: operator_pb.ReloadUtxosRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.ReloadUtxosReply) => void): grpc.ClientUnaryCall;
 }

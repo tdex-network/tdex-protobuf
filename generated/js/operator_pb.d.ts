@@ -7,6 +7,40 @@
 import * as jspb from "google-protobuf";
 import * as types_pb from "./types_pb";
 
+export class ReloadUtxosRequest extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ReloadUtxosRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: ReloadUtxosRequest): ReloadUtxosRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ReloadUtxosRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ReloadUtxosRequest;
+    static deserializeBinaryFromReader(message: ReloadUtxosRequest, reader: jspb.BinaryReader): ReloadUtxosRequest;
+}
+
+export namespace ReloadUtxosRequest {
+    export type AsObject = {
+    }
+}
+
+export class ReloadUtxosReply extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ReloadUtxosReply.AsObject;
+    static toObject(includeInstance: boolean, msg: ReloadUtxosReply): ReloadUtxosReply.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ReloadUtxosReply, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ReloadUtxosReply;
+    static deserializeBinaryFromReader(message: ReloadUtxosReply, reader: jspb.BinaryReader): ReloadUtxosReply;
+}
+
+export namespace ReloadUtxosReply {
+    export type AsObject = {
+    }
+}
+
 export class DepositMarketRequest extends jspb.Message { 
 
     hasMarket(): boolean;
