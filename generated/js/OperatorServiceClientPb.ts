@@ -675,5 +675,45 @@ export class OperatorClient {
     this.methodInfoReloadUtxos);
   }
 
+  methodInfoListUtxos = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.ListUtxosReply,
+    (request: operator_pb.ListUtxosRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.ListUtxosReply.deserializeBinary
+  );
+
+  listUtxos(
+    request: operator_pb.ListUtxosRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.ListUtxosReply>;
+
+  listUtxos(
+    request: operator_pb.ListUtxosRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.ListUtxosReply) => void): grpcWeb.ClientReadableStream<operator_pb.ListUtxosReply>;
+
+  listUtxos(
+    request: operator_pb.ListUtxosRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.ListUtxosReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/ListUtxos',
+        request,
+        metadata || {},
+        this.methodInfoListUtxos,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/ListUtxos',
+    request,
+    metadata || {},
+    this.methodInfoListUtxos);
+  }
+
 }
 
