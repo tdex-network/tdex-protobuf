@@ -20,6 +20,7 @@ goog.exportSymbol('proto.ChangePasswordRequest', null, global);
 goog.exportSymbol('proto.GenSeedReply', null, global);
 goog.exportSymbol('proto.GenSeedRequest', null, global);
 goog.exportSymbol('proto.InitWalletReply', null, global);
+goog.exportSymbol('proto.InitWalletReply.Status', null, global);
 goog.exportSymbol('proto.InitWalletRequest', null, global);
 goog.exportSymbol('proto.SendToManyReply', null, global);
 goog.exportSymbol('proto.SendToManyRequest', null, global);
@@ -895,7 +896,10 @@ proto.InitWalletReply.prototype.toObject = function(opt_includeInstance) {
  */
 proto.InitWalletReply.toObject = function(includeInstance, msg) {
   var f, obj = {
-
+    account: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    index: jspb.Message.getFieldWithDefault(msg, 2, 0),
+    status: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    data: jspb.Message.getFieldWithDefault(msg, 4, "")
   };
 
   if (includeInstance) {
@@ -932,6 +936,22 @@ proto.InitWalletReply.deserializeBinaryFromReader = function(msg, reader) {
     }
     var field = reader.getFieldNumber();
     switch (field) {
+    case 1:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setAccount(value);
+      break;
+    case 2:
+      var value = /** @type {number} */ (reader.readUint64());
+      msg.setIndex(value);
+      break;
+    case 3:
+      var value = /** @type {!proto.InitWalletReply.Status} */ (reader.readEnum());
+      msg.setStatus(value);
+      break;
+    case 4:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setData(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -961,6 +981,114 @@ proto.InitWalletReply.prototype.serializeBinary = function() {
  */
 proto.InitWalletReply.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
+  f = message.getAccount();
+  if (f !== 0) {
+    writer.writeUint64(
+      1,
+      f
+    );
+  }
+  f = message.getIndex();
+  if (f !== 0) {
+    writer.writeUint64(
+      2,
+      f
+    );
+  }
+  f = message.getStatus();
+  if (f !== 0.0) {
+    writer.writeEnum(
+      3,
+      f
+    );
+  }
+  f = message.getData();
+  if (f.length > 0) {
+    writer.writeString(
+      4,
+      f
+    );
+  }
+};
+
+
+/**
+ * @enum {number}
+ */
+proto.InitWalletReply.Status = {
+  PROCESSING: 0,
+  DONE: 1
+};
+
+/**
+ * optional uint64 account = 1;
+ * @return {number}
+ */
+proto.InitWalletReply.prototype.getAccount = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.InitWalletReply} returns this
+ */
+proto.InitWalletReply.prototype.setAccount = function(value) {
+  return jspb.Message.setProto3IntField(this, 1, value);
+};
+
+
+/**
+ * optional uint64 index = 2;
+ * @return {number}
+ */
+proto.InitWalletReply.prototype.getIndex = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 2, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.InitWalletReply} returns this
+ */
+proto.InitWalletReply.prototype.setIndex = function(value) {
+  return jspb.Message.setProto3IntField(this, 2, value);
+};
+
+
+/**
+ * optional Status status = 3;
+ * @return {!proto.InitWalletReply.Status}
+ */
+proto.InitWalletReply.prototype.getStatus = function() {
+  return /** @type {!proto.InitWalletReply.Status} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
+};
+
+
+/**
+ * @param {!proto.InitWalletReply.Status} value
+ * @return {!proto.InitWalletReply} returns this
+ */
+proto.InitWalletReply.prototype.setStatus = function(value) {
+  return jspb.Message.setProto3EnumField(this, 3, value);
+};
+
+
+/**
+ * optional string data = 4;
+ * @return {string}
+ */
+proto.InitWalletReply.prototype.getData = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.InitWalletReply} returns this
+ */
+proto.InitWalletReply.prototype.setData = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 

@@ -113,6 +113,8 @@
     - [WalletBalanceReply.BalanceEntry](#.WalletBalanceReply.BalanceEntry)
     - [WalletBalanceRequest](#.WalletBalanceRequest)
   
+    - [InitWalletReply.Status](#.InitWalletReply.Status)
+  
     - [Wallet](#.Wallet)
   
 - [Scalar Value Types](#scalar-value-types)
@@ -1444,6 +1446,14 @@ Custom Types
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| account | [uint64](#uint64) |  |  |
+| index | [uint64](#uint64) |  |  |
+| status | [InitWalletReply.Status](#InitWalletReply.Status) |  |  |
+| data | [string](#string) |  |  |
+
+
 
 
 
@@ -1606,6 +1616,18 @@ Custom Types
 
 
  
+
+
+<a name=".InitWalletReply.Status"></a>
+
+### InitWalletReply.Status
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| PROCESSING | 0 |  |
+| DONE | 1 |  |
+
 
  
 

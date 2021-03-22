@@ -80,6 +80,18 @@ export namespace InitWalletRequest {
 }
 
 export class InitWalletReply extends jspb.Message { 
+    getAccount(): number;
+    setAccount(value: number): InitWalletReply;
+
+    getIndex(): number;
+    setIndex(value: number): InitWalletReply;
+
+    getStatus(): InitWalletReply.Status;
+    setStatus(value: InitWalletReply.Status): InitWalletReply;
+
+    getData(): string;
+    setData(value: string): InitWalletReply;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): InitWalletReply.AsObject;
@@ -93,7 +105,17 @@ export class InitWalletReply extends jspb.Message {
 
 export namespace InitWalletReply {
     export type AsObject = {
+        account: number,
+        index: number,
+        status: InitWalletReply.Status,
+        data: string,
     }
+
+    export enum Status {
+    PROCESSING = 0,
+    DONE = 1,
+    }
+
 }
 
 export class UnlockWalletRequest extends jspb.Message { 
