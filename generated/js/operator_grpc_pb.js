@@ -203,6 +203,28 @@ function deserialize_ListSwapsRequest(buffer_arg) {
   return operator_pb.ListSwapsRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_ListUtxosReply(arg) {
+  if (!(arg instanceof operator_pb.ListUtxosReply)) {
+    throw new Error('Expected argument of type ListUtxosReply');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ListUtxosReply(buffer_arg) {
+  return operator_pb.ListUtxosReply.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ListUtxosRequest(arg) {
+  if (!(arg instanceof operator_pb.ListUtxosRequest)) {
+    throw new Error('Expected argument of type ListUtxosRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ListUtxosRequest(buffer_arg) {
+  return operator_pb.ListUtxosRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_OpenMarketReply(arg) {
   if (!(arg instanceof operator_pb.OpenMarketReply)) {
     throw new Error('Expected argument of type OpenMarketReply');
@@ -564,6 +586,18 @@ reloadUtxos: {
     requestDeserialize: deserialize_ReloadUtxosRequest,
     responseSerialize: serialize_ReloadUtxosReply,
     responseDeserialize: deserialize_ReloadUtxosReply,
+  },
+  // Returns all the unspents and locks
+listUtxos: {
+    path: '/Operator/ListUtxos',
+    requestStream: false,
+    responseStream: false,
+    requestType: operator_pb.ListUtxosRequest,
+    responseType: operator_pb.ListUtxosReply,
+    requestSerialize: serialize_ListUtxosRequest,
+    requestDeserialize: deserialize_ListUtxosRequest,
+    responseSerialize: serialize_ListUtxosReply,
+    responseDeserialize: deserialize_ListUtxosReply,
   },
 };
 

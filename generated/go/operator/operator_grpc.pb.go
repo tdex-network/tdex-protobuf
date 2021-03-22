@@ -61,6 +61,8 @@ type OperatorClient interface {
 	ReportMarketFee(ctx context.Context, in *ReportMarketFeeRequest, opts ...grpc.CallOption) (*ReportMarketFeeReply, error)
 	// Triggers reloading of unspents for stored addresses from blockchain
 	ReloadUtxos(ctx context.Context, in *ReloadUtxosRequest, opts ...grpc.CallOption) (*ReloadUtxosReply, error)
+	// Returns all the unspents and locks
+	ListUtxos(ctx context.Context, in *ListUtxosRequest, opts ...grpc.CallOption) (*ListUtxosReply, error)
 }
 
 type operatorClient struct {
@@ -215,6 +217,15 @@ func (c *operatorClient) ReloadUtxos(ctx context.Context, in *ReloadUtxosRequest
 	return out, nil
 }
 
+func (c *operatorClient) ListUtxos(ctx context.Context, in *ListUtxosRequest, opts ...grpc.CallOption) (*ListUtxosReply, error) {
+	out := new(ListUtxosReply)
+	err := c.cc.Invoke(ctx, "/Operator/ListUtxos", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OperatorServer is the server API for Operator service.
 // All implementations must embed UnimplementedOperatorServer
 // for forward compatibility
@@ -263,6 +274,8 @@ type OperatorServer interface {
 	ReportMarketFee(context.Context, *ReportMarketFeeRequest) (*ReportMarketFeeReply, error)
 	// Triggers reloading of unspents for stored addresses from blockchain
 	ReloadUtxos(context.Context, *ReloadUtxosRequest) (*ReloadUtxosReply, error)
+	// Returns all the unspents and locks
+	ListUtxos(context.Context, *ListUtxosRequest) (*ListUtxosReply, error)
 	mustEmbedUnimplementedOperatorServer()
 }
 
@@ -317,6 +330,9 @@ func (*UnimplementedOperatorServer) ReportMarketFee(context.Context, *ReportMark
 }
 func (*UnimplementedOperatorServer) ReloadUtxos(context.Context, *ReloadUtxosRequest) (*ReloadUtxosReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReloadUtxos not implemented")
+}
+func (*UnimplementedOperatorServer) ListUtxos(context.Context, *ListUtxosRequest) (*ListUtxosReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUtxos not implemented")
 }
 func (*UnimplementedOperatorServer) mustEmbedUnimplementedOperatorServer() {}
 
@@ -612,6 +628,24 @@ func _Operator_ReloadUtxos_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Operator_ListUtxos_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListUtxosRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OperatorServer).ListUtxos(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Operator/ListUtxos",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OperatorServer).ListUtxos(ctx, req.(*ListUtxosRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Operator_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "Operator",
 	HandlerType: (*OperatorServer)(nil),
@@ -679,6 +713,10 @@ var _Operator_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReloadUtxos",
 			Handler:    _Operator_ReloadUtxos_Handler,
+		},
+		{
+			MethodName: "ListUtxos",
+			Handler:    _Operator_ListUtxos_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

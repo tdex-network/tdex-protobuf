@@ -23,6 +23,8 @@
     - [ListMarketRequest](#.ListMarketRequest)
     - [ListSwapsReply](#.ListSwapsReply)
     - [ListSwapsRequest](#.ListSwapsRequest)
+    - [ListUtxosReply](#.ListUtxosReply)
+    - [ListUtxosRequest](#.ListUtxosRequest)
     - [MarketInfo](#.MarketInfo)
     - [OpenMarketReply](#.OpenMarketReply)
     - [OpenMarketRequest](#.OpenMarketRequest)
@@ -382,6 +384,32 @@
 
 
 
+<a name=".ListUtxosReply"></a>
+
+### ListUtxosReply
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| unspents | [TxOutpoint](#TxOutpoint) | repeated |  |
+| locks | [TxOutpoint](#TxOutpoint) | repeated |  |
+
+
+
+
+
+
+<a name=".ListUtxosRequest"></a>
+
+### ListUtxosRequest
+
+
+
+
+
+
+
 <a name=".MarketInfo"></a>
 
 ### MarketInfo
@@ -705,6 +733,7 @@ Service for operators to configure and manage a TDEX daemon
 | ListSwaps | [.ListSwapsRequest](#ListSwapsRequest) | [.ListSwapsReply](#ListSwapsReply) | Returs all the swaps processed by the daemon (both attempted and completed) |
 | ReportMarketFee | [.ReportMarketFeeRequest](#ReportMarketFeeRequest) | [.ReportMarketFeeReply](#ReportMarketFeeReply) | Displays a report on how much the given market is collecting in Liquidity Provider fees |
 | ReloadUtxos | [.ReloadUtxosRequest](#ReloadUtxosRequest) | [.ReloadUtxosReply](#ReloadUtxosReply) | Triggers reloading of unspents for stored addresses from blockchain |
+| ListUtxos | [.ListUtxosRequest](#ListUtxosRequest) | [.ListUtxosReply](#ListUtxosReply) | Returns all the unspents and locks |
 
  
 

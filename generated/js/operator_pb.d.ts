@@ -7,6 +7,52 @@
 import * as jspb from "google-protobuf";
 import * as types_pb from "./types_pb";
 
+export class ListUtxosRequest extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ListUtxosRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: ListUtxosRequest): ListUtxosRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ListUtxosRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ListUtxosRequest;
+    static deserializeBinaryFromReader(message: ListUtxosRequest, reader: jspb.BinaryReader): ListUtxosRequest;
+}
+
+export namespace ListUtxosRequest {
+    export type AsObject = {
+    }
+}
+
+export class ListUtxosReply extends jspb.Message { 
+    clearUnspentsList(): void;
+    getUnspentsList(): Array<TxOutpoint>;
+    setUnspentsList(value: Array<TxOutpoint>): ListUtxosReply;
+    addUnspents(value?: TxOutpoint, index?: number): TxOutpoint;
+
+    clearLocksList(): void;
+    getLocksList(): Array<TxOutpoint>;
+    setLocksList(value: Array<TxOutpoint>): ListUtxosReply;
+    addLocks(value?: TxOutpoint, index?: number): TxOutpoint;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ListUtxosReply.AsObject;
+    static toObject(includeInstance: boolean, msg: ListUtxosReply): ListUtxosReply.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ListUtxosReply, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ListUtxosReply;
+    static deserializeBinaryFromReader(message: ListUtxosReply, reader: jspb.BinaryReader): ListUtxosReply;
+}
+
+export namespace ListUtxosReply {
+    export type AsObject = {
+        unspentsList: Array<TxOutpoint.AsObject>,
+        locksList: Array<TxOutpoint.AsObject>,
+    }
+}
+
 export class ReloadUtxosRequest extends jspb.Message { 
 
     serializeBinary(): Uint8Array;
