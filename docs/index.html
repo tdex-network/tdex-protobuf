@@ -259,6 +259,10 @@
                 </li>
               
                 <li>
+                  <a href="#.ListUtxosReply.InfoPerAccountEntry"><span class="badge">M</span>ListUtxosReply.InfoPerAccountEntry</a>
+                </li>
+              
+                <li>
                   <a href="#.ListUtxosRequest"><span class="badge">M</span>ListUtxosRequest</a>
                 </li>
               
@@ -324,6 +328,14 @@
               
                 <li>
                   <a href="#.UpdateMarketStrategyRequest"><span class="badge">M</span>UpdateMarketStrategyRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.UtxoInfo"><span class="badge">M</span>UtxoInfo</a>
+                </li>
+              
+                <li>
+                  <a href="#.UtxoInfoList"><span class="badge">M</span>UtxoInfoList</a>
                 </li>
               
                 <li>
@@ -1022,16 +1034,40 @@
             <tbody>
               
                 <tr>
-                  <td>unspents</td>
-                  <td><a href="#TxOutpoint">TxOutpoint</a></td>
+                  <td>info_per_account</td>
+                  <td><a href="#ListUtxosReply.InfoPerAccountEntry">ListUtxosReply.InfoPerAccountEntry</a></td>
                   <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
               
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".ListUtxosReply.InfoPerAccountEntry">ListUtxosReply.InfoPerAccountEntry</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
                 <tr>
-                  <td>locks</td>
-                  <td><a href="#TxOutpoint">TxOutpoint</a></td>
-                  <td>repeated</td>
+                  <td>key</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#UtxoInfoList">UtxoInfoList</a></td>
+                  <td></td>
                   <td><p> </p></td>
                 </tr>
               
@@ -1466,6 +1502,82 @@ entry for each asset and the amount should be the aggregated total. </p></td>
                   <td><a href="#string">string</a></td>
                   <td></td>
                   <td><p>JSON string representing additional metadata relative to the chosen strategy. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".UtxoInfo">UtxoInfo</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>outpoint</td>
+                  <td><a href="#TxOutpoint">TxOutpoint</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>asset</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".UtxoInfoList">UtxoInfoList</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>unspents</td>
+                  <td><a href="#UtxoInfo">UtxoInfo</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>spents</td>
+                  <td><a href="#UtxoInfo">UtxoInfo</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>locks</td>
+                  <td><a href="#UtxoInfo">UtxoInfo</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>

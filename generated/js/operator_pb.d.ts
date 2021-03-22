@@ -25,15 +25,9 @@ export namespace ListUtxosRequest {
 }
 
 export class ListUtxosReply extends jspb.Message { 
-    clearUnspentsList(): void;
-    getUnspentsList(): Array<TxOutpoint>;
-    setUnspentsList(value: Array<TxOutpoint>): ListUtxosReply;
-    addUnspents(value?: TxOutpoint, index?: number): TxOutpoint;
 
-    clearLocksList(): void;
-    getLocksList(): Array<TxOutpoint>;
-    setLocksList(value: Array<TxOutpoint>): ListUtxosReply;
-    addLocks(value?: TxOutpoint, index?: number): TxOutpoint;
+    getInfoPerAccountMap(): jspb.Map<number, UtxoInfoList>;
+    clearInfoPerAccountMap(): void;
 
 
     serializeBinary(): Uint8Array;
@@ -48,8 +42,75 @@ export class ListUtxosReply extends jspb.Message {
 
 export namespace ListUtxosReply {
     export type AsObject = {
-        unspentsList: Array<TxOutpoint.AsObject>,
-        locksList: Array<TxOutpoint.AsObject>,
+
+        infoPerAccountMap: Array<[number, UtxoInfoList.AsObject]>,
+    }
+}
+
+export class UtxoInfoList extends jspb.Message { 
+    clearUnspentsList(): void;
+    getUnspentsList(): Array<UtxoInfo>;
+    setUnspentsList(value: Array<UtxoInfo>): UtxoInfoList;
+    addUnspents(value?: UtxoInfo, index?: number): UtxoInfo;
+
+    clearSpentsList(): void;
+    getSpentsList(): Array<UtxoInfo>;
+    setSpentsList(value: Array<UtxoInfo>): UtxoInfoList;
+    addSpents(value?: UtxoInfo, index?: number): UtxoInfo;
+
+    clearLocksList(): void;
+    getLocksList(): Array<UtxoInfo>;
+    setLocksList(value: Array<UtxoInfo>): UtxoInfoList;
+    addLocks(value?: UtxoInfo, index?: number): UtxoInfo;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): UtxoInfoList.AsObject;
+    static toObject(includeInstance: boolean, msg: UtxoInfoList): UtxoInfoList.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: UtxoInfoList, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): UtxoInfoList;
+    static deserializeBinaryFromReader(message: UtxoInfoList, reader: jspb.BinaryReader): UtxoInfoList;
+}
+
+export namespace UtxoInfoList {
+    export type AsObject = {
+        unspentsList: Array<UtxoInfo.AsObject>,
+        spentsList: Array<UtxoInfo.AsObject>,
+        locksList: Array<UtxoInfo.AsObject>,
+    }
+}
+
+export class UtxoInfo extends jspb.Message { 
+
+    hasOutpoint(): boolean;
+    clearOutpoint(): void;
+    getOutpoint(): TxOutpoint | undefined;
+    setOutpoint(value?: TxOutpoint): UtxoInfo;
+
+    getValue(): number;
+    setValue(value: number): UtxoInfo;
+
+    getAsset(): string;
+    setAsset(value: string): UtxoInfo;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): UtxoInfo.AsObject;
+    static toObject(includeInstance: boolean, msg: UtxoInfo): UtxoInfo.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: UtxoInfo, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): UtxoInfo;
+    static deserializeBinaryFromReader(message: UtxoInfo, reader: jspb.BinaryReader): UtxoInfo;
+}
+
+export namespace UtxoInfo {
+    export type AsObject = {
+        outpoint?: TxOutpoint.AsObject,
+        value: number,
+        asset: string,
     }
 }
 

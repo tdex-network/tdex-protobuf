@@ -24,6 +24,7 @@
     - [ListSwapsReply](#.ListSwapsReply)
     - [ListSwapsRequest](#.ListSwapsRequest)
     - [ListUtxosReply](#.ListUtxosReply)
+    - [ListUtxosReply.InfoPerAccountEntry](#.ListUtxosReply.InfoPerAccountEntry)
     - [ListUtxosRequest](#.ListUtxosRequest)
     - [MarketInfo](#.MarketInfo)
     - [OpenMarketReply](#.OpenMarketReply)
@@ -41,6 +42,8 @@
     - [UpdateMarketPriceRequest](#.UpdateMarketPriceRequest)
     - [UpdateMarketStrategyReply](#.UpdateMarketStrategyReply)
     - [UpdateMarketStrategyRequest](#.UpdateMarketStrategyRequest)
+    - [UtxoInfo](#.UtxoInfo)
+    - [UtxoInfoList](#.UtxoInfoList)
     - [WithdrawMarketReply](#.WithdrawMarketReply)
     - [WithdrawMarketRequest](#.WithdrawMarketRequest)
   
@@ -392,8 +395,23 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| unspents | [TxOutpoint](#TxOutpoint) | repeated |  |
-| locks | [TxOutpoint](#TxOutpoint) | repeated |  |
+| info_per_account | [ListUtxosReply.InfoPerAccountEntry](#ListUtxosReply.InfoPerAccountEntry) | repeated |  |
+
+
+
+
+
+
+<a name=".ListUtxosReply.InfoPerAccountEntry"></a>
+
+### ListUtxosReply.InfoPerAccountEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [uint64](#uint64) |  |  |
+| value | [UtxoInfoList](#UtxoInfoList) |  |  |
 
 
 
@@ -637,6 +655,40 @@
 | market | [Market](#Market) |  | Market to change the strategy of |
 | strategy_type | [StrategyType](#StrategyType) |  | Market making strategy to use |
 | metadata | [string](#string) |  | JSON string representing additional metadata relative to the chosen strategy. |
+
+
+
+
+
+
+<a name=".UtxoInfo"></a>
+
+### UtxoInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| outpoint | [TxOutpoint](#TxOutpoint) |  |  |
+| value | [uint64](#uint64) |  |  |
+| asset | [string](#string) |  |  |
+
+
+
+
+
+
+<a name=".UtxoInfoList"></a>
+
+### UtxoInfoList
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| unspents | [UtxoInfo](#UtxoInfo) | repeated |  |
+| spents | [UtxoInfo](#UtxoInfo) | repeated |  |
+| locks | [UtxoInfo](#UtxoInfo) | repeated |  |
 
 
 
