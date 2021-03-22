@@ -78,7 +78,7 @@ service Operator {
 
 message ListUtxosRequest {}
 message ListUtxosReply{
-  map<uint64, UtxoInfoList> outpoints_per_account = 1;
+  map<uint64, UtxoInfoList> info_per_account = 1;
 }
 
 message UtxoInfoList {
