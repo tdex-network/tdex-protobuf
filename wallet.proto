@@ -83,6 +83,7 @@ message InitWalletReply {
     DONE = 1;
   } 
   Status status = 3;
+  string data = 4;
 }
 
 message UnlockWalletRequest {
