@@ -78,8 +78,19 @@ service Operator {
 
 message ListUtxosRequest {}
 message ListUtxosReply{
-  repeated TxOutpoint unspents = 1;
-  repeated TxOutpoint locks = 2;
+  map<uint64, UtxoInfoList> outpoints_per_account = 1;
+}
+
+message UtxoInfoList {
+  repeated UtxoInfo unspents = 1;
+  repeated UtxoInfo spents = 2;
+  repeated UtxoInfo locks = 3;
+}
+
+message UtxoInfo {
+  TxOutpoint outpoint = 1;
+  uint64 value = 2;
+  string asset = 3;
 }
 
 message ReloadUtxosRequest {}

@@ -44,4 +44,3 @@ message AddressWithBlindingKey {
   // The blinding private key for the given address encoded in hex format
   string blinding = 2;
 }
-
