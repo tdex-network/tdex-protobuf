@@ -71,7 +71,13 @@ service Operator {
 
   // Triggers reloading of unspents for stored addresses from blockchain
   rpc ReloadUtxos(ReloadUtxosRequest) returns(ReloadUtxosReply) {}
+
+  // Returns all the unspents and locks
+  rpc ListUtxos(ListUtxosRequest) returns(ListUtxosReply){}
 }
+
+message ListUtxosRequest {}
+message ListUtxosReply{}
 
 message ReloadUtxosRequest {}
 message ReloadUtxosReply {}
