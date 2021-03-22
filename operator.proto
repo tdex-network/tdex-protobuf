@@ -77,7 +77,10 @@ service Operator {
 }
 
 message ListUtxosRequest {}
-message ListUtxosReply{}
+message ListUtxosReply{
+  repeated TxOutpoint unspents = 1;
+  repeated TxOutpoint locks = 2;
+}
 
 message ReloadUtxosRequest {}
 message ReloadUtxosReply {}
