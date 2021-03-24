@@ -16,6 +16,8 @@
     - [DepositFeeAccountRequest](#.DepositFeeAccountRequest)
     - [DepositMarketReply](#.DepositMarketReply)
     - [DepositMarketRequest](#.DepositMarketRequest)
+    - [DropMarketReply](#.DropMarketReply)
+    - [DropMarketRequest](#.DropMarketRequest)
     - [FeeInfo](#.FeeInfo)
     - [ListDepositMarketReply](#.ListDepositMarketReply)
     - [ListDepositMarketRequest](#.ListDepositMarketRequest)
@@ -290,6 +292,31 @@
 
 
 
+<a name=".DropMarketReply"></a>
+
+### DropMarketReply
+
+
+
+
+
+
+
+<a name=".DropMarketRequest"></a>
+
+### DropMarketRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| account_index | [uint64](#uint64) |  |  |
+
+
+
+
+
+
 <a name=".FeeInfo"></a>
 
 ### FeeInfo
@@ -442,6 +469,8 @@
 | fee | [Fee](#Fee) |  |  |
 | tradable | [bool](#bool) |  |  |
 | strategy_type | [StrategyType](#StrategyType) |  |  |
+| account_index | [uint64](#uint64) |  |  |
+| price | [Price](#Price) |  |  |
 
 
 
@@ -788,6 +817,7 @@ Service for operators to configure and manage a TDEX daemon
 | ReportMarketFee | [.ReportMarketFeeRequest](#ReportMarketFeeRequest) | [.ReportMarketFeeReply](#ReportMarketFeeReply) | Displays a report on how much the given market is collecting in Liquidity Provider fees |
 | ReloadUtxos | [.ReloadUtxosRequest](#ReloadUtxosRequest) | [.ReloadUtxosReply](#ReloadUtxosReply) | Triggers reloading of unspents for stored addresses from blockchain |
 | ListUtxos | [.ListUtxosRequest](#ListUtxosRequest) | [.ListUtxosReply](#ListUtxosReply) | Returns all the unspents and locks |
+| DropMarket | [.DropMarketRequest](#DropMarketRequest) | [.DropMarketReply](#DropMarketReply) | Deletes Market based on account_index |
 
  
 

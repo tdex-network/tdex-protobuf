@@ -63,6 +63,8 @@ type OperatorClient interface {
 	ReloadUtxos(ctx context.Context, in *ReloadUtxosRequest, opts ...grpc.CallOption) (*ReloadUtxosReply, error)
 	// Returns all the unspents and locks
 	ListUtxos(ctx context.Context, in *ListUtxosRequest, opts ...grpc.CallOption) (*ListUtxosReply, error)
+	// Deletes Market based on account_index
+	DropMarket(ctx context.Context, in *DropMarketRequest, opts ...grpc.CallOption) (*DropMarketReply, error)
 }
 
 type operatorClient struct {
@@ -226,6 +228,15 @@ func (c *operatorClient) ListUtxos(ctx context.Context, in *ListUtxosRequest, op
 	return out, nil
 }
 
+func (c *operatorClient) DropMarket(ctx context.Context, in *DropMarketRequest, opts ...grpc.CallOption) (*DropMarketReply, error) {
+	out := new(DropMarketReply)
+	err := c.cc.Invoke(ctx, "/Operator/DropMarket", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OperatorServer is the server API for Operator service.
 // All implementations must embed UnimplementedOperatorServer
 // for forward compatibility
@@ -276,6 +287,8 @@ type OperatorServer interface {
 	ReloadUtxos(context.Context, *ReloadUtxosRequest) (*ReloadUtxosReply, error)
 	// Returns all the unspents and locks
 	ListUtxos(context.Context, *ListUtxosRequest) (*ListUtxosReply, error)
+	// Deletes Market based on account_index
+	DropMarket(context.Context, *DropMarketRequest) (*DropMarketReply, error)
 	mustEmbedUnimplementedOperatorServer()
 }
 
@@ -333,6 +346,9 @@ func (*UnimplementedOperatorServer) ReloadUtxos(context.Context, *ReloadUtxosReq
 }
 func (*UnimplementedOperatorServer) ListUtxos(context.Context, *ListUtxosRequest) (*ListUtxosReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListUtxos not implemented")
+}
+func (*UnimplementedOperatorServer) DropMarket(context.Context, *DropMarketRequest) (*DropMarketReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DropMarket not implemented")
 }
 func (*UnimplementedOperatorServer) mustEmbedUnimplementedOperatorServer() {}
 
@@ -646,6 +662,24 @@ func _Operator_ListUtxos_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Operator_DropMarket_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DropMarketRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OperatorServer).DropMarket(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Operator/DropMarket",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OperatorServer).DropMarket(ctx, req.(*DropMarketRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Operator_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "Operator",
 	HandlerType: (*OperatorServer)(nil),
@@ -717,6 +751,10 @@ var _Operator_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListUtxos",
 			Handler:    _Operator_ListUtxos_Handler,
+		},
+		{
+			MethodName: "DropMarket",
+			Handler:    _Operator_DropMarket_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

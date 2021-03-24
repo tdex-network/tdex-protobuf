@@ -227,6 +227,14 @@
                 </li>
               
                 <li>
+                  <a href="#.DropMarketReply"><span class="badge">M</span>DropMarketReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.DropMarketRequest"><span class="badge">M</span>DropMarketRequest</a>
+                </li>
+              
+                <li>
                   <a href="#.FeeInfo"><span class="badge">M</span>FeeInfo</a>
                 </li>
               
@@ -865,6 +873,37 @@
 
         
       
+        <h3 id=".DropMarketReply">DropMarketReply</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id=".DropMarketRequest">DropMarketRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>account_index</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".FeeInfo">FeeInfo</h3>
         <p></p>
 
@@ -1123,6 +1162,20 @@
                 <tr>
                   <td>strategy_type</td>
                   <td><a href="#StrategyType">StrategyType</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>account_index</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>price</td>
+                  <td><a href="#Price">Price</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -1875,6 +1928,13 @@ Provider fees</p></td>
                 <td><a href="#ListUtxosRequest">.ListUtxosRequest</a></td>
                 <td><a href="#ListUtxosReply">.ListUtxosReply</a></td>
                 <td><p>Returns all the unspents and locks</p></td>
+              </tr>
+            
+              <tr>
+                <td>DropMarket</td>
+                <td><a href="#DropMarketRequest">.DropMarketRequest</a></td>
+                <td><a href="#DropMarketReply">.DropMarketReply</a></td>
+                <td><p>Deletes Market based on account_index</p></td>
               </tr>
             
           </tbody>

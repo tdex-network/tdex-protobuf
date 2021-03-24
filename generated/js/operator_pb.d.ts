@@ -7,6 +7,44 @@
 import * as jspb from "google-protobuf";
 import * as types_pb from "./types_pb";
 
+export class DropMarketRequest extends jspb.Message { 
+    getAccountIndex(): number;
+    setAccountIndex(value: number): DropMarketRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): DropMarketRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: DropMarketRequest): DropMarketRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: DropMarketRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): DropMarketRequest;
+    static deserializeBinaryFromReader(message: DropMarketRequest, reader: jspb.BinaryReader): DropMarketRequest;
+}
+
+export namespace DropMarketRequest {
+    export type AsObject = {
+        accountIndex: number,
+    }
+}
+
+export class DropMarketReply extends jspb.Message { 
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): DropMarketReply.AsObject;
+    static toObject(includeInstance: boolean, msg: DropMarketReply): DropMarketReply.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: DropMarketReply, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): DropMarketReply;
+    static deserializeBinaryFromReader(message: DropMarketReply, reader: jspb.BinaryReader): DropMarketReply;
+}
+
+export namespace DropMarketReply {
+    export type AsObject = {
+    }
+}
+
 export class ListUtxosRequest extends jspb.Message { 
 
     serializeBinary(): Uint8Array;
@@ -860,6 +898,15 @@ export class MarketInfo extends jspb.Message {
     getStrategyType(): StrategyType;
     setStrategyType(value: StrategyType): MarketInfo;
 
+    getAccountIndex(): number;
+    setAccountIndex(value: number): MarketInfo;
+
+
+    hasPrice(): boolean;
+    clearPrice(): void;
+    getPrice(): types_pb.Price | undefined;
+    setPrice(value?: types_pb.Price): MarketInfo;
+
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): MarketInfo.AsObject;
@@ -877,6 +924,8 @@ export namespace MarketInfo {
         fee?: types_pb.Fee.AsObject,
         tradable: boolean,
         strategyType: StrategyType,
+        accountIndex: number,
+        price?: types_pb.Price.AsObject,
     }
 }
 

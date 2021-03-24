@@ -715,5 +715,45 @@ export class OperatorClient {
     this.methodInfoListUtxos);
   }
 
+  methodInfoDropMarket = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.DropMarketReply,
+    (request: operator_pb.DropMarketRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.DropMarketReply.deserializeBinary
+  );
+
+  dropMarket(
+    request: operator_pb.DropMarketRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.DropMarketReply>;
+
+  dropMarket(
+    request: operator_pb.DropMarketRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.DropMarketReply) => void): grpcWeb.ClientReadableStream<operator_pb.DropMarketReply>;
+
+  dropMarket(
+    request: operator_pb.DropMarketRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.DropMarketReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/DropMarket',
+        request,
+        metadata || {},
+        this.methodInfoDropMarket,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/DropMarket',
+    request,
+    metadata || {},
+    this.methodInfoDropMarket);
+  }
+
 }
 

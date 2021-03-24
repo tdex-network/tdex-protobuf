@@ -27,6 +27,7 @@ interface IOperatorService extends grpc.ServiceDefinition<grpc.UntypedServiceImp
     reportMarketFee: IOperatorService_IReportMarketFee;
     reloadUtxos: IOperatorService_IReloadUtxos;
     listUtxos: IOperatorService_IListUtxos;
+    dropMarket: IOperatorService_IDropMarket;
 }
 
 interface IOperatorService_IDepositMarket extends grpc.MethodDefinition<operator_pb.DepositMarketRequest, operator_pb.DepositMarketReply> {
@@ -182,6 +183,15 @@ interface IOperatorService_IListUtxos extends grpc.MethodDefinition<operator_pb.
     responseSerialize: grpc.serialize<operator_pb.ListUtxosReply>;
     responseDeserialize: grpc.deserialize<operator_pb.ListUtxosReply>;
 }
+interface IOperatorService_IDropMarket extends grpc.MethodDefinition<operator_pb.DropMarketRequest, operator_pb.DropMarketReply> {
+    path: "/Operator/DropMarket";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<operator_pb.DropMarketRequest>;
+    requestDeserialize: grpc.deserialize<operator_pb.DropMarketRequest>;
+    responseSerialize: grpc.serialize<operator_pb.DropMarketReply>;
+    responseDeserialize: grpc.deserialize<operator_pb.DropMarketReply>;
+}
 
 export const OperatorService: IOperatorService;
 
@@ -203,6 +213,7 @@ export interface IOperatorServer {
     reportMarketFee: grpc.handleUnaryCall<operator_pb.ReportMarketFeeRequest, operator_pb.ReportMarketFeeReply>;
     reloadUtxos: grpc.handleUnaryCall<operator_pb.ReloadUtxosRequest, operator_pb.ReloadUtxosReply>;
     listUtxos: grpc.handleUnaryCall<operator_pb.ListUtxosRequest, operator_pb.ListUtxosReply>;
+    dropMarket: grpc.handleUnaryCall<operator_pb.DropMarketRequest, operator_pb.DropMarketReply>;
 }
 
 export interface IOperatorClient {
@@ -257,6 +268,9 @@ export interface IOperatorClient {
     listUtxos(request: operator_pb.ListUtxosRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.ListUtxosReply) => void): grpc.ClientUnaryCall;
     listUtxos(request: operator_pb.ListUtxosRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.ListUtxosReply) => void): grpc.ClientUnaryCall;
     listUtxos(request: operator_pb.ListUtxosRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.ListUtxosReply) => void): grpc.ClientUnaryCall;
+    dropMarket(request: operator_pb.DropMarketRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.DropMarketReply) => void): grpc.ClientUnaryCall;
+    dropMarket(request: operator_pb.DropMarketRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.DropMarketReply) => void): grpc.ClientUnaryCall;
+    dropMarket(request: operator_pb.DropMarketRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.DropMarketReply) => void): grpc.ClientUnaryCall;
 }
 
 export class OperatorClient extends grpc.Client implements IOperatorClient {
@@ -312,4 +326,7 @@ export class OperatorClient extends grpc.Client implements IOperatorClient {
     public listUtxos(request: operator_pb.ListUtxosRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.ListUtxosReply) => void): grpc.ClientUnaryCall;
     public listUtxos(request: operator_pb.ListUtxosRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.ListUtxosReply) => void): grpc.ClientUnaryCall;
     public listUtxos(request: operator_pb.ListUtxosRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.ListUtxosReply) => void): grpc.ClientUnaryCall;
+    public dropMarket(request: operator_pb.DropMarketRequest, callback: (error: grpc.ServiceError | null, response: operator_pb.DropMarketReply) => void): grpc.ClientUnaryCall;
+    public dropMarket(request: operator_pb.DropMarketRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: operator_pb.DropMarketReply) => void): grpc.ClientUnaryCall;
+    public dropMarket(request: operator_pb.DropMarketRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: operator_pb.DropMarketReply) => void): grpc.ClientUnaryCall;
 }

@@ -137,6 +137,28 @@ function deserialize_DepositMarketRequest(buffer_arg) {
   return operator_pb.DepositMarketRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_DropMarketReply(arg) {
+  if (!(arg instanceof operator_pb.DropMarketReply)) {
+    throw new Error('Expected argument of type DropMarketReply');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_DropMarketReply(buffer_arg) {
+  return operator_pb.DropMarketReply.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_DropMarketRequest(arg) {
+  if (!(arg instanceof operator_pb.DropMarketRequest)) {
+    throw new Error('Expected argument of type DropMarketRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_DropMarketRequest(buffer_arg) {
+  return operator_pb.DropMarketRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_ListDepositMarketReply(arg) {
   if (!(arg instanceof operator_pb.ListDepositMarketReply)) {
     throw new Error('Expected argument of type ListDepositMarketReply');
@@ -598,6 +620,18 @@ listUtxos: {
     requestDeserialize: deserialize_ListUtxosRequest,
     responseSerialize: serialize_ListUtxosReply,
     responseDeserialize: deserialize_ListUtxosReply,
+  },
+  // Deletes Market based on account_index
+dropMarket: {
+    path: '/Operator/DropMarket',
+    requestStream: false,
+    responseStream: false,
+    requestType: operator_pb.DropMarketRequest,
+    responseType: operator_pb.DropMarketReply,
+    requestSerialize: serialize_DropMarketRequest,
+    requestDeserialize: deserialize_DropMarketRequest,
+    responseSerialize: serialize_DropMarketReply,
+    responseDeserialize: deserialize_DropMarketReply,
   },
 };
 
