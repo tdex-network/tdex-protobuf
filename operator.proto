@@ -217,7 +217,7 @@ message MarketInfo {
   Fee fee = 2;
   bool tradable = 3;
   StrategyType strategy_type = 4;
-  uint64 account_id = 5;
+  uint64 account_index = 5;
   Price price = 6;
 }
 
