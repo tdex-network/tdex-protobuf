@@ -74,7 +74,15 @@ service Operator {
 
   // Returns all the unspents and locks
   rpc ListUtxos(ListUtxosRequest) returns(ListUtxosReply){}
+
+  // Deletes Market based on account_index
+  rpc DropMarket(DropMarketRequest) returns(DropMarketReply){}
 }
+
+message DropMarketRequest {
+    uint64 account_index = 1;
+}
+message DropMarketReply{}
 
 message ListUtxosRequest {}
 message ListUtxosReply{
