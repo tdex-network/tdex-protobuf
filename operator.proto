@@ -62,8 +62,8 @@ service Operator {
   // from a specific market. The Market MUST be closed before doing this change.
   rpc WithdrawMarket(WithdrawMarketRequest) returns (WithdrawMarketReply) {}
 
-  // Returs all the swaps processed by the daemon (both attempted and completed)
-  rpc ListSwaps(ListSwapsRequest) returns (ListSwapsReply) {}
+  // Returs all the trades processed by the daemon (during process, compelted and rejected)
+  rpc ListTrades(ListTradesRequest) returns (ListTradesReply) {}
 
   // Displays a report on how much the given market is collecting in Liquidity
   // Provider fees
@@ -192,8 +192,8 @@ message WithdrawMarketReply {
   bytes raw_tx = 1;
 }
 
-message ListSwapsRequest {}
-message ListSwapsReply { repeated SwapInfo swaps = 1; }
+message ListTradesRequest {}
+message ListTradesReply { repeated TradeInfo trades = 1; }
 
 message ReportMarketFeeRequest {
   Market market = 1; // Market to be updated
@@ -213,11 +213,13 @@ enum StrategyType {
   UNBALANCED = 2;
 }
 
-enum SwapStatus {
+enum TradeStatus {
   UNDEFINED = 0;
   REQUEST = 1;
   ACCEPT = 2;
   COMPLETE = 3;
+  SETTLED = 4;
+  EXPIRED = 5;
 }
 
 message MarketInfo {
@@ -229,26 +231,67 @@ message MarketInfo {
   Price price = 6;
 }
 
+message TradeStatusInfo {
+  TradeStatus status = 1;
+  bool failed = 2;
+}
+
 message SwapInfo {
-  SwapStatus status = 1;
   // The proposer's quantity
-  uint64 amount_p = 2;
+  uint64 amount_p = 1;
   // The proposer's asset hash
-  string asset_p = 3;
+  string asset_p = 2;
   // The responder's quantity
-  uint64 amount_r = 4;
+  uint64 amount_r = 3;
   // The responder's asset hash
-  string asset_r = 5;
+  string asset_r = 4;
+}
+
+message SwapFailInfo {
+  uint32 failure_code = 1;
+  string failure_message = 2;
+}
+
+message TradePrice {
+  double base_price = 1;
+  double quote_price = 2;
+}
+
+message TradeInfo {
+  // The id of the trade
+  string trade_id = 1;
+  // The info about the status of the trade
+  TradeStatusInfo status = 2;
+  // The info about the swap
+  SwapInfo swap_info = 3;
+  // The info of an eventually failed swap
+  SwapFailInfo fail_info = 4;
   // The collected fee on the current swap
-  Fee market_fee = 6;
-  // SwapRequest timestamp
-  uint64 request_time_unix = 7;
-  // SwapAccpet timestamp
-  uint64 accept_time_unix = 8;
-  // SwapComplete timestap
-  uint64 complete_time_unix = 9;
-  // expiration timestamp for the current swap
-  uint64 expiry_time_unix = 10;
+  MarketWithFee market_with_fee = 5;
+  // The prices of the trade at request time 
+  TradePrice price = 6;
+  // The eventual tx url with blinders in case the trade is settled
+  string tx_url = 7; 
+  // SwapRequest unix timestamp
+  uint64 request_time_unix = 8;
+  // SwapAccpet unix timestamp
+  uint64 accept_time_unix = 9;
+  // SwapComplete unix timestamp
+  uint64 complete_time_unix = 10;
+  // Settlement unix timestamp
+  uint64 settle_time_unix = 11;
+  // Expiration unix timestamp
+  uint64 expiry_time_unix = 12;
+  // SwapRequest UTC timestamp
+  string request_time_utc = 13;
+  // SwapAccept UTC timestamp
+  string accept_time_utc = 14;
+  // SwapComplete UTC timestamp
+  string complete_time_utc = 15;
+  // Settlement UTC timestamp
+  string settle_time_utc = 16;
+  // Expiration UTC timestamp
+  uint64 expiry_time_utc = 17;
 }
 
 message FeeInfo {
