@@ -252,7 +252,7 @@ message SwapFailInfo {
   string failure_message = 2;
 }
 
-message MarketPrice {
+message TradePrice {
   double base_price = 1;
   double quote_price = 2;
 }
@@ -268,8 +268,8 @@ message TradeInfo {
   SwapFailInfo fail_info = 4;
   // The collected fee on the current swap
   MarketWithFee market_with_fee = 5;
-  // The price of the market at request time 
-  MarketPrice market_price = 6;
+  // The prices of the trade at request time 
+  TradePrice price = 6;
   // The eventual tx url with blinders in case the trade is settled
   string tx_url = 7; 
   // SwapRequest unix timestamp
