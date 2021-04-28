@@ -291,7 +291,7 @@ message TradeInfo {
   // Settlement UTC timestamp
   string settle_time_utc = 16;
   // Expiration UTC timestamp
-  uint64 expiry_time_utc = 17;
+  string expiry_time_utc = 17;
 }
 
 message FeeInfo {
