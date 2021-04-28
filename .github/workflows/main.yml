@@ -2,7 +2,7 @@ name: Compile protobuf stubs
 
 on:
   push:
-    branches: [beta]
+    branches: [master]
 
 jobs:
   # This workflow contains a single job called "compile"
