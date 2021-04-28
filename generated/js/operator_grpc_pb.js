@@ -203,26 +203,26 @@ function deserialize_ListMarketRequest(buffer_arg) {
   return operator_pb.ListMarketRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_ListSwapsReply(arg) {
-  if (!(arg instanceof operator_pb.ListSwapsReply)) {
-    throw new Error('Expected argument of type ListSwapsReply');
+function serialize_ListTradesReply(arg) {
+  if (!(arg instanceof operator_pb.ListTradesReply)) {
+    throw new Error('Expected argument of type ListTradesReply');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_ListSwapsReply(buffer_arg) {
-  return operator_pb.ListSwapsReply.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_ListTradesReply(buffer_arg) {
+  return operator_pb.ListTradesReply.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_ListSwapsRequest(arg) {
-  if (!(arg instanceof operator_pb.ListSwapsRequest)) {
-    throw new Error('Expected argument of type ListSwapsRequest');
+function serialize_ListTradesRequest(arg) {
+  if (!(arg instanceof operator_pb.ListTradesRequest)) {
+    throw new Error('Expected argument of type ListTradesRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_ListSwapsRequest(buffer_arg) {
-  return operator_pb.ListSwapsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_ListTradesRequest(buffer_arg) {
+  return operator_pb.ListTradesRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_ListUtxosReply(arg) {
@@ -572,17 +572,17 @@ withdrawMarket: {
     responseSerialize: serialize_WithdrawMarketReply,
     responseDeserialize: deserialize_WithdrawMarketReply,
   },
-  // Returs all the swaps processed by the daemon (both attempted and completed)
-listSwaps: {
-    path: '/Operator/ListSwaps',
+  // Returs all the trades processed by the daemon (during process, compelted and rejected)
+listTrades: {
+    path: '/Operator/ListTrades',
     requestStream: false,
     responseStream: false,
-    requestType: operator_pb.ListSwapsRequest,
-    responseType: operator_pb.ListSwapsReply,
-    requestSerialize: serialize_ListSwapsRequest,
-    requestDeserialize: deserialize_ListSwapsRequest,
-    responseSerialize: serialize_ListSwapsReply,
-    responseDeserialize: deserialize_ListSwapsReply,
+    requestType: operator_pb.ListTradesRequest,
+    responseType: operator_pb.ListTradesReply,
+    requestSerialize: serialize_ListTradesRequest,
+    requestDeserialize: deserialize_ListTradesRequest,
+    responseSerialize: serialize_ListTradesReply,
+    responseDeserialize: deserialize_ListTradesReply,
   },
   // Displays a report on how much the given market is collecting in Liquidity
 // Provider fees

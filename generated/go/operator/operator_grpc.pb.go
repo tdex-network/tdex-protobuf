@@ -54,8 +54,8 @@ type OperatorClient interface {
 	// WithdrawMarket allows the operator to withdraw to external wallet funds
 	// from a specific market. The Market MUST be closed before doing this change.
 	WithdrawMarket(ctx context.Context, in *WithdrawMarketRequest, opts ...grpc.CallOption) (*WithdrawMarketReply, error)
-	// Returs all the swaps processed by the daemon (both attempted and completed)
-	ListSwaps(ctx context.Context, in *ListSwapsRequest, opts ...grpc.CallOption) (*ListSwapsReply, error)
+	// Returs all the trades processed by the daemon (during process, compelted and rejected)
+	ListTrades(ctx context.Context, in *ListTradesRequest, opts ...grpc.CallOption) (*ListTradesReply, error)
 	// Displays a report on how much the given market is collecting in Liquidity
 	// Provider fees
 	ReportMarketFee(ctx context.Context, in *ReportMarketFeeRequest, opts ...grpc.CallOption) (*ReportMarketFeeReply, error)
@@ -192,9 +192,9 @@ func (c *operatorClient) WithdrawMarket(ctx context.Context, in *WithdrawMarketR
 	return out, nil
 }
 
-func (c *operatorClient) ListSwaps(ctx context.Context, in *ListSwapsRequest, opts ...grpc.CallOption) (*ListSwapsReply, error) {
-	out := new(ListSwapsReply)
-	err := c.cc.Invoke(ctx, "/Operator/ListSwaps", in, out, opts...)
+func (c *operatorClient) ListTrades(ctx context.Context, in *ListTradesRequest, opts ...grpc.CallOption) (*ListTradesReply, error) {
+	out := new(ListTradesReply)
+	err := c.cc.Invoke(ctx, "/Operator/ListTrades", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -278,8 +278,8 @@ type OperatorServer interface {
 	// WithdrawMarket allows the operator to withdraw to external wallet funds
 	// from a specific market. The Market MUST be closed before doing this change.
 	WithdrawMarket(context.Context, *WithdrawMarketRequest) (*WithdrawMarketReply, error)
-	// Returs all the swaps processed by the daemon (both attempted and completed)
-	ListSwaps(context.Context, *ListSwapsRequest) (*ListSwapsReply, error)
+	// Returs all the trades processed by the daemon (during process, compelted and rejected)
+	ListTrades(context.Context, *ListTradesRequest) (*ListTradesReply, error)
 	// Displays a report on how much the given market is collecting in Liquidity
 	// Provider fees
 	ReportMarketFee(context.Context, *ReportMarketFeeRequest) (*ReportMarketFeeReply, error)
@@ -335,8 +335,8 @@ func (*UnimplementedOperatorServer) UpdateMarketStrategy(context.Context, *Updat
 func (*UnimplementedOperatorServer) WithdrawMarket(context.Context, *WithdrawMarketRequest) (*WithdrawMarketReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method WithdrawMarket not implemented")
 }
-func (*UnimplementedOperatorServer) ListSwaps(context.Context, *ListSwapsRequest) (*ListSwapsReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListSwaps not implemented")
+func (*UnimplementedOperatorServer) ListTrades(context.Context, *ListTradesRequest) (*ListTradesReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTrades not implemented")
 }
 func (*UnimplementedOperatorServer) ReportMarketFee(context.Context, *ReportMarketFeeRequest) (*ReportMarketFeeReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReportMarketFee not implemented")
@@ -590,20 +590,20 @@ func _Operator_WithdrawMarket_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Operator_ListSwaps_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListSwapsRequest)
+func _Operator_ListTrades_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTradesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OperatorServer).ListSwaps(ctx, in)
+		return srv.(OperatorServer).ListTrades(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/Operator/ListSwaps",
+		FullMethod: "/Operator/ListTrades",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OperatorServer).ListSwaps(ctx, req.(*ListSwapsRequest))
+		return srv.(OperatorServer).ListTrades(ctx, req.(*ListTradesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -737,8 +737,8 @@ var _Operator_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Operator_WithdrawMarket_Handler,
 		},
 		{
-			MethodName: "ListSwaps",
-			Handler:    _Operator_ListSwaps_Handler,
+			MethodName: "ListTrades",
+			Handler:    _Operator_ListTrades_Handler,
 		},
 		{
 			MethodName: "ReportMarketFee",

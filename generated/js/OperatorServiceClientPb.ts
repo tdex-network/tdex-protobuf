@@ -555,44 +555,44 @@ export class OperatorClient {
     this.methodInfoWithdrawMarket);
   }
 
-  methodInfoListSwaps = new grpcWeb.AbstractClientBase.MethodInfo(
-    operator_pb.ListSwapsReply,
-    (request: operator_pb.ListSwapsRequest) => {
+  methodInfoListTrades = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.ListTradesReply,
+    (request: operator_pb.ListTradesRequest) => {
       return request.serializeBinary();
     },
-    operator_pb.ListSwapsReply.deserializeBinary
+    operator_pb.ListTradesReply.deserializeBinary
   );
 
-  listSwaps(
-    request: operator_pb.ListSwapsRequest,
-    metadata: grpcWeb.Metadata | null): Promise<operator_pb.ListSwapsReply>;
+  listTrades(
+    request: operator_pb.ListTradesRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.ListTradesReply>;
 
-  listSwaps(
-    request: operator_pb.ListSwapsRequest,
+  listTrades(
+    request: operator_pb.ListTradesRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
-               response: operator_pb.ListSwapsReply) => void): grpcWeb.ClientReadableStream<operator_pb.ListSwapsReply>;
+               response: operator_pb.ListTradesReply) => void): grpcWeb.ClientReadableStream<operator_pb.ListTradesReply>;
 
-  listSwaps(
-    request: operator_pb.ListSwapsRequest,
+  listTrades(
+    request: operator_pb.ListTradesRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.Error,
-               response: operator_pb.ListSwapsReply) => void) {
+               response: operator_pb.ListTradesReply) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/Operator/ListSwaps',
+          '/Operator/ListTrades',
         request,
         metadata || {},
-        this.methodInfoListSwaps,
+        this.methodInfoListTrades,
         callback);
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/Operator/ListSwaps',
+      '/Operator/ListTrades',
     request,
     metadata || {},
-    this.methodInfoListSwaps);
+    this.methodInfoListTrades);
   }
 
   methodInfoReportMarketFee = new grpcWeb.AbstractClientBase.MethodInfo(

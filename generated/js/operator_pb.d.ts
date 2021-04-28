@@ -786,43 +786,43 @@ export namespace WithdrawMarketReply {
     }
 }
 
-export class ListSwapsRequest extends jspb.Message { 
+export class ListTradesRequest extends jspb.Message { 
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): ListSwapsRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: ListSwapsRequest): ListSwapsRequest.AsObject;
+    toObject(includeInstance?: boolean): ListTradesRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: ListTradesRequest): ListTradesRequest.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: ListSwapsRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): ListSwapsRequest;
-    static deserializeBinaryFromReader(message: ListSwapsRequest, reader: jspb.BinaryReader): ListSwapsRequest;
+    static serializeBinaryToWriter(message: ListTradesRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ListTradesRequest;
+    static deserializeBinaryFromReader(message: ListTradesRequest, reader: jspb.BinaryReader): ListTradesRequest;
 }
 
-export namespace ListSwapsRequest {
+export namespace ListTradesRequest {
     export type AsObject = {
     }
 }
 
-export class ListSwapsReply extends jspb.Message { 
-    clearSwapsList(): void;
-    getSwapsList(): Array<SwapInfo>;
-    setSwapsList(value: Array<SwapInfo>): ListSwapsReply;
-    addSwaps(value?: SwapInfo, index?: number): SwapInfo;
+export class ListTradesReply extends jspb.Message { 
+    clearTradesList(): void;
+    getTradesList(): Array<TradeInfo>;
+    setTradesList(value: Array<TradeInfo>): ListTradesReply;
+    addTrades(value?: TradeInfo, index?: number): TradeInfo;
 
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): ListSwapsReply.AsObject;
-    static toObject(includeInstance: boolean, msg: ListSwapsReply): ListSwapsReply.AsObject;
+    toObject(includeInstance?: boolean): ListTradesReply.AsObject;
+    static toObject(includeInstance: boolean, msg: ListTradesReply): ListTradesReply.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: ListSwapsReply, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): ListSwapsReply;
-    static deserializeBinaryFromReader(message: ListSwapsReply, reader: jspb.BinaryReader): ListSwapsReply;
+    static serializeBinaryToWriter(message: ListTradesReply, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ListTradesReply;
+    static deserializeBinaryFromReader(message: ListTradesReply, reader: jspb.BinaryReader): ListTradesReply;
 }
 
-export namespace ListSwapsReply {
+export namespace ListTradesReply {
     export type AsObject = {
-        swapsList: Array<SwapInfo.AsObject>,
+        tradesList: Array<TradeInfo.AsObject>,
     }
 }
 
@@ -929,10 +929,32 @@ export namespace MarketInfo {
     }
 }
 
-export class SwapInfo extends jspb.Message { 
-    getStatus(): SwapStatus;
-    setStatus(value: SwapStatus): SwapInfo;
+export class TradeStatusInfo extends jspb.Message { 
+    getStatus(): TradeStatus;
+    setStatus(value: TradeStatus): TradeStatusInfo;
 
+    getFailed(): boolean;
+    setFailed(value: boolean): TradeStatusInfo;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): TradeStatusInfo.AsObject;
+    static toObject(includeInstance: boolean, msg: TradeStatusInfo): TradeStatusInfo.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: TradeStatusInfo, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): TradeStatusInfo;
+    static deserializeBinaryFromReader(message: TradeStatusInfo, reader: jspb.BinaryReader): TradeStatusInfo;
+}
+
+export namespace TradeStatusInfo {
+    export type AsObject = {
+        status: TradeStatus,
+        failed: boolean,
+    }
+}
+
+export class SwapInfo extends jspb.Message { 
     getAmountP(): number;
     setAmountP(value: number): SwapInfo;
 
@@ -944,24 +966,6 @@ export class SwapInfo extends jspb.Message {
 
     getAssetR(): string;
     setAssetR(value: string): SwapInfo;
-
-
-    hasMarketFee(): boolean;
-    clearMarketFee(): void;
-    getMarketFee(): types_pb.Fee | undefined;
-    setMarketFee(value?: types_pb.Fee): SwapInfo;
-
-    getRequestTimeUnix(): number;
-    setRequestTimeUnix(value: number): SwapInfo;
-
-    getAcceptTimeUnix(): number;
-    setAcceptTimeUnix(value: number): SwapInfo;
-
-    getCompleteTimeUnix(): number;
-    setCompleteTimeUnix(value: number): SwapInfo;
-
-    getExpiryTimeUnix(): number;
-    setExpiryTimeUnix(value: number): SwapInfo;
 
 
     serializeBinary(): Uint8Array;
@@ -976,16 +980,160 @@ export class SwapInfo extends jspb.Message {
 
 export namespace SwapInfo {
     export type AsObject = {
-        status: SwapStatus,
         amountP: number,
         assetP: string,
         amountR: number,
         assetR: string,
-        marketFee?: types_pb.Fee.AsObject,
+    }
+}
+
+export class SwapFailInfo extends jspb.Message { 
+    getFailureCode(): number;
+    setFailureCode(value: number): SwapFailInfo;
+
+    getFailureMessage(): string;
+    setFailureMessage(value: string): SwapFailInfo;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): SwapFailInfo.AsObject;
+    static toObject(includeInstance: boolean, msg: SwapFailInfo): SwapFailInfo.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: SwapFailInfo, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): SwapFailInfo;
+    static deserializeBinaryFromReader(message: SwapFailInfo, reader: jspb.BinaryReader): SwapFailInfo;
+}
+
+export namespace SwapFailInfo {
+    export type AsObject = {
+        failureCode: number,
+        failureMessage: string,
+    }
+}
+
+export class TradePrice extends jspb.Message { 
+    getBasePrice(): number;
+    setBasePrice(value: number): TradePrice;
+
+    getQuotePrice(): number;
+    setQuotePrice(value: number): TradePrice;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): TradePrice.AsObject;
+    static toObject(includeInstance: boolean, msg: TradePrice): TradePrice.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: TradePrice, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): TradePrice;
+    static deserializeBinaryFromReader(message: TradePrice, reader: jspb.BinaryReader): TradePrice;
+}
+
+export namespace TradePrice {
+    export type AsObject = {
+        basePrice: number,
+        quotePrice: number,
+    }
+}
+
+export class TradeInfo extends jspb.Message { 
+    getTradeId(): string;
+    setTradeId(value: string): TradeInfo;
+
+
+    hasStatus(): boolean;
+    clearStatus(): void;
+    getStatus(): TradeStatusInfo | undefined;
+    setStatus(value?: TradeStatusInfo): TradeInfo;
+
+
+    hasSwapInfo(): boolean;
+    clearSwapInfo(): void;
+    getSwapInfo(): SwapInfo | undefined;
+    setSwapInfo(value?: SwapInfo): TradeInfo;
+
+
+    hasFailInfo(): boolean;
+    clearFailInfo(): void;
+    getFailInfo(): SwapFailInfo | undefined;
+    setFailInfo(value?: SwapFailInfo): TradeInfo;
+
+
+    hasMarketWithFee(): boolean;
+    clearMarketWithFee(): void;
+    getMarketWithFee(): types_pb.MarketWithFee | undefined;
+    setMarketWithFee(value?: types_pb.MarketWithFee): TradeInfo;
+
+
+    hasPrice(): boolean;
+    clearPrice(): void;
+    getPrice(): TradePrice | undefined;
+    setPrice(value?: TradePrice): TradeInfo;
+
+    getTxUrl(): string;
+    setTxUrl(value: string): TradeInfo;
+
+    getRequestTimeUnix(): number;
+    setRequestTimeUnix(value: number): TradeInfo;
+
+    getAcceptTimeUnix(): number;
+    setAcceptTimeUnix(value: number): TradeInfo;
+
+    getCompleteTimeUnix(): number;
+    setCompleteTimeUnix(value: number): TradeInfo;
+
+    getSettleTimeUnix(): number;
+    setSettleTimeUnix(value: number): TradeInfo;
+
+    getExpiryTimeUnix(): number;
+    setExpiryTimeUnix(value: number): TradeInfo;
+
+    getRequestTimeUtc(): string;
+    setRequestTimeUtc(value: string): TradeInfo;
+
+    getAcceptTimeUtc(): string;
+    setAcceptTimeUtc(value: string): TradeInfo;
+
+    getCompleteTimeUtc(): string;
+    setCompleteTimeUtc(value: string): TradeInfo;
+
+    getSettleTimeUtc(): string;
+    setSettleTimeUtc(value: string): TradeInfo;
+
+    getExpiryTimeUtc(): number;
+    setExpiryTimeUtc(value: number): TradeInfo;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): TradeInfo.AsObject;
+    static toObject(includeInstance: boolean, msg: TradeInfo): TradeInfo.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: TradeInfo, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): TradeInfo;
+    static deserializeBinaryFromReader(message: TradeInfo, reader: jspb.BinaryReader): TradeInfo;
+}
+
+export namespace TradeInfo {
+    export type AsObject = {
+        tradeId: string,
+        status?: TradeStatusInfo.AsObject,
+        swapInfo?: SwapInfo.AsObject,
+        failInfo?: SwapFailInfo.AsObject,
+        marketWithFee?: types_pb.MarketWithFee.AsObject,
+        price?: TradePrice.AsObject,
+        txUrl: string,
         requestTimeUnix: number,
         acceptTimeUnix: number,
         completeTimeUnix: number,
+        settleTimeUnix: number,
         expiryTimeUnix: number,
+        requestTimeUtc: string,
+        acceptTimeUtc: string,
+        completeTimeUtc: string,
+        settleTimeUtc: string,
+        expiryTimeUtc: number,
     }
 }
 
@@ -1057,9 +1205,11 @@ export enum StrategyType {
     UNBALANCED = 2,
 }
 
-export enum SwapStatus {
+export enum TradeStatus {
     UNDEFINED = 0,
     REQUEST = 1,
     ACCEPT = 2,
     COMPLETE = 3,
+    SETTLED = 4,
+    EXPIRED = 5,
 }

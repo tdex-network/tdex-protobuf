@@ -23,8 +23,8 @@
     - [ListDepositMarketRequest](#.ListDepositMarketRequest)
     - [ListMarketReply](#.ListMarketReply)
     - [ListMarketRequest](#.ListMarketRequest)
-    - [ListSwapsReply](#.ListSwapsReply)
-    - [ListSwapsRequest](#.ListSwapsRequest)
+    - [ListTradesReply](#.ListTradesReply)
+    - [ListTradesRequest](#.ListTradesRequest)
     - [ListUtxosReply](#.ListUtxosReply)
     - [ListUtxosReply.InfoPerAccountEntry](#.ListUtxosReply.InfoPerAccountEntry)
     - [ListUtxosRequest](#.ListUtxosRequest)
@@ -36,7 +36,11 @@
     - [ReportMarketFeeReply](#.ReportMarketFeeReply)
     - [ReportMarketFeeReply.TotalCollectedFeesPerAssetEntry](#.ReportMarketFeeReply.TotalCollectedFeesPerAssetEntry)
     - [ReportMarketFeeRequest](#.ReportMarketFeeRequest)
+    - [SwapFailInfo](#.SwapFailInfo)
     - [SwapInfo](#.SwapInfo)
+    - [TradeInfo](#.TradeInfo)
+    - [TradePrice](#.TradePrice)
+    - [TradeStatusInfo](#.TradeStatusInfo)
     - [TxOutpoint](#.TxOutpoint)
     - [UpdateMarketFeeReply](#.UpdateMarketFeeReply)
     - [UpdateMarketFeeRequest](#.UpdateMarketFeeRequest)
@@ -50,7 +54,7 @@
     - [WithdrawMarketRequest](#.WithdrawMarketRequest)
   
     - [StrategyType](#.StrategyType)
-    - [SwapStatus](#.SwapStatus)
+    - [TradeStatus](#.TradeStatus)
   
     - [Operator](#.Operator)
   
@@ -391,24 +395,24 @@
 
 
 
-<a name=".ListSwapsReply"></a>
+<a name=".ListTradesReply"></a>
 
-### ListSwapsReply
+### ListTradesReply
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| swaps | [SwapInfo](#SwapInfo) | repeated |  |
+| trades | [TradeInfo](#TradeInfo) | repeated |  |
 
 
 
 
 
 
-<a name=".ListSwapsRequest"></a>
+<a name=".ListTradesRequest"></a>
 
-### ListSwapsRequest
+### ListTradesRequest
 
 
 
@@ -569,6 +573,22 @@
 
 
 
+<a name=".SwapFailInfo"></a>
+
+### SwapFailInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| failure_code | [uint32](#uint32) |  |  |
+| failure_message | [string](#string) |  |  |
+
+
+
+
+
+
 <a name=".SwapInfo"></a>
 
 ### SwapInfo
@@ -577,16 +597,73 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| status | [SwapStatus](#SwapStatus) |  |  |
 | amount_p | [uint64](#uint64) |  | The proposer&#39;s quantity |
 | asset_p | [string](#string) |  | The proposer&#39;s asset hash |
 | amount_r | [uint64](#uint64) |  | The responder&#39;s quantity |
 | asset_r | [string](#string) |  | The responder&#39;s asset hash |
-| market_fee | [Fee](#Fee) |  | The collected fee on the current swap |
-| request_time_unix | [uint64](#uint64) |  | SwapRequest timestamp |
-| accept_time_unix | [uint64](#uint64) |  | SwapAccpet timestamp |
-| complete_time_unix | [uint64](#uint64) |  | SwapComplete timestap |
-| expiry_time_unix | [uint64](#uint64) |  | expiration timestamp for the current swap |
+
+
+
+
+
+
+<a name=".TradeInfo"></a>
+
+### TradeInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| trade_id | [string](#string) |  | The id of the trade |
+| status | [TradeStatusInfo](#TradeStatusInfo) |  | The info about the status of the trade |
+| swap_info | [SwapInfo](#SwapInfo) |  | The info about the swap |
+| fail_info | [SwapFailInfo](#SwapFailInfo) |  | The info of an eventually failed swap |
+| market_with_fee | [MarketWithFee](#MarketWithFee) |  | The collected fee on the current swap |
+| price | [TradePrice](#TradePrice) |  | The prices of the trade at request time |
+| tx_url | [string](#string) |  | The eventual tx url with blinders in case the trade is settled |
+| request_time_unix | [uint64](#uint64) |  | SwapRequest unix timestamp |
+| accept_time_unix | [uint64](#uint64) |  | SwapAccpet unix timestamp |
+| complete_time_unix | [uint64](#uint64) |  | SwapComplete unix timestamp |
+| settle_time_unix | [uint64](#uint64) |  | Settlement unix timestamp |
+| expiry_time_unix | [uint64](#uint64) |  | Expiration unix timestamp |
+| request_time_utc | [string](#string) |  | SwapRequest UTC timestamp |
+| accept_time_utc | [string](#string) |  | SwapAccept UTC timestamp |
+| complete_time_utc | [string](#string) |  | SwapComplete UTC timestamp |
+| settle_time_utc | [string](#string) |  | Settlement UTC timestamp |
+| expiry_time_utc | [uint64](#uint64) |  | Expiration UTC timestamp |
+
+
+
+
+
+
+<a name=".TradePrice"></a>
+
+### TradePrice
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base_price | [double](#double) |  |  |
+| quote_price | [double](#double) |  |  |
+
+
+
+
+
+
+<a name=".TradeStatusInfo"></a>
+
+### TradeStatusInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| status | [TradeStatus](#TradeStatus) |  |  |
+| failed | [bool](#bool) |  |  |
 
 
 
@@ -775,9 +852,9 @@ Custom types
 
 
 
-<a name=".SwapStatus"></a>
+<a name=".TradeStatus"></a>
 
-### SwapStatus
+### TradeStatus
 
 
 | Name | Number | Description |
@@ -786,6 +863,8 @@ Custom types
 | REQUEST | 1 |  |
 | ACCEPT | 2 |  |
 | COMPLETE | 3 |  |
+| SETTLED | 4 |  |
+| EXPIRED | 5 |  |
 
 
  
@@ -813,7 +892,7 @@ Service for operators to configure and manage a TDEX daemon
 | UpdateMarketPrice | [.UpdateMarketPriceRequest](#UpdateMarketPriceRequest) | [.UpdateMarketPriceReply](#UpdateMarketPriceReply) | Manually updates the price for the given market |
 | UpdateMarketStrategy | [.UpdateMarketStrategyRequest](#UpdateMarketStrategyRequest) | [.UpdateMarketStrategyReply](#UpdateMarketStrategyReply) | Updates the current market making strategy, either using an automated market making formula or a pluggable price feed |
 | WithdrawMarket | [.WithdrawMarketRequest](#WithdrawMarketRequest) | [.WithdrawMarketReply](#WithdrawMarketReply) | WithdrawMarket allows the operator to withdraw to external wallet funds from a specific market. The Market MUST be closed before doing this change. |
-| ListSwaps | [.ListSwapsRequest](#ListSwapsRequest) | [.ListSwapsReply](#ListSwapsReply) | Returs all the swaps processed by the daemon (both attempted and completed) |
+| ListTrades | [.ListTradesRequest](#ListTradesRequest) | [.ListTradesReply](#ListTradesReply) | Returs all the trades processed by the daemon (during process, compelted and rejected) |
 | ReportMarketFee | [.ReportMarketFeeRequest](#ReportMarketFeeRequest) | [.ReportMarketFeeReply](#ReportMarketFeeReply) | Displays a report on how much the given market is collecting in Liquidity Provider fees |
 | ReloadUtxos | [.ReloadUtxosRequest](#ReloadUtxosRequest) | [.ReloadUtxosReply](#ReloadUtxosReply) | Triggers reloading of unspents for stored addresses from blockchain |
 | ListUtxos | [.ListUtxosRequest](#ListUtxosRequest) | [.ListUtxosReply](#ListUtxosReply) | Returns all the unspents and locks |

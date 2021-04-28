@@ -255,11 +255,11 @@
                 </li>
               
                 <li>
-                  <a href="#.ListSwapsReply"><span class="badge">M</span>ListSwapsReply</a>
+                  <a href="#.ListTradesReply"><span class="badge">M</span>ListTradesReply</a>
                 </li>
               
                 <li>
-                  <a href="#.ListSwapsRequest"><span class="badge">M</span>ListSwapsRequest</a>
+                  <a href="#.ListTradesRequest"><span class="badge">M</span>ListTradesRequest</a>
                 </li>
               
                 <li>
@@ -307,7 +307,23 @@
                 </li>
               
                 <li>
+                  <a href="#.SwapFailInfo"><span class="badge">M</span>SwapFailInfo</a>
+                </li>
+              
+                <li>
                   <a href="#.SwapInfo"><span class="badge">M</span>SwapInfo</a>
+                </li>
+              
+                <li>
+                  <a href="#.TradeInfo"><span class="badge">M</span>TradeInfo</a>
+                </li>
+              
+                <li>
+                  <a href="#.TradePrice"><span class="badge">M</span>TradePrice</a>
+                </li>
+              
+                <li>
+                  <a href="#.TradeStatusInfo"><span class="badge">M</span>TradeStatusInfo</a>
                 </li>
               
                 <li>
@@ -360,7 +376,7 @@
                 </li>
               
                 <li>
-                  <a href="#.SwapStatus"><span class="badge">E</span>SwapStatus</a>
+                  <a href="#.TradeStatus"><span class="badge">E</span>TradeStatus</a>
                 </li>
               
               
@@ -1035,7 +1051,7 @@
 
         
       
-        <h3 id=".ListSwapsReply">ListSwapsReply</h3>
+        <h3 id=".ListTradesReply">ListTradesReply</h3>
         <p></p>
 
         
@@ -1046,8 +1062,8 @@
             <tbody>
               
                 <tr>
-                  <td>swaps</td>
-                  <td><a href="#SwapInfo">SwapInfo</a></td>
+                  <td>trades</td>
+                  <td><a href="#TradeInfo">TradeInfo</a></td>
                   <td>repeated</td>
                   <td><p> </p></td>
                 </tr>
@@ -1059,7 +1075,7 @@
 
         
       
-        <h3 id=".ListSwapsRequest">ListSwapsRequest</h3>
+        <h3 id=".ListTradesRequest">ListTradesRequest</h3>
         <p></p>
 
         
@@ -1319,7 +1335,7 @@ entry for each asset and the amount should be the aggregated total. </p></td>
 
         
       
-        <h3 id=".SwapInfo">SwapInfo</h3>
+        <h3 id=".SwapFailInfo">SwapFailInfo</h3>
         <p></p>
 
         
@@ -1330,11 +1346,35 @@ entry for each asset and the amount should be the aggregated total. </p></td>
             <tbody>
               
                 <tr>
-                  <td>status</td>
-                  <td><a href="#SwapStatus">SwapStatus</a></td>
+                  <td>failure_code</td>
+                  <td><a href="#uint32">uint32</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
+              
+                <tr>
+                  <td>failure_message</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SwapInfo">SwapInfo</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
               
                 <tr>
                   <td>amount_p</td>
@@ -1364,39 +1404,202 @@ entry for each asset and the amount should be the aggregated total. </p></td>
                   <td><p>The responder&#39;s asset hash </p></td>
                 </tr>
               
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".TradeInfo">TradeInfo</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
                 <tr>
-                  <td>market_fee</td>
-                  <td><a href="#Fee">Fee</a></td>
+                  <td>trade_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The id of the trade </p></td>
+                </tr>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#TradeStatusInfo">TradeStatusInfo</a></td>
+                  <td></td>
+                  <td><p>The info about the status of the trade </p></td>
+                </tr>
+              
+                <tr>
+                  <td>swap_info</td>
+                  <td><a href="#SwapInfo">SwapInfo</a></td>
+                  <td></td>
+                  <td><p>The info about the swap </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fail_info</td>
+                  <td><a href="#SwapFailInfo">SwapFailInfo</a></td>
+                  <td></td>
+                  <td><p>The info of an eventually failed swap </p></td>
+                </tr>
+              
+                <tr>
+                  <td>market_with_fee</td>
+                  <td><a href="#MarketWithFee">MarketWithFee</a></td>
                   <td></td>
                   <td><p>The collected fee on the current swap </p></td>
+                </tr>
+              
+                <tr>
+                  <td>price</td>
+                  <td><a href="#TradePrice">TradePrice</a></td>
+                  <td></td>
+                  <td><p>The prices of the trade at request time </p></td>
+                </tr>
+              
+                <tr>
+                  <td>tx_url</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The eventual tx url with blinders in case the trade is settled </p></td>
                 </tr>
               
                 <tr>
                   <td>request_time_unix</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p>SwapRequest timestamp </p></td>
+                  <td><p>SwapRequest unix timestamp </p></td>
                 </tr>
               
                 <tr>
                   <td>accept_time_unix</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p>SwapAccpet timestamp </p></td>
+                  <td><p>SwapAccpet unix timestamp </p></td>
                 </tr>
               
                 <tr>
                   <td>complete_time_unix</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p>SwapComplete timestap </p></td>
+                  <td><p>SwapComplete unix timestamp </p></td>
+                </tr>
+              
+                <tr>
+                  <td>settle_time_unix</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>Settlement unix timestamp </p></td>
                 </tr>
               
                 <tr>
                   <td>expiry_time_unix</td>
                   <td><a href="#uint64">uint64</a></td>
                   <td></td>
-                  <td><p>expiration timestamp for the current swap </p></td>
+                  <td><p>Expiration unix timestamp </p></td>
+                </tr>
+              
+                <tr>
+                  <td>request_time_utc</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>SwapRequest UTC timestamp </p></td>
+                </tr>
+              
+                <tr>
+                  <td>accept_time_utc</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>SwapAccept UTC timestamp </p></td>
+                </tr>
+              
+                <tr>
+                  <td>complete_time_utc</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>SwapComplete UTC timestamp </p></td>
+                </tr>
+              
+                <tr>
+                  <td>settle_time_utc</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Settlement UTC timestamp </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expiry_time_utc</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p>Expiration UTC timestamp </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".TradePrice">TradePrice</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>base_price</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>quote_price</td>
+                  <td><a href="#double">double</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".TradeStatusInfo">TradeStatusInfo</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>status</td>
+                  <td><a href="#TradeStatus">TradeStatus</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>failed</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p> </p></td>
                 </tr>
               
             </tbody>
@@ -1752,7 +1955,7 @@ used when crafting this transaction. </p></td>
           </tbody>
         </table>
       
-        <h3 id=".SwapStatus">SwapStatus</h3>
+        <h3 id=".TradeStatus">TradeStatus</h3>
         <p></p>
         <table class="enum-table">
           <thead>
@@ -1781,6 +1984,18 @@ used when crafting this transaction. </p></td>
               <tr>
                 <td>COMPLETE</td>
                 <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>SETTLED</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>EXPIRED</td>
+                <td>5</td>
                 <td><p></p></td>
               </tr>
             
@@ -1902,10 +2117,10 @@ from a specific market. The Market MUST be closed before doing this change.</p><
               </tr>
             
               <tr>
-                <td>ListSwaps</td>
-                <td><a href="#ListSwapsRequest">.ListSwapsRequest</a></td>
-                <td><a href="#ListSwapsReply">.ListSwapsReply</a></td>
-                <td><p>Returs all the swaps processed by the daemon (both attempted and completed)</p></td>
+                <td>ListTrades</td>
+                <td><a href="#ListTradesRequest">.ListTradesRequest</a></td>
+                <td><a href="#ListTradesReply">.ListTradesReply</a></td>
+                <td><p>Returs all the trades processed by the daemon (during process, compelted and rejected)</p></td>
               </tr>
             
               <tr>
