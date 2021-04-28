@@ -7736,7 +7736,7 @@ proto.TradeInfo.toObject = function(includeInstance, msg) {
     acceptTimeUtc: jspb.Message.getFieldWithDefault(msg, 14, ""),
     completeTimeUtc: jspb.Message.getFieldWithDefault(msg, 15, ""),
     settleTimeUtc: jspb.Message.getFieldWithDefault(msg, 16, ""),
-    expiryTimeUtc: jspb.Message.getFieldWithDefault(msg, 17, 0)
+    expiryTimeUtc: jspb.Message.getFieldWithDefault(msg, 17, "")
   };
 
   if (includeInstance) {
@@ -7843,7 +7843,7 @@ proto.TradeInfo.deserializeBinaryFromReader = function(msg, reader) {
       msg.setSettleTimeUtc(value);
       break;
     case 17:
-      var value = /** @type {number} */ (reader.readUint64());
+      var value = /** @type {string} */ (reader.readString());
       msg.setExpiryTimeUtc(value);
       break;
     default:
@@ -7993,8 +7993,8 @@ proto.TradeInfo.serializeBinaryToWriter = function(message, writer) {
     );
   }
   f = message.getExpiryTimeUtc();
-  if (f !== 0) {
-    writer.writeUint64(
+  if (f.length > 0) {
+    writer.writeString(
       17,
       f
     );
@@ -8386,20 +8386,20 @@ proto.TradeInfo.prototype.setSettleTimeUtc = function(value) {
 
 
 /**
- * optional uint64 expiry_time_utc = 17;
- * @return {number}
+ * optional string expiry_time_utc = 17;
+ * @return {string}
  */
 proto.TradeInfo.prototype.getExpiryTimeUtc = function() {
-  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 17, 0));
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 17, ""));
 };
 
 
 /**
- * @param {number} value
+ * @param {string} value
  * @return {!proto.TradeInfo} returns this
  */
 proto.TradeInfo.prototype.setExpiryTimeUtc = function(value) {
-  return jspb.Message.setProto3IntField(this, 17, value);
+  return jspb.Message.setProto3StringField(this, 17, value);
 };
 
 

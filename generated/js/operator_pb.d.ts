@@ -1101,8 +1101,8 @@ export class TradeInfo extends jspb.Message {
     getSettleTimeUtc(): string;
     setSettleTimeUtc(value: string): TradeInfo;
 
-    getExpiryTimeUtc(): number;
-    setExpiryTimeUtc(value: number): TradeInfo;
+    getExpiryTimeUtc(): string;
+    setExpiryTimeUtc(value: string): TradeInfo;
 
 
     serializeBinary(): Uint8Array;
@@ -1133,7 +1133,7 @@ export namespace TradeInfo {
         acceptTimeUtc: string,
         completeTimeUtc: string,
         settleTimeUtc: string,
-        expiryTimeUtc: number,
+        expiryTimeUtc: string,
     }
 }
 

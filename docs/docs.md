@@ -631,7 +631,7 @@
 | accept_time_utc | [string](#string) |  | SwapAccept UTC timestamp |
 | complete_time_utc | [string](#string) |  | SwapComplete UTC timestamp |
 | settle_time_utc | [string](#string) |  | Settlement UTC timestamp |
-| expiry_time_utc | [uint64](#uint64) |  | Expiration UTC timestamp |
+| expiry_time_utc | [string](#string) |  | Expiration UTC timestamp |
 
 
 
