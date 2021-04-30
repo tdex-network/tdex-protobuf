@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 option go_package = "github.com/tdex-network/tdex-protobuf/generated/go/swap";
+option java_package = "network.tdex.swap";
 
 message SwapRequest {
   // Random unique identifier for the current message
