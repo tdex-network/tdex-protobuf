@@ -3,8 +3,8 @@ option go_package = "github.com/tdex-network/tdex-protobuf/generated/go/types";
 
 // Custom Types
 message Fee {
-  int64 basis_point = 1;
-  Fixed fixed = 2;
+  int64 basis_point = 2;
+  Fixed fixed = 3;
 }
 
 message Fixed {
