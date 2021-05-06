@@ -6,6 +6,11 @@ message Fee {
   int64 basis_point = 2;
 }
 
+message FixedFee {
+  int64 base_fee = 1;
+  int64 quote_fee = 2;
+}
+
 message Balance {
   int64 base_amount = 1;
   int64 quote_amount = 2;
@@ -24,6 +29,7 @@ message Market {
 message MarketWithFee {
   Market market = 1;
   Fee fee = 2;
+  FixedFee fixed_fee = 3;
 }
 
 message Price {
