@@ -43,11 +43,18 @@ service Operator {
   // Get extended details for each markets either open, closed or to be funded.
   rpc ListMarket(ListMarketRequest) returns (ListMarketReply) {}
 
-  // Changes the Liquidity Provider fee for the given market. I thsould be
-  // express in basis point. To change the fee on each swap from (current) 0.25%
-  // to 1% you need to pass down 100 The Market MUST be closed before doing this
-  // change.
-  rpc UpdateMarketFee(UpdateMarketFeeRequest) returns (UpdateMarketFeeReply) {}
+  // Changes the Liquidity Provider percentage fee for the given market. It 
+  // should be express in basis point. To change the fee on each swap from 
+  // (current) 0.25% to 1% you need to pass down 100 The Market MUST be closed 
+  // before doing this change. It's also possible to remove the percentage fee
+  // by setting it to 0.
+  rpc UpdateMarketPercentageFee(UpdateMarketPercentageFeeRequest) returns (UpdateMarketFeeReply) {}
+  
+  // Changes the Liquidity provider fixed fees for the given market.
+  // They should be expressed in satoshis for both assets of the market.
+  // To remove a non-null fixed fee, it's enough to set the fields of the 
+  // request to 0.
+  rpc UpdateMarketFixedFee(UpdateMarketFixedFeeRequest) returns (UpdateMarketFeeReply) {}
 
   // Manually updates the price for the given market
   rpc UpdateMarketPrice(UpdateMarketPriceRequest)
@@ -163,7 +170,14 @@ message UpdateMarketStrategyRequest {
 }
 message UpdateMarketStrategyReply {}
 
-message UpdateMarketFeeRequest { MarketWithFee market_with_fee = 1; }
+message UpdateMarketPercentageFeeRequest {
+  Market market = 1;
+  int64 basis_point = 2;
+}
+message UpdateMarketFixedFeeRequest {
+  Market market = 1;
+  Fixed fixed = 2;
+}
 message UpdateMarketFeeReply { MarketWithFee market_with_fee = 1; }
 
 message UpdateMarketPriceRequest {
