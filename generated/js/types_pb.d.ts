@@ -11,6 +11,12 @@ export class Fee extends jspb.Message {
     setBasisPoint(value: number): Fee;
 
 
+    hasFixed(): boolean;
+    clearFixed(): void;
+    getFixed(): Fixed | undefined;
+    setFixed(value?: Fixed): Fee;
+
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Fee.AsObject;
     static toObject(includeInstance: boolean, msg: Fee): Fee.AsObject;
@@ -24,6 +30,32 @@ export class Fee extends jspb.Message {
 export namespace Fee {
     export type AsObject = {
         basisPoint: number,
+        fixed?: Fixed.AsObject,
+    }
+}
+
+export class Fixed extends jspb.Message { 
+    getBaseFee(): number;
+    setBaseFee(value: number): Fixed;
+
+    getQuoteFee(): number;
+    setQuoteFee(value: number): Fixed;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Fixed.AsObject;
+    static toObject(includeInstance: boolean, msg: Fixed): Fixed.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Fixed, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Fixed;
+    static deserializeBinaryFromReader(message: Fixed, reader: jspb.BinaryReader): Fixed;
+}
+
+export namespace Fixed {
+    export type AsObject = {
+        baseFee: number,
+        quoteFee: number,
     }
 }
 
@@ -184,6 +216,12 @@ export class PriceWithFee extends jspb.Message {
     setAsset(value: string): PriceWithFee;
 
 
+    hasBalance(): boolean;
+    clearBalance(): void;
+    getBalance(): Balance | undefined;
+    setBalance(value?: Balance): PriceWithFee;
+
+
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): PriceWithFee.AsObject;
     static toObject(includeInstance: boolean, msg: PriceWithFee): PriceWithFee.AsObject;
@@ -200,6 +238,7 @@ export namespace PriceWithFee {
         fee?: Fee.AsObject,
         amount: number,
         asset: string,
+        balance?: Balance.AsObject,
     }
 }
 

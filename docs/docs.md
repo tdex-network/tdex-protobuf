@@ -95,6 +95,7 @@
     - [Balance](#.Balance)
     - [BalanceWithFee](#.BalanceWithFee)
     - [Fee](#.Fee)
+    - [Fixed](#.Fixed)
     - [Market](#.Market)
     - [MarketWithFee](#.MarketWithFee)
     - [Price](#.Price)
@@ -1360,8 +1361,8 @@ If the type of the trade is SELL it means the base asset will be sent by the tra
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| base_amount | [int64](#int64) |  |  |
-| quote_amount | [int64](#int64) |  |  |
+| base_amount | [uint64](#uint64) |  |  |
+| quote_amount | [uint64](#uint64) |  |  |
 
 
 
@@ -1393,6 +1394,23 @@ Custom Types
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | basis_point | [int64](#int64) |  |  |
+| fixed | [Fixed](#Fixed) |  |  |
+
+
+
+
+
+
+<a name=".Fixed"></a>
+
+### Fixed
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| base_fee | [int64](#int64) |  |  |
+| quote_fee | [int64](#int64) |  |  |
 
 
 
@@ -1459,6 +1477,7 @@ Custom Types
 | fee | [Fee](#Fee) |  |  |
 | amount | [uint64](#uint64) |  |  |
 | asset | [string](#string) |  |  |
+| balance | [Balance](#Balance) |  |  |
 
 
 

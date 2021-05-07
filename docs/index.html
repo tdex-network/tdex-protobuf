@@ -535,6 +535,10 @@
                 </li>
               
                 <li>
+                  <a href="#.Fixed"><span class="badge">M</span>Fixed</a>
+                </li>
+              
+                <li>
                   <a href="#.Market"><span class="badge">M</span>Market</a>
                 </li>
               
@@ -3075,14 +3079,14 @@ transaction hash of the broadcasted transaction.</p></td>
               
                 <tr>
                   <td>base_amount</td>
-                  <td><a href="#int64">int64</a></td>
+                  <td><a href="#uint64">uint64</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
               
                 <tr>
                   <td>quote_amount</td>
-                  <td><a href="#int64">int64</a></td>
+                  <td><a href="#uint64">uint64</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -3137,6 +3141,44 @@ transaction hash of the broadcasted transaction.</p></td>
               
                 <tr>
                   <td>basis_point</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fixed</td>
+                  <td><a href="#Fixed">Fixed</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".Fixed">Fixed</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>base_fee</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>quote_fee</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
                   <td><p> </p></td>
@@ -3276,6 +3318,13 @@ transaction hash of the broadcasted transaction.</p></td>
                 <tr>
                   <td>asset</td>
                   <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>balance</td>
+                  <td><a href="#Balance">Balance</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
