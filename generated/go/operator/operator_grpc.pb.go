@@ -41,11 +41,17 @@ type OperatorClient interface {
 	CloseMarket(ctx context.Context, in *CloseMarketRequest, opts ...grpc.CallOption) (*CloseMarketReply, error)
 	// Get extended details for each markets either open, closed or to be funded.
 	ListMarket(ctx context.Context, in *ListMarketRequest, opts ...grpc.CallOption) (*ListMarketReply, error)
-	// Changes the Liquidity Provider fee for the given market. I thsould be
-	// express in basis point. To change the fee on each swap from (current) 0.25%
-	// to 1% you need to pass down 100 The Market MUST be closed before doing this
-	// change.
-	UpdateMarketFee(ctx context.Context, in *UpdateMarketFeeRequest, opts ...grpc.CallOption) (*UpdateMarketFeeReply, error)
+	// Changes the Liquidity Provider percentage fee for the given market. It
+	// should be express in basis point. To change the fee on each swap from
+	// (current) 0.25% to 1% you need to pass down 100 The Market MUST be closed
+	// before doing this change. It's also possible to remove the percentage fee
+	// by setting it to 0.
+	UpdateMarketPercentageFee(ctx context.Context, in *UpdateMarketPercentageFeeRequest, opts ...grpc.CallOption) (*UpdateMarketFeeReply, error)
+	// Changes the Liquidity provider fixed fees for the given market.
+	// They should be expressed in satoshis for both assets of the market.
+	// To remove a non-null fixed fee, it's enough to set the fields of the
+	// request to 0.
+	UpdateMarketFixedFee(ctx context.Context, in *UpdateMarketFixedFeeRequest, opts ...grpc.CallOption) (*UpdateMarketFeeReply, error)
 	// Manually updates the price for the given market
 	UpdateMarketPrice(ctx context.Context, in *UpdateMarketPriceRequest, opts ...grpc.CallOption) (*UpdateMarketPriceReply, error)
 	// Updates the current market making strategy, either using an automated
@@ -156,9 +162,18 @@ func (c *operatorClient) ListMarket(ctx context.Context, in *ListMarketRequest, 
 	return out, nil
 }
 
-func (c *operatorClient) UpdateMarketFee(ctx context.Context, in *UpdateMarketFeeRequest, opts ...grpc.CallOption) (*UpdateMarketFeeReply, error) {
+func (c *operatorClient) UpdateMarketPercentageFee(ctx context.Context, in *UpdateMarketPercentageFeeRequest, opts ...grpc.CallOption) (*UpdateMarketFeeReply, error) {
 	out := new(UpdateMarketFeeReply)
-	err := c.cc.Invoke(ctx, "/Operator/UpdateMarketFee", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/Operator/UpdateMarketPercentageFee", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *operatorClient) UpdateMarketFixedFee(ctx context.Context, in *UpdateMarketFixedFeeRequest, opts ...grpc.CallOption) (*UpdateMarketFeeReply, error) {
+	out := new(UpdateMarketFeeReply)
+	err := c.cc.Invoke(ctx, "/Operator/UpdateMarketFixedFee", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -265,11 +280,17 @@ type OperatorServer interface {
 	CloseMarket(context.Context, *CloseMarketRequest) (*CloseMarketReply, error)
 	// Get extended details for each markets either open, closed or to be funded.
 	ListMarket(context.Context, *ListMarketRequest) (*ListMarketReply, error)
-	// Changes the Liquidity Provider fee for the given market. I thsould be
-	// express in basis point. To change the fee on each swap from (current) 0.25%
-	// to 1% you need to pass down 100 The Market MUST be closed before doing this
-	// change.
-	UpdateMarketFee(context.Context, *UpdateMarketFeeRequest) (*UpdateMarketFeeReply, error)
+	// Changes the Liquidity Provider percentage fee for the given market. It
+	// should be express in basis point. To change the fee on each swap from
+	// (current) 0.25% to 1% you need to pass down 100 The Market MUST be closed
+	// before doing this change. It's also possible to remove the percentage fee
+	// by setting it to 0.
+	UpdateMarketPercentageFee(context.Context, *UpdateMarketPercentageFeeRequest) (*UpdateMarketFeeReply, error)
+	// Changes the Liquidity provider fixed fees for the given market.
+	// They should be expressed in satoshis for both assets of the market.
+	// To remove a non-null fixed fee, it's enough to set the fields of the
+	// request to 0.
+	UpdateMarketFixedFee(context.Context, *UpdateMarketFixedFeeRequest) (*UpdateMarketFeeReply, error)
 	// Manually updates the price for the given market
 	UpdateMarketPrice(context.Context, *UpdateMarketPriceRequest) (*UpdateMarketPriceReply, error)
 	// Updates the current market making strategy, either using an automated
@@ -323,8 +344,11 @@ func (*UnimplementedOperatorServer) CloseMarket(context.Context, *CloseMarketReq
 func (*UnimplementedOperatorServer) ListMarket(context.Context, *ListMarketRequest) (*ListMarketReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListMarket not implemented")
 }
-func (*UnimplementedOperatorServer) UpdateMarketFee(context.Context, *UpdateMarketFeeRequest) (*UpdateMarketFeeReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateMarketFee not implemented")
+func (*UnimplementedOperatorServer) UpdateMarketPercentageFee(context.Context, *UpdateMarketPercentageFeeRequest) (*UpdateMarketFeeReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMarketPercentageFee not implemented")
+}
+func (*UnimplementedOperatorServer) UpdateMarketFixedFee(context.Context, *UpdateMarketFixedFeeRequest) (*UpdateMarketFeeReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateMarketFixedFee not implemented")
 }
 func (*UnimplementedOperatorServer) UpdateMarketPrice(context.Context, *UpdateMarketPriceRequest) (*UpdateMarketPriceReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateMarketPrice not implemented")
@@ -518,20 +542,38 @@ func _Operator_ListMarket_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Operator_UpdateMarketFee_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateMarketFeeRequest)
+func _Operator_UpdateMarketPercentageFee_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateMarketPercentageFeeRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OperatorServer).UpdateMarketFee(ctx, in)
+		return srv.(OperatorServer).UpdateMarketPercentageFee(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/Operator/UpdateMarketFee",
+		FullMethod: "/Operator/UpdateMarketPercentageFee",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OperatorServer).UpdateMarketFee(ctx, req.(*UpdateMarketFeeRequest))
+		return srv.(OperatorServer).UpdateMarketPercentageFee(ctx, req.(*UpdateMarketPercentageFeeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Operator_UpdateMarketFixedFee_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateMarketFixedFeeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OperatorServer).UpdateMarketFixedFee(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Operator/UpdateMarketFixedFee",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OperatorServer).UpdateMarketFixedFee(ctx, req.(*UpdateMarketFixedFeeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -721,8 +763,12 @@ var _Operator_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Operator_ListMarket_Handler,
 		},
 		{
-			MethodName: "UpdateMarketFee",
-			Handler:    _Operator_UpdateMarketFee_Handler,
+			MethodName: "UpdateMarketPercentageFee",
+			Handler:    _Operator_UpdateMarketPercentageFee_Handler,
+		},
+		{
+			MethodName: "UpdateMarketFixedFee",
+			Handler:    _Operator_UpdateMarketFixedFee_Handler,
 		},
 		{
 			MethodName: "UpdateMarketPrice",

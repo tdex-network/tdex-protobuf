@@ -335,7 +335,11 @@
                 </li>
               
                 <li>
-                  <a href="#.UpdateMarketFeeRequest"><span class="badge">M</span>UpdateMarketFeeRequest</a>
+                  <a href="#.UpdateMarketFixedFeeRequest"><span class="badge">M</span>UpdateMarketFixedFeeRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.UpdateMarketPercentageFeeRequest"><span class="badge">M</span>UpdateMarketPercentageFeeRequest</a>
                 </li>
               
                 <li>
@@ -1668,7 +1672,7 @@ entry for each asset and the amount should be the aggregated total. </p></td>
 
         
       
-        <h3 id=".UpdateMarketFeeRequest">UpdateMarketFeeRequest</h3>
+        <h3 id=".UpdateMarketFixedFeeRequest">UpdateMarketFixedFeeRequest</h3>
         <p></p>
 
         
@@ -1679,8 +1683,46 @@ entry for each asset and the amount should be the aggregated total. </p></td>
             <tbody>
               
                 <tr>
-                  <td>market_with_fee</td>
-                  <td><a href="#MarketWithFee">MarketWithFee</a></td>
+                  <td>market</td>
+                  <td><a href="#Market">Market</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>fixed</td>
+                  <td><a href="#Fixed">Fixed</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".UpdateMarketPercentageFeeRequest">UpdateMarketPercentageFeeRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>market</td>
+                  <td><a href="#Market">Market</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>basis_point</td>
+                  <td><a href="#int64">int64</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -2088,13 +2130,24 @@ inviting the operator to retry again</p></td>
               </tr>
             
               <tr>
-                <td>UpdateMarketFee</td>
-                <td><a href="#UpdateMarketFeeRequest">.UpdateMarketFeeRequest</a></td>
+                <td>UpdateMarketPercentageFee</td>
+                <td><a href="#UpdateMarketPercentageFeeRequest">.UpdateMarketPercentageFeeRequest</a></td>
                 <td><a href="#UpdateMarketFeeReply">.UpdateMarketFeeReply</a></td>
-                <td><p>Changes the Liquidity Provider fee for the given market. I thsould be
-express in basis point. To change the fee on each swap from (current) 0.25%
-to 1% you need to pass down 100 The Market MUST be closed before doing this
-change.</p></td>
+                <td><p>Changes the Liquidity Provider percentage fee for the given market. It 
+should be express in basis point. To change the fee on each swap from 
+(current) 0.25% to 1% you need to pass down 100 The Market MUST be closed 
+before doing this change. It&#39;s also possible to remove the percentage fee
+by setting it to 0.</p></td>
+              </tr>
+            
+              <tr>
+                <td>UpdateMarketFixedFee</td>
+                <td><a href="#UpdateMarketFixedFeeRequest">.UpdateMarketFixedFeeRequest</a></td>
+                <td><a href="#UpdateMarketFeeReply">.UpdateMarketFeeReply</a></td>
+                <td><p>Changes the Liquidity provider fixed fees for the given market.
+They should be expressed in satoshis for both assets of the market.
+To remove a non-null fixed fee, it&#39;s enough to set the fields of the 
+request to 0.</p></td>
               </tr>
             
               <tr>

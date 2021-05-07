@@ -324,15 +324,26 @@ function deserialize_UpdateMarketFeeReply(buffer_arg) {
   return operator_pb.UpdateMarketFeeReply.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-function serialize_UpdateMarketFeeRequest(arg) {
-  if (!(arg instanceof operator_pb.UpdateMarketFeeRequest)) {
-    throw new Error('Expected argument of type UpdateMarketFeeRequest');
+function serialize_UpdateMarketFixedFeeRequest(arg) {
+  if (!(arg instanceof operator_pb.UpdateMarketFixedFeeRequest)) {
+    throw new Error('Expected argument of type UpdateMarketFixedFeeRequest');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_UpdateMarketFeeRequest(buffer_arg) {
-  return operator_pb.UpdateMarketFeeRequest.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_UpdateMarketFixedFeeRequest(buffer_arg) {
+  return operator_pb.UpdateMarketFixedFeeRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_UpdateMarketPercentageFeeRequest(arg) {
+  if (!(arg instanceof operator_pb.UpdateMarketPercentageFeeRequest)) {
+    throw new Error('Expected argument of type UpdateMarketPercentageFeeRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_UpdateMarketPercentageFeeRequest(buffer_arg) {
+  return operator_pb.UpdateMarketPercentageFeeRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_UpdateMarketPriceReply(arg) {
@@ -519,18 +530,34 @@ listMarket: {
     responseSerialize: serialize_ListMarketReply,
     responseDeserialize: deserialize_ListMarketReply,
   },
-  // Changes the Liquidity Provider fee for the given market. I thsould be
-// express in basis point. To change the fee on each swap from (current) 0.25%
-// to 1% you need to pass down 100 The Market MUST be closed before doing this
-// change.
-updateMarketFee: {
-    path: '/Operator/UpdateMarketFee',
+  // Changes the Liquidity Provider percentage fee for the given market. It 
+// should be express in basis point. To change the fee on each swap from 
+// (current) 0.25% to 1% you need to pass down 100 The Market MUST be closed 
+// before doing this change. It's also possible to remove the percentage fee
+// by setting it to 0.
+updateMarketPercentageFee: {
+    path: '/Operator/UpdateMarketPercentageFee',
     requestStream: false,
     responseStream: false,
-    requestType: operator_pb.UpdateMarketFeeRequest,
+    requestType: operator_pb.UpdateMarketPercentageFeeRequest,
     responseType: operator_pb.UpdateMarketFeeReply,
-    requestSerialize: serialize_UpdateMarketFeeRequest,
-    requestDeserialize: deserialize_UpdateMarketFeeRequest,
+    requestSerialize: serialize_UpdateMarketPercentageFeeRequest,
+    requestDeserialize: deserialize_UpdateMarketPercentageFeeRequest,
+    responseSerialize: serialize_UpdateMarketFeeReply,
+    responseDeserialize: deserialize_UpdateMarketFeeReply,
+  },
+  // Changes the Liquidity provider fixed fees for the given market.
+// They should be expressed in satoshis for both assets of the market.
+// To remove a non-null fixed fee, it's enough to set the fields of the 
+// request to 0.
+updateMarketFixedFee: {
+    path: '/Operator/UpdateMarketFixedFee',
+    requestStream: false,
+    responseStream: false,
+    requestType: operator_pb.UpdateMarketFixedFeeRequest,
+    responseType: operator_pb.UpdateMarketFeeReply,
+    requestSerialize: serialize_UpdateMarketFixedFeeRequest,
+    requestDeserialize: deserialize_UpdateMarketFixedFeeRequest,
     responseSerialize: serialize_UpdateMarketFeeReply,
     responseDeserialize: deserialize_UpdateMarketFeeReply,
   },

@@ -43,7 +43,8 @@
     - [TradeStatusInfo](#.TradeStatusInfo)
     - [TxOutpoint](#.TxOutpoint)
     - [UpdateMarketFeeReply](#.UpdateMarketFeeReply)
-    - [UpdateMarketFeeRequest](#.UpdateMarketFeeRequest)
+    - [UpdateMarketFixedFeeRequest](#.UpdateMarketFixedFeeRequest)
+    - [UpdateMarketPercentageFeeRequest](#.UpdateMarketPercentageFeeRequest)
     - [UpdateMarketPriceReply](#.UpdateMarketPriceReply)
     - [UpdateMarketPriceRequest](#.UpdateMarketPriceRequest)
     - [UpdateMarketStrategyReply](#.UpdateMarketStrategyReply)
@@ -702,15 +703,32 @@
 
 
 
-<a name=".UpdateMarketFeeRequest"></a>
+<a name=".UpdateMarketFixedFeeRequest"></a>
 
-### UpdateMarketFeeRequest
+### UpdateMarketFixedFeeRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| market_with_fee | [MarketWithFee](#MarketWithFee) |  |  |
+| market | [Market](#Market) |  |  |
+| fixed | [Fixed](#Fixed) |  |  |
+
+
+
+
+
+
+<a name=".UpdateMarketPercentageFeeRequest"></a>
+
+### UpdateMarketPercentageFeeRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| market | [Market](#Market) |  |  |
+| basis_point | [int64](#int64) |  |  |
 
 
 
@@ -889,7 +907,8 @@ Service for operators to configure and manage a TDEX daemon
 | OpenMarket | [.OpenMarketRequest](#OpenMarketRequest) | [.OpenMarketReply](#OpenMarketReply) | Makes the given market tradable |
 | CloseMarket | [.CloseMarketRequest](#CloseMarketRequest) | [.CloseMarketReply](#CloseMarketReply) | Makes the given market NOT tradabale |
 | ListMarket | [.ListMarketRequest](#ListMarketRequest) | [.ListMarketReply](#ListMarketReply) | Get extended details for each markets either open, closed or to be funded. |
-| UpdateMarketFee | [.UpdateMarketFeeRequest](#UpdateMarketFeeRequest) | [.UpdateMarketFeeReply](#UpdateMarketFeeReply) | Changes the Liquidity Provider fee for the given market. I thsould be express in basis point. To change the fee on each swap from (current) 0.25% to 1% you need to pass down 100 The Market MUST be closed before doing this change. |
+| UpdateMarketPercentageFee | [.UpdateMarketPercentageFeeRequest](#UpdateMarketPercentageFeeRequest) | [.UpdateMarketFeeReply](#UpdateMarketFeeReply) | Changes the Liquidity Provider percentage fee for the given market. It should be express in basis point. To change the fee on each swap from (current) 0.25% to 1% you need to pass down 100 The Market MUST be closed before doing this change. It&#39;s also possible to remove the percentage fee by setting it to 0. |
+| UpdateMarketFixedFee | [.UpdateMarketFixedFeeRequest](#UpdateMarketFixedFeeRequest) | [.UpdateMarketFeeReply](#UpdateMarketFeeReply) | Changes the Liquidity provider fixed fees for the given market. They should be expressed in satoshis for both assets of the market. To remove a non-null fixed fee, it&#39;s enough to set the fields of the request to 0. |
 | UpdateMarketPrice | [.UpdateMarketPriceRequest](#UpdateMarketPriceRequest) | [.UpdateMarketPriceReply](#UpdateMarketPriceReply) | Manually updates the price for the given market |
 | UpdateMarketStrategy | [.UpdateMarketStrategyRequest](#UpdateMarketStrategyRequest) | [.UpdateMarketStrategyReply](#UpdateMarketStrategyReply) | Updates the current market making strategy, either using an automated market making formula or a pluggable price feed |
 | WithdrawMarket | [.WithdrawMarketRequest](#WithdrawMarketRequest) | [.WithdrawMarketReply](#WithdrawMarketReply) | WithdrawMarket allows the operator to withdraw to external wallet funds from a specific market. The Market MUST be closed before doing this change. |

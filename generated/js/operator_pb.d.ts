@@ -624,27 +624,62 @@ export namespace UpdateMarketStrategyReply {
     }
 }
 
-export class UpdateMarketFeeRequest extends jspb.Message { 
+export class UpdateMarketPercentageFeeRequest extends jspb.Message { 
 
-    hasMarketWithFee(): boolean;
-    clearMarketWithFee(): void;
-    getMarketWithFee(): types_pb.MarketWithFee | undefined;
-    setMarketWithFee(value?: types_pb.MarketWithFee): UpdateMarketFeeRequest;
+    hasMarket(): boolean;
+    clearMarket(): void;
+    getMarket(): types_pb.Market | undefined;
+    setMarket(value?: types_pb.Market): UpdateMarketPercentageFeeRequest;
+
+    getBasisPoint(): number;
+    setBasisPoint(value: number): UpdateMarketPercentageFeeRequest;
 
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): UpdateMarketFeeRequest.AsObject;
-    static toObject(includeInstance: boolean, msg: UpdateMarketFeeRequest): UpdateMarketFeeRequest.AsObject;
+    toObject(includeInstance?: boolean): UpdateMarketPercentageFeeRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: UpdateMarketPercentageFeeRequest): UpdateMarketPercentageFeeRequest.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: UpdateMarketFeeRequest, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): UpdateMarketFeeRequest;
-    static deserializeBinaryFromReader(message: UpdateMarketFeeRequest, reader: jspb.BinaryReader): UpdateMarketFeeRequest;
+    static serializeBinaryToWriter(message: UpdateMarketPercentageFeeRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): UpdateMarketPercentageFeeRequest;
+    static deserializeBinaryFromReader(message: UpdateMarketPercentageFeeRequest, reader: jspb.BinaryReader): UpdateMarketPercentageFeeRequest;
 }
 
-export namespace UpdateMarketFeeRequest {
+export namespace UpdateMarketPercentageFeeRequest {
     export type AsObject = {
-        marketWithFee?: types_pb.MarketWithFee.AsObject,
+        market?: types_pb.Market.AsObject,
+        basisPoint: number,
+    }
+}
+
+export class UpdateMarketFixedFeeRequest extends jspb.Message { 
+
+    hasMarket(): boolean;
+    clearMarket(): void;
+    getMarket(): types_pb.Market | undefined;
+    setMarket(value?: types_pb.Market): UpdateMarketFixedFeeRequest;
+
+
+    hasFixed(): boolean;
+    clearFixed(): void;
+    getFixed(): types_pb.Fixed | undefined;
+    setFixed(value?: types_pb.Fixed): UpdateMarketFixedFeeRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): UpdateMarketFixedFeeRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: UpdateMarketFixedFeeRequest): UpdateMarketFixedFeeRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: UpdateMarketFixedFeeRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): UpdateMarketFixedFeeRequest;
+    static deserializeBinaryFromReader(message: UpdateMarketFixedFeeRequest, reader: jspb.BinaryReader): UpdateMarketFixedFeeRequest;
+}
+
+export namespace UpdateMarketFixedFeeRequest {
+    export type AsObject = {
+        market?: types_pb.Market.AsObject,
+        fixed?: types_pb.Fixed.AsObject,
     }
 }
 
