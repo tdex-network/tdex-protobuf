@@ -1,5 +1,6 @@
 syntax = "proto3";
 option go_package = "github.com/tdex-network/tdex-protobuf/generated/go/trade";
+option java_package = "network.tdex.trade";
 
 import "swap.proto";
 import "types.proto";

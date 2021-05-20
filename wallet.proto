@@ -1,5 +1,6 @@
 syntax = "proto3";
 option go_package = "github.com/tdex-network/tdex-protobuf/generated/go/wallet";
+option java_package = "network.tdex.wallet";
 
 /**
  * Service for Liquidity Providers to manage funds via wallet RPC
@@ -81,7 +82,7 @@ message InitWalletReply {
   enum Status {
     PROCESSING = 0;
     DONE = 1;
-  } 
+  }
   Status status = 3;
   string data = 4;
 }

@@ -1,10 +1,15 @@
 
-.PHONY: go js doc
+.PHONY: go java js doc
 
 go:
 	chmod u+x ./scripts/compile-proto-go
 	mkdir -p -m777 ./generated/go
 	./scripts/compile-proto-go
+
+java:
+	chmod u+x ./scripts/compile-proto-java
+	mkdir -p -m777 ./generated/java
+	./scripts/compile-proto-java
 
 js:
 	chmod u+x ./scripts/compile-proto-js

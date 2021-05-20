@@ -1,5 +1,6 @@
 syntax = "proto3";
 option go_package = "github.com/tdex-network/tdex-protobuf/generated/go/operator";
+option java_package = "network.tdex.operator";
 
 import "types.proto";
 
@@ -29,7 +30,7 @@ service Operator {
   // inviting the operator to retry again
   rpc ClaimMarketDeposit(ClaimMarketDepositRequest) returns (ClaimMarketDepositReply) {}
 
-  
+
   // Operator can provide transaction(s) outpoints of deposits made to fund the fee account.
   // The transaction must be visible and confirmed, otherwise an error will be returned,
   // inviting the operator to retry again
@@ -282,10 +283,10 @@ message TradeInfo {
   SwapFailInfo fail_info = 4;
   // The collected fee on the current swap
   MarketWithFee market_with_fee = 5;
-  // The prices of the trade at request time 
+  // The prices of the trade at request time
   TradePrice price = 6;
   // The eventual tx url with blinders in case the trade is settled
-  string tx_url = 7; 
+  string tx_url = 7;
   // SwapRequest unix timestamp
   uint64 request_time_unix = 8;
   // SwapAccpet unix timestamp
