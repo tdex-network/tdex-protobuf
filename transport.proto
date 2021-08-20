@@ -1,0 +1,21 @@
+syntax = "proto3";
+option go_package = "github.com/tdex-network/tdex-protobuf/generated/go/transport";
+option java_package = "network.tdex.transport";
+
+enum TransportType {
+    INSECURE = 0;
+    ONION = 1;
+    TLS = 2;
+    MTLS = 3;
+    NOISE = 4;
+}
+
+message Transport {
+    TransportType type = 1;
+    string name = 2;
+    bytes data = 3;
+}
+
+message AvailableTransport {
+    repeated TransportType transport = 1;
+}

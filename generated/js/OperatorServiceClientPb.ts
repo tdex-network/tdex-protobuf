@@ -1,0 +1,799 @@
+/**
+ * @fileoverview gRPC-Web generated client stub for 
+ * @enhanceable
+ * @public
+ */
+
+// GENERATED CODE -- DO NOT EDIT!
+
+
+/* eslint-disable */
+// @ts-nocheck
+
+
+import * as grpcWeb from 'grpc-web';
+
+import * as operator_pb from './operator_pb';
+
+
+export class OperatorClient {
+  client_: grpcWeb.AbstractClientBase;
+  hostname_: string;
+  credentials_: null | { [index: string]: string; };
+  options_: null | { [index: string]: any; };
+
+  constructor (hostname: string,
+               credentials?: null | { [index: string]: string; },
+               options?: null | { [index: string]: any; }) {
+    if (!options) options = {};
+    if (!credentials) credentials = {};
+    options['format'] = 'text';
+
+    this.client_ = new grpcWeb.GrpcWebClientBase(options);
+    this.hostname_ = hostname;
+    this.credentials_ = credentials;
+    this.options_ = options;
+  }
+
+  methodInfoDepositMarket = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.DepositMarketReply,
+    (request: operator_pb.DepositMarketRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.DepositMarketReply.deserializeBinary
+  );
+
+  depositMarket(
+    request: operator_pb.DepositMarketRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.DepositMarketReply>;
+
+  depositMarket(
+    request: operator_pb.DepositMarketRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.DepositMarketReply) => void): grpcWeb.ClientReadableStream<operator_pb.DepositMarketReply>;
+
+  depositMarket(
+    request: operator_pb.DepositMarketRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.DepositMarketReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/DepositMarket',
+        request,
+        metadata || {},
+        this.methodInfoDepositMarket,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/DepositMarket',
+    request,
+    metadata || {},
+    this.methodInfoDepositMarket);
+  }
+
+  methodInfoListDepositMarket = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.ListDepositMarketReply,
+    (request: operator_pb.ListDepositMarketRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.ListDepositMarketReply.deserializeBinary
+  );
+
+  listDepositMarket(
+    request: operator_pb.ListDepositMarketRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.ListDepositMarketReply>;
+
+  listDepositMarket(
+    request: operator_pb.ListDepositMarketRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.ListDepositMarketReply) => void): grpcWeb.ClientReadableStream<operator_pb.ListDepositMarketReply>;
+
+  listDepositMarket(
+    request: operator_pb.ListDepositMarketRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.ListDepositMarketReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/ListDepositMarket',
+        request,
+        metadata || {},
+        this.methodInfoListDepositMarket,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/ListDepositMarket',
+    request,
+    metadata || {},
+    this.methodInfoListDepositMarket);
+  }
+
+  methodInfoDepositFeeAccount = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.DepositFeeAccountReply,
+    (request: operator_pb.DepositFeeAccountRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.DepositFeeAccountReply.deserializeBinary
+  );
+
+  depositFeeAccount(
+    request: operator_pb.DepositFeeAccountRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.DepositFeeAccountReply>;
+
+  depositFeeAccount(
+    request: operator_pb.DepositFeeAccountRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.DepositFeeAccountReply) => void): grpcWeb.ClientReadableStream<operator_pb.DepositFeeAccountReply>;
+
+  depositFeeAccount(
+    request: operator_pb.DepositFeeAccountRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.DepositFeeAccountReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/DepositFeeAccount',
+        request,
+        metadata || {},
+        this.methodInfoDepositFeeAccount,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/DepositFeeAccount',
+    request,
+    metadata || {},
+    this.methodInfoDepositFeeAccount);
+  }
+
+  methodInfoBalanceFeeAccount = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.BalanceFeeAccountReply,
+    (request: operator_pb.BalanceFeeAccountRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.BalanceFeeAccountReply.deserializeBinary
+  );
+
+  balanceFeeAccount(
+    request: operator_pb.BalanceFeeAccountRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.BalanceFeeAccountReply>;
+
+  balanceFeeAccount(
+    request: operator_pb.BalanceFeeAccountRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.BalanceFeeAccountReply) => void): grpcWeb.ClientReadableStream<operator_pb.BalanceFeeAccountReply>;
+
+  balanceFeeAccount(
+    request: operator_pb.BalanceFeeAccountRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.BalanceFeeAccountReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/BalanceFeeAccount',
+        request,
+        metadata || {},
+        this.methodInfoBalanceFeeAccount,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/BalanceFeeAccount',
+    request,
+    metadata || {},
+    this.methodInfoBalanceFeeAccount);
+  }
+
+  methodInfoClaimMarketDeposit = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.ClaimMarketDepositReply,
+    (request: operator_pb.ClaimMarketDepositRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.ClaimMarketDepositReply.deserializeBinary
+  );
+
+  claimMarketDeposit(
+    request: operator_pb.ClaimMarketDepositRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.ClaimMarketDepositReply>;
+
+  claimMarketDeposit(
+    request: operator_pb.ClaimMarketDepositRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.ClaimMarketDepositReply) => void): grpcWeb.ClientReadableStream<operator_pb.ClaimMarketDepositReply>;
+
+  claimMarketDeposit(
+    request: operator_pb.ClaimMarketDepositRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.ClaimMarketDepositReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/ClaimMarketDeposit',
+        request,
+        metadata || {},
+        this.methodInfoClaimMarketDeposit,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/ClaimMarketDeposit',
+    request,
+    metadata || {},
+    this.methodInfoClaimMarketDeposit);
+  }
+
+  methodInfoClaimFeeDeposit = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.ClaimFeeDepositReply,
+    (request: operator_pb.ClaimFeeDepositRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.ClaimFeeDepositReply.deserializeBinary
+  );
+
+  claimFeeDeposit(
+    request: operator_pb.ClaimFeeDepositRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.ClaimFeeDepositReply>;
+
+  claimFeeDeposit(
+    request: operator_pb.ClaimFeeDepositRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.ClaimFeeDepositReply) => void): grpcWeb.ClientReadableStream<operator_pb.ClaimFeeDepositReply>;
+
+  claimFeeDeposit(
+    request: operator_pb.ClaimFeeDepositRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.ClaimFeeDepositReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/ClaimFeeDeposit',
+        request,
+        metadata || {},
+        this.methodInfoClaimFeeDeposit,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/ClaimFeeDeposit',
+    request,
+    metadata || {},
+    this.methodInfoClaimFeeDeposit);
+  }
+
+  methodInfoOpenMarket = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.OpenMarketReply,
+    (request: operator_pb.OpenMarketRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.OpenMarketReply.deserializeBinary
+  );
+
+  openMarket(
+    request: operator_pb.OpenMarketRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.OpenMarketReply>;
+
+  openMarket(
+    request: operator_pb.OpenMarketRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.OpenMarketReply) => void): grpcWeb.ClientReadableStream<operator_pb.OpenMarketReply>;
+
+  openMarket(
+    request: operator_pb.OpenMarketRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.OpenMarketReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/OpenMarket',
+        request,
+        metadata || {},
+        this.methodInfoOpenMarket,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/OpenMarket',
+    request,
+    metadata || {},
+    this.methodInfoOpenMarket);
+  }
+
+  methodInfoCloseMarket = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.CloseMarketReply,
+    (request: operator_pb.CloseMarketRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.CloseMarketReply.deserializeBinary
+  );
+
+  closeMarket(
+    request: operator_pb.CloseMarketRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.CloseMarketReply>;
+
+  closeMarket(
+    request: operator_pb.CloseMarketRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.CloseMarketReply) => void): grpcWeb.ClientReadableStream<operator_pb.CloseMarketReply>;
+
+  closeMarket(
+    request: operator_pb.CloseMarketRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.CloseMarketReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/CloseMarket',
+        request,
+        metadata || {},
+        this.methodInfoCloseMarket,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/CloseMarket',
+    request,
+    metadata || {},
+    this.methodInfoCloseMarket);
+  }
+
+  methodInfoListMarket = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.ListMarketReply,
+    (request: operator_pb.ListMarketRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.ListMarketReply.deserializeBinary
+  );
+
+  listMarket(
+    request: operator_pb.ListMarketRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.ListMarketReply>;
+
+  listMarket(
+    request: operator_pb.ListMarketRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.ListMarketReply) => void): grpcWeb.ClientReadableStream<operator_pb.ListMarketReply>;
+
+  listMarket(
+    request: operator_pb.ListMarketRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.ListMarketReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/ListMarket',
+        request,
+        metadata || {},
+        this.methodInfoListMarket,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/ListMarket',
+    request,
+    metadata || {},
+    this.methodInfoListMarket);
+  }
+
+  methodInfoUpdateMarketPercentageFee = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.UpdateMarketFeeReply,
+    (request: operator_pb.UpdateMarketPercentageFeeRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.UpdateMarketFeeReply.deserializeBinary
+  );
+
+  updateMarketPercentageFee(
+    request: operator_pb.UpdateMarketPercentageFeeRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.UpdateMarketFeeReply>;
+
+  updateMarketPercentageFee(
+    request: operator_pb.UpdateMarketPercentageFeeRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.UpdateMarketFeeReply) => void): grpcWeb.ClientReadableStream<operator_pb.UpdateMarketFeeReply>;
+
+  updateMarketPercentageFee(
+    request: operator_pb.UpdateMarketPercentageFeeRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.UpdateMarketFeeReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/UpdateMarketPercentageFee',
+        request,
+        metadata || {},
+        this.methodInfoUpdateMarketPercentageFee,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/UpdateMarketPercentageFee',
+    request,
+    metadata || {},
+    this.methodInfoUpdateMarketPercentageFee);
+  }
+
+  methodInfoUpdateMarketFixedFee = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.UpdateMarketFeeReply,
+    (request: operator_pb.UpdateMarketFixedFeeRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.UpdateMarketFeeReply.deserializeBinary
+  );
+
+  updateMarketFixedFee(
+    request: operator_pb.UpdateMarketFixedFeeRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.UpdateMarketFeeReply>;
+
+  updateMarketFixedFee(
+    request: operator_pb.UpdateMarketFixedFeeRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.UpdateMarketFeeReply) => void): grpcWeb.ClientReadableStream<operator_pb.UpdateMarketFeeReply>;
+
+  updateMarketFixedFee(
+    request: operator_pb.UpdateMarketFixedFeeRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.UpdateMarketFeeReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/UpdateMarketFixedFee',
+        request,
+        metadata || {},
+        this.methodInfoUpdateMarketFixedFee,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/UpdateMarketFixedFee',
+    request,
+    metadata || {},
+    this.methodInfoUpdateMarketFixedFee);
+  }
+
+  methodInfoUpdateMarketPrice = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.UpdateMarketPriceReply,
+    (request: operator_pb.UpdateMarketPriceRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.UpdateMarketPriceReply.deserializeBinary
+  );
+
+  updateMarketPrice(
+    request: operator_pb.UpdateMarketPriceRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.UpdateMarketPriceReply>;
+
+  updateMarketPrice(
+    request: operator_pb.UpdateMarketPriceRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.UpdateMarketPriceReply) => void): grpcWeb.ClientReadableStream<operator_pb.UpdateMarketPriceReply>;
+
+  updateMarketPrice(
+    request: operator_pb.UpdateMarketPriceRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.UpdateMarketPriceReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/UpdateMarketPrice',
+        request,
+        metadata || {},
+        this.methodInfoUpdateMarketPrice,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/UpdateMarketPrice',
+    request,
+    metadata || {},
+    this.methodInfoUpdateMarketPrice);
+  }
+
+  methodInfoUpdateMarketStrategy = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.UpdateMarketStrategyReply,
+    (request: operator_pb.UpdateMarketStrategyRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.UpdateMarketStrategyReply.deserializeBinary
+  );
+
+  updateMarketStrategy(
+    request: operator_pb.UpdateMarketStrategyRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.UpdateMarketStrategyReply>;
+
+  updateMarketStrategy(
+    request: operator_pb.UpdateMarketStrategyRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.UpdateMarketStrategyReply) => void): grpcWeb.ClientReadableStream<operator_pb.UpdateMarketStrategyReply>;
+
+  updateMarketStrategy(
+    request: operator_pb.UpdateMarketStrategyRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.UpdateMarketStrategyReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/UpdateMarketStrategy',
+        request,
+        metadata || {},
+        this.methodInfoUpdateMarketStrategy,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/UpdateMarketStrategy',
+    request,
+    metadata || {},
+    this.methodInfoUpdateMarketStrategy);
+  }
+
+  methodInfoWithdrawMarket = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.WithdrawMarketReply,
+    (request: operator_pb.WithdrawMarketRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.WithdrawMarketReply.deserializeBinary
+  );
+
+  withdrawMarket(
+    request: operator_pb.WithdrawMarketRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.WithdrawMarketReply>;
+
+  withdrawMarket(
+    request: operator_pb.WithdrawMarketRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.WithdrawMarketReply) => void): grpcWeb.ClientReadableStream<operator_pb.WithdrawMarketReply>;
+
+  withdrawMarket(
+    request: operator_pb.WithdrawMarketRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.WithdrawMarketReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/WithdrawMarket',
+        request,
+        metadata || {},
+        this.methodInfoWithdrawMarket,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/WithdrawMarket',
+    request,
+    metadata || {},
+    this.methodInfoWithdrawMarket);
+  }
+
+  methodInfoListTrades = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.ListTradesReply,
+    (request: operator_pb.ListTradesRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.ListTradesReply.deserializeBinary
+  );
+
+  listTrades(
+    request: operator_pb.ListTradesRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.ListTradesReply>;
+
+  listTrades(
+    request: operator_pb.ListTradesRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.ListTradesReply) => void): grpcWeb.ClientReadableStream<operator_pb.ListTradesReply>;
+
+  listTrades(
+    request: operator_pb.ListTradesRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.ListTradesReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/ListTrades',
+        request,
+        metadata || {},
+        this.methodInfoListTrades,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/ListTrades',
+    request,
+    metadata || {},
+    this.methodInfoListTrades);
+  }
+
+  methodInfoReportMarketFee = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.ReportMarketFeeReply,
+    (request: operator_pb.ReportMarketFeeRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.ReportMarketFeeReply.deserializeBinary
+  );
+
+  reportMarketFee(
+    request: operator_pb.ReportMarketFeeRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.ReportMarketFeeReply>;
+
+  reportMarketFee(
+    request: operator_pb.ReportMarketFeeRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.ReportMarketFeeReply) => void): grpcWeb.ClientReadableStream<operator_pb.ReportMarketFeeReply>;
+
+  reportMarketFee(
+    request: operator_pb.ReportMarketFeeRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.ReportMarketFeeReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/ReportMarketFee',
+        request,
+        metadata || {},
+        this.methodInfoReportMarketFee,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/ReportMarketFee',
+    request,
+    metadata || {},
+    this.methodInfoReportMarketFee);
+  }
+
+  methodInfoReloadUtxos = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.ReloadUtxosReply,
+    (request: operator_pb.ReloadUtxosRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.ReloadUtxosReply.deserializeBinary
+  );
+
+  reloadUtxos(
+    request: operator_pb.ReloadUtxosRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.ReloadUtxosReply>;
+
+  reloadUtxos(
+    request: operator_pb.ReloadUtxosRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.ReloadUtxosReply) => void): grpcWeb.ClientReadableStream<operator_pb.ReloadUtxosReply>;
+
+  reloadUtxos(
+    request: operator_pb.ReloadUtxosRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.ReloadUtxosReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/ReloadUtxos',
+        request,
+        metadata || {},
+        this.methodInfoReloadUtxos,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/ReloadUtxos',
+    request,
+    metadata || {},
+    this.methodInfoReloadUtxos);
+  }
+
+  methodInfoListUtxos = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.ListUtxosReply,
+    (request: operator_pb.ListUtxosRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.ListUtxosReply.deserializeBinary
+  );
+
+  listUtxos(
+    request: operator_pb.ListUtxosRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.ListUtxosReply>;
+
+  listUtxos(
+    request: operator_pb.ListUtxosRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.ListUtxosReply) => void): grpcWeb.ClientReadableStream<operator_pb.ListUtxosReply>;
+
+  listUtxos(
+    request: operator_pb.ListUtxosRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.ListUtxosReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/ListUtxos',
+        request,
+        metadata || {},
+        this.methodInfoListUtxos,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/ListUtxos',
+    request,
+    metadata || {},
+    this.methodInfoListUtxos);
+  }
+
+  methodInfoDropMarket = new grpcWeb.AbstractClientBase.MethodInfo(
+    operator_pb.DropMarketReply,
+    (request: operator_pb.DropMarketRequest) => {
+      return request.serializeBinary();
+    },
+    operator_pb.DropMarketReply.deserializeBinary
+  );
+
+  dropMarket(
+    request: operator_pb.DropMarketRequest,
+    metadata: grpcWeb.Metadata | null): Promise<operator_pb.DropMarketReply>;
+
+  dropMarket(
+    request: operator_pb.DropMarketRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: operator_pb.DropMarketReply) => void): grpcWeb.ClientReadableStream<operator_pb.DropMarketReply>;
+
+  dropMarket(
+    request: operator_pb.DropMarketRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: operator_pb.DropMarketReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Operator/DropMarket',
+        request,
+        metadata || {},
+        this.methodInfoDropMarket,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Operator/DropMarket',
+    request,
+    metadata || {},
+    this.methodInfoDropMarket);
+  }
+
+}
+
