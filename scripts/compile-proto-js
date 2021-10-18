@@ -19,7 +19,7 @@ GRPC_WEB_PLUGIN="./node_modules/.bin/protoc-gen-grpc-web"
 ${GRPC_TOOLS_NODE_PROTOC} \
   --js_out=import_style=commonjs,binary:./generated/js \
   --grpc_out=grpc_js:./generated/js \
-  trade.proto operator.proto wallet.proto types.proto
+  trade.proto types.proto
 
 ${GRPC_TOOLS_NODE_PROTOC} \
   --js_out=import_style=commonjs,binary:./generated/js \

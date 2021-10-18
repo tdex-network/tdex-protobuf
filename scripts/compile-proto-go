@@ -10,7 +10,7 @@ PARENT_PATH=$(dirname $(
 pushd $PARENT_PATH
 
 ## now loop through the above array
-for current in "transport" "swap" "types" "trade" "operator" "wallet"; do
+for current in "transport" "swap" "types" "trade"; do
   mkdir -p ./generated/go/$current
   protoc \
     --go-grpc_out=paths=source_relative:./generated/go/$current \
