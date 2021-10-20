@@ -181,7 +181,7 @@ marketPrice: {
 tradePropose: {
     path: '/Trade/TradePropose',
     requestStream: false,
-    responseStream: true,
+    responseStream: false,
     requestType: trade_pb.TradeProposeRequest,
     responseType: trade_pb.TradeProposeReply,
     requestSerialize: serialize_TradeProposeRequest,
@@ -195,7 +195,7 @@ tradePropose: {
 tradeComplete: {
     path: '/Trade/TradeComplete',
     requestStream: false,
-    responseStream: true,
+    responseStream: false,
     requestType: trade_pb.TradeCompleteRequest,
     responseType: trade_pb.TradeCompleteReply,
     requestSerialize: serialize_TradeCompleteRequest,

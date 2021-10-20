@@ -165,13 +165,34 @@ export class TradeClient {
 
   tradePropose(
     request: trade_pb.TradeProposeRequest,
-    metadata?: grpcWeb.Metadata) {
-    return this.client_.serverStreaming(
-      this.hostname_ +
-        '/Trade/TradePropose',
-      request,
-      metadata || {},
-      this.methodInfoTradePropose);
+    metadata: grpcWeb.Metadata | null): Promise<trade_pb.TradeProposeReply>;
+
+  tradePropose(
+    request: trade_pb.TradeProposeRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: trade_pb.TradeProposeReply) => void): grpcWeb.ClientReadableStream<trade_pb.TradeProposeReply>;
+
+  tradePropose(
+    request: trade_pb.TradeProposeRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: trade_pb.TradeProposeReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Trade/TradePropose',
+        request,
+        metadata || {},
+        this.methodInfoTradePropose,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Trade/TradePropose',
+    request,
+    metadata || {},
+    this.methodInfoTradePropose);
   }
 
   methodInfoTradeComplete = new grpcWeb.AbstractClientBase.MethodInfo(
@@ -184,13 +205,34 @@ export class TradeClient {
 
   tradeComplete(
     request: trade_pb.TradeCompleteRequest,
-    metadata?: grpcWeb.Metadata) {
-    return this.client_.serverStreaming(
-      this.hostname_ +
-        '/Trade/TradeComplete',
-      request,
-      metadata || {},
-      this.methodInfoTradeComplete);
+    metadata: grpcWeb.Metadata | null): Promise<trade_pb.TradeCompleteReply>;
+
+  tradeComplete(
+    request: trade_pb.TradeCompleteRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.Error,
+               response: trade_pb.TradeCompleteReply) => void): grpcWeb.ClientReadableStream<trade_pb.TradeCompleteReply>;
+
+  tradeComplete(
+    request: trade_pb.TradeCompleteRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.Error,
+               response: trade_pb.TradeCompleteReply) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/Trade/TradeComplete',
+        request,
+        metadata || {},
+        this.methodInfoTradeComplete,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/Trade/TradeComplete',
+    request,
+    metadata || {},
+    this.methodInfoTradeComplete);
   }
 
 }
