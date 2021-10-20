@@ -3029,7 +3029,7 @@ public final class TradeOuterClass {
       if (amount_ != 0L) {
         output.writeUInt64(3, amount_);
       }
-      if (!getAssetBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(asset_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, asset_);
       }
       unknownFields.writeTo(output);
@@ -3053,7 +3053,7 @@ public final class TradeOuterClass {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(3, amount_);
       }
-      if (!getAssetBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(asset_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, asset_);
       }
       size += unknownFields.getSerializedSize();
@@ -7353,7 +7353,7 @@ public final class TradeOuterClass {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getTxidBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(txid_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, txid_);
       }
       if (swapFail_ != null) {
@@ -7368,7 +7368,7 @@ public final class TradeOuterClass {
       if (size != -1) return size;
 
       size = 0;
-      if (!getTxidBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(txid_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, txid_);
       }
       if (swapFail_ != null) {

@@ -11,8 +11,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-// Requires gRPC-Go v1.32.0 or later.
-const _ = grpc.SupportPackageIsVersion7
+const _ = grpc.SupportPackageIsVersion6
 
 // TradeClient is the client API for Trade service.
 //
@@ -154,32 +153,25 @@ type TradeServer interface {
 type UnimplementedTradeServer struct {
 }
 
-func (UnimplementedTradeServer) Markets(context.Context, *MarketsRequest) (*MarketsReply, error) {
+func (*UnimplementedTradeServer) Markets(context.Context, *MarketsRequest) (*MarketsReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Markets not implemented")
 }
-func (UnimplementedTradeServer) Balances(context.Context, *BalancesRequest) (*BalancesReply, error) {
+func (*UnimplementedTradeServer) Balances(context.Context, *BalancesRequest) (*BalancesReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Balances not implemented")
 }
-func (UnimplementedTradeServer) MarketPrice(context.Context, *MarketPriceRequest) (*MarketPriceReply, error) {
+func (*UnimplementedTradeServer) MarketPrice(context.Context, *MarketPriceRequest) (*MarketPriceReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method MarketPrice not implemented")
 }
-func (UnimplementedTradeServer) TradePropose(context.Context, *TradeProposeRequest) (*TradeProposeReply, error) {
+func (*UnimplementedTradeServer) TradePropose(context.Context, *TradeProposeRequest) (*TradeProposeReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TradePropose not implemented")
 }
-func (UnimplementedTradeServer) TradeComplete(context.Context, *TradeCompleteRequest) (*TradeCompleteReply, error) {
+func (*UnimplementedTradeServer) TradeComplete(context.Context, *TradeCompleteRequest) (*TradeCompleteReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TradeComplete not implemented")
 }
-func (UnimplementedTradeServer) mustEmbedUnimplementedTradeServer() {}
+func (*UnimplementedTradeServer) mustEmbedUnimplementedTradeServer() {}
 
-// UnsafeTradeServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to TradeServer will
-// result in compilation errors.
-type UnsafeTradeServer interface {
-	mustEmbedUnimplementedTradeServer()
-}
-
-func RegisterTradeServer(s grpc.ServiceRegistrar, srv TradeServer) {
-	s.RegisterService(&Trade_ServiceDesc, srv)
+func RegisterTradeServer(s *grpc.Server, srv TradeServer) {
+	s.RegisterService(&_Trade_serviceDesc, srv)
 }
 
 func _Trade_Markets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -272,10 +264,7 @@ func _Trade_TradeComplete_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
-// Trade_ServiceDesc is the grpc.ServiceDesc for Trade service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var Trade_ServiceDesc = grpc.ServiceDesc{
+var _Trade_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "Trade",
 	HandlerType: (*TradeServer)(nil),
 	Methods: []grpc.MethodDesc{
