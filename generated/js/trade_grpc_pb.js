@@ -28,6 +28,28 @@ function deserialize_BalancesRequest(buffer_arg) {
   return trade_pb.BalancesRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
+function serialize_CompleteTradeReply(arg) {
+  if (!(arg instanceof trade_pb.CompleteTradeReply)) {
+    throw new Error('Expected argument of type CompleteTradeReply');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_CompleteTradeReply(buffer_arg) {
+  return trade_pb.CompleteTradeReply.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_CompleteTradeRequest(arg) {
+  if (!(arg instanceof trade_pb.CompleteTradeRequest)) {
+    throw new Error('Expected argument of type CompleteTradeRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_CompleteTradeRequest(buffer_arg) {
+  return trade_pb.CompleteTradeRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_MarketPriceReply(arg) {
   if (!(arg instanceof trade_pb.MarketPriceReply)) {
     throw new Error('Expected argument of type MarketPriceReply');
@@ -70,6 +92,28 @@ function serialize_MarketsRequest(arg) {
 
 function deserialize_MarketsRequest(buffer_arg) {
   return trade_pb.MarketsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ProposeTradeReply(arg) {
+  if (!(arg instanceof trade_pb.ProposeTradeReply)) {
+    throw new Error('Expected argument of type ProposeTradeReply');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ProposeTradeReply(buffer_arg) {
+  return trade_pb.ProposeTradeReply.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_ProposeTradeRequest(arg) {
+  if (!(arg instanceof trade_pb.ProposeTradeRequest)) {
+    throw new Error('Expected argument of type ProposeTradeRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_ProposeTradeRequest(buffer_arg) {
+  return trade_pb.ProposeTradeRequest.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_TradeCompleteReply(arg) {
@@ -189,6 +233,18 @@ tradePropose: {
     responseSerialize: serialize_TradeProposeReply,
     responseDeserialize: deserialize_TradeProposeReply,
   },
+  // Unary RPC for TradePropose.
+proposeTrade: {
+    path: '/Trade/ProposeTrade',
+    requestStream: false,
+    responseStream: false,
+    requestType: trade_pb.ProposeTradeRequest,
+    responseType: trade_pb.ProposeTradeReply,
+    requestSerialize: serialize_ProposeTradeRequest,
+    requestDeserialize: deserialize_ProposeTradeRequest,
+    responseSerialize: serialize_ProposeTradeReply,
+    responseDeserialize: deserialize_ProposeTradeReply,
+  },
   // TradeComplete: Sends the trader's counter-signed transaction to the
 // provider. If something wrong, a swap fail message is sent. It returns the
 // transaction hash of the broadcasted transaction.
@@ -202,6 +258,18 @@ tradeComplete: {
     requestDeserialize: deserialize_TradeCompleteRequest,
     responseSerialize: serialize_TradeCompleteReply,
     responseDeserialize: deserialize_TradeCompleteReply,
+  },
+  // Unary RPC for TradeComplete.
+completeTrade: {
+    path: '/Trade/CompleteTrade',
+    requestStream: false,
+    responseStream: false,
+    requestType: trade_pb.CompleteTradeRequest,
+    responseType: trade_pb.CompleteTradeReply,
+    requestSerialize: serialize_CompleteTradeRequest,
+    requestDeserialize: deserialize_CompleteTradeRequest,
+    responseSerialize: serialize_CompleteTradeReply,
+    responseDeserialize: deserialize_CompleteTradeReply,
   },
 };
 

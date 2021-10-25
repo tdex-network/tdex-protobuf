@@ -283,6 +283,135 @@ export namespace TradeCompleteReply {
     }
 }
 
+export class ProposeTradeRequest extends jspb.Message { 
+
+    hasMarket(): boolean;
+    clearMarket(): void;
+    getMarket(): types_pb.Market | undefined;
+    setMarket(value?: types_pb.Market): ProposeTradeRequest;
+
+    getType(): TradeType;
+    setType(value: TradeType): ProposeTradeRequest;
+
+
+    hasSwapRequest(): boolean;
+    clearSwapRequest(): void;
+    getSwapRequest(): swap_pb.SwapRequest | undefined;
+    setSwapRequest(value?: swap_pb.SwapRequest): ProposeTradeRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ProposeTradeRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: ProposeTradeRequest): ProposeTradeRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ProposeTradeRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ProposeTradeRequest;
+    static deserializeBinaryFromReader(message: ProposeTradeRequest, reader: jspb.BinaryReader): ProposeTradeRequest;
+}
+
+export namespace ProposeTradeRequest {
+    export type AsObject = {
+        market?: types_pb.Market.AsObject,
+        type: TradeType,
+        swapRequest?: swap_pb.SwapRequest.AsObject,
+    }
+}
+
+export class ProposeTradeReply extends jspb.Message { 
+
+    hasSwapAccept(): boolean;
+    clearSwapAccept(): void;
+    getSwapAccept(): swap_pb.SwapAccept | undefined;
+    setSwapAccept(value?: swap_pb.SwapAccept): ProposeTradeReply;
+
+
+    hasSwapFail(): boolean;
+    clearSwapFail(): void;
+    getSwapFail(): swap_pb.SwapFail | undefined;
+    setSwapFail(value?: swap_pb.SwapFail): ProposeTradeReply;
+
+    getExpiryTimeUnix(): number;
+    setExpiryTimeUnix(value: number): ProposeTradeReply;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): ProposeTradeReply.AsObject;
+    static toObject(includeInstance: boolean, msg: ProposeTradeReply): ProposeTradeReply.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: ProposeTradeReply, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): ProposeTradeReply;
+    static deserializeBinaryFromReader(message: ProposeTradeReply, reader: jspb.BinaryReader): ProposeTradeReply;
+}
+
+export namespace ProposeTradeReply {
+    export type AsObject = {
+        swapAccept?: swap_pb.SwapAccept.AsObject,
+        swapFail?: swap_pb.SwapFail.AsObject,
+        expiryTimeUnix: number,
+    }
+}
+
+export class CompleteTradeRequest extends jspb.Message { 
+
+    hasSwapComplete(): boolean;
+    clearSwapComplete(): void;
+    getSwapComplete(): swap_pb.SwapComplete | undefined;
+    setSwapComplete(value?: swap_pb.SwapComplete): CompleteTradeRequest;
+
+
+    hasSwapFail(): boolean;
+    clearSwapFail(): void;
+    getSwapFail(): swap_pb.SwapFail | undefined;
+    setSwapFail(value?: swap_pb.SwapFail): CompleteTradeRequest;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): CompleteTradeRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: CompleteTradeRequest): CompleteTradeRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: CompleteTradeRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): CompleteTradeRequest;
+    static deserializeBinaryFromReader(message: CompleteTradeRequest, reader: jspb.BinaryReader): CompleteTradeRequest;
+}
+
+export namespace CompleteTradeRequest {
+    export type AsObject = {
+        swapComplete?: swap_pb.SwapComplete.AsObject,
+        swapFail?: swap_pb.SwapFail.AsObject,
+    }
+}
+
+export class CompleteTradeReply extends jspb.Message { 
+    getTxid(): string;
+    setTxid(value: string): CompleteTradeReply;
+
+
+    hasSwapFail(): boolean;
+    clearSwapFail(): void;
+    getSwapFail(): swap_pb.SwapFail | undefined;
+    setSwapFail(value?: swap_pb.SwapFail): CompleteTradeReply;
+
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): CompleteTradeReply.AsObject;
+    static toObject(includeInstance: boolean, msg: CompleteTradeReply): CompleteTradeReply.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: CompleteTradeReply, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): CompleteTradeReply;
+    static deserializeBinaryFromReader(message: CompleteTradeReply, reader: jspb.BinaryReader): CompleteTradeReply;
+}
+
+export namespace CompleteTradeReply {
+    export type AsObject = {
+        txid: string,
+        swapFail?: swap_pb.SwapFail.AsObject,
+    }
+}
+
 export enum TradeType {
     BUY = 0,
     SELL = 1,
