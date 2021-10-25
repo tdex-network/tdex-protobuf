@@ -39,12 +39,12 @@ service Trade {
   //
   // If the type of the trade is SELL it means the base asset will be sent by
   // the trader.
-  rpc TradePropose(TradeProposeRequest) returns (TradeProposeReply);
+  rpc TradePropose(TradeProposeRequest) returns (stream TradeProposeReply);
 
   // TradeComplete: Sends the trader's counter-signed transaction to the
   // provider. If something wrong, a swap fail message is sent. It returns the
   // transaction hash of the broadcasted transaction.
-  rpc TradeComplete(TradeCompleteRequest) returns (TradeCompleteReply);
+  rpc TradeComplete(TradeCompleteRequest) returns (stream TradeCompleteReply);
 }
 
 // BOTD#4 Service's messages
