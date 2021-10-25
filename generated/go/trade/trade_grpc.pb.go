@@ -49,13 +49,13 @@ type TradeClient interface {
 	// the trader.
 	TradePropose(ctx context.Context, in *TradeProposeRequest, opts ...grpc.CallOption) (Trade_TradeProposeClient, error)
 	// Unary RPC for TradePropose.
-	TradeProposeUnary(ctx context.Context, in *TradeProposeRequest, opts ...grpc.CallOption) (*TradeProposeReply, error)
+	ProposeTrade(ctx context.Context, in *ProposeTradeRequest, opts ...grpc.CallOption) (*ProposeTradeReply, error)
 	// TradeComplete: Sends the trader's counter-signed transaction to the
 	// provider. If something wrong, a swap fail message is sent. It returns the
 	// transaction hash of the broadcasted transaction.
 	TradeComplete(ctx context.Context, in *TradeCompleteRequest, opts ...grpc.CallOption) (Trade_TradeCompleteClient, error)
 	// Unary RPC for TradeComplete.
-	TradeCompleteUnary(ctx context.Context, in *TradeCompleteRequest, opts ...grpc.CallOption) (*TradeCompleteReply, error)
+	CompleteTrade(ctx context.Context, in *CompleteTradeRequest, opts ...grpc.CallOption) (*CompleteTradeReply, error)
 }
 
 type tradeClient struct {
@@ -125,9 +125,9 @@ func (x *tradeTradeProposeClient) Recv() (*TradeProposeReply, error) {
 	return m, nil
 }
 
-func (c *tradeClient) TradeProposeUnary(ctx context.Context, in *TradeProposeRequest, opts ...grpc.CallOption) (*TradeProposeReply, error) {
-	out := new(TradeProposeReply)
-	err := c.cc.Invoke(ctx, "/Trade/TradeProposeUnary", in, out, opts...)
+func (c *tradeClient) ProposeTrade(ctx context.Context, in *ProposeTradeRequest, opts ...grpc.CallOption) (*ProposeTradeReply, error) {
+	out := new(ProposeTradeReply)
+	err := c.cc.Invoke(ctx, "/Trade/ProposeTrade", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -166,9 +166,9 @@ func (x *tradeTradeCompleteClient) Recv() (*TradeCompleteReply, error) {
 	return m, nil
 }
 
-func (c *tradeClient) TradeCompleteUnary(ctx context.Context, in *TradeCompleteRequest, opts ...grpc.CallOption) (*TradeCompleteReply, error) {
-	out := new(TradeCompleteReply)
-	err := c.cc.Invoke(ctx, "/Trade/TradeCompleteUnary", in, out, opts...)
+func (c *tradeClient) CompleteTrade(ctx context.Context, in *CompleteTradeRequest, opts ...grpc.CallOption) (*CompleteTradeReply, error) {
+	out := new(CompleteTradeReply)
+	err := c.cc.Invoke(ctx, "/Trade/CompleteTrade", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -211,13 +211,13 @@ type TradeServer interface {
 	// the trader.
 	TradePropose(*TradeProposeRequest, Trade_TradeProposeServer) error
 	// Unary RPC for TradePropose.
-	TradeProposeUnary(context.Context, *TradeProposeRequest) (*TradeProposeReply, error)
+	ProposeTrade(context.Context, *ProposeTradeRequest) (*ProposeTradeReply, error)
 	// TradeComplete: Sends the trader's counter-signed transaction to the
 	// provider. If something wrong, a swap fail message is sent. It returns the
 	// transaction hash of the broadcasted transaction.
 	TradeComplete(*TradeCompleteRequest, Trade_TradeCompleteServer) error
 	// Unary RPC for TradeComplete.
-	TradeCompleteUnary(context.Context, *TradeCompleteRequest) (*TradeCompleteReply, error)
+	CompleteTrade(context.Context, *CompleteTradeRequest) (*CompleteTradeReply, error)
 	mustEmbedUnimplementedTradeServer()
 }
 
@@ -237,14 +237,14 @@ func (*UnimplementedTradeServer) MarketPrice(context.Context, *MarketPriceReques
 func (*UnimplementedTradeServer) TradePropose(*TradeProposeRequest, Trade_TradeProposeServer) error {
 	return status.Errorf(codes.Unimplemented, "method TradePropose not implemented")
 }
-func (*UnimplementedTradeServer) TradeProposeUnary(context.Context, *TradeProposeRequest) (*TradeProposeReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TradeProposeUnary not implemented")
+func (*UnimplementedTradeServer) ProposeTrade(context.Context, *ProposeTradeRequest) (*ProposeTradeReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ProposeTrade not implemented")
 }
 func (*UnimplementedTradeServer) TradeComplete(*TradeCompleteRequest, Trade_TradeCompleteServer) error {
 	return status.Errorf(codes.Unimplemented, "method TradeComplete not implemented")
 }
-func (*UnimplementedTradeServer) TradeCompleteUnary(context.Context, *TradeCompleteRequest) (*TradeCompleteReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TradeCompleteUnary not implemented")
+func (*UnimplementedTradeServer) CompleteTrade(context.Context, *CompleteTradeRequest) (*CompleteTradeReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CompleteTrade not implemented")
 }
 func (*UnimplementedTradeServer) mustEmbedUnimplementedTradeServer() {}
 
@@ -327,20 +327,20 @@ func (x *tradeTradeProposeServer) Send(m *TradeProposeReply) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _Trade_TradeProposeUnary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TradeProposeRequest)
+func _Trade_ProposeTrade_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ProposeTradeRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TradeServer).TradeProposeUnary(ctx, in)
+		return srv.(TradeServer).ProposeTrade(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/Trade/TradeProposeUnary",
+		FullMethod: "/Trade/ProposeTrade",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TradeServer).TradeProposeUnary(ctx, req.(*TradeProposeRequest))
+		return srv.(TradeServer).ProposeTrade(ctx, req.(*ProposeTradeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -366,20 +366,20 @@ func (x *tradeTradeCompleteServer) Send(m *TradeCompleteReply) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _Trade_TradeCompleteUnary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TradeCompleteRequest)
+func _Trade_CompleteTrade_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CompleteTradeRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TradeServer).TradeCompleteUnary(ctx, in)
+		return srv.(TradeServer).CompleteTrade(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/Trade/TradeCompleteUnary",
+		FullMethod: "/Trade/CompleteTrade",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TradeServer).TradeCompleteUnary(ctx, req.(*TradeCompleteRequest))
+		return srv.(TradeServer).CompleteTrade(ctx, req.(*CompleteTradeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -401,12 +401,12 @@ var _Trade_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Trade_MarketPrice_Handler,
 		},
 		{
-			MethodName: "TradeProposeUnary",
-			Handler:    _Trade_TradeProposeUnary_Handler,
+			MethodName: "ProposeTrade",
+			Handler:    _Trade_ProposeTrade_Handler,
 		},
 		{
-			MethodName: "TradeCompleteUnary",
-			Handler:    _Trade_TradeCompleteUnary_Handler,
+			MethodName: "CompleteTrade",
+			Handler:    _Trade_CompleteTrade_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

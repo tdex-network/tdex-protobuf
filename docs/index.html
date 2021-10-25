@@ -230,6 +230,14 @@
                 </li>
               
                 <li>
+                  <a href="#.CompleteTradeReply"><span class="badge">M</span>CompleteTradeReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.CompleteTradeRequest"><span class="badge">M</span>CompleteTradeRequest</a>
+                </li>
+              
+                <li>
                   <a href="#.MarketPriceReply"><span class="badge">M</span>MarketPriceReply</a>
                 </li>
               
@@ -243,6 +251,14 @@
               
                 <li>
                   <a href="#.MarketsRequest"><span class="badge">M</span>MarketsRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#.ProposeTradeReply"><span class="badge">M</span>ProposeTradeReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.ProposeTradeRequest"><span class="badge">M</span>ProposeTradeRequest</a>
                 </li>
               
                 <li>
@@ -738,6 +754,68 @@ hex encoded. </p></td>
 
         
       
+        <h3 id=".CompleteTradeReply">CompleteTradeReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>txid</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>swap_fail</td>
+                  <td><a href="#SwapFail">SwapFail</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".CompleteTradeRequest">CompleteTradeRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>swap_complete</td>
+                  <td><a href="#SwapComplete">SwapComplete</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>swap_fail</td>
+                  <td><a href="#SwapFail">SwapFail</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id=".MarketPriceReply">MarketPriceReply</h3>
         <p></p>
 
@@ -835,6 +913,82 @@ hex encoded. </p></td>
         <p>BOTD#4 Service's messages</p>
 
         
+
+        
+      
+        <h3 id=".ProposeTradeReply">ProposeTradeReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>swap_accept</td>
+                  <td><a href="#SwapAccept">SwapAccept</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>swap_fail</td>
+                  <td><a href="#SwapFail">SwapFail</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>expiry_time_unix</td>
+                  <td><a href="#uint64">uint64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".ProposeTradeRequest">ProposeTradeRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>market</td>
+                  <td><a href="#Market">Market</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#TradeType">TradeType</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>swap_request</td>
+                  <td><a href="#SwapRequest">SwapRequest</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
 
         
       
@@ -1065,9 +1219,9 @@ the trader.</p></td>
               </tr>
             
               <tr>
-                <td>TradeProposeUnary</td>
-                <td><a href="#TradeProposeRequest">.TradeProposeRequest</a></td>
-                <td><a href="#TradeProposeReply">.TradeProposeReply</a></td>
+                <td>ProposeTrade</td>
+                <td><a href="#ProposeTradeRequest">.ProposeTradeRequest</a></td>
+                <td><a href="#ProposeTradeReply">.ProposeTradeReply</a></td>
                 <td><p>Unary RPC for TradePropose.</p></td>
               </tr>
             
@@ -1081,9 +1235,9 @@ transaction hash of the broadcasted transaction.</p></td>
               </tr>
             
               <tr>
-                <td>TradeCompleteUnary</td>
-                <td><a href="#TradeCompleteRequest">.TradeCompleteRequest</a></td>
-                <td><a href="#TradeCompleteReply">.TradeCompleteReply</a></td>
+                <td>CompleteTrade</td>
+                <td><a href="#CompleteTradeRequest">.CompleteTradeRequest</a></td>
+                <td><a href="#CompleteTradeReply">.CompleteTradeReply</a></td>
                 <td><p>Unary RPC for TradeComplete.</p></td>
               </tr>
             

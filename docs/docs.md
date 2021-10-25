@@ -16,10 +16,14 @@
 - [trade.proto](#trade.proto)
     - [BalancesReply](#.BalancesReply)
     - [BalancesRequest](#.BalancesRequest)
+    - [CompleteTradeReply](#.CompleteTradeReply)
+    - [CompleteTradeRequest](#.CompleteTradeRequest)
     - [MarketPriceReply](#.MarketPriceReply)
     - [MarketPriceRequest](#.MarketPriceRequest)
     - [MarketsReply](#.MarketsReply)
     - [MarketsRequest](#.MarketsRequest)
+    - [ProposeTradeReply](#.ProposeTradeReply)
+    - [ProposeTradeRequest](#.ProposeTradeRequest)
     - [TradeCompleteReply](#.TradeCompleteReply)
     - [TradeCompleteRequest](#.TradeCompleteRequest)
     - [TradeProposeReply](#.TradeProposeReply)
@@ -237,6 +241,38 @@
 
 
 
+<a name=".CompleteTradeReply"></a>
+
+### CompleteTradeReply
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| txid | [string](#string) |  |  |
+| swap_fail | [SwapFail](#SwapFail) |  |  |
+
+
+
+
+
+
+<a name=".CompleteTradeRequest"></a>
+
+### CompleteTradeRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| swap_complete | [SwapComplete](#SwapComplete) |  |  |
+| swap_fail | [SwapFail](#SwapFail) |  |  |
+
+
+
+
+
+
 <a name=".MarketPriceReply"></a>
 
 ### MarketPriceReply
@@ -289,6 +325,40 @@
 
 ### MarketsRequest
 BOTD#4 Service&#39;s messages
+
+
+
+
+
+
+<a name=".ProposeTradeReply"></a>
+
+### ProposeTradeReply
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| swap_accept | [SwapAccept](#SwapAccept) |  |  |
+| swap_fail | [SwapFail](#SwapFail) |  |  |
+| expiry_time_unix | [uint64](#uint64) |  |  |
+
+
+
+
+
+
+<a name=".ProposeTradeRequest"></a>
+
+### ProposeTradeRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| market | [Market](#Market) |  |  |
+| type | [TradeType](#TradeType) |  |  |
+| swap_request | [SwapRequest](#SwapRequest) |  |  |
 
 
 
@@ -402,9 +472,9 @@ BUY = quote asset as input SELL = base asset as input
 If the type of the trade is BUY it means the base asset will be received by the trader.
 
 If the type of the trade is SELL it means the base asset will be sent by the trader. |
-| TradeProposeUnary | [.TradeProposeRequest](#TradeProposeRequest) | [.TradeProposeReply](#TradeProposeReply) | Unary RPC for TradePropose. |
+| ProposeTrade | [.ProposeTradeRequest](#ProposeTradeRequest) | [.ProposeTradeReply](#ProposeTradeReply) | Unary RPC for TradePropose. |
 | TradeComplete | [.TradeCompleteRequest](#TradeCompleteRequest) | [.TradeCompleteReply](#TradeCompleteReply) stream | TradeComplete: Sends the trader&#39;s counter-signed transaction to the provider. If something wrong, a swap fail message is sent. It returns the transaction hash of the broadcasted transaction. |
-| TradeCompleteUnary | [.TradeCompleteRequest](#TradeCompleteRequest) | [.TradeCompleteReply](#TradeCompleteReply) | Unary RPC for TradeComplete. |
+| CompleteTrade | [.CompleteTradeRequest](#CompleteTradeRequest) | [.CompleteTradeReply](#CompleteTradeReply) | Unary RPC for TradeComplete. |
 
  
 

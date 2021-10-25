@@ -7918,6 +7918,3427 @@ public final class TradeOuterClass {
 
   }
 
+  public interface ProposeTradeRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ProposeTradeRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.Market market = 1;</code>
+     * @return Whether the market field is set.
+     */
+    boolean hasMarket();
+    /**
+     * <code>.Market market = 1;</code>
+     * @return The market.
+     */
+    network.tdex.types.Types.Market getMarket();
+    /**
+     * <code>.Market market = 1;</code>
+     */
+    network.tdex.types.Types.MarketOrBuilder getMarketOrBuilder();
+
+    /**
+     * <code>.TradeType type = 2;</code>
+     * @return The enum numeric value on the wire for type.
+     */
+    int getTypeValue();
+    /**
+     * <code>.TradeType type = 2;</code>
+     * @return The type.
+     */
+    network.tdex.trade.TradeOuterClass.TradeType getType();
+
+    /**
+     * <code>.SwapRequest swap_request = 3;</code>
+     * @return Whether the swapRequest field is set.
+     */
+    boolean hasSwapRequest();
+    /**
+     * <code>.SwapRequest swap_request = 3;</code>
+     * @return The swapRequest.
+     */
+    network.tdex.swap.Swap.SwapRequest getSwapRequest();
+    /**
+     * <code>.SwapRequest swap_request = 3;</code>
+     */
+    network.tdex.swap.Swap.SwapRequestOrBuilder getSwapRequestOrBuilder();
+  }
+  /**
+   * Protobuf type {@code ProposeTradeRequest}
+   */
+  public static final class ProposeTradeRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:ProposeTradeRequest)
+      ProposeTradeRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ProposeTradeRequest.newBuilder() to construct.
+    private ProposeTradeRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ProposeTradeRequest() {
+      type_ = 0;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ProposeTradeRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ProposeTradeRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              network.tdex.types.Types.Market.Builder subBuilder = null;
+              if (market_ != null) {
+                subBuilder = market_.toBuilder();
+              }
+              market_ = input.readMessage(network.tdex.types.Types.Market.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(market_);
+                market_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 16: {
+              int rawValue = input.readEnum();
+
+              type_ = rawValue;
+              break;
+            }
+            case 26: {
+              network.tdex.swap.Swap.SwapRequest.Builder subBuilder = null;
+              if (swapRequest_ != null) {
+                subBuilder = swapRequest_.toBuilder();
+              }
+              swapRequest_ = input.readMessage(network.tdex.swap.Swap.SwapRequest.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(swapRequest_);
+                swapRequest_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return network.tdex.trade.TradeOuterClass.internal_static_ProposeTradeRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return network.tdex.trade.TradeOuterClass.internal_static_ProposeTradeRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              network.tdex.trade.TradeOuterClass.ProposeTradeRequest.class, network.tdex.trade.TradeOuterClass.ProposeTradeRequest.Builder.class);
+    }
+
+    public static final int MARKET_FIELD_NUMBER = 1;
+    private network.tdex.types.Types.Market market_;
+    /**
+     * <code>.Market market = 1;</code>
+     * @return Whether the market field is set.
+     */
+    @java.lang.Override
+    public boolean hasMarket() {
+      return market_ != null;
+    }
+    /**
+     * <code>.Market market = 1;</code>
+     * @return The market.
+     */
+    @java.lang.Override
+    public network.tdex.types.Types.Market getMarket() {
+      return market_ == null ? network.tdex.types.Types.Market.getDefaultInstance() : market_;
+    }
+    /**
+     * <code>.Market market = 1;</code>
+     */
+    @java.lang.Override
+    public network.tdex.types.Types.MarketOrBuilder getMarketOrBuilder() {
+      return getMarket();
+    }
+
+    public static final int TYPE_FIELD_NUMBER = 2;
+    private int type_;
+    /**
+     * <code>.TradeType type = 2;</code>
+     * @return The enum numeric value on the wire for type.
+     */
+    @java.lang.Override public int getTypeValue() {
+      return type_;
+    }
+    /**
+     * <code>.TradeType type = 2;</code>
+     * @return The type.
+     */
+    @java.lang.Override public network.tdex.trade.TradeOuterClass.TradeType getType() {
+      @SuppressWarnings("deprecation")
+      network.tdex.trade.TradeOuterClass.TradeType result = network.tdex.trade.TradeOuterClass.TradeType.valueOf(type_);
+      return result == null ? network.tdex.trade.TradeOuterClass.TradeType.UNRECOGNIZED : result;
+    }
+
+    public static final int SWAP_REQUEST_FIELD_NUMBER = 3;
+    private network.tdex.swap.Swap.SwapRequest swapRequest_;
+    /**
+     * <code>.SwapRequest swap_request = 3;</code>
+     * @return Whether the swapRequest field is set.
+     */
+    @java.lang.Override
+    public boolean hasSwapRequest() {
+      return swapRequest_ != null;
+    }
+    /**
+     * <code>.SwapRequest swap_request = 3;</code>
+     * @return The swapRequest.
+     */
+    @java.lang.Override
+    public network.tdex.swap.Swap.SwapRequest getSwapRequest() {
+      return swapRequest_ == null ? network.tdex.swap.Swap.SwapRequest.getDefaultInstance() : swapRequest_;
+    }
+    /**
+     * <code>.SwapRequest swap_request = 3;</code>
+     */
+    @java.lang.Override
+    public network.tdex.swap.Swap.SwapRequestOrBuilder getSwapRequestOrBuilder() {
+      return getSwapRequest();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (market_ != null) {
+        output.writeMessage(1, getMarket());
+      }
+      if (type_ != network.tdex.trade.TradeOuterClass.TradeType.BUY.getNumber()) {
+        output.writeEnum(2, type_);
+      }
+      if (swapRequest_ != null) {
+        output.writeMessage(3, getSwapRequest());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (market_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getMarket());
+      }
+      if (type_ != network.tdex.trade.TradeOuterClass.TradeType.BUY.getNumber()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(2, type_);
+      }
+      if (swapRequest_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, getSwapRequest());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof network.tdex.trade.TradeOuterClass.ProposeTradeRequest)) {
+        return super.equals(obj);
+      }
+      network.tdex.trade.TradeOuterClass.ProposeTradeRequest other = (network.tdex.trade.TradeOuterClass.ProposeTradeRequest) obj;
+
+      if (hasMarket() != other.hasMarket()) return false;
+      if (hasMarket()) {
+        if (!getMarket()
+            .equals(other.getMarket())) return false;
+      }
+      if (type_ != other.type_) return false;
+      if (hasSwapRequest() != other.hasSwapRequest()) return false;
+      if (hasSwapRequest()) {
+        if (!getSwapRequest()
+            .equals(other.getSwapRequest())) return false;
+      }
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasMarket()) {
+        hash = (37 * hash) + MARKET_FIELD_NUMBER;
+        hash = (53 * hash) + getMarket().hashCode();
+      }
+      hash = (37 * hash) + TYPE_FIELD_NUMBER;
+      hash = (53 * hash) + type_;
+      if (hasSwapRequest()) {
+        hash = (37 * hash) + SWAP_REQUEST_FIELD_NUMBER;
+        hash = (53 * hash) + getSwapRequest().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(network.tdex.trade.TradeOuterClass.ProposeTradeRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ProposeTradeRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ProposeTradeRequest)
+        network.tdex.trade.TradeOuterClass.ProposeTradeRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return network.tdex.trade.TradeOuterClass.internal_static_ProposeTradeRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return network.tdex.trade.TradeOuterClass.internal_static_ProposeTradeRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                network.tdex.trade.TradeOuterClass.ProposeTradeRequest.class, network.tdex.trade.TradeOuterClass.ProposeTradeRequest.Builder.class);
+      }
+
+      // Construct using network.tdex.trade.TradeOuterClass.ProposeTradeRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (marketBuilder_ == null) {
+          market_ = null;
+        } else {
+          market_ = null;
+          marketBuilder_ = null;
+        }
+        type_ = 0;
+
+        if (swapRequestBuilder_ == null) {
+          swapRequest_ = null;
+        } else {
+          swapRequest_ = null;
+          swapRequestBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return network.tdex.trade.TradeOuterClass.internal_static_ProposeTradeRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public network.tdex.trade.TradeOuterClass.ProposeTradeRequest getDefaultInstanceForType() {
+        return network.tdex.trade.TradeOuterClass.ProposeTradeRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public network.tdex.trade.TradeOuterClass.ProposeTradeRequest build() {
+        network.tdex.trade.TradeOuterClass.ProposeTradeRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public network.tdex.trade.TradeOuterClass.ProposeTradeRequest buildPartial() {
+        network.tdex.trade.TradeOuterClass.ProposeTradeRequest result = new network.tdex.trade.TradeOuterClass.ProposeTradeRequest(this);
+        if (marketBuilder_ == null) {
+          result.market_ = market_;
+        } else {
+          result.market_ = marketBuilder_.build();
+        }
+        result.type_ = type_;
+        if (swapRequestBuilder_ == null) {
+          result.swapRequest_ = swapRequest_;
+        } else {
+          result.swapRequest_ = swapRequestBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof network.tdex.trade.TradeOuterClass.ProposeTradeRequest) {
+          return mergeFrom((network.tdex.trade.TradeOuterClass.ProposeTradeRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(network.tdex.trade.TradeOuterClass.ProposeTradeRequest other) {
+        if (other == network.tdex.trade.TradeOuterClass.ProposeTradeRequest.getDefaultInstance()) return this;
+        if (other.hasMarket()) {
+          mergeMarket(other.getMarket());
+        }
+        if (other.type_ != 0) {
+          setTypeValue(other.getTypeValue());
+        }
+        if (other.hasSwapRequest()) {
+          mergeSwapRequest(other.getSwapRequest());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        network.tdex.trade.TradeOuterClass.ProposeTradeRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (network.tdex.trade.TradeOuterClass.ProposeTradeRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private network.tdex.types.Types.Market market_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          network.tdex.types.Types.Market, network.tdex.types.Types.Market.Builder, network.tdex.types.Types.MarketOrBuilder> marketBuilder_;
+      /**
+       * <code>.Market market = 1;</code>
+       * @return Whether the market field is set.
+       */
+      public boolean hasMarket() {
+        return marketBuilder_ != null || market_ != null;
+      }
+      /**
+       * <code>.Market market = 1;</code>
+       * @return The market.
+       */
+      public network.tdex.types.Types.Market getMarket() {
+        if (marketBuilder_ == null) {
+          return market_ == null ? network.tdex.types.Types.Market.getDefaultInstance() : market_;
+        } else {
+          return marketBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.Market market = 1;</code>
+       */
+      public Builder setMarket(network.tdex.types.Types.Market value) {
+        if (marketBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          market_ = value;
+          onChanged();
+        } else {
+          marketBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Market market = 1;</code>
+       */
+      public Builder setMarket(
+          network.tdex.types.Types.Market.Builder builderForValue) {
+        if (marketBuilder_ == null) {
+          market_ = builderForValue.build();
+          onChanged();
+        } else {
+          marketBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Market market = 1;</code>
+       */
+      public Builder mergeMarket(network.tdex.types.Types.Market value) {
+        if (marketBuilder_ == null) {
+          if (market_ != null) {
+            market_ =
+              network.tdex.types.Types.Market.newBuilder(market_).mergeFrom(value).buildPartial();
+          } else {
+            market_ = value;
+          }
+          onChanged();
+        } else {
+          marketBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Market market = 1;</code>
+       */
+      public Builder clearMarket() {
+        if (marketBuilder_ == null) {
+          market_ = null;
+          onChanged();
+        } else {
+          market_ = null;
+          marketBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.Market market = 1;</code>
+       */
+      public network.tdex.types.Types.Market.Builder getMarketBuilder() {
+        
+        onChanged();
+        return getMarketFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.Market market = 1;</code>
+       */
+      public network.tdex.types.Types.MarketOrBuilder getMarketOrBuilder() {
+        if (marketBuilder_ != null) {
+          return marketBuilder_.getMessageOrBuilder();
+        } else {
+          return market_ == null ?
+              network.tdex.types.Types.Market.getDefaultInstance() : market_;
+        }
+      }
+      /**
+       * <code>.Market market = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          network.tdex.types.Types.Market, network.tdex.types.Types.Market.Builder, network.tdex.types.Types.MarketOrBuilder> 
+          getMarketFieldBuilder() {
+        if (marketBuilder_ == null) {
+          marketBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              network.tdex.types.Types.Market, network.tdex.types.Types.Market.Builder, network.tdex.types.Types.MarketOrBuilder>(
+                  getMarket(),
+                  getParentForChildren(),
+                  isClean());
+          market_ = null;
+        }
+        return marketBuilder_;
+      }
+
+      private int type_ = 0;
+      /**
+       * <code>.TradeType type = 2;</code>
+       * @return The enum numeric value on the wire for type.
+       */
+      @java.lang.Override public int getTypeValue() {
+        return type_;
+      }
+      /**
+       * <code>.TradeType type = 2;</code>
+       * @param value The enum numeric value on the wire for type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTypeValue(int value) {
+        
+        type_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.TradeType type = 2;</code>
+       * @return The type.
+       */
+      @java.lang.Override
+      public network.tdex.trade.TradeOuterClass.TradeType getType() {
+        @SuppressWarnings("deprecation")
+        network.tdex.trade.TradeOuterClass.TradeType result = network.tdex.trade.TradeOuterClass.TradeType.valueOf(type_);
+        return result == null ? network.tdex.trade.TradeOuterClass.TradeType.UNRECOGNIZED : result;
+      }
+      /**
+       * <code>.TradeType type = 2;</code>
+       * @param value The type to set.
+       * @return This builder for chaining.
+       */
+      public Builder setType(network.tdex.trade.TradeOuterClass.TradeType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        
+        type_ = value.getNumber();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.TradeType type = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearType() {
+        
+        type_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private network.tdex.swap.Swap.SwapRequest swapRequest_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          network.tdex.swap.Swap.SwapRequest, network.tdex.swap.Swap.SwapRequest.Builder, network.tdex.swap.Swap.SwapRequestOrBuilder> swapRequestBuilder_;
+      /**
+       * <code>.SwapRequest swap_request = 3;</code>
+       * @return Whether the swapRequest field is set.
+       */
+      public boolean hasSwapRequest() {
+        return swapRequestBuilder_ != null || swapRequest_ != null;
+      }
+      /**
+       * <code>.SwapRequest swap_request = 3;</code>
+       * @return The swapRequest.
+       */
+      public network.tdex.swap.Swap.SwapRequest getSwapRequest() {
+        if (swapRequestBuilder_ == null) {
+          return swapRequest_ == null ? network.tdex.swap.Swap.SwapRequest.getDefaultInstance() : swapRequest_;
+        } else {
+          return swapRequestBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.SwapRequest swap_request = 3;</code>
+       */
+      public Builder setSwapRequest(network.tdex.swap.Swap.SwapRequest value) {
+        if (swapRequestBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          swapRequest_ = value;
+          onChanged();
+        } else {
+          swapRequestBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapRequest swap_request = 3;</code>
+       */
+      public Builder setSwapRequest(
+          network.tdex.swap.Swap.SwapRequest.Builder builderForValue) {
+        if (swapRequestBuilder_ == null) {
+          swapRequest_ = builderForValue.build();
+          onChanged();
+        } else {
+          swapRequestBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapRequest swap_request = 3;</code>
+       */
+      public Builder mergeSwapRequest(network.tdex.swap.Swap.SwapRequest value) {
+        if (swapRequestBuilder_ == null) {
+          if (swapRequest_ != null) {
+            swapRequest_ =
+              network.tdex.swap.Swap.SwapRequest.newBuilder(swapRequest_).mergeFrom(value).buildPartial();
+          } else {
+            swapRequest_ = value;
+          }
+          onChanged();
+        } else {
+          swapRequestBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapRequest swap_request = 3;</code>
+       */
+      public Builder clearSwapRequest() {
+        if (swapRequestBuilder_ == null) {
+          swapRequest_ = null;
+          onChanged();
+        } else {
+          swapRequest_ = null;
+          swapRequestBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapRequest swap_request = 3;</code>
+       */
+      public network.tdex.swap.Swap.SwapRequest.Builder getSwapRequestBuilder() {
+        
+        onChanged();
+        return getSwapRequestFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.SwapRequest swap_request = 3;</code>
+       */
+      public network.tdex.swap.Swap.SwapRequestOrBuilder getSwapRequestOrBuilder() {
+        if (swapRequestBuilder_ != null) {
+          return swapRequestBuilder_.getMessageOrBuilder();
+        } else {
+          return swapRequest_ == null ?
+              network.tdex.swap.Swap.SwapRequest.getDefaultInstance() : swapRequest_;
+        }
+      }
+      /**
+       * <code>.SwapRequest swap_request = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          network.tdex.swap.Swap.SwapRequest, network.tdex.swap.Swap.SwapRequest.Builder, network.tdex.swap.Swap.SwapRequestOrBuilder> 
+          getSwapRequestFieldBuilder() {
+        if (swapRequestBuilder_ == null) {
+          swapRequestBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              network.tdex.swap.Swap.SwapRequest, network.tdex.swap.Swap.SwapRequest.Builder, network.tdex.swap.Swap.SwapRequestOrBuilder>(
+                  getSwapRequest(),
+                  getParentForChildren(),
+                  isClean());
+          swapRequest_ = null;
+        }
+        return swapRequestBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ProposeTradeRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:ProposeTradeRequest)
+    private static final network.tdex.trade.TradeOuterClass.ProposeTradeRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new network.tdex.trade.TradeOuterClass.ProposeTradeRequest();
+    }
+
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ProposeTradeRequest>
+        PARSER = new com.google.protobuf.AbstractParser<ProposeTradeRequest>() {
+      @java.lang.Override
+      public ProposeTradeRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ProposeTradeRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ProposeTradeRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ProposeTradeRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public network.tdex.trade.TradeOuterClass.ProposeTradeRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface ProposeTradeReplyOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:ProposeTradeReply)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.SwapAccept swap_accept = 1;</code>
+     * @return Whether the swapAccept field is set.
+     */
+    boolean hasSwapAccept();
+    /**
+     * <code>.SwapAccept swap_accept = 1;</code>
+     * @return The swapAccept.
+     */
+    network.tdex.swap.Swap.SwapAccept getSwapAccept();
+    /**
+     * <code>.SwapAccept swap_accept = 1;</code>
+     */
+    network.tdex.swap.Swap.SwapAcceptOrBuilder getSwapAcceptOrBuilder();
+
+    /**
+     * <code>.SwapFail swap_fail = 2;</code>
+     * @return Whether the swapFail field is set.
+     */
+    boolean hasSwapFail();
+    /**
+     * <code>.SwapFail swap_fail = 2;</code>
+     * @return The swapFail.
+     */
+    network.tdex.swap.Swap.SwapFail getSwapFail();
+    /**
+     * <code>.SwapFail swap_fail = 2;</code>
+     */
+    network.tdex.swap.Swap.SwapFailOrBuilder getSwapFailOrBuilder();
+
+    /**
+     * <code>uint64 expiry_time_unix = 3;</code>
+     * @return The expiryTimeUnix.
+     */
+    long getExpiryTimeUnix();
+  }
+  /**
+   * Protobuf type {@code ProposeTradeReply}
+   */
+  public static final class ProposeTradeReply extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:ProposeTradeReply)
+      ProposeTradeReplyOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ProposeTradeReply.newBuilder() to construct.
+    private ProposeTradeReply(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ProposeTradeReply() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ProposeTradeReply();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ProposeTradeReply(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              network.tdex.swap.Swap.SwapAccept.Builder subBuilder = null;
+              if (swapAccept_ != null) {
+                subBuilder = swapAccept_.toBuilder();
+              }
+              swapAccept_ = input.readMessage(network.tdex.swap.Swap.SwapAccept.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(swapAccept_);
+                swapAccept_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 18: {
+              network.tdex.swap.Swap.SwapFail.Builder subBuilder = null;
+              if (swapFail_ != null) {
+                subBuilder = swapFail_.toBuilder();
+              }
+              swapFail_ = input.readMessage(network.tdex.swap.Swap.SwapFail.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(swapFail_);
+                swapFail_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 24: {
+
+              expiryTimeUnix_ = input.readUInt64();
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return network.tdex.trade.TradeOuterClass.internal_static_ProposeTradeReply_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return network.tdex.trade.TradeOuterClass.internal_static_ProposeTradeReply_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              network.tdex.trade.TradeOuterClass.ProposeTradeReply.class, network.tdex.trade.TradeOuterClass.ProposeTradeReply.Builder.class);
+    }
+
+    public static final int SWAP_ACCEPT_FIELD_NUMBER = 1;
+    private network.tdex.swap.Swap.SwapAccept swapAccept_;
+    /**
+     * <code>.SwapAccept swap_accept = 1;</code>
+     * @return Whether the swapAccept field is set.
+     */
+    @java.lang.Override
+    public boolean hasSwapAccept() {
+      return swapAccept_ != null;
+    }
+    /**
+     * <code>.SwapAccept swap_accept = 1;</code>
+     * @return The swapAccept.
+     */
+    @java.lang.Override
+    public network.tdex.swap.Swap.SwapAccept getSwapAccept() {
+      return swapAccept_ == null ? network.tdex.swap.Swap.SwapAccept.getDefaultInstance() : swapAccept_;
+    }
+    /**
+     * <code>.SwapAccept swap_accept = 1;</code>
+     */
+    @java.lang.Override
+    public network.tdex.swap.Swap.SwapAcceptOrBuilder getSwapAcceptOrBuilder() {
+      return getSwapAccept();
+    }
+
+    public static final int SWAP_FAIL_FIELD_NUMBER = 2;
+    private network.tdex.swap.Swap.SwapFail swapFail_;
+    /**
+     * <code>.SwapFail swap_fail = 2;</code>
+     * @return Whether the swapFail field is set.
+     */
+    @java.lang.Override
+    public boolean hasSwapFail() {
+      return swapFail_ != null;
+    }
+    /**
+     * <code>.SwapFail swap_fail = 2;</code>
+     * @return The swapFail.
+     */
+    @java.lang.Override
+    public network.tdex.swap.Swap.SwapFail getSwapFail() {
+      return swapFail_ == null ? network.tdex.swap.Swap.SwapFail.getDefaultInstance() : swapFail_;
+    }
+    /**
+     * <code>.SwapFail swap_fail = 2;</code>
+     */
+    @java.lang.Override
+    public network.tdex.swap.Swap.SwapFailOrBuilder getSwapFailOrBuilder() {
+      return getSwapFail();
+    }
+
+    public static final int EXPIRY_TIME_UNIX_FIELD_NUMBER = 3;
+    private long expiryTimeUnix_;
+    /**
+     * <code>uint64 expiry_time_unix = 3;</code>
+     * @return The expiryTimeUnix.
+     */
+    @java.lang.Override
+    public long getExpiryTimeUnix() {
+      return expiryTimeUnix_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (swapAccept_ != null) {
+        output.writeMessage(1, getSwapAccept());
+      }
+      if (swapFail_ != null) {
+        output.writeMessage(2, getSwapFail());
+      }
+      if (expiryTimeUnix_ != 0L) {
+        output.writeUInt64(3, expiryTimeUnix_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (swapAccept_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getSwapAccept());
+      }
+      if (swapFail_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getSwapFail());
+      }
+      if (expiryTimeUnix_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(3, expiryTimeUnix_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof network.tdex.trade.TradeOuterClass.ProposeTradeReply)) {
+        return super.equals(obj);
+      }
+      network.tdex.trade.TradeOuterClass.ProposeTradeReply other = (network.tdex.trade.TradeOuterClass.ProposeTradeReply) obj;
+
+      if (hasSwapAccept() != other.hasSwapAccept()) return false;
+      if (hasSwapAccept()) {
+        if (!getSwapAccept()
+            .equals(other.getSwapAccept())) return false;
+      }
+      if (hasSwapFail() != other.hasSwapFail()) return false;
+      if (hasSwapFail()) {
+        if (!getSwapFail()
+            .equals(other.getSwapFail())) return false;
+      }
+      if (getExpiryTimeUnix()
+          != other.getExpiryTimeUnix()) return false;
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasSwapAccept()) {
+        hash = (37 * hash) + SWAP_ACCEPT_FIELD_NUMBER;
+        hash = (53 * hash) + getSwapAccept().hashCode();
+      }
+      if (hasSwapFail()) {
+        hash = (37 * hash) + SWAP_FAIL_FIELD_NUMBER;
+        hash = (53 * hash) + getSwapFail().hashCode();
+      }
+      hash = (37 * hash) + EXPIRY_TIME_UNIX_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getExpiryTimeUnix());
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeReply parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeReply parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeReply parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeReply parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeReply parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeReply parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeReply parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeReply parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeReply parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeReply parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeReply parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeReply parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(network.tdex.trade.TradeOuterClass.ProposeTradeReply prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ProposeTradeReply}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:ProposeTradeReply)
+        network.tdex.trade.TradeOuterClass.ProposeTradeReplyOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return network.tdex.trade.TradeOuterClass.internal_static_ProposeTradeReply_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return network.tdex.trade.TradeOuterClass.internal_static_ProposeTradeReply_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                network.tdex.trade.TradeOuterClass.ProposeTradeReply.class, network.tdex.trade.TradeOuterClass.ProposeTradeReply.Builder.class);
+      }
+
+      // Construct using network.tdex.trade.TradeOuterClass.ProposeTradeReply.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (swapAcceptBuilder_ == null) {
+          swapAccept_ = null;
+        } else {
+          swapAccept_ = null;
+          swapAcceptBuilder_ = null;
+        }
+        if (swapFailBuilder_ == null) {
+          swapFail_ = null;
+        } else {
+          swapFail_ = null;
+          swapFailBuilder_ = null;
+        }
+        expiryTimeUnix_ = 0L;
+
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return network.tdex.trade.TradeOuterClass.internal_static_ProposeTradeReply_descriptor;
+      }
+
+      @java.lang.Override
+      public network.tdex.trade.TradeOuterClass.ProposeTradeReply getDefaultInstanceForType() {
+        return network.tdex.trade.TradeOuterClass.ProposeTradeReply.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public network.tdex.trade.TradeOuterClass.ProposeTradeReply build() {
+        network.tdex.trade.TradeOuterClass.ProposeTradeReply result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public network.tdex.trade.TradeOuterClass.ProposeTradeReply buildPartial() {
+        network.tdex.trade.TradeOuterClass.ProposeTradeReply result = new network.tdex.trade.TradeOuterClass.ProposeTradeReply(this);
+        if (swapAcceptBuilder_ == null) {
+          result.swapAccept_ = swapAccept_;
+        } else {
+          result.swapAccept_ = swapAcceptBuilder_.build();
+        }
+        if (swapFailBuilder_ == null) {
+          result.swapFail_ = swapFail_;
+        } else {
+          result.swapFail_ = swapFailBuilder_.build();
+        }
+        result.expiryTimeUnix_ = expiryTimeUnix_;
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof network.tdex.trade.TradeOuterClass.ProposeTradeReply) {
+          return mergeFrom((network.tdex.trade.TradeOuterClass.ProposeTradeReply)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(network.tdex.trade.TradeOuterClass.ProposeTradeReply other) {
+        if (other == network.tdex.trade.TradeOuterClass.ProposeTradeReply.getDefaultInstance()) return this;
+        if (other.hasSwapAccept()) {
+          mergeSwapAccept(other.getSwapAccept());
+        }
+        if (other.hasSwapFail()) {
+          mergeSwapFail(other.getSwapFail());
+        }
+        if (other.getExpiryTimeUnix() != 0L) {
+          setExpiryTimeUnix(other.getExpiryTimeUnix());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        network.tdex.trade.TradeOuterClass.ProposeTradeReply parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (network.tdex.trade.TradeOuterClass.ProposeTradeReply) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private network.tdex.swap.Swap.SwapAccept swapAccept_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          network.tdex.swap.Swap.SwapAccept, network.tdex.swap.Swap.SwapAccept.Builder, network.tdex.swap.Swap.SwapAcceptOrBuilder> swapAcceptBuilder_;
+      /**
+       * <code>.SwapAccept swap_accept = 1;</code>
+       * @return Whether the swapAccept field is set.
+       */
+      public boolean hasSwapAccept() {
+        return swapAcceptBuilder_ != null || swapAccept_ != null;
+      }
+      /**
+       * <code>.SwapAccept swap_accept = 1;</code>
+       * @return The swapAccept.
+       */
+      public network.tdex.swap.Swap.SwapAccept getSwapAccept() {
+        if (swapAcceptBuilder_ == null) {
+          return swapAccept_ == null ? network.tdex.swap.Swap.SwapAccept.getDefaultInstance() : swapAccept_;
+        } else {
+          return swapAcceptBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.SwapAccept swap_accept = 1;</code>
+       */
+      public Builder setSwapAccept(network.tdex.swap.Swap.SwapAccept value) {
+        if (swapAcceptBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          swapAccept_ = value;
+          onChanged();
+        } else {
+          swapAcceptBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapAccept swap_accept = 1;</code>
+       */
+      public Builder setSwapAccept(
+          network.tdex.swap.Swap.SwapAccept.Builder builderForValue) {
+        if (swapAcceptBuilder_ == null) {
+          swapAccept_ = builderForValue.build();
+          onChanged();
+        } else {
+          swapAcceptBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapAccept swap_accept = 1;</code>
+       */
+      public Builder mergeSwapAccept(network.tdex.swap.Swap.SwapAccept value) {
+        if (swapAcceptBuilder_ == null) {
+          if (swapAccept_ != null) {
+            swapAccept_ =
+              network.tdex.swap.Swap.SwapAccept.newBuilder(swapAccept_).mergeFrom(value).buildPartial();
+          } else {
+            swapAccept_ = value;
+          }
+          onChanged();
+        } else {
+          swapAcceptBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapAccept swap_accept = 1;</code>
+       */
+      public Builder clearSwapAccept() {
+        if (swapAcceptBuilder_ == null) {
+          swapAccept_ = null;
+          onChanged();
+        } else {
+          swapAccept_ = null;
+          swapAcceptBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapAccept swap_accept = 1;</code>
+       */
+      public network.tdex.swap.Swap.SwapAccept.Builder getSwapAcceptBuilder() {
+        
+        onChanged();
+        return getSwapAcceptFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.SwapAccept swap_accept = 1;</code>
+       */
+      public network.tdex.swap.Swap.SwapAcceptOrBuilder getSwapAcceptOrBuilder() {
+        if (swapAcceptBuilder_ != null) {
+          return swapAcceptBuilder_.getMessageOrBuilder();
+        } else {
+          return swapAccept_ == null ?
+              network.tdex.swap.Swap.SwapAccept.getDefaultInstance() : swapAccept_;
+        }
+      }
+      /**
+       * <code>.SwapAccept swap_accept = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          network.tdex.swap.Swap.SwapAccept, network.tdex.swap.Swap.SwapAccept.Builder, network.tdex.swap.Swap.SwapAcceptOrBuilder> 
+          getSwapAcceptFieldBuilder() {
+        if (swapAcceptBuilder_ == null) {
+          swapAcceptBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              network.tdex.swap.Swap.SwapAccept, network.tdex.swap.Swap.SwapAccept.Builder, network.tdex.swap.Swap.SwapAcceptOrBuilder>(
+                  getSwapAccept(),
+                  getParentForChildren(),
+                  isClean());
+          swapAccept_ = null;
+        }
+        return swapAcceptBuilder_;
+      }
+
+      private network.tdex.swap.Swap.SwapFail swapFail_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          network.tdex.swap.Swap.SwapFail, network.tdex.swap.Swap.SwapFail.Builder, network.tdex.swap.Swap.SwapFailOrBuilder> swapFailBuilder_;
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       * @return Whether the swapFail field is set.
+       */
+      public boolean hasSwapFail() {
+        return swapFailBuilder_ != null || swapFail_ != null;
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       * @return The swapFail.
+       */
+      public network.tdex.swap.Swap.SwapFail getSwapFail() {
+        if (swapFailBuilder_ == null) {
+          return swapFail_ == null ? network.tdex.swap.Swap.SwapFail.getDefaultInstance() : swapFail_;
+        } else {
+          return swapFailBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      public Builder setSwapFail(network.tdex.swap.Swap.SwapFail value) {
+        if (swapFailBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          swapFail_ = value;
+          onChanged();
+        } else {
+          swapFailBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      public Builder setSwapFail(
+          network.tdex.swap.Swap.SwapFail.Builder builderForValue) {
+        if (swapFailBuilder_ == null) {
+          swapFail_ = builderForValue.build();
+          onChanged();
+        } else {
+          swapFailBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      public Builder mergeSwapFail(network.tdex.swap.Swap.SwapFail value) {
+        if (swapFailBuilder_ == null) {
+          if (swapFail_ != null) {
+            swapFail_ =
+              network.tdex.swap.Swap.SwapFail.newBuilder(swapFail_).mergeFrom(value).buildPartial();
+          } else {
+            swapFail_ = value;
+          }
+          onChanged();
+        } else {
+          swapFailBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      public Builder clearSwapFail() {
+        if (swapFailBuilder_ == null) {
+          swapFail_ = null;
+          onChanged();
+        } else {
+          swapFail_ = null;
+          swapFailBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      public network.tdex.swap.Swap.SwapFail.Builder getSwapFailBuilder() {
+        
+        onChanged();
+        return getSwapFailFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      public network.tdex.swap.Swap.SwapFailOrBuilder getSwapFailOrBuilder() {
+        if (swapFailBuilder_ != null) {
+          return swapFailBuilder_.getMessageOrBuilder();
+        } else {
+          return swapFail_ == null ?
+              network.tdex.swap.Swap.SwapFail.getDefaultInstance() : swapFail_;
+        }
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          network.tdex.swap.Swap.SwapFail, network.tdex.swap.Swap.SwapFail.Builder, network.tdex.swap.Swap.SwapFailOrBuilder> 
+          getSwapFailFieldBuilder() {
+        if (swapFailBuilder_ == null) {
+          swapFailBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              network.tdex.swap.Swap.SwapFail, network.tdex.swap.Swap.SwapFail.Builder, network.tdex.swap.Swap.SwapFailOrBuilder>(
+                  getSwapFail(),
+                  getParentForChildren(),
+                  isClean());
+          swapFail_ = null;
+        }
+        return swapFailBuilder_;
+      }
+
+      private long expiryTimeUnix_ ;
+      /**
+       * <code>uint64 expiry_time_unix = 3;</code>
+       * @return The expiryTimeUnix.
+       */
+      @java.lang.Override
+      public long getExpiryTimeUnix() {
+        return expiryTimeUnix_;
+      }
+      /**
+       * <code>uint64 expiry_time_unix = 3;</code>
+       * @param value The expiryTimeUnix to set.
+       * @return This builder for chaining.
+       */
+      public Builder setExpiryTimeUnix(long value) {
+        
+        expiryTimeUnix_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>uint64 expiry_time_unix = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearExpiryTimeUnix() {
+        
+        expiryTimeUnix_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:ProposeTradeReply)
+    }
+
+    // @@protoc_insertion_point(class_scope:ProposeTradeReply)
+    private static final network.tdex.trade.TradeOuterClass.ProposeTradeReply DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new network.tdex.trade.TradeOuterClass.ProposeTradeReply();
+    }
+
+    public static network.tdex.trade.TradeOuterClass.ProposeTradeReply getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ProposeTradeReply>
+        PARSER = new com.google.protobuf.AbstractParser<ProposeTradeReply>() {
+      @java.lang.Override
+      public ProposeTradeReply parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ProposeTradeReply(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<ProposeTradeReply> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ProposeTradeReply> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public network.tdex.trade.TradeOuterClass.ProposeTradeReply getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface CompleteTradeRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:CompleteTradeRequest)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.SwapComplete swap_complete = 1;</code>
+     * @return Whether the swapComplete field is set.
+     */
+    boolean hasSwapComplete();
+    /**
+     * <code>.SwapComplete swap_complete = 1;</code>
+     * @return The swapComplete.
+     */
+    network.tdex.swap.Swap.SwapComplete getSwapComplete();
+    /**
+     * <code>.SwapComplete swap_complete = 1;</code>
+     */
+    network.tdex.swap.Swap.SwapCompleteOrBuilder getSwapCompleteOrBuilder();
+
+    /**
+     * <code>.SwapFail swap_fail = 2;</code>
+     * @return Whether the swapFail field is set.
+     */
+    boolean hasSwapFail();
+    /**
+     * <code>.SwapFail swap_fail = 2;</code>
+     * @return The swapFail.
+     */
+    network.tdex.swap.Swap.SwapFail getSwapFail();
+    /**
+     * <code>.SwapFail swap_fail = 2;</code>
+     */
+    network.tdex.swap.Swap.SwapFailOrBuilder getSwapFailOrBuilder();
+  }
+  /**
+   * Protobuf type {@code CompleteTradeRequest}
+   */
+  public static final class CompleteTradeRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:CompleteTradeRequest)
+      CompleteTradeRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use CompleteTradeRequest.newBuilder() to construct.
+    private CompleteTradeRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private CompleteTradeRequest() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new CompleteTradeRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private CompleteTradeRequest(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              network.tdex.swap.Swap.SwapComplete.Builder subBuilder = null;
+              if (swapComplete_ != null) {
+                subBuilder = swapComplete_.toBuilder();
+              }
+              swapComplete_ = input.readMessage(network.tdex.swap.Swap.SwapComplete.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(swapComplete_);
+                swapComplete_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            case 18: {
+              network.tdex.swap.Swap.SwapFail.Builder subBuilder = null;
+              if (swapFail_ != null) {
+                subBuilder = swapFail_.toBuilder();
+              }
+              swapFail_ = input.readMessage(network.tdex.swap.Swap.SwapFail.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(swapFail_);
+                swapFail_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return network.tdex.trade.TradeOuterClass.internal_static_CompleteTradeRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return network.tdex.trade.TradeOuterClass.internal_static_CompleteTradeRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              network.tdex.trade.TradeOuterClass.CompleteTradeRequest.class, network.tdex.trade.TradeOuterClass.CompleteTradeRequest.Builder.class);
+    }
+
+    public static final int SWAP_COMPLETE_FIELD_NUMBER = 1;
+    private network.tdex.swap.Swap.SwapComplete swapComplete_;
+    /**
+     * <code>.SwapComplete swap_complete = 1;</code>
+     * @return Whether the swapComplete field is set.
+     */
+    @java.lang.Override
+    public boolean hasSwapComplete() {
+      return swapComplete_ != null;
+    }
+    /**
+     * <code>.SwapComplete swap_complete = 1;</code>
+     * @return The swapComplete.
+     */
+    @java.lang.Override
+    public network.tdex.swap.Swap.SwapComplete getSwapComplete() {
+      return swapComplete_ == null ? network.tdex.swap.Swap.SwapComplete.getDefaultInstance() : swapComplete_;
+    }
+    /**
+     * <code>.SwapComplete swap_complete = 1;</code>
+     */
+    @java.lang.Override
+    public network.tdex.swap.Swap.SwapCompleteOrBuilder getSwapCompleteOrBuilder() {
+      return getSwapComplete();
+    }
+
+    public static final int SWAP_FAIL_FIELD_NUMBER = 2;
+    private network.tdex.swap.Swap.SwapFail swapFail_;
+    /**
+     * <code>.SwapFail swap_fail = 2;</code>
+     * @return Whether the swapFail field is set.
+     */
+    @java.lang.Override
+    public boolean hasSwapFail() {
+      return swapFail_ != null;
+    }
+    /**
+     * <code>.SwapFail swap_fail = 2;</code>
+     * @return The swapFail.
+     */
+    @java.lang.Override
+    public network.tdex.swap.Swap.SwapFail getSwapFail() {
+      return swapFail_ == null ? network.tdex.swap.Swap.SwapFail.getDefaultInstance() : swapFail_;
+    }
+    /**
+     * <code>.SwapFail swap_fail = 2;</code>
+     */
+    @java.lang.Override
+    public network.tdex.swap.Swap.SwapFailOrBuilder getSwapFailOrBuilder() {
+      return getSwapFail();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (swapComplete_ != null) {
+        output.writeMessage(1, getSwapComplete());
+      }
+      if (swapFail_ != null) {
+        output.writeMessage(2, getSwapFail());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (swapComplete_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getSwapComplete());
+      }
+      if (swapFail_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getSwapFail());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof network.tdex.trade.TradeOuterClass.CompleteTradeRequest)) {
+        return super.equals(obj);
+      }
+      network.tdex.trade.TradeOuterClass.CompleteTradeRequest other = (network.tdex.trade.TradeOuterClass.CompleteTradeRequest) obj;
+
+      if (hasSwapComplete() != other.hasSwapComplete()) return false;
+      if (hasSwapComplete()) {
+        if (!getSwapComplete()
+            .equals(other.getSwapComplete())) return false;
+      }
+      if (hasSwapFail() != other.hasSwapFail()) return false;
+      if (hasSwapFail()) {
+        if (!getSwapFail()
+            .equals(other.getSwapFail())) return false;
+      }
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasSwapComplete()) {
+        hash = (37 * hash) + SWAP_COMPLETE_FIELD_NUMBER;
+        hash = (53 * hash) + getSwapComplete().hashCode();
+      }
+      if (hasSwapFail()) {
+        hash = (37 * hash) + SWAP_FAIL_FIELD_NUMBER;
+        hash = (53 * hash) + getSwapFail().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(network.tdex.trade.TradeOuterClass.CompleteTradeRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code CompleteTradeRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:CompleteTradeRequest)
+        network.tdex.trade.TradeOuterClass.CompleteTradeRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return network.tdex.trade.TradeOuterClass.internal_static_CompleteTradeRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return network.tdex.trade.TradeOuterClass.internal_static_CompleteTradeRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                network.tdex.trade.TradeOuterClass.CompleteTradeRequest.class, network.tdex.trade.TradeOuterClass.CompleteTradeRequest.Builder.class);
+      }
+
+      // Construct using network.tdex.trade.TradeOuterClass.CompleteTradeRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        if (swapCompleteBuilder_ == null) {
+          swapComplete_ = null;
+        } else {
+          swapComplete_ = null;
+          swapCompleteBuilder_ = null;
+        }
+        if (swapFailBuilder_ == null) {
+          swapFail_ = null;
+        } else {
+          swapFail_ = null;
+          swapFailBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return network.tdex.trade.TradeOuterClass.internal_static_CompleteTradeRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public network.tdex.trade.TradeOuterClass.CompleteTradeRequest getDefaultInstanceForType() {
+        return network.tdex.trade.TradeOuterClass.CompleteTradeRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public network.tdex.trade.TradeOuterClass.CompleteTradeRequest build() {
+        network.tdex.trade.TradeOuterClass.CompleteTradeRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public network.tdex.trade.TradeOuterClass.CompleteTradeRequest buildPartial() {
+        network.tdex.trade.TradeOuterClass.CompleteTradeRequest result = new network.tdex.trade.TradeOuterClass.CompleteTradeRequest(this);
+        if (swapCompleteBuilder_ == null) {
+          result.swapComplete_ = swapComplete_;
+        } else {
+          result.swapComplete_ = swapCompleteBuilder_.build();
+        }
+        if (swapFailBuilder_ == null) {
+          result.swapFail_ = swapFail_;
+        } else {
+          result.swapFail_ = swapFailBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof network.tdex.trade.TradeOuterClass.CompleteTradeRequest) {
+          return mergeFrom((network.tdex.trade.TradeOuterClass.CompleteTradeRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(network.tdex.trade.TradeOuterClass.CompleteTradeRequest other) {
+        if (other == network.tdex.trade.TradeOuterClass.CompleteTradeRequest.getDefaultInstance()) return this;
+        if (other.hasSwapComplete()) {
+          mergeSwapComplete(other.getSwapComplete());
+        }
+        if (other.hasSwapFail()) {
+          mergeSwapFail(other.getSwapFail());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        network.tdex.trade.TradeOuterClass.CompleteTradeRequest parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (network.tdex.trade.TradeOuterClass.CompleteTradeRequest) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private network.tdex.swap.Swap.SwapComplete swapComplete_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          network.tdex.swap.Swap.SwapComplete, network.tdex.swap.Swap.SwapComplete.Builder, network.tdex.swap.Swap.SwapCompleteOrBuilder> swapCompleteBuilder_;
+      /**
+       * <code>.SwapComplete swap_complete = 1;</code>
+       * @return Whether the swapComplete field is set.
+       */
+      public boolean hasSwapComplete() {
+        return swapCompleteBuilder_ != null || swapComplete_ != null;
+      }
+      /**
+       * <code>.SwapComplete swap_complete = 1;</code>
+       * @return The swapComplete.
+       */
+      public network.tdex.swap.Swap.SwapComplete getSwapComplete() {
+        if (swapCompleteBuilder_ == null) {
+          return swapComplete_ == null ? network.tdex.swap.Swap.SwapComplete.getDefaultInstance() : swapComplete_;
+        } else {
+          return swapCompleteBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.SwapComplete swap_complete = 1;</code>
+       */
+      public Builder setSwapComplete(network.tdex.swap.Swap.SwapComplete value) {
+        if (swapCompleteBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          swapComplete_ = value;
+          onChanged();
+        } else {
+          swapCompleteBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapComplete swap_complete = 1;</code>
+       */
+      public Builder setSwapComplete(
+          network.tdex.swap.Swap.SwapComplete.Builder builderForValue) {
+        if (swapCompleteBuilder_ == null) {
+          swapComplete_ = builderForValue.build();
+          onChanged();
+        } else {
+          swapCompleteBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapComplete swap_complete = 1;</code>
+       */
+      public Builder mergeSwapComplete(network.tdex.swap.Swap.SwapComplete value) {
+        if (swapCompleteBuilder_ == null) {
+          if (swapComplete_ != null) {
+            swapComplete_ =
+              network.tdex.swap.Swap.SwapComplete.newBuilder(swapComplete_).mergeFrom(value).buildPartial();
+          } else {
+            swapComplete_ = value;
+          }
+          onChanged();
+        } else {
+          swapCompleteBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapComplete swap_complete = 1;</code>
+       */
+      public Builder clearSwapComplete() {
+        if (swapCompleteBuilder_ == null) {
+          swapComplete_ = null;
+          onChanged();
+        } else {
+          swapComplete_ = null;
+          swapCompleteBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapComplete swap_complete = 1;</code>
+       */
+      public network.tdex.swap.Swap.SwapComplete.Builder getSwapCompleteBuilder() {
+        
+        onChanged();
+        return getSwapCompleteFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.SwapComplete swap_complete = 1;</code>
+       */
+      public network.tdex.swap.Swap.SwapCompleteOrBuilder getSwapCompleteOrBuilder() {
+        if (swapCompleteBuilder_ != null) {
+          return swapCompleteBuilder_.getMessageOrBuilder();
+        } else {
+          return swapComplete_ == null ?
+              network.tdex.swap.Swap.SwapComplete.getDefaultInstance() : swapComplete_;
+        }
+      }
+      /**
+       * <code>.SwapComplete swap_complete = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          network.tdex.swap.Swap.SwapComplete, network.tdex.swap.Swap.SwapComplete.Builder, network.tdex.swap.Swap.SwapCompleteOrBuilder> 
+          getSwapCompleteFieldBuilder() {
+        if (swapCompleteBuilder_ == null) {
+          swapCompleteBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              network.tdex.swap.Swap.SwapComplete, network.tdex.swap.Swap.SwapComplete.Builder, network.tdex.swap.Swap.SwapCompleteOrBuilder>(
+                  getSwapComplete(),
+                  getParentForChildren(),
+                  isClean());
+          swapComplete_ = null;
+        }
+        return swapCompleteBuilder_;
+      }
+
+      private network.tdex.swap.Swap.SwapFail swapFail_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          network.tdex.swap.Swap.SwapFail, network.tdex.swap.Swap.SwapFail.Builder, network.tdex.swap.Swap.SwapFailOrBuilder> swapFailBuilder_;
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       * @return Whether the swapFail field is set.
+       */
+      public boolean hasSwapFail() {
+        return swapFailBuilder_ != null || swapFail_ != null;
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       * @return The swapFail.
+       */
+      public network.tdex.swap.Swap.SwapFail getSwapFail() {
+        if (swapFailBuilder_ == null) {
+          return swapFail_ == null ? network.tdex.swap.Swap.SwapFail.getDefaultInstance() : swapFail_;
+        } else {
+          return swapFailBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      public Builder setSwapFail(network.tdex.swap.Swap.SwapFail value) {
+        if (swapFailBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          swapFail_ = value;
+          onChanged();
+        } else {
+          swapFailBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      public Builder setSwapFail(
+          network.tdex.swap.Swap.SwapFail.Builder builderForValue) {
+        if (swapFailBuilder_ == null) {
+          swapFail_ = builderForValue.build();
+          onChanged();
+        } else {
+          swapFailBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      public Builder mergeSwapFail(network.tdex.swap.Swap.SwapFail value) {
+        if (swapFailBuilder_ == null) {
+          if (swapFail_ != null) {
+            swapFail_ =
+              network.tdex.swap.Swap.SwapFail.newBuilder(swapFail_).mergeFrom(value).buildPartial();
+          } else {
+            swapFail_ = value;
+          }
+          onChanged();
+        } else {
+          swapFailBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      public Builder clearSwapFail() {
+        if (swapFailBuilder_ == null) {
+          swapFail_ = null;
+          onChanged();
+        } else {
+          swapFail_ = null;
+          swapFailBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      public network.tdex.swap.Swap.SwapFail.Builder getSwapFailBuilder() {
+        
+        onChanged();
+        return getSwapFailFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      public network.tdex.swap.Swap.SwapFailOrBuilder getSwapFailOrBuilder() {
+        if (swapFailBuilder_ != null) {
+          return swapFailBuilder_.getMessageOrBuilder();
+        } else {
+          return swapFail_ == null ?
+              network.tdex.swap.Swap.SwapFail.getDefaultInstance() : swapFail_;
+        }
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          network.tdex.swap.Swap.SwapFail, network.tdex.swap.Swap.SwapFail.Builder, network.tdex.swap.Swap.SwapFailOrBuilder> 
+          getSwapFailFieldBuilder() {
+        if (swapFailBuilder_ == null) {
+          swapFailBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              network.tdex.swap.Swap.SwapFail, network.tdex.swap.Swap.SwapFail.Builder, network.tdex.swap.Swap.SwapFailOrBuilder>(
+                  getSwapFail(),
+                  getParentForChildren(),
+                  isClean());
+          swapFail_ = null;
+        }
+        return swapFailBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:CompleteTradeRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:CompleteTradeRequest)
+    private static final network.tdex.trade.TradeOuterClass.CompleteTradeRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new network.tdex.trade.TradeOuterClass.CompleteTradeRequest();
+    }
+
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<CompleteTradeRequest>
+        PARSER = new com.google.protobuf.AbstractParser<CompleteTradeRequest>() {
+      @java.lang.Override
+      public CompleteTradeRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new CompleteTradeRequest(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<CompleteTradeRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CompleteTradeRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public network.tdex.trade.TradeOuterClass.CompleteTradeRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface CompleteTradeReplyOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:CompleteTradeReply)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string txid = 1;</code>
+     * @return The txid.
+     */
+    java.lang.String getTxid();
+    /**
+     * <code>string txid = 1;</code>
+     * @return The bytes for txid.
+     */
+    com.google.protobuf.ByteString
+        getTxidBytes();
+
+    /**
+     * <code>.SwapFail swap_fail = 2;</code>
+     * @return Whether the swapFail field is set.
+     */
+    boolean hasSwapFail();
+    /**
+     * <code>.SwapFail swap_fail = 2;</code>
+     * @return The swapFail.
+     */
+    network.tdex.swap.Swap.SwapFail getSwapFail();
+    /**
+     * <code>.SwapFail swap_fail = 2;</code>
+     */
+    network.tdex.swap.Swap.SwapFailOrBuilder getSwapFailOrBuilder();
+  }
+  /**
+   * Protobuf type {@code CompleteTradeReply}
+   */
+  public static final class CompleteTradeReply extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:CompleteTradeReply)
+      CompleteTradeReplyOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use CompleteTradeReply.newBuilder() to construct.
+    private CompleteTradeReply(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private CompleteTradeReply() {
+      txid_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new CompleteTradeReply();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    private CompleteTradeReply(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      this();
+      if (extensionRegistry == null) {
+        throw new java.lang.NullPointerException();
+      }
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            case 10: {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              txid_ = s;
+              break;
+            }
+            case 18: {
+              network.tdex.swap.Swap.SwapFail.Builder subBuilder = null;
+              if (swapFail_ != null) {
+                subBuilder = swapFail_.toBuilder();
+              }
+              swapFail_ = input.readMessage(network.tdex.swap.Swap.SwapFail.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(swapFail_);
+                swapFail_ = subBuilder.buildPartial();
+              }
+
+              break;
+            }
+            default: {
+              if (!parseUnknownField(
+                  input, unknownFields, extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return network.tdex.trade.TradeOuterClass.internal_static_CompleteTradeReply_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return network.tdex.trade.TradeOuterClass.internal_static_CompleteTradeReply_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              network.tdex.trade.TradeOuterClass.CompleteTradeReply.class, network.tdex.trade.TradeOuterClass.CompleteTradeReply.Builder.class);
+    }
+
+    public static final int TXID_FIELD_NUMBER = 1;
+    private volatile java.lang.Object txid_;
+    /**
+     * <code>string txid = 1;</code>
+     * @return The txid.
+     */
+    @java.lang.Override
+    public java.lang.String getTxid() {
+      java.lang.Object ref = txid_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        txid_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string txid = 1;</code>
+     * @return The bytes for txid.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getTxidBytes() {
+      java.lang.Object ref = txid_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        txid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int SWAP_FAIL_FIELD_NUMBER = 2;
+    private network.tdex.swap.Swap.SwapFail swapFail_;
+    /**
+     * <code>.SwapFail swap_fail = 2;</code>
+     * @return Whether the swapFail field is set.
+     */
+    @java.lang.Override
+    public boolean hasSwapFail() {
+      return swapFail_ != null;
+    }
+    /**
+     * <code>.SwapFail swap_fail = 2;</code>
+     * @return The swapFail.
+     */
+    @java.lang.Override
+    public network.tdex.swap.Swap.SwapFail getSwapFail() {
+      return swapFail_ == null ? network.tdex.swap.Swap.SwapFail.getDefaultInstance() : swapFail_;
+    }
+    /**
+     * <code>.SwapFail swap_fail = 2;</code>
+     */
+    @java.lang.Override
+    public network.tdex.swap.Swap.SwapFailOrBuilder getSwapFailOrBuilder() {
+      return getSwapFail();
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(txid_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, txid_);
+      }
+      if (swapFail_ != null) {
+        output.writeMessage(2, getSwapFail());
+      }
+      unknownFields.writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(txid_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, txid_);
+      }
+      if (swapFail_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, getSwapFail());
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof network.tdex.trade.TradeOuterClass.CompleteTradeReply)) {
+        return super.equals(obj);
+      }
+      network.tdex.trade.TradeOuterClass.CompleteTradeReply other = (network.tdex.trade.TradeOuterClass.CompleteTradeReply) obj;
+
+      if (!getTxid()
+          .equals(other.getTxid())) return false;
+      if (hasSwapFail() != other.hasSwapFail()) return false;
+      if (hasSwapFail()) {
+        if (!getSwapFail()
+            .equals(other.getSwapFail())) return false;
+      }
+      if (!unknownFields.equals(other.unknownFields)) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + TXID_FIELD_NUMBER;
+      hash = (53 * hash) + getTxid().hashCode();
+      if (hasSwapFail()) {
+        hash = (37 * hash) + SWAP_FAIL_FIELD_NUMBER;
+        hash = (53 * hash) + getSwapFail().hashCode();
+      }
+      hash = (29 * hash) + unknownFields.hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeReply parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeReply parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeReply parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeReply parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeReply parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeReply parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeReply parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeReply parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeReply parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeReply parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeReply parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeReply parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(network.tdex.trade.TradeOuterClass.CompleteTradeReply prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code CompleteTradeReply}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:CompleteTradeReply)
+        network.tdex.trade.TradeOuterClass.CompleteTradeReplyOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return network.tdex.trade.TradeOuterClass.internal_static_CompleteTradeReply_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return network.tdex.trade.TradeOuterClass.internal_static_CompleteTradeReply_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                network.tdex.trade.TradeOuterClass.CompleteTradeReply.class, network.tdex.trade.TradeOuterClass.CompleteTradeReply.Builder.class);
+      }
+
+      // Construct using network.tdex.trade.TradeOuterClass.CompleteTradeReply.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessageV3
+                .alwaysUseFieldBuilders) {
+        }
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        txid_ = "";
+
+        if (swapFailBuilder_ == null) {
+          swapFail_ = null;
+        } else {
+          swapFail_ = null;
+          swapFailBuilder_ = null;
+        }
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return network.tdex.trade.TradeOuterClass.internal_static_CompleteTradeReply_descriptor;
+      }
+
+      @java.lang.Override
+      public network.tdex.trade.TradeOuterClass.CompleteTradeReply getDefaultInstanceForType() {
+        return network.tdex.trade.TradeOuterClass.CompleteTradeReply.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public network.tdex.trade.TradeOuterClass.CompleteTradeReply build() {
+        network.tdex.trade.TradeOuterClass.CompleteTradeReply result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public network.tdex.trade.TradeOuterClass.CompleteTradeReply buildPartial() {
+        network.tdex.trade.TradeOuterClass.CompleteTradeReply result = new network.tdex.trade.TradeOuterClass.CompleteTradeReply(this);
+        result.txid_ = txid_;
+        if (swapFailBuilder_ == null) {
+          result.swapFail_ = swapFail_;
+        } else {
+          result.swapFail_ = swapFailBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof network.tdex.trade.TradeOuterClass.CompleteTradeReply) {
+          return mergeFrom((network.tdex.trade.TradeOuterClass.CompleteTradeReply)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(network.tdex.trade.TradeOuterClass.CompleteTradeReply other) {
+        if (other == network.tdex.trade.TradeOuterClass.CompleteTradeReply.getDefaultInstance()) return this;
+        if (!other.getTxid().isEmpty()) {
+          txid_ = other.txid_;
+          onChanged();
+        }
+        if (other.hasSwapFail()) {
+          mergeSwapFail(other.getSwapFail());
+        }
+        this.mergeUnknownFields(other.unknownFields);
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        network.tdex.trade.TradeOuterClass.CompleteTradeReply parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (network.tdex.trade.TradeOuterClass.CompleteTradeReply) e.getUnfinishedMessage();
+          throw e.unwrapIOException();
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+
+      private java.lang.Object txid_ = "";
+      /**
+       * <code>string txid = 1;</code>
+       * @return The txid.
+       */
+      public java.lang.String getTxid() {
+        java.lang.Object ref = txid_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          txid_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string txid = 1;</code>
+       * @return The bytes for txid.
+       */
+      public com.google.protobuf.ByteString
+          getTxidBytes() {
+        java.lang.Object ref = txid_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          txid_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string txid = 1;</code>
+       * @param value The txid to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTxid(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        txid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string txid = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearTxid() {
+        
+        txid_ = getDefaultInstance().getTxid();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string txid = 1;</code>
+       * @param value The bytes for txid to set.
+       * @return This builder for chaining.
+       */
+      public Builder setTxidBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        txid_ = value;
+        onChanged();
+        return this;
+      }
+
+      private network.tdex.swap.Swap.SwapFail swapFail_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          network.tdex.swap.Swap.SwapFail, network.tdex.swap.Swap.SwapFail.Builder, network.tdex.swap.Swap.SwapFailOrBuilder> swapFailBuilder_;
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       * @return Whether the swapFail field is set.
+       */
+      public boolean hasSwapFail() {
+        return swapFailBuilder_ != null || swapFail_ != null;
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       * @return The swapFail.
+       */
+      public network.tdex.swap.Swap.SwapFail getSwapFail() {
+        if (swapFailBuilder_ == null) {
+          return swapFail_ == null ? network.tdex.swap.Swap.SwapFail.getDefaultInstance() : swapFail_;
+        } else {
+          return swapFailBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      public Builder setSwapFail(network.tdex.swap.Swap.SwapFail value) {
+        if (swapFailBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          swapFail_ = value;
+          onChanged();
+        } else {
+          swapFailBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      public Builder setSwapFail(
+          network.tdex.swap.Swap.SwapFail.Builder builderForValue) {
+        if (swapFailBuilder_ == null) {
+          swapFail_ = builderForValue.build();
+          onChanged();
+        } else {
+          swapFailBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      public Builder mergeSwapFail(network.tdex.swap.Swap.SwapFail value) {
+        if (swapFailBuilder_ == null) {
+          if (swapFail_ != null) {
+            swapFail_ =
+              network.tdex.swap.Swap.SwapFail.newBuilder(swapFail_).mergeFrom(value).buildPartial();
+          } else {
+            swapFail_ = value;
+          }
+          onChanged();
+        } else {
+          swapFailBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      public Builder clearSwapFail() {
+        if (swapFailBuilder_ == null) {
+          swapFail_ = null;
+          onChanged();
+        } else {
+          swapFail_ = null;
+          swapFailBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      public network.tdex.swap.Swap.SwapFail.Builder getSwapFailBuilder() {
+        
+        onChanged();
+        return getSwapFailFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      public network.tdex.swap.Swap.SwapFailOrBuilder getSwapFailOrBuilder() {
+        if (swapFailBuilder_ != null) {
+          return swapFailBuilder_.getMessageOrBuilder();
+        } else {
+          return swapFail_ == null ?
+              network.tdex.swap.Swap.SwapFail.getDefaultInstance() : swapFail_;
+        }
+      }
+      /**
+       * <code>.SwapFail swap_fail = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          network.tdex.swap.Swap.SwapFail, network.tdex.swap.Swap.SwapFail.Builder, network.tdex.swap.Swap.SwapFailOrBuilder> 
+          getSwapFailFieldBuilder() {
+        if (swapFailBuilder_ == null) {
+          swapFailBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              network.tdex.swap.Swap.SwapFail, network.tdex.swap.Swap.SwapFail.Builder, network.tdex.swap.Swap.SwapFailOrBuilder>(
+                  getSwapFail(),
+                  getParentForChildren(),
+                  isClean());
+          swapFail_ = null;
+        }
+        return swapFailBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:CompleteTradeReply)
+    }
+
+    // @@protoc_insertion_point(class_scope:CompleteTradeReply)
+    private static final network.tdex.trade.TradeOuterClass.CompleteTradeReply DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new network.tdex.trade.TradeOuterClass.CompleteTradeReply();
+    }
+
+    public static network.tdex.trade.TradeOuterClass.CompleteTradeReply getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<CompleteTradeReply>
+        PARSER = new com.google.protobuf.AbstractParser<CompleteTradeReply>() {
+      @java.lang.Override
+      public CompleteTradeReply parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new CompleteTradeReply(input, extensionRegistry);
+      }
+    };
+
+    public static com.google.protobuf.Parser<CompleteTradeReply> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<CompleteTradeReply> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public network.tdex.trade.TradeOuterClass.CompleteTradeReply getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_MarketsRequest_descriptor;
   private static final 
@@ -7968,6 +11389,26 @@ public final class TradeOuterClass {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_TradeCompleteReply_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ProposeTradeRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ProposeTradeRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_ProposeTradeReply_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_ProposeTradeReply_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_CompleteTradeRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_CompleteTradeRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_CompleteTradeReply_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_CompleteTradeReply_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -7995,20 +11436,29 @@ public final class TradeOuterClass {
       "t\022$\n\rswap_complete\030\001 \001(\0132\r.SwapComplete\022" +
       "\034\n\tswap_fail\030\002 \001(\0132\t.SwapFail\"@\n\022TradeCo" +
       "mpleteReply\022\014\n\004txid\030\001 \001(\t\022\034\n\tswap_fail\030\002" +
-      " \001(\0132\t.SwapFail*\036\n\tTradeType\022\007\n\003BUY\020\000\022\010\n" +
-      "\004SELL\020\0012\223\003\n\005Trade\022)\n\007Markets\022\017.MarketsRe" +
-      "quest\032\r.MarketsReply\022,\n\010Balances\022\020.Balan" +
-      "cesRequest\032\016.BalancesReply\0225\n\013MarketPric" +
-      "e\022\023.MarketPriceRequest\032\021.MarketPriceRepl" +
-      "y\022:\n\014TradePropose\022\024.TradeProposeRequest\032" +
-      "\022.TradeProposeReply0\001\022=\n\021TradeProposeUna" +
-      "ry\022\024.TradeProposeRequest\032\022.TradeProposeR" +
-      "eply\022=\n\rTradeComplete\022\025.TradeCompleteReq" +
-      "uest\032\023.TradeCompleteReply0\001\022@\n\022TradeComp" +
-      "leteUnary\022\025.TradeCompleteRequest\032\023.Trade" +
-      "CompleteReplyBN\n\022network.tdex.tradeZ8git" +
-      "hub.com/tdex-network/tdex-protobuf/gener" +
-      "ated/go/tradeb\006proto3"
+      " \001(\0132\t.SwapFail\"l\n\023ProposeTradeRequest\022\027" +
+      "\n\006market\030\001 \001(\0132\007.Market\022\030\n\004type\030\002 \001(\0162\n." +
+      "TradeType\022\"\n\014swap_request\030\003 \001(\0132\014.SwapRe" +
+      "quest\"m\n\021ProposeTradeReply\022 \n\013swap_accep" +
+      "t\030\001 \001(\0132\013.SwapAccept\022\034\n\tswap_fail\030\002 \001(\0132" +
+      "\t.SwapFail\022\030\n\020expiry_time_unix\030\003 \001(\004\"Z\n\024" +
+      "CompleteTradeRequest\022$\n\rswap_complete\030\001 " +
+      "\001(\0132\r.SwapComplete\022\034\n\tswap_fail\030\002 \001(\0132\t." +
+      "SwapFail\"@\n\022CompleteTradeReply\022\014\n\004txid\030\001" +
+      " \001(\t\022\034\n\tswap_fail\030\002 \001(\0132\t.SwapFail*\036\n\tTr" +
+      "adeType\022\007\n\003BUY\020\000\022\010\n\004SELL\020\0012\211\003\n\005Trade\022)\n\007" +
+      "Markets\022\017.MarketsRequest\032\r.MarketsReply\022" +
+      ",\n\010Balances\022\020.BalancesRequest\032\016.Balances" +
+      "Reply\0225\n\013MarketPrice\022\023.MarketPriceReques" +
+      "t\032\021.MarketPriceReply\022:\n\014TradePropose\022\024.T" +
+      "radeProposeRequest\032\022.TradeProposeReply0\001" +
+      "\0228\n\014ProposeTrade\022\024.ProposeTradeRequest\032\022" +
+      ".ProposeTradeReply\022=\n\rTradeComplete\022\025.Tr" +
+      "adeCompleteRequest\032\023.TradeCompleteReply0" +
+      "\001\022;\n\rCompleteTrade\022\025.CompleteTradeReques" +
+      "t\032\023.CompleteTradeReplyBN\n\022network.tdex.t" +
+      "radeZ8github.com/tdex-network/tdex-proto" +
+      "buf/generated/go/tradeb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -8075,6 +11525,30 @@ public final class TradeOuterClass {
     internal_static_TradeCompleteReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_TradeCompleteReply_descriptor,
+        new java.lang.String[] { "Txid", "SwapFail", });
+    internal_static_ProposeTradeRequest_descriptor =
+      getDescriptor().getMessageTypes().get(10);
+    internal_static_ProposeTradeRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ProposeTradeRequest_descriptor,
+        new java.lang.String[] { "Market", "Type", "SwapRequest", });
+    internal_static_ProposeTradeReply_descriptor =
+      getDescriptor().getMessageTypes().get(11);
+    internal_static_ProposeTradeReply_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_ProposeTradeReply_descriptor,
+        new java.lang.String[] { "SwapAccept", "SwapFail", "ExpiryTimeUnix", });
+    internal_static_CompleteTradeRequest_descriptor =
+      getDescriptor().getMessageTypes().get(12);
+    internal_static_CompleteTradeRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_CompleteTradeRequest_descriptor,
+        new java.lang.String[] { "SwapComplete", "SwapFail", });
+    internal_static_CompleteTradeReply_descriptor =
+      getDescriptor().getMessageTypes().get(13);
+    internal_static_CompleteTradeReply_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_CompleteTradeReply_descriptor,
         new java.lang.String[] { "Txid", "SwapFail", });
     network.tdex.swap.Swap.getDescriptor();
     network.tdex.types.Types.getDescriptor();
