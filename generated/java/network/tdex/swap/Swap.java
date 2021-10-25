@@ -655,7 +655,7 @@ public final class Swap {
     @java.lang.Override
     public boolean containsInputBlindingKey(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetInputBlindingKey().getMap().containsKey(key);
     }
     /**
@@ -694,7 +694,7 @@ public final class Swap {
     public com.google.protobuf.ByteString getInputBlindingKeyOrDefault(
         java.lang.String key,
         com.google.protobuf.ByteString defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
           internalGetInputBlindingKey().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -712,7 +712,7 @@ public final class Swap {
 
     public com.google.protobuf.ByteString getInputBlindingKeyOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
           internalGetInputBlindingKey().getMap();
       if (!map.containsKey(key)) {
@@ -760,7 +760,7 @@ public final class Swap {
     @java.lang.Override
     public boolean containsOutputBlindingKey(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetOutputBlindingKey().getMap().containsKey(key);
     }
     /**
@@ -799,7 +799,7 @@ public final class Swap {
     public com.google.protobuf.ByteString getOutputBlindingKeyOrDefault(
         java.lang.String key,
         com.google.protobuf.ByteString defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
           internalGetOutputBlindingKey().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -817,7 +817,7 @@ public final class Swap {
 
     public com.google.protobuf.ByteString getOutputBlindingKeyOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
           internalGetOutputBlindingKey().getMap();
       if (!map.containsKey(key)) {
@@ -1806,7 +1806,7 @@ public final class Swap {
       @java.lang.Override
       public boolean containsInputBlindingKey(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetInputBlindingKey().getMap().containsKey(key);
       }
       /**
@@ -1845,7 +1845,7 @@ public final class Swap {
       public com.google.protobuf.ByteString getInputBlindingKeyOrDefault(
           java.lang.String key,
           com.google.protobuf.ByteString defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
             internalGetInputBlindingKey().getMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -1863,7 +1863,7 @@ public final class Swap {
 
       public com.google.protobuf.ByteString getInputBlindingKeyOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
             internalGetInputBlindingKey().getMap();
         if (!map.containsKey(key)) {
@@ -1889,7 +1889,7 @@ public final class Swap {
 
       public Builder removeInputBlindingKey(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableInputBlindingKey().getMutableMap()
             .remove(key);
         return this;
@@ -1914,8 +1914,11 @@ public final class Swap {
       public Builder putInputBlindingKey(
           java.lang.String key,
           com.google.protobuf.ByteString value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) {
+  throw new NullPointerException("map value");
+}
+
         internalGetMutableInputBlindingKey().getMutableMap()
             .put(key, value);
         return this;
@@ -1976,7 +1979,7 @@ public final class Swap {
       @java.lang.Override
       public boolean containsOutputBlindingKey(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetOutputBlindingKey().getMap().containsKey(key);
       }
       /**
@@ -2015,7 +2018,7 @@ public final class Swap {
       public com.google.protobuf.ByteString getOutputBlindingKeyOrDefault(
           java.lang.String key,
           com.google.protobuf.ByteString defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
             internalGetOutputBlindingKey().getMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -2033,7 +2036,7 @@ public final class Swap {
 
       public com.google.protobuf.ByteString getOutputBlindingKeyOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
             internalGetOutputBlindingKey().getMap();
         if (!map.containsKey(key)) {
@@ -2059,7 +2062,7 @@ public final class Swap {
 
       public Builder removeOutputBlindingKey(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableOutputBlindingKey().getMutableMap()
             .remove(key);
         return this;
@@ -2084,8 +2087,11 @@ public final class Swap {
       public Builder putOutputBlindingKey(
           java.lang.String key,
           com.google.protobuf.ByteString value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) {
+  throw new NullPointerException("map value");
+}
+
         internalGetMutableOutputBlindingKey().getMutableMap()
             .put(key, value);
         return this;
@@ -2671,7 +2677,7 @@ public final class Swap {
     @java.lang.Override
     public boolean containsInputBlindingKey(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetInputBlindingKey().getMap().containsKey(key);
     }
     /**
@@ -2710,7 +2716,7 @@ public final class Swap {
     public com.google.protobuf.ByteString getInputBlindingKeyOrDefault(
         java.lang.String key,
         com.google.protobuf.ByteString defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
           internalGetInputBlindingKey().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -2728,7 +2734,7 @@ public final class Swap {
 
     public com.google.protobuf.ByteString getInputBlindingKeyOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
           internalGetInputBlindingKey().getMap();
       if (!map.containsKey(key)) {
@@ -2776,7 +2782,7 @@ public final class Swap {
     @java.lang.Override
     public boolean containsOutputBlindingKey(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       return internalGetOutputBlindingKey().getMap().containsKey(key);
     }
     /**
@@ -2815,7 +2821,7 @@ public final class Swap {
     public com.google.protobuf.ByteString getOutputBlindingKeyOrDefault(
         java.lang.String key,
         com.google.protobuf.ByteString defaultValue) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
           internalGetOutputBlindingKey().getMap();
       return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -2833,7 +2839,7 @@ public final class Swap {
 
     public com.google.protobuf.ByteString getOutputBlindingKeyOrThrow(
         java.lang.String key) {
-      if (key == null) { throw new java.lang.NullPointerException(); }
+      if (key == null) { throw new NullPointerException("map key"); }
       java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
           internalGetOutputBlindingKey().getMap();
       if (!map.containsKey(key)) {
@@ -3592,7 +3598,7 @@ public final class Swap {
       @java.lang.Override
       public boolean containsInputBlindingKey(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetInputBlindingKey().getMap().containsKey(key);
       }
       /**
@@ -3631,7 +3637,7 @@ public final class Swap {
       public com.google.protobuf.ByteString getInputBlindingKeyOrDefault(
           java.lang.String key,
           com.google.protobuf.ByteString defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
             internalGetInputBlindingKey().getMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -3649,7 +3655,7 @@ public final class Swap {
 
       public com.google.protobuf.ByteString getInputBlindingKeyOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
             internalGetInputBlindingKey().getMap();
         if (!map.containsKey(key)) {
@@ -3675,7 +3681,7 @@ public final class Swap {
 
       public Builder removeInputBlindingKey(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableInputBlindingKey().getMutableMap()
             .remove(key);
         return this;
@@ -3700,8 +3706,11 @@ public final class Swap {
       public Builder putInputBlindingKey(
           java.lang.String key,
           com.google.protobuf.ByteString value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) {
+  throw new NullPointerException("map value");
+}
+
         internalGetMutableInputBlindingKey().getMutableMap()
             .put(key, value);
         return this;
@@ -3762,7 +3771,7 @@ public final class Swap {
       @java.lang.Override
       public boolean containsOutputBlindingKey(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         return internalGetOutputBlindingKey().getMap().containsKey(key);
       }
       /**
@@ -3801,7 +3810,7 @@ public final class Swap {
       public com.google.protobuf.ByteString getOutputBlindingKeyOrDefault(
           java.lang.String key,
           com.google.protobuf.ByteString defaultValue) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
             internalGetOutputBlindingKey().getMap();
         return map.containsKey(key) ? map.get(key) : defaultValue;
@@ -3819,7 +3828,7 @@ public final class Swap {
 
       public com.google.protobuf.ByteString getOutputBlindingKeyOrThrow(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         java.util.Map<java.lang.String, com.google.protobuf.ByteString> map =
             internalGetOutputBlindingKey().getMap();
         if (!map.containsKey(key)) {
@@ -3845,7 +3854,7 @@ public final class Swap {
 
       public Builder removeOutputBlindingKey(
           java.lang.String key) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
         internalGetMutableOutputBlindingKey().getMutableMap()
             .remove(key);
         return this;
@@ -3870,8 +3879,11 @@ public final class Swap {
       public Builder putOutputBlindingKey(
           java.lang.String key,
           com.google.protobuf.ByteString value) {
-        if (key == null) { throw new java.lang.NullPointerException(); }
-        if (value == null) { throw new java.lang.NullPointerException(); }
+        if (key == null) { throw new NullPointerException("map key"); }
+        if (value == null) {
+  throw new NullPointerException("map value");
+}
+
         internalGetMutableOutputBlindingKey().getMutableMap()
             .put(key, value);
         return this;

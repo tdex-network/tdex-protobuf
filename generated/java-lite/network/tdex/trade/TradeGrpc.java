@@ -111,7 +111,7 @@ public final class TradeGrpc {
       fullMethodName = SERVICE_NAME + '/' + "TradePropose",
       requestType = network.tdex.trade.TradeOuterClass.TradeProposeRequest.class,
       responseType = network.tdex.trade.TradeOuterClass.TradeProposeReply.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
   public static io.grpc.MethodDescriptor<network.tdex.trade.TradeOuterClass.TradeProposeRequest,
       network.tdex.trade.TradeOuterClass.TradeProposeReply> getTradeProposeMethod() {
     io.grpc.MethodDescriptor<network.tdex.trade.TradeOuterClass.TradeProposeRequest, network.tdex.trade.TradeOuterClass.TradeProposeReply> getTradeProposeMethod;
@@ -120,7 +120,7 @@ public final class TradeGrpc {
         if ((getTradeProposeMethod = TradeGrpc.getTradeProposeMethod) == null) {
           TradeGrpc.getTradeProposeMethod = getTradeProposeMethod =
               io.grpc.MethodDescriptor.<network.tdex.trade.TradeOuterClass.TradeProposeRequest, network.tdex.trade.TradeOuterClass.TradeProposeReply>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "TradePropose"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
@@ -134,6 +134,36 @@ public final class TradeGrpc {
     return getTradeProposeMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<network.tdex.trade.TradeOuterClass.TradeProposeRequest,
+      network.tdex.trade.TradeOuterClass.TradeProposeReply> getTradeProposeUnaryMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "TradeProposeUnary",
+      requestType = network.tdex.trade.TradeOuterClass.TradeProposeRequest.class,
+      responseType = network.tdex.trade.TradeOuterClass.TradeProposeReply.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<network.tdex.trade.TradeOuterClass.TradeProposeRequest,
+      network.tdex.trade.TradeOuterClass.TradeProposeReply> getTradeProposeUnaryMethod() {
+    io.grpc.MethodDescriptor<network.tdex.trade.TradeOuterClass.TradeProposeRequest, network.tdex.trade.TradeOuterClass.TradeProposeReply> getTradeProposeUnaryMethod;
+    if ((getTradeProposeUnaryMethod = TradeGrpc.getTradeProposeUnaryMethod) == null) {
+      synchronized (TradeGrpc.class) {
+        if ((getTradeProposeUnaryMethod = TradeGrpc.getTradeProposeUnaryMethod) == null) {
+          TradeGrpc.getTradeProposeUnaryMethod = getTradeProposeUnaryMethod =
+              io.grpc.MethodDescriptor.<network.tdex.trade.TradeOuterClass.TradeProposeRequest, network.tdex.trade.TradeOuterClass.TradeProposeReply>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "TradeProposeUnary"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  network.tdex.trade.TradeOuterClass.TradeProposeRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  network.tdex.trade.TradeOuterClass.TradeProposeReply.getDefaultInstance()))
+              .build();
+        }
+      }
+    }
+    return getTradeProposeUnaryMethod;
+  }
+
   private static volatile io.grpc.MethodDescriptor<network.tdex.trade.TradeOuterClass.TradeCompleteRequest,
       network.tdex.trade.TradeOuterClass.TradeCompleteReply> getTradeCompleteMethod;
 
@@ -141,7 +171,7 @@ public final class TradeGrpc {
       fullMethodName = SERVICE_NAME + '/' + "TradeComplete",
       requestType = network.tdex.trade.TradeOuterClass.TradeCompleteRequest.class,
       responseType = network.tdex.trade.TradeOuterClass.TradeCompleteReply.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
   public static io.grpc.MethodDescriptor<network.tdex.trade.TradeOuterClass.TradeCompleteRequest,
       network.tdex.trade.TradeOuterClass.TradeCompleteReply> getTradeCompleteMethod() {
     io.grpc.MethodDescriptor<network.tdex.trade.TradeOuterClass.TradeCompleteRequest, network.tdex.trade.TradeOuterClass.TradeCompleteReply> getTradeCompleteMethod;
@@ -150,7 +180,7 @@ public final class TradeGrpc {
         if ((getTradeCompleteMethod = TradeGrpc.getTradeCompleteMethod) == null) {
           TradeGrpc.getTradeCompleteMethod = getTradeCompleteMethod =
               io.grpc.MethodDescriptor.<network.tdex.trade.TradeOuterClass.TradeCompleteRequest, network.tdex.trade.TradeOuterClass.TradeCompleteReply>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "TradeComplete"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
@@ -162,6 +192,36 @@ public final class TradeGrpc {
       }
     }
     return getTradeCompleteMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<network.tdex.trade.TradeOuterClass.TradeCompleteRequest,
+      network.tdex.trade.TradeOuterClass.TradeCompleteReply> getTradeCompleteUnaryMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "TradeCompleteUnary",
+      requestType = network.tdex.trade.TradeOuterClass.TradeCompleteRequest.class,
+      responseType = network.tdex.trade.TradeOuterClass.TradeCompleteReply.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<network.tdex.trade.TradeOuterClass.TradeCompleteRequest,
+      network.tdex.trade.TradeOuterClass.TradeCompleteReply> getTradeCompleteUnaryMethod() {
+    io.grpc.MethodDescriptor<network.tdex.trade.TradeOuterClass.TradeCompleteRequest, network.tdex.trade.TradeOuterClass.TradeCompleteReply> getTradeCompleteUnaryMethod;
+    if ((getTradeCompleteUnaryMethod = TradeGrpc.getTradeCompleteUnaryMethod) == null) {
+      synchronized (TradeGrpc.class) {
+        if ((getTradeCompleteUnaryMethod = TradeGrpc.getTradeCompleteUnaryMethod) == null) {
+          TradeGrpc.getTradeCompleteUnaryMethod = getTradeCompleteUnaryMethod =
+              io.grpc.MethodDescriptor.<network.tdex.trade.TradeOuterClass.TradeCompleteRequest, network.tdex.trade.TradeOuterClass.TradeCompleteReply>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "TradeCompleteUnary"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  network.tdex.trade.TradeOuterClass.TradeCompleteRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.lite.ProtoLiteUtils.marshaller(
+                  network.tdex.trade.TradeOuterClass.TradeCompleteReply.getDefaultInstance()))
+              .build();
+        }
+      }
+    }
+    return getTradeCompleteUnaryMethod;
   }
 
   /**
@@ -270,6 +330,16 @@ public final class TradeGrpc {
 
     /**
      * <pre>
+     * Unary RPC for TradePropose.
+     * </pre>
+     */
+    public void tradeProposeUnary(network.tdex.trade.TradeOuterClass.TradeProposeRequest request,
+        io.grpc.stub.StreamObserver<network.tdex.trade.TradeOuterClass.TradeProposeReply> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getTradeProposeUnaryMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
      * TradeComplete: Sends the trader's counter-signed transaction to the
      * provider. If something wrong, a swap fail message is sent. It returns the
      * transaction hash of the broadcasted transaction.
@@ -278,6 +348,16 @@ public final class TradeGrpc {
     public void tradeComplete(network.tdex.trade.TradeOuterClass.TradeCompleteRequest request,
         io.grpc.stub.StreamObserver<network.tdex.trade.TradeOuterClass.TradeCompleteReply> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getTradeCompleteMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Unary RPC for TradeComplete.
+     * </pre>
+     */
+    public void tradeCompleteUnary(network.tdex.trade.TradeOuterClass.TradeCompleteRequest request,
+        io.grpc.stub.StreamObserver<network.tdex.trade.TradeOuterClass.TradeCompleteReply> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getTradeCompleteUnaryMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -305,18 +385,32 @@ public final class TradeGrpc {
                   this, METHODID_MARKET_PRICE)))
           .addMethod(
             getTradeProposeMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
+            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
               new MethodHandlers<
                 network.tdex.trade.TradeOuterClass.TradeProposeRequest,
                 network.tdex.trade.TradeOuterClass.TradeProposeReply>(
                   this, METHODID_TRADE_PROPOSE)))
           .addMethod(
-            getTradeCompleteMethod(),
+            getTradeProposeUnaryMethod(),
             io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                network.tdex.trade.TradeOuterClass.TradeProposeRequest,
+                network.tdex.trade.TradeOuterClass.TradeProposeReply>(
+                  this, METHODID_TRADE_PROPOSE_UNARY)))
+          .addMethod(
+            getTradeCompleteMethod(),
+            io.grpc.stub.ServerCalls.asyncServerStreamingCall(
               new MethodHandlers<
                 network.tdex.trade.TradeOuterClass.TradeCompleteRequest,
                 network.tdex.trade.TradeOuterClass.TradeCompleteReply>(
                   this, METHODID_TRADE_COMPLETE)))
+          .addMethod(
+            getTradeCompleteUnaryMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                network.tdex.trade.TradeOuterClass.TradeCompleteRequest,
+                network.tdex.trade.TradeOuterClass.TradeCompleteReply>(
+                  this, METHODID_TRADE_COMPLETE_UNARY)))
           .build();
     }
   }
@@ -391,8 +485,19 @@ public final class TradeGrpc {
      */
     public void tradePropose(network.tdex.trade.TradeOuterClass.TradeProposeRequest request,
         io.grpc.stub.StreamObserver<network.tdex.trade.TradeOuterClass.TradeProposeReply> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
           getChannel().newCall(getTradeProposeMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Unary RPC for TradePropose.
+     * </pre>
+     */
+    public void tradeProposeUnary(network.tdex.trade.TradeOuterClass.TradeProposeRequest request,
+        io.grpc.stub.StreamObserver<network.tdex.trade.TradeOuterClass.TradeProposeReply> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getTradeProposeUnaryMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -404,8 +509,19 @@ public final class TradeGrpc {
      */
     public void tradeComplete(network.tdex.trade.TradeOuterClass.TradeCompleteRequest request,
         io.grpc.stub.StreamObserver<network.tdex.trade.TradeOuterClass.TradeCompleteReply> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
           getChannel().newCall(getTradeCompleteMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     * Unary RPC for TradeComplete.
+     * </pre>
+     */
+    public void tradeCompleteUnary(network.tdex.trade.TradeOuterClass.TradeCompleteRequest request,
+        io.grpc.stub.StreamObserver<network.tdex.trade.TradeOuterClass.TradeCompleteReply> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getTradeCompleteUnaryMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -474,9 +590,20 @@ public final class TradeGrpc {
      * the trader.
      * </pre>
      */
-    public network.tdex.trade.TradeOuterClass.TradeProposeReply tradePropose(network.tdex.trade.TradeOuterClass.TradeProposeRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public java.util.Iterator<network.tdex.trade.TradeOuterClass.TradeProposeReply> tradePropose(
+        network.tdex.trade.TradeOuterClass.TradeProposeRequest request) {
+      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
           getChannel(), getTradeProposeMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Unary RPC for TradePropose.
+     * </pre>
+     */
+    public network.tdex.trade.TradeOuterClass.TradeProposeReply tradeProposeUnary(network.tdex.trade.TradeOuterClass.TradeProposeRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getTradeProposeUnaryMethod(), getCallOptions(), request);
     }
 
     /**
@@ -486,9 +613,20 @@ public final class TradeGrpc {
      * transaction hash of the broadcasted transaction.
      * </pre>
      */
-    public network.tdex.trade.TradeOuterClass.TradeCompleteReply tradeComplete(network.tdex.trade.TradeOuterClass.TradeCompleteRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+    public java.util.Iterator<network.tdex.trade.TradeOuterClass.TradeCompleteReply> tradeComplete(
+        network.tdex.trade.TradeOuterClass.TradeCompleteRequest request) {
+      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
           getChannel(), getTradeCompleteMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     * Unary RPC for TradeComplete.
+     * </pre>
+     */
+    public network.tdex.trade.TradeOuterClass.TradeCompleteReply tradeCompleteUnary(network.tdex.trade.TradeOuterClass.TradeCompleteRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getTradeCompleteUnaryMethod(), getCallOptions(), request);
     }
   }
 
@@ -550,33 +688,24 @@ public final class TradeGrpc {
 
     /**
      * <pre>
-     * TradePropose: Sends a swap request message containing a partial signed
-     * transaction.
-     * BUY = quote asset as input
-     * SELL = base asset as input
-     * If the type of the trade is BUY it means the base asset will be received by
-     * the trader.
-     * If the type of the trade is SELL it means the base asset will be sent by
-     * the trader.
+     * Unary RPC for TradePropose.
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<network.tdex.trade.TradeOuterClass.TradeProposeReply> tradePropose(
+    public com.google.common.util.concurrent.ListenableFuture<network.tdex.trade.TradeOuterClass.TradeProposeReply> tradeProposeUnary(
         network.tdex.trade.TradeOuterClass.TradeProposeRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getTradeProposeMethod(), getCallOptions()), request);
+          getChannel().newCall(getTradeProposeUnaryMethod(), getCallOptions()), request);
     }
 
     /**
      * <pre>
-     * TradeComplete: Sends the trader's counter-signed transaction to the
-     * provider. If something wrong, a swap fail message is sent. It returns the
-     * transaction hash of the broadcasted transaction.
+     * Unary RPC for TradeComplete.
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<network.tdex.trade.TradeOuterClass.TradeCompleteReply> tradeComplete(
+    public com.google.common.util.concurrent.ListenableFuture<network.tdex.trade.TradeOuterClass.TradeCompleteReply> tradeCompleteUnary(
         network.tdex.trade.TradeOuterClass.TradeCompleteRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getTradeCompleteMethod(), getCallOptions()), request);
+          getChannel().newCall(getTradeCompleteUnaryMethod(), getCallOptions()), request);
     }
   }
 
@@ -584,7 +713,9 @@ public final class TradeGrpc {
   private static final int METHODID_BALANCES = 1;
   private static final int METHODID_MARKET_PRICE = 2;
   private static final int METHODID_TRADE_PROPOSE = 3;
-  private static final int METHODID_TRADE_COMPLETE = 4;
+  private static final int METHODID_TRADE_PROPOSE_UNARY = 4;
+  private static final int METHODID_TRADE_COMPLETE = 5;
+  private static final int METHODID_TRADE_COMPLETE_UNARY = 6;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -619,8 +750,16 @@ public final class TradeGrpc {
           serviceImpl.tradePropose((network.tdex.trade.TradeOuterClass.TradeProposeRequest) request,
               (io.grpc.stub.StreamObserver<network.tdex.trade.TradeOuterClass.TradeProposeReply>) responseObserver);
           break;
+        case METHODID_TRADE_PROPOSE_UNARY:
+          serviceImpl.tradeProposeUnary((network.tdex.trade.TradeOuterClass.TradeProposeRequest) request,
+              (io.grpc.stub.StreamObserver<network.tdex.trade.TradeOuterClass.TradeProposeReply>) responseObserver);
+          break;
         case METHODID_TRADE_COMPLETE:
           serviceImpl.tradeComplete((network.tdex.trade.TradeOuterClass.TradeCompleteRequest) request,
+              (io.grpc.stub.StreamObserver<network.tdex.trade.TradeOuterClass.TradeCompleteReply>) responseObserver);
+          break;
+        case METHODID_TRADE_COMPLETE_UNARY:
+          serviceImpl.tradeCompleteUnary((network.tdex.trade.TradeOuterClass.TradeCompleteRequest) request,
               (io.grpc.stub.StreamObserver<network.tdex.trade.TradeOuterClass.TradeCompleteReply>) responseObserver);
           break;
         default:
@@ -652,7 +791,9 @@ public final class TradeGrpc {
               .addMethod(getBalancesMethod())
               .addMethod(getMarketPriceMethod())
               .addMethod(getTradeProposeMethod())
+              .addMethod(getTradeProposeUnaryMethod())
               .addMethod(getTradeCompleteMethod())
+              .addMethod(getTradeCompleteUnaryMethod())
               .build();
         }
       }

@@ -165,15 +165,34 @@ export class TradeClient {
 
   tradePropose(
     request: trade_pb.TradeProposeRequest,
+    metadata?: grpcWeb.Metadata) {
+    return this.client_.serverStreaming(
+      this.hostname_ +
+        '/Trade/TradePropose',
+      request,
+      metadata || {},
+      this.methodInfoTradePropose);
+  }
+
+  methodInfoTradeProposeUnary = new grpcWeb.AbstractClientBase.MethodInfo(
+    trade_pb.TradeProposeReply,
+    (request: trade_pb.TradeProposeRequest) => {
+      return request.serializeBinary();
+    },
+    trade_pb.TradeProposeReply.deserializeBinary
+  );
+
+  tradeProposeUnary(
+    request: trade_pb.TradeProposeRequest,
     metadata: grpcWeb.Metadata | null): Promise<trade_pb.TradeProposeReply>;
 
-  tradePropose(
+  tradeProposeUnary(
     request: trade_pb.TradeProposeRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
                response: trade_pb.TradeProposeReply) => void): grpcWeb.ClientReadableStream<trade_pb.TradeProposeReply>;
 
-  tradePropose(
+  tradeProposeUnary(
     request: trade_pb.TradeProposeRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.Error,
@@ -181,18 +200,18 @@ export class TradeClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/Trade/TradePropose',
+          '/Trade/TradeProposeUnary',
         request,
         metadata || {},
-        this.methodInfoTradePropose,
+        this.methodInfoTradeProposeUnary,
         callback);
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/Trade/TradePropose',
+      '/Trade/TradeProposeUnary',
     request,
     metadata || {},
-    this.methodInfoTradePropose);
+    this.methodInfoTradeProposeUnary);
   }
 
   methodInfoTradeComplete = new grpcWeb.AbstractClientBase.MethodInfo(
@@ -205,15 +224,34 @@ export class TradeClient {
 
   tradeComplete(
     request: trade_pb.TradeCompleteRequest,
+    metadata?: grpcWeb.Metadata) {
+    return this.client_.serverStreaming(
+      this.hostname_ +
+        '/Trade/TradeComplete',
+      request,
+      metadata || {},
+      this.methodInfoTradeComplete);
+  }
+
+  methodInfoTradeCompleteUnary = new grpcWeb.AbstractClientBase.MethodInfo(
+    trade_pb.TradeCompleteReply,
+    (request: trade_pb.TradeCompleteRequest) => {
+      return request.serializeBinary();
+    },
+    trade_pb.TradeCompleteReply.deserializeBinary
+  );
+
+  tradeCompleteUnary(
+    request: trade_pb.TradeCompleteRequest,
     metadata: grpcWeb.Metadata | null): Promise<trade_pb.TradeCompleteReply>;
 
-  tradeComplete(
+  tradeCompleteUnary(
     request: trade_pb.TradeCompleteRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.Error,
                response: trade_pb.TradeCompleteReply) => void): grpcWeb.ClientReadableStream<trade_pb.TradeCompleteReply>;
 
-  tradeComplete(
+  tradeCompleteUnary(
     request: trade_pb.TradeCompleteRequest,
     metadata: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.Error,
@@ -221,18 +259,18 @@ export class TradeClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/Trade/TradeComplete',
+          '/Trade/TradeCompleteUnary',
         request,
         metadata || {},
-        this.methodInfoTradeComplete,
+        this.methodInfoTradeCompleteUnary,
         callback);
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/Trade/TradeComplete',
+      '/Trade/TradeCompleteUnary',
     request,
     metadata || {},
-    this.methodInfoTradeComplete);
+    this.methodInfoTradeCompleteUnary);
   }
 
 }

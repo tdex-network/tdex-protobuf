@@ -181,6 +181,18 @@ marketPrice: {
 tradePropose: {
     path: '/Trade/TradePropose',
     requestStream: false,
+    responseStream: true,
+    requestType: trade_pb.TradeProposeRequest,
+    responseType: trade_pb.TradeProposeReply,
+    requestSerialize: serialize_TradeProposeRequest,
+    requestDeserialize: deserialize_TradeProposeRequest,
+    responseSerialize: serialize_TradeProposeReply,
+    responseDeserialize: deserialize_TradeProposeReply,
+  },
+  // Unary RPC for TradePropose.
+tradeProposeUnary: {
+    path: '/Trade/TradeProposeUnary',
+    requestStream: false,
     responseStream: false,
     requestType: trade_pb.TradeProposeRequest,
     responseType: trade_pb.TradeProposeReply,
@@ -194,6 +206,18 @@ tradePropose: {
 // transaction hash of the broadcasted transaction.
 tradeComplete: {
     path: '/Trade/TradeComplete',
+    requestStream: false,
+    responseStream: true,
+    requestType: trade_pb.TradeCompleteRequest,
+    responseType: trade_pb.TradeCompleteReply,
+    requestSerialize: serialize_TradeCompleteRequest,
+    requestDeserialize: deserialize_TradeCompleteRequest,
+    responseSerialize: serialize_TradeCompleteReply,
+    responseDeserialize: deserialize_TradeCompleteReply,
+  },
+  // Unary RPC for TradeComplete.
+tradeCompleteUnary: {
+    path: '/Trade/TradeCompleteUnary',
     requestStream: false,
     responseStream: false,
     requestType: trade_pb.TradeCompleteRequest,

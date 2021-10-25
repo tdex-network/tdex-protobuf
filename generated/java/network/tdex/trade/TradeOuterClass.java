@@ -7996,16 +7996,19 @@ public final class TradeOuterClass {
       "\034\n\tswap_fail\030\002 \001(\0132\t.SwapFail\"@\n\022TradeCo" +
       "mpleteReply\022\014\n\004txid\030\001 \001(\t\022\034\n\tswap_fail\030\002" +
       " \001(\0132\t.SwapFail*\036\n\tTradeType\022\007\n\003BUY\020\000\022\010\n" +
-      "\004SELL\020\0012\216\002\n\005Trade\022)\n\007Markets\022\017.MarketsRe" +
+      "\004SELL\020\0012\223\003\n\005Trade\022)\n\007Markets\022\017.MarketsRe" +
       "quest\032\r.MarketsReply\022,\n\010Balances\022\020.Balan" +
       "cesRequest\032\016.BalancesReply\0225\n\013MarketPric" +
       "e\022\023.MarketPriceRequest\032\021.MarketPriceRepl" +
-      "y\0228\n\014TradePropose\022\024.TradeProposeRequest\032" +
-      "\022.TradeProposeReply\022;\n\rTradeComplete\022\025.T" +
-      "radeCompleteRequest\032\023.TradeCompleteReply" +
-      "BN\n\022network.tdex.tradeZ8github.com/tdex-" +
-      "network/tdex-protobuf/generated/go/trade" +
-      "b\006proto3"
+      "y\022:\n\014TradePropose\022\024.TradeProposeRequest\032" +
+      "\022.TradeProposeReply0\001\022=\n\021TradeProposeUna" +
+      "ry\022\024.TradeProposeRequest\032\022.TradeProposeR" +
+      "eply\022=\n\rTradeComplete\022\025.TradeCompleteReq" +
+      "uest\032\023.TradeCompleteReply0\001\022@\n\022TradeComp" +
+      "leteUnary\022\025.TradeCompleteRequest\032\023.Trade" +
+      "CompleteReplyBN\n\022network.tdex.tradeZ8git" +
+      "hub.com/tdex-network/tdex-protobuf/gener" +
+      "ated/go/tradeb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

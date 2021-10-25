@@ -395,14 +395,16 @@ BUY = quote asset as input SELL = base asset as input
 If the type of the trade is BUY it means the base asset will be received by the trader.
 
 If the type of the trade is SELL it means the base asset will be sent by the trader. |
-| TradePropose | [.TradeProposeRequest](#TradeProposeRequest) | [.TradeProposeReply](#TradeProposeReply) | TradePropose: Sends a swap request message containing a partial signed transaction.
+| TradePropose | [.TradeProposeRequest](#TradeProposeRequest) | [.TradeProposeReply](#TradeProposeReply) stream | TradePropose: Sends a swap request message containing a partial signed transaction.
 
 BUY = quote asset as input SELL = base asset as input
 
 If the type of the trade is BUY it means the base asset will be received by the trader.
 
 If the type of the trade is SELL it means the base asset will be sent by the trader. |
-| TradeComplete | [.TradeCompleteRequest](#TradeCompleteRequest) | [.TradeCompleteReply](#TradeCompleteReply) | TradeComplete: Sends the trader&#39;s counter-signed transaction to the provider. If something wrong, a swap fail message is sent. It returns the transaction hash of the broadcasted transaction. |
+| TradeProposeUnary | [.TradeProposeRequest](#TradeProposeRequest) | [.TradeProposeReply](#TradeProposeReply) | Unary RPC for TradePropose. |
+| TradeComplete | [.TradeCompleteRequest](#TradeCompleteRequest) | [.TradeCompleteReply](#TradeCompleteReply) stream | TradeComplete: Sends the trader&#39;s counter-signed transaction to the provider. If something wrong, a swap fail message is sent. It returns the transaction hash of the broadcasted transaction. |
+| TradeCompleteUnary | [.TradeCompleteRequest](#TradeCompleteRequest) | [.TradeCompleteReply](#TradeCompleteReply) | Unary RPC for TradeComplete. |
 
  
 

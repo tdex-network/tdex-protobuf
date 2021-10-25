@@ -4339,10 +4339,10 @@ public final class Types {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (basePrice_ != 0F) {
+      if (java.lang.Float.floatToRawIntBits(basePrice_) != 0) {
         output.writeFloat(1, basePrice_);
       }
-      if (quotePrice_ != 0F) {
+      if (java.lang.Float.floatToRawIntBits(quotePrice_) != 0) {
         output.writeFloat(2, quotePrice_);
       }
       unknownFields.writeTo(output);
@@ -4354,11 +4354,11 @@ public final class Types {
       if (size != -1) return size;
 
       size = 0;
-      if (basePrice_ != 0F) {
+      if (java.lang.Float.floatToRawIntBits(basePrice_) != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(1, basePrice_);
       }
-      if (quotePrice_ != 0F) {
+      if (java.lang.Float.floatToRawIntBits(quotePrice_) != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(2, quotePrice_);
       }
