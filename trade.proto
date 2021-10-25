@@ -41,10 +41,16 @@ service Trade {
   // the trader.
   rpc TradePropose(TradeProposeRequest) returns (stream TradeProposeReply);
 
+  // Unary RPC for TradePropose.
+  rpc TradeProposeUnary(TradeProposeRequest) returns (TradeProposeReply);
+
   // TradeComplete: Sends the trader's counter-signed transaction to the
   // provider. If something wrong, a swap fail message is sent. It returns the
   // transaction hash of the broadcasted transaction.
   rpc TradeComplete(TradeCompleteRequest) returns (stream TradeCompleteReply);
+  
+  // Unary RPC for TradeComplete.
+  rpc TradeCompleteUnary(TradeCompleteRequest) returns (TradeCompleteReply);
 }
 
 // BOTD#4 Service's messages
