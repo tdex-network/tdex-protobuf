@@ -210,7 +210,7 @@ marketPrice: {
     responseSerialize: serialize_MarketPriceReply,
     responseDeserialize: deserialize_MarketPriceReply,
   },
-  // TradePropose: Sends a swap request message containing a partial signed
+  // DEPRECATED TradePropose: Sends a swap request message containing a partial signed
 // transaction.
 //
 // BUY = quote asset as input
@@ -245,7 +245,7 @@ proposeTrade: {
     responseSerialize: serialize_ProposeTradeReply,
     responseDeserialize: deserialize_ProposeTradeReply,
   },
-  // TradeComplete: Sends the trader's counter-signed transaction to the
+  // DEPRECATED TradeComplete: Sends the trader's counter-signed transaction to the
 // provider. If something wrong, a swap fail message is sent. It returns the
 // transaction hash of the broadcasted transaction.
 tradeComplete: {

@@ -313,7 +313,7 @@ public final class TradeGrpc {
 
     /**
      * <pre>
-     * TradePropose: Sends a swap request message containing a partial signed
+     * DEPRECATED TradePropose: Sends a swap request message containing a partial signed
      * transaction.
      * BUY = quote asset as input
      * SELL = base asset as input
@@ -340,7 +340,7 @@ public final class TradeGrpc {
 
     /**
      * <pre>
-     * TradeComplete: Sends the trader's counter-signed transaction to the
+     * DEPRECATED TradeComplete: Sends the trader's counter-signed transaction to the
      * provider. If something wrong, a swap fail message is sent. It returns the
      * transaction hash of the broadcasted transaction.
      * </pre>
@@ -473,7 +473,7 @@ public final class TradeGrpc {
 
     /**
      * <pre>
-     * TradePropose: Sends a swap request message containing a partial signed
+     * DEPRECATED TradePropose: Sends a swap request message containing a partial signed
      * transaction.
      * BUY = quote asset as input
      * SELL = base asset as input
@@ -502,7 +502,7 @@ public final class TradeGrpc {
 
     /**
      * <pre>
-     * TradeComplete: Sends the trader's counter-signed transaction to the
+     * DEPRECATED TradeComplete: Sends the trader's counter-signed transaction to the
      * provider. If something wrong, a swap fail message is sent. It returns the
      * transaction hash of the broadcasted transaction.
      * </pre>
@@ -580,7 +580,7 @@ public final class TradeGrpc {
 
     /**
      * <pre>
-     * TradePropose: Sends a swap request message containing a partial signed
+     * DEPRECATED TradePropose: Sends a swap request message containing a partial signed
      * transaction.
      * BUY = quote asset as input
      * SELL = base asset as input
@@ -608,7 +608,7 @@ public final class TradeGrpc {
 
     /**
      * <pre>
-     * TradeComplete: Sends the trader's counter-signed transaction to the
+     * DEPRECATED TradeComplete: Sends the trader's counter-signed transaction to the
      * provider. If something wrong, a swap fail message is sent. It returns the
      * transaction hash of the broadcasted transaction.
      * </pre>

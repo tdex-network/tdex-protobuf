@@ -35,7 +35,7 @@ type TradeClient interface {
 	// If the type of the trade is SELL it means the base asset will be sent by
 	// the trader.
 	MarketPrice(ctx context.Context, in *MarketPriceRequest, opts ...grpc.CallOption) (*MarketPriceReply, error)
-	// TradePropose: Sends a swap request message containing a partial signed
+	// DEPRECATED TradePropose: Sends a swap request message containing a partial signed
 	// transaction.
 	//
 	// BUY = quote asset as input
@@ -50,7 +50,7 @@ type TradeClient interface {
 	TradePropose(ctx context.Context, in *TradeProposeRequest, opts ...grpc.CallOption) (Trade_TradeProposeClient, error)
 	// Unary RPC for TradePropose.
 	ProposeTrade(ctx context.Context, in *ProposeTradeRequest, opts ...grpc.CallOption) (*ProposeTradeReply, error)
-	// TradeComplete: Sends the trader's counter-signed transaction to the
+	// DEPRECATED TradeComplete: Sends the trader's counter-signed transaction to the
 	// provider. If something wrong, a swap fail message is sent. It returns the
 	// transaction hash of the broadcasted transaction.
 	TradeComplete(ctx context.Context, in *TradeCompleteRequest, opts ...grpc.CallOption) (Trade_TradeCompleteClient, error)
@@ -197,7 +197,7 @@ type TradeServer interface {
 	// If the type of the trade is SELL it means the base asset will be sent by
 	// the trader.
 	MarketPrice(context.Context, *MarketPriceRequest) (*MarketPriceReply, error)
-	// TradePropose: Sends a swap request message containing a partial signed
+	// DEPRECATED TradePropose: Sends a swap request message containing a partial signed
 	// transaction.
 	//
 	// BUY = quote asset as input
@@ -212,7 +212,7 @@ type TradeServer interface {
 	TradePropose(*TradeProposeRequest, Trade_TradeProposeServer) error
 	// Unary RPC for TradePropose.
 	ProposeTrade(context.Context, *ProposeTradeRequest) (*ProposeTradeReply, error)
-	// TradeComplete: Sends the trader's counter-signed transaction to the
+	// DEPRECATED TradeComplete: Sends the trader's counter-signed transaction to the
 	// provider. If something wrong, a swap fail message is sent. It returns the
 	// transaction hash of the broadcasted transaction.
 	TradeComplete(*TradeCompleteRequest, Trade_TradeCompleteServer) error
