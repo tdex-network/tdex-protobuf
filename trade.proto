@@ -27,7 +27,7 @@ service Trade {
   // the trader.
   rpc MarketPrice(MarketPriceRequest) returns (MarketPriceReply);
 
-  // TradePropose: Sends a swap request message containing a partial signed
+  // DEPRECATED TradePropose: Sends a swap request message containing a partial signed
   // transaction.
   //
   // BUY = quote asset as input
@@ -44,7 +44,7 @@ service Trade {
   // Unary RPC for TradePropose.
   rpc ProposeTrade(ProposeTradeRequest) returns (ProposeTradeReply);
 
-  // TradeComplete: Sends the trader's counter-signed transaction to the
+  // DEPRECATED TradeComplete: Sends the trader's counter-signed transaction to the
   // provider. If something wrong, a swap fail message is sent. It returns the
   // transaction hash of the broadcasted transaction.
   rpc TradeComplete(TradeCompleteRequest) returns (stream TradeCompleteReply);
