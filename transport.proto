@@ -1,5 +1,6 @@
 syntax = "proto3";
-option go_package = "github.com/tdex-network/tdex-daemon/api-spec/protobuf/gen/transport";
+option go_package = "github.com/tdex-network/tdex-protobuf/generated/go/transport";
+option java_package = "network.tdex.transport";
 
 /**
  * Service used by Liquidity providers to announce the accepted content type for incoming HTTP request messages
