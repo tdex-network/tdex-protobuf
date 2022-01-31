@@ -33,6 +33,14 @@
   
     - [Trade](#.Trade)
   
+- [transport.proto](#transport.proto)
+    - [SupportedContentTypesReply](#.SupportedContentTypesReply)
+    - [SupportedContentTypesRequest](#.SupportedContentTypesRequest)
+  
+    - [ContentType](#.ContentType)
+  
+    - [Transport](#.Transport)
+  
 - [types.proto](#types.proto)
     - [AddressWithBlindingKey](#.AddressWithBlindingKey)
     - [Balance](#.Balance)
@@ -475,6 +483,71 @@ If the type of the trade is SELL it means the base asset will be sent by the tra
 | ProposeTrade | [.ProposeTradeRequest](#ProposeTradeRequest) | [.ProposeTradeReply](#ProposeTradeReply) | Unary RPC for TradePropose. |
 | TradeComplete | [.TradeCompleteRequest](#TradeCompleteRequest) | [.TradeCompleteReply](#TradeCompleteReply) stream | DEPRECATED TradeComplete: Sends the trader&#39;s counter-signed transaction to the provider. If something wrong, a swap fail message is sent. It returns the transaction hash of the broadcasted transaction. |
 | CompleteTrade | [.CompleteTradeRequest](#CompleteTradeRequest) | [.CompleteTradeReply](#CompleteTradeReply) | Unary RPC for TradeComplete. |
+
+ 
+
+
+
+<a name="transport.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## transport.proto
+
+
+
+<a name=".SupportedContentTypesReply"></a>
+
+### SupportedContentTypesReply
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| accepted_types | [ContentType](#ContentType) | repeated |  |
+
+
+
+
+
+
+<a name=".SupportedContentTypesRequest"></a>
+
+### SupportedContentTypesRequest
+
+
+
+
+
+
+ 
+
+
+<a name=".ContentType"></a>
+
+### ContentType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| JSON | 0 |  |
+| GRPC | 1 |  |
+| GRPCWEB | 2 |  |
+| GRPCWEBTEXT | 3 |  |
+
+
+ 
+
+ 
+
+
+<a name=".Transport"></a>
+
+### Transport
+Service used by Liquidity providers to announce the accepted content type for incoming HTTP request messages
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| SupportedContentTypes | [.SupportedContentTypesRequest](#SupportedContentTypesRequest) | [.SupportedContentTypesReply](#SupportedContentTypesReply) |  |
 
  
 

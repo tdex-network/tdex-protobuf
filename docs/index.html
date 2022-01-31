@@ -293,6 +293,33 @@
         
           
           <li>
+            <a href="#transport.proto">transport.proto</a>
+            <ul>
+              
+                <li>
+                  <a href="#.SupportedContentTypesReply"><span class="badge">M</span>SupportedContentTypesReply</a>
+                </li>
+              
+                <li>
+                  <a href="#.SupportedContentTypesRequest"><span class="badge">M</span>SupportedContentTypesRequest</a>
+                </li>
+              
+              
+                <li>
+                  <a href="#.ContentType"><span class="badge">E</span>ContentType</a>
+                </li>
+              
+              
+              
+                <li>
+                  <a href="#.Transport"><span class="badge">S</span>Transport</a>
+                </li>
+              
+            </ul>
+          </li>
+        
+          
+          <li>
             <a href="#types.proto">types.proto</a>
             <ul>
               
@@ -1239,6 +1266,105 @@ transaction hash of the broadcasted transaction.</p></td>
                 <td><a href="#CompleteTradeRequest">.CompleteTradeRequest</a></td>
                 <td><a href="#CompleteTradeReply">.CompleteTradeReply</a></td>
                 <td><p>Unary RPC for TradeComplete.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+
+        
+    
+      
+      <div class="file-heading">
+        <h2 id="transport.proto">transport.proto</h2><a href="#title">Top</a>
+      </div>
+      <p></p>
+
+      
+        <h3 id=".SupportedContentTypesReply">SupportedContentTypesReply</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>accepted_types</td>
+                  <td><a href="#ContentType">ContentType</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id=".SupportedContentTypesRequest">SupportedContentTypesRequest</h3>
+        <p></p>
+
+        
+
+        
+      
+
+      
+        <h3 id=".ContentType">ContentType</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>JSON</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GRPC</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GRPCWEB</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>GRPCWEBTEXT</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+
+      
+
+      
+        <h3 id=".Transport">Transport</h3>
+        <p>Service used by Liquidity providers to announce the accepted content type for incoming HTTP request messages</p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>SupportedContentTypes</td>
+                <td><a href="#SupportedContentTypesRequest">.SupportedContentTypesRequest</a></td>
+                <td><a href="#SupportedContentTypesReply">.SupportedContentTypesReply</a></td>
+                <td><p></p></td>
               </tr>
             
           </tbody>
