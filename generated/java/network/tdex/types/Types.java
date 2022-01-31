@@ -2867,10 +2867,10 @@ public final class Types {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getBaseAssetBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(baseAsset_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, baseAsset_);
       }
-      if (!getQuoteAssetBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(quoteAsset_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, quoteAsset_);
       }
       unknownFields.writeTo(output);
@@ -2882,10 +2882,10 @@ public final class Types {
       if (size != -1) return size;
 
       size = 0;
-      if (!getBaseAssetBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(baseAsset_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, baseAsset_);
       }
-      if (!getQuoteAssetBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(quoteAsset_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, quoteAsset_);
       }
       size += unknownFields.getSerializedSize();
@@ -4339,10 +4339,10 @@ public final class Types {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (basePrice_ != 0F) {
+      if (java.lang.Float.floatToRawIntBits(basePrice_) != 0) {
         output.writeFloat(1, basePrice_);
       }
-      if (quotePrice_ != 0F) {
+      if (java.lang.Float.floatToRawIntBits(quotePrice_) != 0) {
         output.writeFloat(2, quotePrice_);
       }
       unknownFields.writeTo(output);
@@ -4354,11 +4354,11 @@ public final class Types {
       if (size != -1) return size;
 
       size = 0;
-      if (basePrice_ != 0F) {
+      if (java.lang.Float.floatToRawIntBits(basePrice_) != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(1, basePrice_);
       }
-      if (quotePrice_ != 0F) {
+      if (java.lang.Float.floatToRawIntBits(quotePrice_) != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeFloatSize(2, quotePrice_);
       }
@@ -5107,7 +5107,7 @@ public final class Types {
       if (amount_ != 0L) {
         output.writeUInt64(3, amount_);
       }
-      if (!getAssetBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(asset_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 4, asset_);
       }
       if (balance_ != null) {
@@ -5134,7 +5134,7 @@ public final class Types {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt64Size(3, amount_);
       }
-      if (!getAssetBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(asset_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, asset_);
       }
       if (balance_ != null) {
@@ -6251,10 +6251,10 @@ public final class Types {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, address_);
       }
-      if (!getBlindingBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(blinding_)) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, blinding_);
       }
       unknownFields.writeTo(output);
@@ -6266,10 +6266,10 @@ public final class Types {
       if (size != -1) return size;
 
       size = 0;
-      if (!getAddressBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(address_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, address_);
       }
-      if (!getBlindingBytes().isEmpty()) {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(blinding_)) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, blinding_);
       }
       size += unknownFields.getSerializedSize();
