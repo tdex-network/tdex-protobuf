@@ -52,3 +52,29 @@ message AddressWithBlindingKey {
   // The blinding private key for the given address encoded in hex format
   string blinding = 2;
 }
+
+// TimeRange is flexible type used to determine time span for which specific
+// api will fetch data, either one of predefined_period or custom_period should be provided.
+message TimeRange {
+  // predefined time_period till now
+  PredefinedPeriod predefined_period = 1;
+  // granular time range
+  CustomPeriod custom_period = 2;
+}
+
+message CustomPeriod {
+  // start_date in RFC3339 format
+  string start_date = 1;
+  // end_date in RFC3339 format
+  string end_date = 2;
+}
+
+enum PredefinedPeriod {
+  NULL = 0;
+  LAST_HOUR = 1;
+  LAST_DAY = 2;
+  LAST_MONTH = 3;
+  LAST_3_MONTHS = 4;
+  YEAR_TO_DATE = 5;
+  ALL = 6;
+}
