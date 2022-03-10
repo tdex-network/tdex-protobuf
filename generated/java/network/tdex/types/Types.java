@@ -4205,16 +4205,28 @@ public final class Types {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>float base_price = 1;</code>
-     * @return The basePrice.
+     * <code>float base_price_deprecated = 1;</code>
+     * @return The basePriceDeprecated.
      */
-    float getBasePrice();
+    float getBasePriceDeprecated();
 
     /**
-     * <code>float quote_price = 2;</code>
+     * <code>float quote_price_deprecated = 2;</code>
+     * @return The quotePriceDeprecated.
+     */
+    float getQuotePriceDeprecated();
+
+    /**
+     * <code>double base_price = 3;</code>
+     * @return The basePrice.
+     */
+    double getBasePrice();
+
+    /**
+     * <code>double quote_price = 4;</code>
      * @return The quotePrice.
      */
-    float getQuotePrice();
+    double getQuotePrice();
   }
   /**
    * Protobuf type {@code Price}
@@ -4263,12 +4275,22 @@ public final class Types {
               break;
             case 13: {
 
-              basePrice_ = input.readFloat();
+              basePriceDeprecated_ = input.readFloat();
               break;
             }
             case 21: {
 
-              quotePrice_ = input.readFloat();
+              quotePriceDeprecated_ = input.readFloat();
+              break;
+            }
+            case 25: {
+
+              basePrice_ = input.readDouble();
+              break;
+            }
+            case 33: {
+
+              quotePrice_ = input.readDouble();
               break;
             }
             default: {
@@ -4303,25 +4325,47 @@ public final class Types {
               network.tdex.types.Types.Price.class, network.tdex.types.Types.Price.Builder.class);
     }
 
-    public static final int BASE_PRICE_FIELD_NUMBER = 1;
-    private float basePrice_;
+    public static final int BASE_PRICE_DEPRECATED_FIELD_NUMBER = 1;
+    private float basePriceDeprecated_;
     /**
-     * <code>float base_price = 1;</code>
+     * <code>float base_price_deprecated = 1;</code>
+     * @return The basePriceDeprecated.
+     */
+    @java.lang.Override
+    public float getBasePriceDeprecated() {
+      return basePriceDeprecated_;
+    }
+
+    public static final int QUOTE_PRICE_DEPRECATED_FIELD_NUMBER = 2;
+    private float quotePriceDeprecated_;
+    /**
+     * <code>float quote_price_deprecated = 2;</code>
+     * @return The quotePriceDeprecated.
+     */
+    @java.lang.Override
+    public float getQuotePriceDeprecated() {
+      return quotePriceDeprecated_;
+    }
+
+    public static final int BASE_PRICE_FIELD_NUMBER = 3;
+    private double basePrice_;
+    /**
+     * <code>double base_price = 3;</code>
      * @return The basePrice.
      */
     @java.lang.Override
-    public float getBasePrice() {
+    public double getBasePrice() {
       return basePrice_;
     }
 
-    public static final int QUOTE_PRICE_FIELD_NUMBER = 2;
-    private float quotePrice_;
+    public static final int QUOTE_PRICE_FIELD_NUMBER = 4;
+    private double quotePrice_;
     /**
-     * <code>float quote_price = 2;</code>
+     * <code>double quote_price = 4;</code>
      * @return The quotePrice.
      */
     @java.lang.Override
-    public float getQuotePrice() {
+    public double getQuotePrice() {
       return quotePrice_;
     }
 
@@ -4339,11 +4383,17 @@ public final class Types {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (java.lang.Float.floatToRawIntBits(basePrice_) != 0) {
-        output.writeFloat(1, basePrice_);
+      if (java.lang.Float.floatToRawIntBits(basePriceDeprecated_) != 0) {
+        output.writeFloat(1, basePriceDeprecated_);
       }
-      if (java.lang.Float.floatToRawIntBits(quotePrice_) != 0) {
-        output.writeFloat(2, quotePrice_);
+      if (java.lang.Float.floatToRawIntBits(quotePriceDeprecated_) != 0) {
+        output.writeFloat(2, quotePriceDeprecated_);
+      }
+      if (java.lang.Double.doubleToRawLongBits(basePrice_) != 0) {
+        output.writeDouble(3, basePrice_);
+      }
+      if (java.lang.Double.doubleToRawLongBits(quotePrice_) != 0) {
+        output.writeDouble(4, quotePrice_);
       }
       unknownFields.writeTo(output);
     }
@@ -4354,13 +4404,21 @@ public final class Types {
       if (size != -1) return size;
 
       size = 0;
-      if (java.lang.Float.floatToRawIntBits(basePrice_) != 0) {
+      if (java.lang.Float.floatToRawIntBits(basePriceDeprecated_) != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(1, basePrice_);
+          .computeFloatSize(1, basePriceDeprecated_);
       }
-      if (java.lang.Float.floatToRawIntBits(quotePrice_) != 0) {
+      if (java.lang.Float.floatToRawIntBits(quotePriceDeprecated_) != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(2, quotePrice_);
+          .computeFloatSize(2, quotePriceDeprecated_);
+      }
+      if (java.lang.Double.doubleToRawLongBits(basePrice_) != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(3, basePrice_);
+      }
+      if (java.lang.Double.doubleToRawLongBits(quotePrice_) != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(4, quotePrice_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -4377,11 +4435,17 @@ public final class Types {
       }
       network.tdex.types.Types.Price other = (network.tdex.types.Types.Price) obj;
 
-      if (java.lang.Float.floatToIntBits(getBasePrice())
+      if (java.lang.Float.floatToIntBits(getBasePriceDeprecated())
           != java.lang.Float.floatToIntBits(
+              other.getBasePriceDeprecated())) return false;
+      if (java.lang.Float.floatToIntBits(getQuotePriceDeprecated())
+          != java.lang.Float.floatToIntBits(
+              other.getQuotePriceDeprecated())) return false;
+      if (java.lang.Double.doubleToLongBits(getBasePrice())
+          != java.lang.Double.doubleToLongBits(
               other.getBasePrice())) return false;
-      if (java.lang.Float.floatToIntBits(getQuotePrice())
-          != java.lang.Float.floatToIntBits(
+      if (java.lang.Double.doubleToLongBits(getQuotePrice())
+          != java.lang.Double.doubleToLongBits(
               other.getQuotePrice())) return false;
       if (!unknownFields.equals(other.unknownFields)) return false;
       return true;
@@ -4394,12 +4458,18 @@ public final class Types {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + BASE_PRICE_DEPRECATED_FIELD_NUMBER;
+      hash = (53 * hash) + java.lang.Float.floatToIntBits(
+          getBasePriceDeprecated());
+      hash = (37 * hash) + QUOTE_PRICE_DEPRECATED_FIELD_NUMBER;
+      hash = (53 * hash) + java.lang.Float.floatToIntBits(
+          getQuotePriceDeprecated());
       hash = (37 * hash) + BASE_PRICE_FIELD_NUMBER;
-      hash = (53 * hash) + java.lang.Float.floatToIntBits(
-          getBasePrice());
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getBasePrice()));
       hash = (37 * hash) + QUOTE_PRICE_FIELD_NUMBER;
-      hash = (53 * hash) + java.lang.Float.floatToIntBits(
-          getQuotePrice());
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          java.lang.Double.doubleToLongBits(getQuotePrice()));
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -4533,9 +4603,13 @@ public final class Types {
       @java.lang.Override
       public Builder clear() {
         super.clear();
-        basePrice_ = 0F;
+        basePriceDeprecated_ = 0F;
 
-        quotePrice_ = 0F;
+        quotePriceDeprecated_ = 0F;
+
+        basePrice_ = 0D;
+
+        quotePrice_ = 0D;
 
         return this;
       }
@@ -4563,6 +4637,8 @@ public final class Types {
       @java.lang.Override
       public network.tdex.types.Types.Price buildPartial() {
         network.tdex.types.Types.Price result = new network.tdex.types.Types.Price(this);
+        result.basePriceDeprecated_ = basePriceDeprecated_;
+        result.quotePriceDeprecated_ = quotePriceDeprecated_;
         result.basePrice_ = basePrice_;
         result.quotePrice_ = quotePrice_;
         onBuilt();
@@ -4613,10 +4689,16 @@ public final class Types {
 
       public Builder mergeFrom(network.tdex.types.Types.Price other) {
         if (other == network.tdex.types.Types.Price.getDefaultInstance()) return this;
-        if (other.getBasePrice() != 0F) {
+        if (other.getBasePriceDeprecated() != 0F) {
+          setBasePriceDeprecated(other.getBasePriceDeprecated());
+        }
+        if (other.getQuotePriceDeprecated() != 0F) {
+          setQuotePriceDeprecated(other.getQuotePriceDeprecated());
+        }
+        if (other.getBasePrice() != 0D) {
           setBasePrice(other.getBasePrice());
         }
-        if (other.getQuotePrice() != 0F) {
+        if (other.getQuotePrice() != 0D) {
           setQuotePrice(other.getQuotePrice());
         }
         this.mergeUnknownFields(other.unknownFields);
@@ -4648,64 +4730,126 @@ public final class Types {
         return this;
       }
 
-      private float basePrice_ ;
+      private float basePriceDeprecated_ ;
       /**
-       * <code>float base_price = 1;</code>
+       * <code>float base_price_deprecated = 1;</code>
+       * @return The basePriceDeprecated.
+       */
+      @java.lang.Override
+      public float getBasePriceDeprecated() {
+        return basePriceDeprecated_;
+      }
+      /**
+       * <code>float base_price_deprecated = 1;</code>
+       * @param value The basePriceDeprecated to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBasePriceDeprecated(float value) {
+        
+        basePriceDeprecated_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float base_price_deprecated = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBasePriceDeprecated() {
+        
+        basePriceDeprecated_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private float quotePriceDeprecated_ ;
+      /**
+       * <code>float quote_price_deprecated = 2;</code>
+       * @return The quotePriceDeprecated.
+       */
+      @java.lang.Override
+      public float getQuotePriceDeprecated() {
+        return quotePriceDeprecated_;
+      }
+      /**
+       * <code>float quote_price_deprecated = 2;</code>
+       * @param value The quotePriceDeprecated to set.
+       * @return This builder for chaining.
+       */
+      public Builder setQuotePriceDeprecated(float value) {
+        
+        quotePriceDeprecated_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>float quote_price_deprecated = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearQuotePriceDeprecated() {
+        
+        quotePriceDeprecated_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      private double basePrice_ ;
+      /**
+       * <code>double base_price = 3;</code>
        * @return The basePrice.
        */
       @java.lang.Override
-      public float getBasePrice() {
+      public double getBasePrice() {
         return basePrice_;
       }
       /**
-       * <code>float base_price = 1;</code>
+       * <code>double base_price = 3;</code>
        * @param value The basePrice to set.
        * @return This builder for chaining.
        */
-      public Builder setBasePrice(float value) {
+      public Builder setBasePrice(double value) {
         
         basePrice_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>float base_price = 1;</code>
+       * <code>double base_price = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearBasePrice() {
         
-        basePrice_ = 0F;
+        basePrice_ = 0D;
         onChanged();
         return this;
       }
 
-      private float quotePrice_ ;
+      private double quotePrice_ ;
       /**
-       * <code>float quote_price = 2;</code>
+       * <code>double quote_price = 4;</code>
        * @return The quotePrice.
        */
       @java.lang.Override
-      public float getQuotePrice() {
+      public double getQuotePrice() {
         return quotePrice_;
       }
       /**
-       * <code>float quote_price = 2;</code>
+       * <code>double quote_price = 4;</code>
        * @param value The quotePrice to set.
        * @return This builder for chaining.
        */
-      public Builder setQuotePrice(float value) {
+      public Builder setQuotePrice(double value) {
         
         quotePrice_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>float quote_price = 2;</code>
+       * <code>double quote_price = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearQuotePrice() {
         
-        quotePrice_ = 0F;
+        quotePrice_ = 0D;
         onChanged();
         return this;
       }
@@ -6862,15 +7006,16 @@ public final class Types {
       "\010.Balance\022\021\n\003fee\030\002 \001(\0132\004.Fee\"1\n\006Market\022\022" +
       "\n\nbase_asset\030\001 \001(\t\022\023\n\013quote_asset\030\002 \001(\t\"" +
       ";\n\rMarketWithFee\022\027\n\006market\030\001 \001(\0132\007.Marke" +
-      "t\022\021\n\003fee\030\002 \001(\0132\004.Fee\"0\n\005Price\022\022\n\nbase_pr" +
-      "ice\030\001 \001(\002\022\023\n\013quote_price\030\002 \001(\002\"r\n\014PriceW" +
-      "ithFee\022\025\n\005price\030\001 \001(\0132\006.Price\022\021\n\003fee\030\002 \001" +
-      "(\0132\004.Fee\022\016\n\006amount\030\003 \001(\004\022\r\n\005asset\030\004 \001(\t\022" +
-      "\031\n\007balance\030\005 \001(\0132\010.Balance\";\n\026AddressWit" +
-      "hBlindingKey\022\017\n\007address\030\001 \001(\t\022\020\n\010blindin" +
-      "g\030\002 \001(\tBN\n\022network.tdex.typesZ8github.co" +
-      "m/tdex-network/tdex-protobuf/generated/g" +
-      "o/typesb\006proto3"
+      "t\022\021\n\003fee\030\002 \001(\0132\004.Fee\"o\n\005Price\022\035\n\025base_pr" +
+      "ice_deprecated\030\001 \001(\002\022\036\n\026quote_price_depr" +
+      "ecated\030\002 \001(\002\022\022\n\nbase_price\030\003 \001(\001\022\023\n\013quot" +
+      "e_price\030\004 \001(\001\"r\n\014PriceWithFee\022\025\n\005price\030\001" +
+      " \001(\0132\006.Price\022\021\n\003fee\030\002 \001(\0132\004.Fee\022\016\n\006amoun" +
+      "t\030\003 \001(\004\022\r\n\005asset\030\004 \001(\t\022\031\n\007balance\030\005 \001(\0132" +
+      "\010.Balance\";\n\026AddressWithBlindingKey\022\017\n\007a" +
+      "ddress\030\001 \001(\t\022\020\n\010blinding\030\002 \001(\tBN\n\022networ" +
+      "k.tdex.typesZ8github.com/tdex-network/td" +
+      "ex-protobuf/generated/go/typesb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -6917,7 +7062,7 @@ public final class Types {
     internal_static_Price_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Price_descriptor,
-        new java.lang.String[] { "BasePrice", "QuotePrice", });
+        new java.lang.String[] { "BasePriceDeprecated", "QuotePriceDeprecated", "BasePrice", "QuotePrice", });
     internal_static_PriceWithFee_descriptor =
       getDescriptor().getMessageTypes().get(7);
     internal_static_PriceWithFee_fieldAccessorTable = new

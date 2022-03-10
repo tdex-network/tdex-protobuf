@@ -2167,16 +2167,28 @@ public final class Types {
       com.google.protobuf.MessageLiteOrBuilder {
 
     /**
-     * <code>float base_price = 1;</code>
-     * @return The basePrice.
+     * <code>float base_price_deprecated = 1;</code>
+     * @return The basePriceDeprecated.
      */
-    float getBasePrice();
+    float getBasePriceDeprecated();
 
     /**
-     * <code>float quote_price = 2;</code>
+     * <code>float quote_price_deprecated = 2;</code>
+     * @return The quotePriceDeprecated.
+     */
+    float getQuotePriceDeprecated();
+
+    /**
+     * <code>double base_price = 3;</code>
+     * @return The basePrice.
+     */
+    double getBasePrice();
+
+    /**
+     * <code>double quote_price = 4;</code>
      * @return The quotePrice.
      */
-    float getQuotePrice();
+    double getQuotePrice();
   }
   /**
    * Protobuf type {@code Price}
@@ -2188,56 +2200,108 @@ public final class Types {
       PriceOrBuilder {
     private Price() {
     }
-    public static final int BASE_PRICE_FIELD_NUMBER = 1;
-    private float basePrice_;
+    public static final int BASE_PRICE_DEPRECATED_FIELD_NUMBER = 1;
+    private float basePriceDeprecated_;
     /**
-     * <code>float base_price = 1;</code>
+     * <code>float base_price_deprecated = 1;</code>
+     * @return The basePriceDeprecated.
+     */
+    @java.lang.Override
+    public float getBasePriceDeprecated() {
+      return basePriceDeprecated_;
+    }
+    /**
+     * <code>float base_price_deprecated = 1;</code>
+     * @param value The basePriceDeprecated to set.
+     */
+    private void setBasePriceDeprecated(float value) {
+      
+      basePriceDeprecated_ = value;
+    }
+    /**
+     * <code>float base_price_deprecated = 1;</code>
+     */
+    private void clearBasePriceDeprecated() {
+      
+      basePriceDeprecated_ = 0F;
+    }
+
+    public static final int QUOTE_PRICE_DEPRECATED_FIELD_NUMBER = 2;
+    private float quotePriceDeprecated_;
+    /**
+     * <code>float quote_price_deprecated = 2;</code>
+     * @return The quotePriceDeprecated.
+     */
+    @java.lang.Override
+    public float getQuotePriceDeprecated() {
+      return quotePriceDeprecated_;
+    }
+    /**
+     * <code>float quote_price_deprecated = 2;</code>
+     * @param value The quotePriceDeprecated to set.
+     */
+    private void setQuotePriceDeprecated(float value) {
+      
+      quotePriceDeprecated_ = value;
+    }
+    /**
+     * <code>float quote_price_deprecated = 2;</code>
+     */
+    private void clearQuotePriceDeprecated() {
+      
+      quotePriceDeprecated_ = 0F;
+    }
+
+    public static final int BASE_PRICE_FIELD_NUMBER = 3;
+    private double basePrice_;
+    /**
+     * <code>double base_price = 3;</code>
      * @return The basePrice.
      */
     @java.lang.Override
-    public float getBasePrice() {
+    public double getBasePrice() {
       return basePrice_;
     }
     /**
-     * <code>float base_price = 1;</code>
+     * <code>double base_price = 3;</code>
      * @param value The basePrice to set.
      */
-    private void setBasePrice(float value) {
+    private void setBasePrice(double value) {
       
       basePrice_ = value;
     }
     /**
-     * <code>float base_price = 1;</code>
+     * <code>double base_price = 3;</code>
      */
     private void clearBasePrice() {
       
-      basePrice_ = 0F;
+      basePrice_ = 0D;
     }
 
-    public static final int QUOTE_PRICE_FIELD_NUMBER = 2;
-    private float quotePrice_;
+    public static final int QUOTE_PRICE_FIELD_NUMBER = 4;
+    private double quotePrice_;
     /**
-     * <code>float quote_price = 2;</code>
+     * <code>double quote_price = 4;</code>
      * @return The quotePrice.
      */
     @java.lang.Override
-    public float getQuotePrice() {
+    public double getQuotePrice() {
       return quotePrice_;
     }
     /**
-     * <code>float quote_price = 2;</code>
+     * <code>double quote_price = 4;</code>
      * @param value The quotePrice to set.
      */
-    private void setQuotePrice(float value) {
+    private void setQuotePrice(double value) {
       
       quotePrice_ = value;
     }
     /**
-     * <code>float quote_price = 2;</code>
+     * <code>double quote_price = 4;</code>
      */
     private void clearQuotePrice() {
       
-      quotePrice_ = 0F;
+      quotePrice_ = 0D;
     }
 
     public static network.tdex.types.Types.Price parseFrom(
@@ -2336,25 +2400,81 @@ public final class Types {
 
 
       /**
-       * <code>float base_price = 1;</code>
+       * <code>float base_price_deprecated = 1;</code>
+       * @return The basePriceDeprecated.
+       */
+      @java.lang.Override
+      public float getBasePriceDeprecated() {
+        return instance.getBasePriceDeprecated();
+      }
+      /**
+       * <code>float base_price_deprecated = 1;</code>
+       * @param value The basePriceDeprecated to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBasePriceDeprecated(float value) {
+        copyOnWrite();
+        instance.setBasePriceDeprecated(value);
+        return this;
+      }
+      /**
+       * <code>float base_price_deprecated = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBasePriceDeprecated() {
+        copyOnWrite();
+        instance.clearBasePriceDeprecated();
+        return this;
+      }
+
+      /**
+       * <code>float quote_price_deprecated = 2;</code>
+       * @return The quotePriceDeprecated.
+       */
+      @java.lang.Override
+      public float getQuotePriceDeprecated() {
+        return instance.getQuotePriceDeprecated();
+      }
+      /**
+       * <code>float quote_price_deprecated = 2;</code>
+       * @param value The quotePriceDeprecated to set.
+       * @return This builder for chaining.
+       */
+      public Builder setQuotePriceDeprecated(float value) {
+        copyOnWrite();
+        instance.setQuotePriceDeprecated(value);
+        return this;
+      }
+      /**
+       * <code>float quote_price_deprecated = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearQuotePriceDeprecated() {
+        copyOnWrite();
+        instance.clearQuotePriceDeprecated();
+        return this;
+      }
+
+      /**
+       * <code>double base_price = 3;</code>
        * @return The basePrice.
        */
       @java.lang.Override
-      public float getBasePrice() {
+      public double getBasePrice() {
         return instance.getBasePrice();
       }
       /**
-       * <code>float base_price = 1;</code>
+       * <code>double base_price = 3;</code>
        * @param value The basePrice to set.
        * @return This builder for chaining.
        */
-      public Builder setBasePrice(float value) {
+      public Builder setBasePrice(double value) {
         copyOnWrite();
         instance.setBasePrice(value);
         return this;
       }
       /**
-       * <code>float base_price = 1;</code>
+       * <code>double base_price = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearBasePrice() {
@@ -2364,25 +2484,25 @@ public final class Types {
       }
 
       /**
-       * <code>float quote_price = 2;</code>
+       * <code>double quote_price = 4;</code>
        * @return The quotePrice.
        */
       @java.lang.Override
-      public float getQuotePrice() {
+      public double getQuotePrice() {
         return instance.getQuotePrice();
       }
       /**
-       * <code>float quote_price = 2;</code>
+       * <code>double quote_price = 4;</code>
        * @param value The quotePrice to set.
        * @return This builder for chaining.
        */
-      public Builder setQuotePrice(float value) {
+      public Builder setQuotePrice(double value) {
         copyOnWrite();
         instance.setQuotePrice(value);
         return this;
       }
       /**
-       * <code>float quote_price = 2;</code>
+       * <code>double quote_price = 4;</code>
        * @return This builder for chaining.
        */
       public Builder clearQuotePrice() {
@@ -2407,12 +2527,14 @@ public final class Types {
         }
         case BUILD_MESSAGE_INFO: {
             java.lang.Object[] objects = new java.lang.Object[] {
+              "basePriceDeprecated_",
+              "quotePriceDeprecated_",
               "basePrice_",
               "quotePrice_",
             };
             java.lang.String info =
-                "\u0000\u0002\u0000\u0000\u0001\u0002\u0002\u0000\u0000\u0000\u0001\u0001\u0002\u0001" +
-                "";
+                "\u0000\u0004\u0000\u0000\u0001\u0004\u0004\u0000\u0000\u0000\u0001\u0001\u0002\u0001" +
+                "\u0003\u0000\u0004\u0000";
             return newMessageInfo(DEFAULT_INSTANCE, info, objects);
         }
         // fall through

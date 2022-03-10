@@ -3,67 +3,67 @@
 
 ## Table of Contents
 
-- [swap.proto](#swap.proto)
-    - [SwapAccept](#.SwapAccept)
-    - [SwapAccept.InputBlindingKeyEntry](#.SwapAccept.InputBlindingKeyEntry)
-    - [SwapAccept.OutputBlindingKeyEntry](#.SwapAccept.OutputBlindingKeyEntry)
-    - [SwapComplete](#.SwapComplete)
-    - [SwapFail](#.SwapFail)
-    - [SwapRequest](#.SwapRequest)
-    - [SwapRequest.InputBlindingKeyEntry](#.SwapRequest.InputBlindingKeyEntry)
-    - [SwapRequest.OutputBlindingKeyEntry](#.SwapRequest.OutputBlindingKeyEntry)
+- [swap.proto](#swap-proto)
+    - [SwapAccept](#-SwapAccept)
+    - [SwapAccept.InputBlindingKeyEntry](#-SwapAccept-InputBlindingKeyEntry)
+    - [SwapAccept.OutputBlindingKeyEntry](#-SwapAccept-OutputBlindingKeyEntry)
+    - [SwapComplete](#-SwapComplete)
+    - [SwapFail](#-SwapFail)
+    - [SwapRequest](#-SwapRequest)
+    - [SwapRequest.InputBlindingKeyEntry](#-SwapRequest-InputBlindingKeyEntry)
+    - [SwapRequest.OutputBlindingKeyEntry](#-SwapRequest-OutputBlindingKeyEntry)
   
-- [trade.proto](#trade.proto)
-    - [BalancesReply](#.BalancesReply)
-    - [BalancesRequest](#.BalancesRequest)
-    - [CompleteTradeReply](#.CompleteTradeReply)
-    - [CompleteTradeRequest](#.CompleteTradeRequest)
-    - [MarketPriceReply](#.MarketPriceReply)
-    - [MarketPriceRequest](#.MarketPriceRequest)
-    - [MarketsReply](#.MarketsReply)
-    - [MarketsRequest](#.MarketsRequest)
-    - [ProposeTradeReply](#.ProposeTradeReply)
-    - [ProposeTradeRequest](#.ProposeTradeRequest)
-    - [TradeCompleteReply](#.TradeCompleteReply)
-    - [TradeCompleteRequest](#.TradeCompleteRequest)
-    - [TradeProposeReply](#.TradeProposeReply)
-    - [TradeProposeRequest](#.TradeProposeRequest)
+- [trade.proto](#trade-proto)
+    - [BalancesReply](#-BalancesReply)
+    - [BalancesRequest](#-BalancesRequest)
+    - [CompleteTradeReply](#-CompleteTradeReply)
+    - [CompleteTradeRequest](#-CompleteTradeRequest)
+    - [MarketPriceReply](#-MarketPriceReply)
+    - [MarketPriceRequest](#-MarketPriceRequest)
+    - [MarketsReply](#-MarketsReply)
+    - [MarketsRequest](#-MarketsRequest)
+    - [ProposeTradeReply](#-ProposeTradeReply)
+    - [ProposeTradeRequest](#-ProposeTradeRequest)
+    - [TradeCompleteReply](#-TradeCompleteReply)
+    - [TradeCompleteRequest](#-TradeCompleteRequest)
+    - [TradeProposeReply](#-TradeProposeReply)
+    - [TradeProposeRequest](#-TradeProposeRequest)
   
-    - [TradeType](#.TradeType)
+    - [TradeType](#-TradeType)
   
-    - [Trade](#.Trade)
+    - [Trade](#-Trade)
   
-- [transport.proto](#transport.proto)
-    - [SupportedContentTypesReply](#.SupportedContentTypesReply)
-    - [SupportedContentTypesRequest](#.SupportedContentTypesRequest)
+- [transport.proto](#transport-proto)
+    - [SupportedContentTypesReply](#-SupportedContentTypesReply)
+    - [SupportedContentTypesRequest](#-SupportedContentTypesRequest)
   
-    - [ContentType](#.ContentType)
+    - [ContentType](#-ContentType)
   
-    - [Transport](#.Transport)
+    - [Transport](#-Transport)
   
-- [types.proto](#types.proto)
-    - [AddressWithBlindingKey](#.AddressWithBlindingKey)
-    - [Balance](#.Balance)
-    - [BalanceWithFee](#.BalanceWithFee)
-    - [Fee](#.Fee)
-    - [Fixed](#.Fixed)
-    - [Market](#.Market)
-    - [MarketWithFee](#.MarketWithFee)
-    - [Price](#.Price)
-    - [PriceWithFee](#.PriceWithFee)
+- [types.proto](#types-proto)
+    - [AddressWithBlindingKey](#-AddressWithBlindingKey)
+    - [Balance](#-Balance)
+    - [BalanceWithFee](#-BalanceWithFee)
+    - [Fee](#-Fee)
+    - [Fixed](#-Fixed)
+    - [Market](#-Market)
+    - [MarketWithFee](#-MarketWithFee)
+    - [Price](#-Price)
+    - [PriceWithFee](#-PriceWithFee)
   
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="swap.proto"></a>
+<a name="swap-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
 ## swap.proto
 
 
 
-<a name=".SwapAccept"></a>
+<a name="-SwapAccept"></a>
 
 ### SwapAccept
 
@@ -74,15 +74,15 @@
 | id | [string](#string) |  | Random unique identifier for the current message |
 | request_id | [string](#string) |  | indetifier of the SwapRequest message |
 | transaction | [string](#string) |  | The partial signed transaction base64 encoded containing the Responder&#39;s signed inputs in a PSBT format |
-| input_blinding_key | [SwapAccept.InputBlindingKeyEntry](#SwapAccept.InputBlindingKeyEntry) | repeated | In case of a confidential transaction the blinding key of each confidential input is included. Each blinding key is identified by the prevout script hex encoded. |
-| output_blinding_key | [SwapAccept.OutputBlindingKeyEntry](#SwapAccept.OutputBlindingKeyEntry) | repeated | In case of a confidential transaction the blinding key of each confidential output is included. Each blinding key is identified by the output script hex encoded. |
+| input_blinding_key | [SwapAccept.InputBlindingKeyEntry](#SwapAccept-InputBlindingKeyEntry) | repeated | In case of a confidential transaction the blinding key of each confidential input is included. Each blinding key is identified by the prevout script hex encoded. |
+| output_blinding_key | [SwapAccept.OutputBlindingKeyEntry](#SwapAccept-OutputBlindingKeyEntry) | repeated | In case of a confidential transaction the blinding key of each confidential output is included. Each blinding key is identified by the output script hex encoded. |
 
 
 
 
 
 
-<a name=".SwapAccept.InputBlindingKeyEntry"></a>
+<a name="-SwapAccept-InputBlindingKeyEntry"></a>
 
 ### SwapAccept.InputBlindingKeyEntry
 
@@ -98,7 +98,7 @@
 
 
 
-<a name=".SwapAccept.OutputBlindingKeyEntry"></a>
+<a name="-SwapAccept-OutputBlindingKeyEntry"></a>
 
 ### SwapAccept.OutputBlindingKeyEntry
 
@@ -114,7 +114,7 @@
 
 
 
-<a name=".SwapComplete"></a>
+<a name="-SwapComplete"></a>
 
 ### SwapComplete
 
@@ -131,7 +131,7 @@
 
 
 
-<a name=".SwapFail"></a>
+<a name="-SwapFail"></a>
 
 ### SwapFail
 
@@ -149,7 +149,7 @@
 
 
 
-<a name=".SwapRequest"></a>
+<a name="-SwapRequest"></a>
 
 ### SwapRequest
 
@@ -163,15 +163,15 @@
 | amount_r | [uint64](#uint64) |  | The responder&#39;s quantity |
 | asset_r | [string](#string) |  | The responder&#39;s asset hash |
 | transaction | [string](#string) |  | The proposer&#39;s unsigned transaction in PSBT format (base64 string) |
-| input_blinding_key | [SwapRequest.InputBlindingKeyEntry](#SwapRequest.InputBlindingKeyEntry) | repeated | In case of a confidential transaction the blinding key of each confidential input is included. Each blinding key is identified by the prevout script hex encoded. |
-| output_blinding_key | [SwapRequest.OutputBlindingKeyEntry](#SwapRequest.OutputBlindingKeyEntry) | repeated | In case of a confidential transaction the blinding key of each confidential output is included. Each blinding key is identified by the output script hex encoded. |
+| input_blinding_key | [SwapRequest.InputBlindingKeyEntry](#SwapRequest-InputBlindingKeyEntry) | repeated | In case of a confidential transaction the blinding key of each confidential input is included. Each blinding key is identified by the prevout script hex encoded. |
+| output_blinding_key | [SwapRequest.OutputBlindingKeyEntry](#SwapRequest-OutputBlindingKeyEntry) | repeated | In case of a confidential transaction the blinding key of each confidential output is included. Each blinding key is identified by the output script hex encoded. |
 
 
 
 
 
 
-<a name=".SwapRequest.InputBlindingKeyEntry"></a>
+<a name="-SwapRequest-InputBlindingKeyEntry"></a>
 
 ### SwapRequest.InputBlindingKeyEntry
 
@@ -187,7 +187,7 @@
 
 
 
-<a name=".SwapRequest.OutputBlindingKeyEntry"></a>
+<a name="-SwapRequest-OutputBlindingKeyEntry"></a>
 
 ### SwapRequest.OutputBlindingKeyEntry
 
@@ -212,14 +212,14 @@
 
 
 
-<a name="trade.proto"></a>
+<a name="trade-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
 ## trade.proto
 
 
 
-<a name=".BalancesReply"></a>
+<a name="-BalancesReply"></a>
 
 ### BalancesReply
 
@@ -234,7 +234,7 @@
 
 
 
-<a name=".BalancesRequest"></a>
+<a name="-BalancesRequest"></a>
 
 ### BalancesRequest
 
@@ -249,7 +249,7 @@
 
 
 
-<a name=".CompleteTradeReply"></a>
+<a name="-CompleteTradeReply"></a>
 
 ### CompleteTradeReply
 
@@ -265,7 +265,7 @@
 
 
 
-<a name=".CompleteTradeRequest"></a>
+<a name="-CompleteTradeRequest"></a>
 
 ### CompleteTradeRequest
 
@@ -281,7 +281,7 @@
 
 
 
-<a name=".MarketPriceReply"></a>
+<a name="-MarketPriceReply"></a>
 
 ### MarketPriceReply
 
@@ -296,7 +296,7 @@
 
 
 
-<a name=".MarketPriceRequest"></a>
+<a name="-MarketPriceRequest"></a>
 
 ### MarketPriceRequest
 
@@ -314,7 +314,7 @@
 
 
 
-<a name=".MarketsReply"></a>
+<a name="-MarketsReply"></a>
 
 ### MarketsReply
 
@@ -329,7 +329,7 @@
 
 
 
-<a name=".MarketsRequest"></a>
+<a name="-MarketsRequest"></a>
 
 ### MarketsRequest
 BOTD#4 Service&#39;s messages
@@ -339,7 +339,7 @@ BOTD#4 Service&#39;s messages
 
 
 
-<a name=".ProposeTradeReply"></a>
+<a name="-ProposeTradeReply"></a>
 
 ### ProposeTradeReply
 
@@ -356,7 +356,7 @@ BOTD#4 Service&#39;s messages
 
 
 
-<a name=".ProposeTradeRequest"></a>
+<a name="-ProposeTradeRequest"></a>
 
 ### ProposeTradeRequest
 
@@ -373,7 +373,7 @@ BOTD#4 Service&#39;s messages
 
 
 
-<a name=".TradeCompleteReply"></a>
+<a name="-TradeCompleteReply"></a>
 
 ### TradeCompleteReply
 
@@ -389,7 +389,7 @@ BOTD#4 Service&#39;s messages
 
 
 
-<a name=".TradeCompleteRequest"></a>
+<a name="-TradeCompleteRequest"></a>
 
 ### TradeCompleteRequest
 
@@ -405,7 +405,7 @@ BOTD#4 Service&#39;s messages
 
 
 
-<a name=".TradeProposeReply"></a>
+<a name="-TradeProposeReply"></a>
 
 ### TradeProposeReply
 
@@ -422,7 +422,7 @@ BOTD#4 Service&#39;s messages
 
 
 
-<a name=".TradeProposeRequest"></a>
+<a name="-TradeProposeRequest"></a>
 
 ### TradeProposeRequest
 
@@ -441,7 +441,7 @@ BOTD#4 Service&#39;s messages
  
 
 
-<a name=".TradeType"></a>
+<a name="-TradeType"></a>
 
 ### TradeType
 
@@ -457,7 +457,7 @@ BOTD#4 Service&#39;s messages
  
 
 
-<a name=".Trade"></a>
+<a name="-Trade"></a>
 
 ### Trade
 
@@ -488,14 +488,14 @@ If the type of the trade is SELL it means the base asset will be sent by the tra
 
 
 
-<a name="transport.proto"></a>
+<a name="transport-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
 ## transport.proto
 
 
 
-<a name=".SupportedContentTypesReply"></a>
+<a name="-SupportedContentTypesReply"></a>
 
 ### SupportedContentTypesReply
 
@@ -510,7 +510,7 @@ If the type of the trade is SELL it means the base asset will be sent by the tra
 
 
 
-<a name=".SupportedContentTypesRequest"></a>
+<a name="-SupportedContentTypesRequest"></a>
 
 ### SupportedContentTypesRequest
 
@@ -522,7 +522,7 @@ If the type of the trade is SELL it means the base asset will be sent by the tra
  
 
 
-<a name=".ContentType"></a>
+<a name="-ContentType"></a>
 
 ### ContentType
 
@@ -540,7 +540,7 @@ If the type of the trade is SELL it means the base asset will be sent by the tra
  
 
 
-<a name=".Transport"></a>
+<a name="-Transport"></a>
 
 ### Transport
 Service used by Liquidity providers to announce the accepted content type for incoming HTTP request messages
@@ -553,14 +553,14 @@ Service used by Liquidity providers to announce the accepted content type for in
 
 
 
-<a name="types.proto"></a>
+<a name="types-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
 ## types.proto
 
 
 
-<a name=".AddressWithBlindingKey"></a>
+<a name="-AddressWithBlindingKey"></a>
 
 ### AddressWithBlindingKey
 
@@ -576,7 +576,7 @@ Service used by Liquidity providers to announce the accepted content type for in
 
 
 
-<a name=".Balance"></a>
+<a name="-Balance"></a>
 
 ### Balance
 
@@ -592,7 +592,7 @@ Service used by Liquidity providers to announce the accepted content type for in
 
 
 
-<a name=".BalanceWithFee"></a>
+<a name="-BalanceWithFee"></a>
 
 ### BalanceWithFee
 
@@ -608,7 +608,7 @@ Service used by Liquidity providers to announce the accepted content type for in
 
 
 
-<a name=".Fee"></a>
+<a name="-Fee"></a>
 
 ### Fee
 Custom Types
@@ -624,7 +624,7 @@ Custom Types
 
 
 
-<a name=".Fixed"></a>
+<a name="-Fixed"></a>
 
 ### Fixed
 
@@ -640,7 +640,7 @@ Custom Types
 
 
 
-<a name=".Market"></a>
+<a name="-Market"></a>
 
 ### Market
 
@@ -656,7 +656,7 @@ Custom Types
 
 
 
-<a name=".MarketWithFee"></a>
+<a name="-MarketWithFee"></a>
 
 ### MarketWithFee
 
@@ -672,7 +672,7 @@ Custom Types
 
 
 
-<a name=".Price"></a>
+<a name="-Price"></a>
 
 ### Price
 
@@ -680,15 +680,17 @@ Custom Types
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| base_price | [float](#float) |  |  |
-| quote_price | [float](#float) |  |  |
+| base_price_deprecated | [float](#float) |  |  |
+| quote_price_deprecated | [float](#float) |  |  |
+| base_price | [double](#double) |  |  |
+| quote_price | [double](#double) |  |  |
 
 
 
 
 
 
-<a name=".PriceWithFee"></a>
+<a name="-PriceWithFee"></a>
 
 ### PriceWithFee
 

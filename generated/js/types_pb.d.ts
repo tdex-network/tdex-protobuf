@@ -172,6 +172,12 @@ export namespace MarketWithFee {
 }
 
 export class Price extends jspb.Message { 
+    getBasePriceDeprecated(): number;
+    setBasePriceDeprecated(value: number): Price;
+
+    getQuotePriceDeprecated(): number;
+    setQuotePriceDeprecated(value: number): Price;
+
     getBasePrice(): number;
     setBasePrice(value: number): Price;
 
@@ -191,6 +197,8 @@ export class Price extends jspb.Message {
 
 export namespace Price {
     export type AsObject = {
+        basePriceDeprecated: number,
+        quotePriceDeprecated: number,
         basePrice: number,
         quotePrice: number,
     }
