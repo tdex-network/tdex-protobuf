@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package tdex.v1;
 
-import "google/api/annotations.proto";
-
 // Custom Types
 message Fee {
   int64 basis_point = 2;
