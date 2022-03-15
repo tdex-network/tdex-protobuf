@@ -27,7 +27,7 @@ jobs:
         uses: bufbuild/buf-setup-action@v0.6.0
 
       - name: Generate stubs
-        uses: make proto
+        run: make proto
 
       - name: Commit generated stubs
         run: |
