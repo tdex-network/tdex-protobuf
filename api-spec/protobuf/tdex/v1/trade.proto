@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package tdexswap.v1;
+package tdex.v1;
 
 import "v1/swap.proto";
 import "v1/types.proto";

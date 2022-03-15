@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package tdexswap.v1;
+package tdex.v1;
 
 import "google/api/annotations.proto";
 
