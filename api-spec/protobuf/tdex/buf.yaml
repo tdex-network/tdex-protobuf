@@ -1,4 +1,5 @@
 version: v1
+name: buf.build/tdex-network/tdex-protobuf
 deps:
   - buf.build/googleapis/googleapis
 breaking:
