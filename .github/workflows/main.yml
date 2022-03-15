@@ -31,6 +31,10 @@ jobs:
       - name: Generate stubs
         run: make proto
 
+      - uses: bufbuild/buf-push-action@v1        
+        with:          
+          buf_token: ${{ secrets.BUF_TOKEN }}
+
       - name: Commit generated stubs
         run: |
           git config --local user.email "$(git log --format='%ae' HEAD^!)"
