@@ -1,4 +1,4 @@
-name: Compile protobuf stubs
+name: Compile protobuf stubs & push protos to buf.build registry
 
 on:
   push:
@@ -33,9 +33,11 @@ jobs:
 
       - uses: bufbuild/buf-push-action@v1        
         with:          
+          input: api-spec/protobuf/tdex
           buf_token: ${{ secrets.BUF_TOKEN }}
 
       - name: Commit generated stubs
+        continue-on-error: true
         run: |
           git config --local user.email "$(git log --format='%ae' HEAD^!)"
           git config --local user.name "$(git log --format='%an' HEAD^!)"
