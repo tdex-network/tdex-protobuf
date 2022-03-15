@@ -24,10 +24,10 @@ jobs:
           ref: v1
 
       - name: Setup build.buf
-      - uses: bufbuild/buf-setup-action@v0.6.0
+        uses: bufbuild/buf-setup-action@v0.6.0
 
       - name: Generate stubs
-      - uses: make proto
+        uses: make proto
 
       - name: Commit generated stubs
         run: |
