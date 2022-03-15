@@ -18,7 +18,8 @@ service Trade {
   // market.
   rpc Balances(BalancesRequest) returns (BalancesReply){
     option (google.api.http) = {
-      get: "/v1/trade/balance/{base_asset}/{quote_asset}"
+      post: "/v1/trade/balance"
+      body: "*"
     };
   }
 
@@ -91,10 +92,7 @@ service Trade {
 message MarketsRequest {}
 message MarketsReply { repeated MarketWithFee markets = 1; }
 
-message BalancesRequest {
-  string base_asset = 1;
-  string quote_asset = 2;
-}
+message BalancesRequest { Market market = 1; }
 message BalancesReply { repeated BalanceWithFee balances = 1; }
 
 
