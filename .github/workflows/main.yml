@@ -20,6 +20,8 @@ jobs:
 
       - name: Check out code into the Go module directory
         uses: actions/checkout@v2
+        with:
+          ref: v1
 
       - name: Setup build.buf
       - uses: bufbuild/buf-setup-action@v0.6.0
@@ -33,4 +35,4 @@ jobs:
           git config --local user.name "$(git log --format='%an' HEAD^!)"
           git add -A
           git commit -m "Automated: Update protobuf stubs"
-          git push
+          git push origin v1
