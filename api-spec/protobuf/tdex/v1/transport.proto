@@ -1,12 +1,18 @@
 syntax = "proto3";
-option go_package = "github.com/tdex-network/tdex-protobuf/generated/go/transport";
-option java_package = "network.tdex.transport";
+
+package tdex.v1;
+
+import "google/api/annotations.proto";
 
 /**
  * Service used by Liquidity providers to announce the accepted content type for incoming HTTP request messages
  */
 service Transport {
-  rpc SupportedContentTypes(SupportedContentTypesRequest) returns (SupportedContentTypesReply) {}
+  rpc SupportedContentTypes(SupportedContentTypesRequest) returns (SupportedContentTypesReply) {
+    option (google.api.http) = {
+      get: "/v1/transport"
+    };
+  }
 }
 
 enum ContentType {

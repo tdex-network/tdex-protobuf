@@ -1,6 +1,6 @@
 syntax = "proto3";
-option go_package = "github.com/tdex-network/tdex-protobuf/generated/go/types";
-option java_package = "network.tdex.types";
+
+package tdex.v1;
 
 // Custom Types
 message Fee {

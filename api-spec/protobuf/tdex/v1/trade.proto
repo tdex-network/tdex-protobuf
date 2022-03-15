@@ -1,17 +1,27 @@
 syntax = "proto3";
-option go_package = "github.com/tdex-network/tdex-protobuf/generated/go/trade";
-option java_package = "network.tdex.trade";
 
-import "swap.proto";
-import "types.proto";
+package tdex.v1;
+
+import "v1/swap.proto";
+import "v1/types.proto";
+import "google/api/annotations.proto";
 
 service Trade {
   // Markets: List all the markets open for trading.
-  rpc Markets(MarketsRequest) returns (MarketsReply);
+  rpc Markets(MarketsRequest) returns (MarketsReply){
+    option (google.api.http) = {
+      get: "/v1/trade/markets"
+    };
+  }
 
   // Balances: Gets the balances of the two current reserves in the given
   // market.
-  rpc Balances(BalancesRequest) returns (BalancesReply);
+  rpc Balances(BalancesRequest) returns (BalancesReply){
+    option (google.api.http) = {
+      post: "/v1/trade/balance"
+      body: "*"
+    };
+  }
 
   // MarketPrice: Gets the current market price. In case of AMM startegy, the
   // trade type and
@@ -25,7 +35,11 @@ service Trade {
   //
   // If the type of the trade is SELL it means the base asset will be sent by
   // the trader.
-  rpc MarketPrice(MarketPriceRequest) returns (MarketPriceReply);
+  rpc MarketPrice(MarketPriceRequest) returns (MarketPriceReply){
+    option (google.api.http) = {
+      post: "/v1/trade/price"
+    };
+  }
 
   // DEPRECATED TradePropose: Sends a swap request message containing a partial signed
   // transaction.
@@ -39,18 +53,39 @@ service Trade {
   //
   // If the type of the trade is SELL it means the base asset will be sent by
   // the trader.
-  rpc TradePropose(TradeProposeRequest) returns (stream TradeProposeReply);
+  rpc TradePropose(TradeProposeRequest) returns (stream TradeProposeReply){
+    option (google.api.http) = {
+      post: "/v1/trade/stream/propose"
+      body: "*"
+    };
+  }
 
   // Unary RPC for TradePropose.
-  rpc ProposeTrade(ProposeTradeRequest) returns (ProposeTradeReply);
+  rpc ProposeTrade(ProposeTradeRequest) returns (ProposeTradeReply){
+    option (google.api.http) = {
+      post: "/v1/trade/unary/propose"
+      body: "*"
+    };
+  }
+
 
   // DEPRECATED TradeComplete: Sends the trader's counter-signed transaction to the
   // provider. If something wrong, a swap fail message is sent. It returns the
   // transaction hash of the broadcasted transaction.
-  rpc TradeComplete(TradeCompleteRequest) returns (stream TradeCompleteReply);
+  rpc TradeComplete(TradeCompleteRequest) returns (stream TradeCompleteReply){
+    option (google.api.http) = {
+      post: "/v1/trade/stream/complete"
+      body: "*"
+    };
+  }
   
   // Unary RPC for TradeComplete.
-  rpc CompleteTrade(CompleteTradeRequest) returns (CompleteTradeReply);
+  rpc CompleteTrade(CompleteTradeRequest) returns (CompleteTradeReply){
+    option (google.api.http) = {
+      post: "/v1/trade/unary/complete"
+      body: "*"
+    };
+  }
 }
 
 // BOTD#4 Service's messages
