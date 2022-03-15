@@ -9,30 +9,10 @@ Protocol Buffers spec defintions for TDEX
 
 ## Compile
 
-Build stubs for JavaScript & TypeScript
+Build stubs for Go, Java, Java-Lite, JavaScript, Python
 
 ```sh
-$ make js
-```
-
-Build for Go
-
-```sh
-$ make go
-```
-
-Build for Java
-
-```sh
-$ make java
-```
-
-## Documentation
-
-Automatically generate HTML and Markdown documentation (Docker running is required)
-
-```sh
-$ make doc
+$ make proto
 ```
 
 ## Usage
