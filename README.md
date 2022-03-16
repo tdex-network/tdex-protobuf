@@ -3,9 +3,7 @@ Protocol Buffers spec defintions for TDEX
 
 ## Requirements
 
-* protoc
-* Docker (for docgen)
-* java protoc plugin (https://github.com/grpc/grpc-java/tree/master/compiler)
+* [buf CLI](buf.build)
 
 ## Compile
 
@@ -17,15 +15,9 @@ $ make proto
 
 ## Usage
 
-### JavaScript&Typescript
-
-```sh
-$ npm install tdex-network/tdex-protobuf
-```
-
 ### Go
 
 ```sh
-$ go get github.com/tdex-network/tdex-protobuf
+$ go get github.com/tdex-network/tdex-protobuf/api-spec/protobuf/gen
 ```
 
