@@ -1,0 +1,13 @@
+version: v1
+name: buf.build/tdex-network/tdex-protobuf
+deps:
+  - buf.build/googleapis/googleapis
+breaking:
+  use:
+    - FILE
+  ignore_unstable_packages: true
+lint:
+  use:
+    - DEFAULT
+  except:
+    - ENUM_ZERO_VALUE_SUFFIX
