@@ -1,5 +1,5 @@
 
-.PHONY: proto
+.PHONY: lint
 
 lint:
 	@echo "Linting protos..."

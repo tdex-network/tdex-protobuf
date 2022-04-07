@@ -13,11 +13,7 @@ Build stubs for Go, Java, Java-Lite, JavaScript, Python
 $ make proto
 ```
 
-## Usage
+## TDEX Protobuf
 
-### Go
-
-```sh
-$ go get github.com/tdex-network/tdex-protobuf/api-spec/protobuf/gen
-```
+This repository contains the protobuf for [BOTD#2](https://github.com/tdex-network/tdex-specs/blob/master/02-transport-protocol.md) and [BOTD#4](https://github.com/tdex-network/tdex-specs/blob/master/04-trade-protocol.md) and can be imported in other projects via [`buf`](https://buf.build).
 

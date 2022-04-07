@@ -5,12 +5,8 @@ on:
     branches: [v1]
 
 jobs:
-  # This workflow contains a single job called "compile"
-  compile:
-    # The type of runner that the job will run on
+  publish:
     runs-on: ubuntu-latest
-
-    # Install dependencies
     steps:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v2
