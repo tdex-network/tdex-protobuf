@@ -10,8 +10,6 @@ jobs:
     steps:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v2
-        with:
-          ref: v1
 
       - name: Setup build.buf
         uses: bufbuild/buf-setup-action@v1.1.0
