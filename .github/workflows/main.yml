@@ -1,4 +1,4 @@
-name: Compile protobuf stubs & push protos to buf.build registry
+name: Lint & Push protos to buf.build registry
 
 on:
   push:
