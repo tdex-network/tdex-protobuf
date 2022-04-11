@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+package tdex.v1;
+
+import "tdex/v1/swap.proto";
+import "tdex/v1/types.proto";
+import "google/api/annotations.proto";
+
+service TradeService {
+  // ListMarkets lists all the markets open for trading.
+  rpc ListMarkets(ListMarketsRequest) returns (ListMarketsResponse) {
+    option (google.api.http) = {
+      post: "/v1/markets"
+    };
+  }
+
+  // GetMarketBalance retutns the balance of the two current reserves of the
+  // given market.
+  rpc GetMarketBalance(GetMarketBalanceRequest) returns (GetMarketBalanceResponse){
+    option (google.api.http) = {
+      post: "/v1/market/balance"
+      body: "*"
+    };
+  }
+
+  // PreviewTrade returns a counter amount and asset in response to the
+  // provided ones and a trade type for a market.
+  //
+  // The trade type can assume values BUY or SELL and it always refer to the
+  // fixed base asset.
+  // For example:
+  //  * if trade type is BUY, it means the trader wants to buy base asset funds.
+  //  * if trade type is SELL, it means the trader wants to sell base asset funds.
+  rpc PreviewTrade(PreviewTradeRequest) returns (PreviewTradeResponse){
+    option (google.api.http) = {
+      post: "/v1/trade/preview"
+      body: "*"
+    };
+  }
+
+  // ProposeTrade allows a trader to present a SwapRequest. The service answers
+  // with a SwapAccept, filling the request's partial transaction, + an
+  // expiration time to complete the swap when accepting the swap, or,
+  // otherwise, with a SwapFail containg the reason for the rejection of the
+  // proposal.
+  rpc ProposeTrade(ProposeTradeRequest) returns (ProposeTradeResponse){
+    option (google.api.http) = {
+      post: "/v1/trade/propose"
+      body: "*"
+    };
+  }
+
+  // CompleteTrade can be used by the trader to let the daemon finalizing,
+  // extracting, and broadcasting the swap transaction, once he's signed his
+  // inputs.
+  // This is not mandatory, the trader can do the steps above on his own
+  // alternatively.
+  rpc CompleteTrade(CompleteTradeRequest) returns (CompleteTradeResponse){
+    option (google.api.http) = {
+      post: "/v1/trade/complete"
+      body: "*"
+    };
+  }
+}
+
+// BOTD#4 Service's messages
+message ListMarketsRequest {}
+message ListMarketsResponse { repeated MarketWithFee markets = 1; }
+
+message GetMarketBalanceRequest { Market market = 1; }
+message GetMarketBalanceResponse { BalanceWithFee balances = 1; }
+
+message PreviewTradeRequest {
+  Market market = 1;
+  TradeType type = 2;
+  uint64 amount = 3;
+  string asset = 4;
+}
+message PreviewTradeResponse { repeated Preview previews = 1; }
+
+message ProposeTradeRequest {
+  Market market = 1;
+  TradeType type = 2;
+  SwapRequest swap_request = 3;
+}
+message ProposeTradeResponse {
+  SwapAccept swap_accept = 1;
+  SwapFail swap_fail = 2;
+  uint64 expiry_time_unix = 3;
+}
+
+message CompleteTradeRequest {
+  SwapComplete swap_complete = 1;
+  SwapFail swap_fail = 2;
+}
+message CompleteTradeResponse {
+  string txid = 1;
+  SwapFail swap_fail = 2;
+}
