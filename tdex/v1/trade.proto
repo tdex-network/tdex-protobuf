@@ -68,7 +68,7 @@ message ListMarketsRequest {}
 message ListMarketsResponse { repeated MarketWithFee markets = 1; }
 
 message GetMarketBalanceRequest { Market market = 1; }
-message GetMarketBalanceResponse { BalanceWithFee balances = 1; }
+message GetMarketBalanceResponse { BalanceWithFee balance = 1; }
 
 message PreviewTradeRequest {
   Market market = 1;
