@@ -449,7 +449,7 @@
           "additionalProperties": {
             "$ref": "#/definitions/v1UnblindedInput"
           },
-          "description": "In case of psetv2 transaction, the original list of trader's unblinded inputs\ndata, including also those of the inputs added by the provider."
+          "description": "In case of psetv2 transaction, the original list of trader's unblinded inputs\ndata ampped by index, including also those of the inputs added by the\nprovider."
         }
       }
     },
@@ -542,7 +542,7 @@
           "additionalProperties": {
             "$ref": "#/definitions/v1UnblindedInput"
           },
-          "description": "In case of psetv2 transaction, the list of trader's unblinded inputs data,\neven in case of unconfidential inputs."
+          "description": "In case of psetv2 transaction, the list of trader's unblinded inputs data\nmapped by index, even in case they are unconfidential."
         }
       }
     },

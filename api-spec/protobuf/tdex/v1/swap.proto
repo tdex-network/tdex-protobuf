@@ -25,9 +25,9 @@ message SwapRequest {
   // confidential output is included. Each blinding key is identified by the
   // output script hex encoded.
   map<string, bytes> output_blinding_key = 8;
-  // In case of psetv2 transaction, the list of trader's unblinded inputs data,
-  // even in case of unconfidential inputs.
-  map<string, UnblindedInput> unblinded_inputs = 9;
+  // In case of psetv2 transaction, the list of trader's unblinded inputs data
+  // mapped by index, even in case they are unconfidential.
+  map<uint32, UnblindedInput> unblinded_inputs = 9;
 }
 
 message SwapAccept {
@@ -47,8 +47,9 @@ message SwapAccept {
   // hex encoded.
   map<string, bytes> output_blinding_key = 5;
   // In case of psetv2 transaction, the original list of trader's unblinded inputs
-  // data, including also those of the inputs added by the provider.
-  map<string, UnblindedInput> unblinded_inputs = 6;
+  // data ampped by index, including also those of the inputs added by the
+  // provider.
+  map<uint32, UnblindedInput> unblinded_inputs = 6;
 }
 
 message SwapComplete {
