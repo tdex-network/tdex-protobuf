@@ -538,11 +538,11 @@
           "description": "In case of a confidential psetv0 transaction the blinding key of each\nconfidential output is included. Each blinding key is identified by the\noutput script hex encoded."
         },
         "unblindedInputs": {
-          "type": "object",
-          "additionalProperties": {
+          "type": "array",
+          "items": {
             "$ref": "#/definitions/v1UnblindedInput"
           },
-          "description": "In case of psetv2 transaction, the list of trader's unblinded inputs data\nmapped by index, even in case they are unconfidential."
+          "description": "In case of psetv2 transaction, the list of trader's unblinded inputs data,\neven in case they are unconfidential."
         }
       }
     },
