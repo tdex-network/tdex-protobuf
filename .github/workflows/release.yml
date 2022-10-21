@@ -22,5 +22,6 @@ jobs:
         run: make lint
 
       - uses: bufbuild/buf-push-action@v1        
-        with:          
+        with:
+          input: api-spec/protobuf  
           buf_token: ${{ secrets.BUF_TOKEN }}
