@@ -3,6 +3,14 @@ syntax = "proto3";
 package tdex.v1;
 
 // Custom Types
+message UnblindedInput {
+  uint32 index = 1;
+  string asset = 2;
+  uint64 amount = 3;
+  string asset_blinder = 4;
+  string amount_blinder = 5;
+}
+
 message Fee {
   int64 basis_point = 1;
   Fixed fixed = 2;
@@ -49,4 +57,11 @@ message Preview {
 enum TradeType {
   TRADE_TYPE_BUY = 0;
   TRADE_TYPE_SELL = 1;
+}
+
+enum ContentType {
+  CONTENT_TYPE_JSON = 0;
+  CONTENT_TYPE_GRPC = 1;
+  CONTENT_TYPE_GRPCWEB = 2;
+  CONTENT_TYPE_GRPCWEBTEXT = 3;
 }

@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package tdex.v1;
 
+import "tdex/v1/types.proto";
 import "google/api/annotations.proto";
 
 // TransportService is used by a Liquidity provider to announce the accepted
@@ -12,13 +13,6 @@ service TransportService {
       get: "/v1/transport"
     };
   }
-}
-
-enum ContentType {
-  CONTENT_TYPE_JSON = 0;
-  CONTENT_TYPE_GRPC = 1;
-  CONTENT_TYPE_GRPCWEB = 2;
-  CONTENT_TYPE_GRPCWEBTEXT = 3;
 }
 
 message SupportedContentTypesRequest {}
