@@ -46,10 +46,9 @@ message SwapAccept {
   // output is included. Each blinding key is identified by the output script
   // hex encoded.
   map<string, bytes> output_blinding_key = 5;
-  // In case of psetv2 transaction, the original list of trader's unblinded inputs
-  // data ampped by index, including also those of the inputs added by the
-  // provider.
-  map<uint32, UnblindedInput> unblinded_inputs = 6;
+  // In case of psetv2 transaction, the original list of trader's unblinded inputs,
+  // including also those of the inputs added by the provider.
+  repeated UnblindedInput unblinded_inputs = 6;
 }
 
 message SwapComplete {
