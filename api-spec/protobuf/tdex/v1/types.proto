@@ -3,14 +3,6 @@ syntax = "proto3";
 package tdex.v1;
 
 // Custom Types
-message UnblindedInput {
-  uint32 index = 1;
-  string asset = 2;
-  uint64 amount = 3;
-  string asset_blinder = 4;
-  string amount_blinder = 5;
-}
-
 message Fee {
   int64 basis_point = 1;
   Fixed fixed = 2;
