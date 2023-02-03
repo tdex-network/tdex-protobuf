@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package tdex.v2;
+
+import "tdex/v2/types.proto";
+import "google/api/annotations.proto";
+
+// TransportService is used by a Liquidity provider to announce the accepted
+// content types of incoming HTTP request messages.
+service TransportService {
+  rpc SupportedContentTypes(SupportedContentTypesRequest) returns (SupportedContentTypesResponse) {
+    option (google.api.http) = {
+      get: "/v2/transport"
+    };
+  }
+}
+
+message SupportedContentTypesRequest {}
+message SupportedContentTypesResponse {
+  repeated ContentType accepted_types = 1;
+}

@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package tdex.v2;
+
+message UnblindedInput {
+  // Index of the transaction input of reference.
+  uint32 index = 1;
+  // Unblinded asset.
+  string asset = 2;
+  // Unblinded amount.
+  uint64 amount = 3;
+  // Asset blinider when blinding the prevout.
+  string asset_blinder = 4;
+  // Amount blinider used when blinding the prevout.
+  string amount_blinder = 5;
+}
+
+message Fee {
+  // Percentage fee on both assets of the market in basis point.
+  MarketFee percentage_fee = 1;
+  // Fixed fee on both assets of the market in satoshi.
+  MarketFee fixed_fee = 2;
+}
+
+message MarketFee {
+  uint64 base_asset = 1;
+  uint64 quote_asset = 2;
+}
+
+message Balance {
+  uint64 base_amount = 1;
+  uint64 quote_amount = 2;
+}
+
+message Market {
+  string base_asset = 1;
+  string quote_asset = 2;
+}
+
+message MarketWithFee {
+  Market market = 1;
+  Fee fee = 2;
+}
+
+message Price {
+  double base_price = 1;
+  double quote_price = 2;
+}
+
+message Preview {
+  // The price of the market.
+  Price price = 1;
+  // The fees of the market.
+  Fee fee = 2;
+  // The previewd amount (fees excluded).
+  uint64 amount = 3;
+  // The asset of the previewed amount (fees excluded).
+  string asset = 4;
+  // The previewed fee amount,
+  uint64 fee_amount = 5;
+  // The asset of the previewed fee amount,
+  string fee_asset = 6;
+}
+
+enum TradeType {
+  TRADE_TYPE_BUY = 0;
+  TRADE_TYPE_SELL = 1;
+}
+
+enum ContentType {
+  CONTENT_TYPE_JSON = 0;
+  CONTENT_TYPE_GRPC = 1;
+  CONTENT_TYPE_GRPCWEB = 2;
+  CONTENT_TYPE_GRPCWEBTEXT = 3;
+}
