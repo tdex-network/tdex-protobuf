@@ -550,14 +550,23 @@
         },
         "transaction": {
           "type": "string",
-          "title": "The proposer's unsigned transaction in PSBT format (base64 string)"
+          "title": "The proposer's unsigned transaction in PSET v2 format (base64 string)"
+        },
+        "feeAmount": {
+          "type": "string",
+          "format": "uint64",
+          "description": "The fee amount charged to the proposer by the provider."
+        },
+        "feeAsset": {
+          "type": "string",
+          "description": "The asset hash of the fee charged to the proposer."
         },
         "unblindedInputs": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/v2UnblindedInput"
           },
-          "description": "In case of psetv2 transaction, the list of trader's unblinded inputs data,\neven in case they are unconfidential."
+          "description": "The list of trader's unblinded inputs data, even in case they are\nunconfidential."
         }
       }
     },
