@@ -583,11 +583,11 @@
       "properties": {
         "baseAsset": {
           "type": "string",
-          "format": "uint64"
+          "format": "int64"
         },
         "quoteAsset": {
           "type": "string",
-          "format": "uint64"
+          "format": "int64"
         }
       }
     },

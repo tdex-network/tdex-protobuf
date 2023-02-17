@@ -23,8 +23,8 @@ message Fee {
 }
 
 message MarketFee {
-  uint64 base_asset = 1;
-  uint64 quote_asset = 2;
+  int64 base_asset = 1;
+  int64 quote_asset = 2;
 }
 
 message Balance {
