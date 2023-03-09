@@ -8,7 +8,7 @@ message UnblindedInput {
   // Unblinded asset.
   string asset = 2;
   // Unblinded amount.
-  uint64 amount = 3;
+  uint64 amount = 3 [jstype = JS_STRING];
   // Asset blinider when blinding the prevout.
   string asset_blinder = 4;
   // Amount blinider used when blinding the prevout.
@@ -23,13 +23,13 @@ message Fee {
 }
 
 message MarketFee {
-  int64 base_asset = 1;
-  int64 quote_asset = 2;
+  int64 base_asset = 1 [jstype = JS_STRING];
+  int64 quote_asset = 2 [jstype = JS_STRING];
 }
 
 message Balance {
-  uint64 base_amount = 1;
-  uint64 quote_amount = 2;
+  uint64 base_amount = 1 [jstype = JS_STRING];
+  uint64 quote_amount = 2 [jstype = JS_STRING];
 }
 
 message Market {
@@ -53,11 +53,11 @@ message Preview {
   // The fees of the market.
   Fee fee = 2;
   // The previewd amount (fees excluded).
-  uint64 amount = 3;
+  uint64 amount = 3 [jstype = JS_STRING];
   // The asset of the previewed amount (fees excluded).
   string asset = 4;
   // The previewed fee amount,
-  uint64 fee_amount = 5;
+  uint64 fee_amount = 5 [jstype = JS_STRING];
   // The asset of the previewed fee amount,
   string fee_asset = 6;
 }
