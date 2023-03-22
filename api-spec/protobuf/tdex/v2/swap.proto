@@ -17,13 +17,9 @@ message SwapRequest {
   string asset_r = 5;
   // The proposer's unsigned transaction in PSET v2 format (base64 string)
   string transaction = 6;
-  // The fee amount charged to the proposer by the provider.
-  uint64 fee_amount = 7 [jstype = JS_STRING];
-  // The asset hash of the fee charged to the proposer.
-  string fee_asset = 8;
   // The list of trader's unblinded inputs data, even in case they are
   // unconfidential.
-  repeated UnblindedInput unblinded_inputs = 9;
+  repeated UnblindedInput unblinded_inputs = 7;
 }
 
 message SwapAccept {

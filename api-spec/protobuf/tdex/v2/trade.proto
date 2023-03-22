@@ -101,6 +101,8 @@ message ProposeTradeRequest {
   Market market = 1;
   TradeType type = 2;
   SwapRequest swap_request = 3;
+  uint64 fee_amount = 4 [jstype = JS_STRING];
+  string fee_asset = 5;
 }
 message ProposeTradeResponse {
   SwapAccept swap_accept = 1;
