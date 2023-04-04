@@ -342,7 +342,10 @@
       "type": "object",
       "properties": {
         "markets": {
-          "$ref": "#/definitions/tdexv2MarketWithFee"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/tdexv2MarketWithFee"
+          }
         }
       }
     },
@@ -498,10 +501,7 @@
           "type": "string",
           "format": "uint64"
         }
-      },
-      "required": [
-        "expiryTimeUnix"
-      ]
+      }
     },
     "tdexv2SwapAccept": {
       "type": "object",
@@ -684,6 +684,7 @@
       "required": [
         "index",
         "asset",
+        "amount",
         "assetBlinder",
         "amountBlinder"
       ]

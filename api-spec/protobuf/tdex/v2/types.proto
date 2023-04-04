@@ -9,7 +9,7 @@ message UnblindedInput {
   // Unblinded asset.
   string asset = 2 [(google.api.field_behavior) = REQUIRED];
   // Unblinded amount.
-  uint64 amount = 3 [jstype = JS_STRING];
+  uint64 amount = 3 [jstype = JS_STRING, (google.api.field_behavior) = REQUIRED];
   // Asset blinider when blinding the prevout.
   string asset_blinder = 4 [(google.api.field_behavior) = REQUIRED];
   // Amount blinider used when blinding the prevout.
