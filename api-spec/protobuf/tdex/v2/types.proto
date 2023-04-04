@@ -1,65 +1,66 @@
 syntax = "proto3";
 
 package tdex.v2;
+import "google/api/field_behavior.proto";
 
 message UnblindedInput {
   // Index of the transaction input of reference.
-  uint32 index = 1;
+  uint32 index = 1 [(google.api.field_behavior) = REQUIRED];
   // Unblinded asset.
-  string asset = 2;
+  string asset = 2 [(google.api.field_behavior) = REQUIRED];
   // Unblinded amount.
   uint64 amount = 3 [jstype = JS_STRING];
   // Asset blinider when blinding the prevout.
-  string asset_blinder = 4;
+  string asset_blinder = 4 [(google.api.field_behavior) = REQUIRED];
   // Amount blinider used when blinding the prevout.
-  string amount_blinder = 5;
+  string amount_blinder = 5 [(google.api.field_behavior) = REQUIRED];
 }
 
 message Fee {
   // Percentage fee on both assets of the market in basis point.
-  MarketFee percentage_fee = 1;
+  MarketFee percentage_fee = 1 [(google.api.field_behavior) = REQUIRED];
   // Fixed fee on both assets of the market in satoshi.
-  MarketFee fixed_fee = 2;
+  MarketFee fixed_fee = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
 message MarketFee {
-  int64 base_asset = 1 [jstype = JS_STRING];
-  int64 quote_asset = 2 [jstype = JS_STRING];
+  int64 base_asset = 1 [jstype = JS_STRING, (google.api.field_behavior) = REQUIRED];
+  int64 quote_asset = 2 [jstype = JS_STRING, (google.api.field_behavior) = REQUIRED];
 }
 
 message Balance {
-  uint64 base_amount = 1 [jstype = JS_STRING];
-  uint64 quote_amount = 2 [jstype = JS_STRING];
+  uint64 base_amount = 1 [jstype = JS_STRING, (google.api.field_behavior) = REQUIRED];
+  uint64 quote_amount = 2 [jstype = JS_STRING, (google.api.field_behavior) = REQUIRED];
 }
 
 message Market {
-  string base_asset = 1;
-  string quote_asset = 2;
+  string base_asset = 1 [(google.api.field_behavior) = REQUIRED];
+  string quote_asset = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
 message MarketWithFee {
-  Market market = 1;
-  Fee fee = 2;
+  Market market = 1 [(google.api.field_behavior) = REQUIRED];
+  Fee fee = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
 message Price {
-  double base_price = 1;
-  double quote_price = 2;
+  double base_price = 1 [(google.api.field_behavior) = REQUIRED];
+  double quote_price = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
 message Preview {
   // The price of the market.
-  Price price = 1;
+  Price price = 1 [(google.api.field_behavior) = REQUIRED];
   // The fees of the market.
-  Fee fee = 2;
+  Fee fee = 2 [(google.api.field_behavior) = REQUIRED];
   // The previewd amount (fees excluded).
-  uint64 amount = 3 [jstype = JS_STRING];
+  uint64 amount = 3 [jstype = JS_STRING, (google.api.field_behavior) = REQUIRED];
   // The asset of the previewed amount (fees excluded).
-  string asset = 4;
+  string asset = 4 [(google.api.field_behavior) = REQUIRED];
   // The previewed fee amount,
-  uint64 fee_amount = 5 [jstype = JS_STRING];
+  uint64 fee_amount = 5 [jstype = JS_STRING, (google.api.field_behavior) = REQUIRED];
   // The asset of the previewed fee amount,
-  string fee_asset = 6;
+  string fee_asset = 6 [(google.api.field_behavior) = REQUIRED];
 }
 
 enum TradeType {

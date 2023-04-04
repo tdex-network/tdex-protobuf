@@ -5,6 +5,7 @@ package tdex.v2;
 import "tdex/v2/swap.proto";
 import "tdex/v2/types.proto";
 import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
 
 service TradeService {
   // ListMarkets lists all the markets open for trading.
@@ -74,18 +75,20 @@ service TradeService {
 
 // BOTD#4 Service's messages
 message ListMarketsRequest {}
-message ListMarketsResponse { repeated MarketWithFee markets = 1; }
+message ListMarketsResponse { 
+  MarketWithFee markets = 1; 
+}
 
 message GetMarketBalanceRequest { Market market = 1; }
 message GetMarketBalanceResponse {
-  Balance balance = 1;
-  Fee fee = 2;
+  Balance balance = 1 [(google.api.field_behavior) = REQUIRED];
+  Fee fee = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
 message GetMarketPriceRequest { Market market = 1; }
 message GetMarketPriceResponse {
-  double spot_price = 1;
-  uint64 min_tradable_amount = 2 [jstype = JS_STRING];
+  double spot_price = 1 [(google.api.field_behavior) = REQUIRED];
+  uint64 min_tradable_amount = 2 [jstype = JS_STRING, (google.api.field_behavior) = REQUIRED];
 }
 
 message PreviewTradeRequest {
@@ -95,7 +98,9 @@ message PreviewTradeRequest {
   string asset = 4;
   string fee_asset = 5;
 }
-message PreviewTradeResponse { repeated Preview previews = 1; }
+message PreviewTradeResponse { 
+  repeated Preview previews = 1; 
+}
 
 message ProposeTradeRequest {
   Market market = 1;
@@ -107,7 +112,7 @@ message ProposeTradeRequest {
 message ProposeTradeResponse {
   SwapAccept swap_accept = 1;
   SwapFail swap_fail = 2;
-  uint64 expiry_time_unix = 3;
+  uint64 expiry_time_unix = 3 [(google.api.field_behavior) = REQUIRED];
 }
 
 message CompleteTradeRequest {

@@ -245,7 +245,11 @@
           "type": "string",
           "format": "uint64"
         }
-      }
+      },
+      "required": [
+        "baseAmount",
+        "quoteAmount"
+      ]
     },
     "tdexv2CompleteTradeRequest": {
       "type": "object",
@@ -280,7 +284,11 @@
           "$ref": "#/definitions/v2MarketFee",
           "description": "Fixed fee on both assets of the market in satoshi."
         }
-      }
+      },
+      "required": [
+        "percentageFee",
+        "fixedFee"
+      ]
     },
     "tdexv2GetMarketBalanceRequest": {
       "type": "object",
@@ -299,7 +307,11 @@
         "fee": {
           "$ref": "#/definitions/tdexv2Fee"
         }
-      }
+      },
+      "required": [
+        "balance",
+        "fee"
+      ]
     },
     "tdexv2GetMarketPriceRequest": {
       "type": "object",
@@ -320,16 +332,17 @@
           "type": "string",
           "format": "uint64"
         }
-      }
+      },
+      "required": [
+        "spotPrice",
+        "minTradableAmount"
+      ]
     },
     "tdexv2ListMarketsResponse": {
       "type": "object",
       "properties": {
         "markets": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/tdexv2MarketWithFee"
-          }
+          "$ref": "#/definitions/tdexv2MarketWithFee"
         }
       }
     },
@@ -342,7 +355,11 @@
         "quoteAsset": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "baseAsset",
+        "quoteAsset"
+      ]
     },
     "tdexv2MarketWithFee": {
       "type": "object",
@@ -353,7 +370,11 @@
         "fee": {
           "$ref": "#/definitions/tdexv2Fee"
         }
-      }
+      },
+      "required": [
+        "market",
+        "fee"
+      ]
     },
     "tdexv2Preview": {
       "type": "object",
@@ -384,7 +405,15 @@
           "type": "string",
           "title": "The asset of the previewed fee amount,"
         }
-      }
+      },
+      "required": [
+        "price",
+        "fee",
+        "amount",
+        "asset",
+        "feeAmount",
+        "feeAsset"
+      ]
     },
     "tdexv2PreviewTradeRequest": {
       "type": "object",
@@ -429,7 +458,11 @@
           "type": "number",
           "format": "double"
         }
-      }
+      },
+      "required": [
+        "basePrice",
+        "quotePrice"
+      ]
     },
     "tdexv2ProposeTradeRequest": {
       "type": "object",
@@ -465,7 +498,10 @@
           "type": "string",
           "format": "uint64"
         }
-      }
+      },
+      "required": [
+        "expiryTimeUnix"
+      ]
     },
     "tdexv2SwapAccept": {
       "type": "object",
@@ -489,7 +525,13 @@
           },
           "description": "In case of psetv2 transaction, the original list of trader's unblinded inputs,\nincluding also those of the inputs added by the provider."
         }
-      }
+      },
+      "required": [
+        "id",
+        "requestId",
+        "transaction",
+        "unblindedInputs"
+      ]
     },
     "tdexv2SwapComplete": {
       "type": "object",
@@ -506,7 +548,12 @@
           "type": "string",
           "title": "The signed transaction base64 encoded containing the Proposers's signed\ninputs in a PSBT format"
         }
-      }
+      },
+      "required": [
+        "id",
+        "acceptId",
+        "transaction"
+      ]
     },
     "tdexv2SwapFail": {
       "type": "object",
@@ -528,7 +575,13 @@
           "type": "string",
           "title": "The failure reason messaged"
         }
-      }
+      },
+      "required": [
+        "id",
+        "messageId",
+        "failureCode",
+        "failureMessage"
+      ]
     },
     "tdexv2SwapRequest": {
       "type": "object",
@@ -566,7 +619,16 @@
           },
           "description": "The list of trader's unblinded inputs data, even in case they are\nunconfidential."
         }
-      }
+      },
+      "required": [
+        "id",
+        "amountP",
+        "assetP",
+        "amountR",
+        "assetR",
+        "transaction",
+        "unblindedInputs"
+      ]
     },
     "tdexv2TradeType": {
       "type": "string",
@@ -587,7 +649,11 @@
           "type": "string",
           "format": "int64"
         }
-      }
+      },
+      "required": [
+        "baseAsset",
+        "quoteAsset"
+      ]
     },
     "v2UnblindedInput": {
       "type": "object",
@@ -614,7 +680,13 @@
           "type": "string",
           "description": "Amount blinider used when blinding the prevout."
         }
-      }
+      },
+      "required": [
+        "index",
+        "asset",
+        "assetBlinder",
+        "amountBlinder"
+      ]
     }
   }
 }
