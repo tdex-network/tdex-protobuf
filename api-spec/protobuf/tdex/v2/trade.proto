@@ -5,6 +5,7 @@ package tdex.v2;
 import "tdex/v2/swap.proto";
 import "tdex/v2/types.proto";
 import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
 
 service TradeService {
   // ListMarkets lists all the markets open for trading.
@@ -78,14 +79,14 @@ message ListMarketsResponse { repeated MarketWithFee markets = 1; }
 
 message GetMarketBalanceRequest { Market market = 1; }
 message GetMarketBalanceResponse {
-  Balance balance = 1;
-  Fee fee = 2;
+  Balance balance = 1 [(google.api.field_behavior) = REQUIRED];
+  Fee fee = 2 [(google.api.field_behavior) = REQUIRED];
 }
 
 message GetMarketPriceRequest { Market market = 1; }
 message GetMarketPriceResponse {
-  double spot_price = 1;
-  uint64 min_tradable_amount = 2 [jstype = JS_STRING];
+  double spot_price = 1 [(google.api.field_behavior) = REQUIRED];
+  uint64 min_tradable_amount = 2 [jstype = JS_STRING, (google.api.field_behavior) = REQUIRED];
 }
 
 message PreviewTradeRequest {
