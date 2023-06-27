@@ -87,6 +87,7 @@ message GetMarketPriceRequest { Market market = 1; }
 message GetMarketPriceResponse {
   double spot_price = 1 [(google.api.field_behavior) = REQUIRED];
   uint64 min_tradable_amount = 2 [jstype = JS_STRING, (google.api.field_behavior) = REQUIRED];
+  Balance balance = 3 [(google.api.field_behavior) = REQUIRED];
 }
 
 message PreviewTradeRequest {
